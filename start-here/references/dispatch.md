@@ -9,7 +9,7 @@ Invoke the target skill by name (`/email-sequences`) and pass two things:
 1. **A pointer** to the output the skill should write or the campaign it belongs to.
 2. **Session-only facts**: what exists only in this conversation and in no brand file, such as the user's stated goal, the business sentence, a URL they mentioned, a chosen campaign name, and the outputs of earlier steps in the chain (magnet title and hook, landing page headline, chosen angle).
 
-The skill loads its own brand context from its Reads list, applying the freshness rules in `_system/brand-memory.md` §Read, so the same stale-file flags appear whether the user ran the skill directly or through `/start-here`. The dispatch contains the slice the task needs and nothing else.
+The skill loads its own brand context from its Reads list, applying the freshness rules in `../_system/brand-memory.md` §Read, so the same stale-file flags appear whether the user ran the skill directly or through `/start-here`. The dispatch contains the slice the task needs and nothing else.
 
 Why a slice works better than everything: excess context dilutes a skill's focus (a copywriting skill drowning in keyword data writes unfocused copy); contradictory context ("be playful" beside "be authoritative", with no priority) yields inconsistent output; stale context is misleading; and a large volume makes the model summarize instead of using the specific data points that make output sharp. Pass the two things above and let the skill's Reads list do the rest.
 
@@ -53,7 +53,7 @@ For a first-run dispatch the same block carries the business sentence, goal and 
 
 1. Verify the expected output files were written.
 2. When the skill wrote a ./brand/ profile file, confirm it exists.
-3. Confirm the asset is registered in `./brand/assets.md` per `_system/brand-memory.md` §Write, and add it with Status `draft` if the skill did not.
+3. Confirm the asset is registered in `./brand/assets.md` per `../_system/brand-memory.md` §Write, and add it with Status `draft` if the skill did not.
 4. Report completion status to the user.
 
 A skill returns control with this completion block:
@@ -91,4 +91,4 @@ When the user stops or says they are done, present the Session summary from [`ou
 
 ## Workflow feedback
 
-After a whole workflow (a workflow, not each skill in it), follow `_system/brand-memory.md` §Feedback and log to `./brand/learnings.md`. If the user answers later, they can run `/start-here` again and say how it went.
+After a whole workflow (a workflow, not each skill in it), follow `../_system/brand-memory.md` §Feedback and log to `./brand/learnings.md`. If the user answers later, they can run `/start-here` again and say how it went.

@@ -110,7 +110,7 @@ Done when the user has chosen a scope, and the chain then runs to the end of tha
 **Trigger:** "marketing isn't working", "not getting results", "low conversion", "no leads", "traffic but no sales".
 
 **Chain:**
-1. Project scan plus deep audit: read all brand files, all campaign briefs and all learnings entries. This workflow reads at full depth.
+1. Project scan plus deep audit using the Workflow 7 depths in `start-here/SKILL.md` §Reads.
 2. Diagnose the specific breakdown point:
    - No traffic: a content/SEO problem.
    - Traffic but no leads: an offer/magnet problem.

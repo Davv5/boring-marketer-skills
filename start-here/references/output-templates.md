@@ -1,6 +1,6 @@
 # Output templates
 
-Read this when presenting a /start-here deliverable. Every template sits inside the four-section contract in `_system/output-format.md` (Header, Content, Files Saved, What's Next), with ✓ ✗ ★ → as the only symbols. Choices follow that file's numbered-options rule, and a blocker leads with a ✗ line followed by a → action.
+Read this when presenting a /start-here deliverable. Every template sits inside the four-section contract in `../_system/output-format.md` (Header, Content, Files Saved, What's Next), with ✓ ✗ ★ → as the only symbols. Choices follow that file's numbered-options rule, and a blocker leads with a ✗ line followed by a → action.
 
 ## Project scan
 

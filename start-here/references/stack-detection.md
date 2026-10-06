@@ -1,6 +1,6 @@
 # Stack detection
 
-Read this at the Load and scan step, to fill the Marketing Stack section of the project scan. It maps `.env` variable names and running MCP servers to the tools and skills they enable. The order for using a tool (MCP, then API key, then importable files, then ask) and the `stack.md` template are in `_system/brand-memory.md` §Stack and tools.
+Read this at the Load and scan step, to fill the Marketing Stack section of the project scan. It maps `.env` variable names and running MCP servers to the tools and skills they enable. The order for using a tool (MCP, then API key, then importable files, then ask) and the `stack.md` template are in `../_system/brand-memory.md` §Stack and tools.
 
 ## Check `.env`
 

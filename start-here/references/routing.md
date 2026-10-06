@@ -22,29 +22,12 @@ Read this at the Route step, when the user's request names a task, a goal, or a 
 
 Foundation feeds Strategy, Strategy feeds Execution, Execution feeds Distribution.
 
-```
-FOUNDATION (run first, builds brand memory)
-├── /brand-voice             voice-profile.md
-├── /positioning-angles      positioning.md
-├── (written by hand)        audience.md
-└── (written by hand)        competitors.md
+- Foundation: `/brand-voice`, `/positioning-angles`, plus audience and competitor research written with the user.
+- Strategy: `/keyword-research`, `/lead-magnet`.
+- Execution: `/direct-response-copy`, `/seo-content`, `/email-sequences`, `/newsletter`, `/creative`.
+- Distribution: `/content-atomizer`.
 
-STRATEGY (needs foundation)
-├── /keyword-research        keyword-plan.md
-├── /lead-magnet             concept + content
-└── /creative (brand kit)    creative-kit.md
-
-EXECUTION (needs foundation + strategy)
-├── /direct-response-copy    landing pages, sales pages
-├── /seo-content             blog posts, guides
-├── /email-sequences         automations, nurture
-├── /newsletter              editions, growth plan
-└── /creative                images, video, ads
-
-DISTRIBUTION (needs execution assets)
-├── /content-atomizer        social, threads, shorts
-└── /creative (ad creative)  paid ad variants
-```
+Use `../_system/brand-memory.md` §Write for file ownership; the layers describe routing order, not requirements for running a skill alone.
 
 Check which layers exist before routing. When the user asks for an Execution skill and has no Foundation, offer the Foundation first and say why (the choice itself follows `SKILL.md` operating rule 6).
 
@@ -102,10 +85,7 @@ When a request spans several skills, parse it into a workflow and skip the "whic
 
 | Missing | Route to |
 |---------|----------|
-| ./brand/voice-profile.md | /brand-voice |
-| ./brand/positioning.md | /positioning-angles |
-| ./brand/keyword-plan.md | /keyword-research |
-| ./brand/creative-kit.md | /creative (brand kit) |
+| Brand profile file | Owner from `../_system/brand-memory.md` §Write |
 | Any email sequence | /email-sequences |
 | Any lead magnet | /lead-magnet |
 | Any blog content | /seo-content |

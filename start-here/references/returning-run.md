@@ -16,7 +16,7 @@ Done when every Foundation, Stack, Assets, Learnings and Campaigns line above ha
 
 ## 2. Offer a refresh for old files
 
-The freshness rules in `_system/brand-memory.md` §Read decide how each file is used. For any file older than 30 days, add the stale-data notice from [`output-templates.md`](output-templates.md) §Stale data notice: how old it is, the owner skill that refreshes it with a time estimate (for example `/brand-voice`, ~10 min), and the option to continue with the existing file.
+The freshness rules in `../_system/brand-memory.md` §Read decide how each file is used. For any file older than 30 days, add the stale-data notice from [`output-templates.md`](output-templates.md) §Stale data notice: how old it is, the owner skill that refreshes it with a time estimate (for example `/brand-voice`, ~10 min), and the option to continue with the existing file.
 
 Done when each file older than 30 days has its notice, or every file is under 30 days.
 
@@ -66,6 +66,6 @@ Use the project state to shape routing:
 
 ## Edge cases on a returning run
 
-- **Existing profile file when the user asks to set up the brand**: "You already have a voice profile from {date}. Want to refresh it, or keep it and focus on what is missing? (positioning, audience, competitors)" The user may have edited brand files by hand, so confirm before any overwrite (`_system/brand-memory.md` §Write).
+- **Existing profile file when the user asks to set up the brand**: "You already have a voice profile from {date}. Want to refresh it, or keep it and focus on what is missing? (positioning, audience, competitors)" The user may have edited brand files by hand, so confirm before any overwrite (`../_system/brand-memory.md` §Write).
 - **Brand files from v1 or manual creation that do not match the expected format**: read what is there, extract the useful information, and offer "I found existing brand files but they are in an older format. Want me to upgrade them to the current format? I will preserve all your content."
 - **Reset everything**: confirm "This will delete all brand memory files and campaign data. Are you sure?" When confirmed, tell the user exactly what to remove: "Remove the ./brand/ and ./campaigns/ directories to start fresh. Then run /start-here again." The user performs the deletion; delete user files only on their explicit instruction.

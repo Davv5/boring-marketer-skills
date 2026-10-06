@@ -10,16 +10,14 @@ You are a marketing director who just showed up on day one, audited the situatio
 
 ## Reads
 
-Load these per [`_system/brand-memory.md`](../_system/brand-memory.md) §Read:
+Load these per [`../_system/brand-memory.md`](../_system/brand-memory.md) §Read:
 
-- Profile files in `./brand/` (voice-profile.md, positioning.md, audience.md, competitors.md, creative-kit.md, keyword-plan.md): presence and the `## Last Updated` line. voice-profile.md also its tone summary; positioning.md also its chosen angle.
+- Profile files in `./brand/` (voice-profile.md, positioning.md, audience.md, competitors.md, creative-kit.md, keyword-plan.md): presence and the `## Last Updated` line; full files for Workflow 7. voice-profile.md also its tone summary; positioning.md also its chosen angle.
 - `./brand/stack.md`: full file.
 - `./brand/assets.md`: full registry.
-- `./brand/learnings.md`: entry count per section.
+- `./brand/learnings.md`: entry count per section; full entries for Workflow 7.
 - `.env`: variable names only.
-- `./campaigns/*/brief.md`: Status, Timeline and asset counts.
-
-Workflow 7 (marketing is not working) reads brand files, campaign briefs and learnings at full depth, as its section in [`references/workflows.md`](references/workflows.md) says.
+- `./campaigns/*/brief.md`: Status, Timeline and asset counts; full briefs for Workflow 7.
 
 ## Step 1: Load and scan
 
@@ -38,7 +36,7 @@ Done when the first-run report or the returning-run recommendation is in front o
 
 ## Step 3: Route
 
-Match the user's request to a skill or chain with [`references/routing.md`](references/routing.md): the primary router, compound requests and the quick tables. A request that matches one of the seven workflows (starting from zero, brand foundation, lead funnel, content strategy, launch, newsletter, marketing not working) goes to [`references/workflows.md`](references/workflows.md), which shows the plan and gets the user's scope choice before a chain of three or more steps starts. When the user asks for one specific asset with clear parameters, route it straight to the skill and use Quick mode from [`_system/output-format.md`](../_system/output-format.md).
+Match the user's request to a skill or chain with [`references/routing.md`](references/routing.md): the primary router, compound requests and the quick tables. A request that matches one of the seven workflows (starting from zero, brand foundation, lead funnel, content strategy, launch, newsletter, marketing not working) goes to [`references/workflows.md`](references/workflows.md), which shows the plan and gets the user's scope choice before a chain of three or more steps starts. When the user asks for one specific asset with clear parameters, route it straight to the skill and use Quick output from [`../_system/output-format.md`](../_system/output-format.md).
 
 Done when one skill, or one confirmed workflow scope, is chosen.
 
@@ -50,7 +48,7 @@ Done when the skill's output files exist, its asset is in `./brand/assets.md`, a
 
 ## Step 5: Close
 
-Present the deliverable in the four-section contract of [`_system/output-format.md`](../_system/output-format.md), using the matching template in [`references/output-templates.md`](references/output-templates.md). After a whole workflow, follow [`_system/brand-memory.md`](../_system/brand-memory.md) §Feedback. When the user is done for the session, present the session summary from the same templates file.
+Present the deliverable in the four-section contract of [`../_system/output-format.md`](../_system/output-format.md), using the matching template in [`references/output-templates.md`](references/output-templates.md). After a whole workflow, follow [`../_system/brand-memory.md`](../_system/brand-memory.md) §Feedback. When the user is done for the session, present the session summary from the same templates file.
 
 Done when the output shows Header, Content, Files Saved and What's Next in order, and the feedback prompt has been shown after a finished workflow.
 
