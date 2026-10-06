@@ -82,74 +82,6 @@ if [[ ! -f "$SKILLS_ROOT/_system/brand-memory.md" ]]; then
 fi
 
 # ---------------------------------------------------------------------------
-# Define expected manifest
-# ---------------------------------------------------------------------------
-EXPECTED_FILES=(
-  "skills-v2/README.md"
-  "skills-v2/_system/brand-memory.md"
-  "skills-v2/_system/output-format.md"
-  "skills-v2/_system/schemas/voice-profile.schema.json"
-  "skills-v2/_system/schemas/campaign-brief.schema.json"
-  "skills-v2/_system/scripts/install.sh"
-  "skills-v2/_system/scripts/doctor.sh"
-  "skills-v2/_system/scripts/e2e-fresh-install.sh"
-  "skills-v2/_system/scripts/package.sh"
-  "skills-v2/start-here/SKILL.md"
-  "skills-v2/brand-voice/SKILL.md"
-  "skills-v2/positioning-angles/SKILL.md"
-  "skills-v2/positioning-angles/references/angle-frameworks.md"
-  "skills-v2/positioning-angles/references/dunford-positioning.md"
-  "skills-v2/positioning-angles/references/hormozi-offer.md"
-  "skills-v2/positioning-angles/references/schwartz-sophistication.md"
-  "skills-v2/positioning-angles/references/unique-mechanism.md"
-  "skills-v2/direct-response-copy/SKILL.md"
-  "skills-v2/direct-response-copy/references/COPYWRITING_PLAYBOOK.md"
-  "skills-v2/keyword-research/SKILL.md"
-  "skills-v2/seo-content/SKILL.md"
-  "skills-v2/seo-content/references/eeat-examples.md"
-  "skills-v2/email-sequences/SKILL.md"
-  "skills-v2/lead-magnet/SKILL.md"
-  "skills-v2/lead-magnet/references/format-examples.md"
-  "skills-v2/lead-magnet/references/info-product-magnets.md"
-  "skills-v2/lead-magnet/references/psychology.md"
-  "skills-v2/lead-magnet/references/saas-magnets.md"
-  "skills-v2/lead-magnet/references/services-magnets.md"
-  "skills-v2/newsletter/SKILL.md"
-  "skills-v2/newsletter/references/newsletter-examples.md"
-  "skills-v2/content-atomizer/SKILL.md"
-  "skills-v2/content-atomizer/references/platform-playbook.md"
-  "skills-v2/creative/SKILL.md"
-  "skills-v2/creative/references/MODEL_REGISTRY.md"
-  "skills-v2/creative/references/VISUAL_INTELLIGENCE.md"
-  "skills-v2/creative/modes/product-photo.md"
-  "skills-v2/creative/modes/product-video.md"
-  "skills-v2/creative/modes/social-graphics.md"
-  "skills-v2/creative/modes/talking-head.md"
-  "skills-v2/creative/modes/ad-creative.md"
-)
-
-# ---------------------------------------------------------------------------
-# Pre-flight: verify all expected files exist in source
-# ---------------------------------------------------------------------------
-info "Verifying source files..."
-MISSING=0
-for expected in "${EXPECTED_FILES[@]}"; do
-  # Convert manifest path back to source path
-  src_path="${expected#skills-v2/}"
-  if [[ ! -f "$SKILLS_ROOT/$src_path" ]]; then
-    fail "Missing source file: $src_path"
-    MISSING=$((MISSING + 1))
-  fi
-done
-
-if [[ "$MISSING" -gt 0 ]]; then
-  echo ""
-  fail "$MISSING files missing from source. Cannot build package."
-  exit 1
-fi
-success "All ${#EXPECTED_FILES[@]} expected files present in source"
-
-# ---------------------------------------------------------------------------
 # Build the zip
 # ---------------------------------------------------------------------------
 info "Building zip archive..."
@@ -160,35 +92,37 @@ ZIP_FILE="$OUTPUT_DIR/${PACKAGE_NAME}.zip"
 # Remove existing zip if present
 rm -f "$ZIP_FILE"
 
-# Create zip from the parent of skills-v2, including only skills-v2/
-# This preserves the skills-v2/ prefix in the archive
+# Create zip from the parent of the source folder, so the archive keeps the
+# folder name as its prefix
 PARENT_DIR="$(dirname "$SKILLS_ROOT")"
 SKILLS_DIRNAME="$(basename "$SKILLS_ROOT")"
 
+EXCLUDE_PATTERNS=(
+  "*.DS_Store"
+  "*/.git/*"
+  "*/.git"
+  "*.tmp"
+  "*~"
+  "*.swp"
+  "*.swo"
+  "*/__pycache__/*"
+  "*.pyc"
+  "*/.env"
+  "*/.env.*"
+  "*/CLAUDE.md"
+  "*/_system/scripts/outputs/*"
+  "*/SESSION-LOG-*"
+  "*/_system/scripts/brand_context.py"
+  "*/_system/scripts/smoke-test-apis.sh"
+  "*/_system/scripts/e2e_generate.py"
+  "*/_system/scripts/e2e_review.py"
+  "*/_system/scripts/integration_test.py"
+  "*/_system/scripts/validate.sh"
+)
+
 (
   cd "$PARENT_DIR"
-  zip -r "$ZIP_FILE" "$SKILLS_DIRNAME/" \
-    -x "*.DS_Store" \
-    -x "*/.git/*" \
-    -x "*/.git" \
-    -x "*.tmp" \
-    -x "*~" \
-    -x "*.swp" \
-    -x "*.swo" \
-    -x "*/__pycache__/*" \
-    -x "*.pyc" \
-    -x "*/.env" \
-    -x "*/.env.*" \
-    -x "*/CLAUDE.md" \
-    -x "*/_system/scripts/outputs/*" \
-    -x "*/SESSION-LOG-*" \
-    -x "*/_system/scripts/brand_context.py" \
-    -x "*/_system/scripts/smoke-test-apis.sh" \
-    -x "*/_system/scripts/e2e_generate.py" \
-    -x "*/_system/scripts/e2e_review.py" \
-    -x "*/_system/scripts/integration_test.py" \
-    -x "*/_system/scripts/validate.sh" \
-    > /dev/null 2>&1
+  zip -r "$ZIP_FILE" "$SKILLS_DIRNAME/" -x "${EXCLUDE_PATTERNS[@]}" > /dev/null 2>&1
 )
 
 if [[ ! -f "$ZIP_FILE" ]]; then
@@ -198,15 +132,45 @@ fi
 success "Zip archive created"
 
 # ---------------------------------------------------------------------------
+# Expected manifest: README.md, everything under _system and under each skill
+# folder (a top-level folder holding SKILL.md), minus the excluded patterns
+# ---------------------------------------------------------------------------
+is_excluded() {
+  local path="$1"
+  local pattern
+  for pattern in "${EXCLUDE_PATTERNS[@]}"; do
+    # Unquoted on purpose: the pattern is a glob, matched like zip -x
+    if [[ "$path" == $pattern ]]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+EXPECTED_FILES=()
+while IFS= read -r -d '' file; do
+  expected="$SKILLS_DIRNAME/${file#$SKILLS_ROOT/}"
+  if ! is_excluded "$expected"; then
+    EXPECTED_FILES+=("$expected")
+  fi
+done < <(
+  printf '%s\0' "$SKILLS_ROOT/README.md"
+  find "$SKILLS_ROOT/_system" -type f -print0
+  for skill_file in "$SKILLS_ROOT"/*/SKILL.md; do
+    find "$(dirname "$skill_file")" -type f -print0
+  done
+)
+
+# ---------------------------------------------------------------------------
 # Verify zip contents against manifest
 # ---------------------------------------------------------------------------
 info "Verifying zip contents..."
 
 VERIFY_FAIL=0
-ZIP_CONTENTS=$(unzip -l "$ZIP_FILE" 2>/dev/null)
+ZIP_CONTENTS=$(unzip -Z1 "$ZIP_FILE" 2>/dev/null)
 
 for expected in "${EXPECTED_FILES[@]}"; do
-  if echo "$ZIP_CONTENTS" | grep -q "$expected"; then
+  if grep -Fxq -- "$expected" <<< "$ZIP_CONTENTS"; then
     : # Present
   else
     fail "Missing from zip: $expected"
