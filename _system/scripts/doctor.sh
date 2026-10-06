@@ -2,8 +2,8 @@
 # ============================================================================
 # doctor.sh - Vibe Marketing Skills v2 Installation Verifier
 # ============================================================================
-# Runs a comprehensive health check on an installed skill suite. Verifies
-# every required file is present, schemas are valid, and optional API keys
+# Runs a health check on an installed skill suite. Verifies each skill's
+# SKILL.md and the shared _system files are present, and optional API keys
 # are configured.
 #
 # Usage:
@@ -104,15 +104,10 @@ if [[ ! -d "$SYSTEM_DIR" ]]; then
 fi
 check_pass "System directory exists"
 
-# --- System core files ---
+# --- Shared files ---
 check_file "$SYSTEM_DIR/brand-memory.md"    "Brand memory template"
 check_file "$SYSTEM_DIR/output-format.md"   "Output format guide"
-
-# --- Schemas ---
-echo ""
-echo -e "${BOLD}  Schemas${RESET}"
-check_file "$SYSTEM_DIR/schemas/voice-profile.schema.json"     "Voice profile schema"
-check_file "$SYSTEM_DIR/schemas/campaign-brief.schema.json"    "Campaign brief schema"
+check_dir  "$SYSTEM_DIR/schemas"            "Schemas"
 
 # --- Scripts ---
 echo ""
@@ -123,7 +118,8 @@ check_file "$SYSTEM_DIR/scripts/e2e-fresh-install.sh"  "E2E test"
 check_file "$SYSTEM_DIR/scripts/package.sh"            "Packager"
 
 # ---------------------------------------------------------------------------
-# Check 2: Core skills (SKILL.md in each)
+# Check 2: Core skills (SKILL.md in each). References and modes are not
+# listed here: install copies each skill folder whole.
 # ---------------------------------------------------------------------------
 echo ""
 echo -e "${BOLD}  Core Skills${RESET}"
@@ -151,39 +147,12 @@ echo ""
 echo -e "${BOLD}  Creative Skill${RESET}"
 if [[ -d "$SKILLS_DIR/creative" ]]; then
   check_file "$SKILLS_DIR/creative/SKILL.md" "Skill: creative"
-  check_file "$SKILLS_DIR/creative/references/MODEL_REGISTRY.md"       "Model registry"
-  check_file "$SKILLS_DIR/creative/references/VISUAL_INTELLIGENCE.md"   "Visual intelligence guide"
-  check_dir  "$SKILLS_DIR/creative/modes" "Creative modes" 5
 else
   check_warn "Creative skill not installed (--claude-only mode)"
 fi
 
 # ---------------------------------------------------------------------------
-# Check 4: Reference files
-# ---------------------------------------------------------------------------
-echo ""
-echo -e "${BOLD}  Reference Libraries${RESET}"
-
-# Positioning angles - 5 reference files
-check_dir "$SKILLS_DIR/positioning-angles/references" "Positioning angles references" 5
-
-# SEO content
-check_file "$SKILLS_DIR/seo-content/references/eeat-examples.md" "SEO E-E-A-T examples"
-
-# Lead magnet - 5 reference files
-check_dir "$SKILLS_DIR/lead-magnet/references" "Lead magnet references" 5
-
-# Newsletter
-check_file "$SKILLS_DIR/newsletter/references/newsletter-examples.md" "Newsletter examples"
-
-# Direct response copy
-check_file "$SKILLS_DIR/direct-response-copy/references/COPYWRITING_PLAYBOOK.md" "Copywriting playbook"
-
-# Content atomizer
-check_file "$SKILLS_DIR/content-atomizer/references/platform-playbook.md" "Platform playbook"
-
-# ---------------------------------------------------------------------------
-# Check 5: Optional - Replicate API key
+# Check 4: Optional - Replicate API key
 # ---------------------------------------------------------------------------
 echo ""
 echo -e "${BOLD}  API Keys (optional)${RESET}"
