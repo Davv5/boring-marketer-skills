@@ -296,7 +296,7 @@ Stage 5: Premium offer ($1,000+)
 | 0-1,000 | Product funnel | $0-500 |
 | 1,000-5,000 | Sponsorships + product $500-2,500 |  |
 | 5,000-10,000 | Sponsorships + paid | $2,500-7,500 |
-| 10,000-25,000 Multi-model | $7,500-25,000 |  |
+| 10,000-25,000 | Multiple revenue streams | $7,500-25,000 |
 | 25,000-50,000 Media business | $25,000-75,000 |  |
 | 50,000+ | Full media company | $75,000+ |
 

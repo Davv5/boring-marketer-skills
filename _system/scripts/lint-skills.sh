@@ -149,6 +149,28 @@ if [[ ${#SOURCES[@]} -gt 0 ]]; then
   ' "${SOURCES[@]}" > "$WORK_DIR/pointers"
 fi
 
+# Registry data, not a second list of models in the linter.
+REGISTRY="creative/references/MODEL_REGISTRY.md"
+: > "$WORK_DIR/models"
+if [[ -f "$REGISTRY" ]]; then
+  awk -F'|' '
+    /^\|/ && $3 ~ /`[^`]+\/[^`]+`/ {
+      role = $2
+      gsub(/^[ \t]+|[ \t]+$/, "", role)
+      print "role\t" tolower(role)
+      rest = $3
+      while (match(rest, /`[^`]+\/[^`]+`/)) {
+        slug = substr(rest, RSTART + 1, RLENGTH - 2)
+        print "slug\t" slug
+        sub(/^[^\/]+\//, "", slug)
+        gsub(/-/, " ", slug)
+        print "role\t" tolower(slug)
+        rest = substr(rest, RSTART + RLENGTH)
+      }
+    }
+  ' "$REGISTRY" > "$WORK_DIR/models"
+fi
+
 # ---------------------------------------------------------------------------
 # Lint each target
 # ---------------------------------------------------------------------------
@@ -200,6 +222,34 @@ for target in "${TARGETS[@]}"; do
       fi
     done < <(find "$target" -type f -not -name '.*' -not -path "$target/SKILL.md" | sort)
   fi
+
+  # --- Model slugs and prices have one home ---
+  if [[ "$target" == "creative" && ! -s "$WORK_DIR/models" ]]; then
+    fail "$REGISTRY  missing model registry table"
+  fi
+  while IFS= read -r file; do
+    [[ "$file" == "$REGISTRY" ]] && continue
+    while IFS=$'\t' read -r line kind; do
+      fail "$file:$line  model $kind outside $REGISTRY"
+    done < <(awk -F'\t' '
+      NR == FNR {
+        if ($1 == "slug") slugs[$2] = 1
+        else roles[$2] = 1
+        next
+      }
+      {
+        text = tolower($0)
+        slug_hit = 0
+        for (slug in slugs) if (index(text, slug)) slug_hit = 1
+        if (slug_hit) print FNR "\tslug"
+        if (text ~ /\$[ \t]*[0-9]/) {
+          model_hit = slug_hit || text ~ /(^|[^[:alnum:]_])models?([^[:alnum:]_]|$)/
+          for (role in roles) if (index(text, role)) model_hit = 1
+          if (model_hit) print FNR "\tprice"
+        }
+      }
+    ' "$WORK_DIR/models" "$file")
+  done < <(find "$target" -type f -name '*.md' -not -name '.*' | sort)
 
   # --- Box frames and heavy dividers ---
   while IFS= read -r file; do
