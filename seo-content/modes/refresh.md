@@ -1,10 +1,21 @@
 # Refresh Mode
 
-Use this Mode for an existing article when the user chooses to update it rather than rewrite, expand, or start fresh.
+Enter this Mode when the user points to an existing article, asks to refresh or update a published article, or the returning-run check finds the keyword's article at `./campaigns/content/{keyword-slug}.md` and the user chooses Refresh. The other returning-run choices (rewrite with a new angle, expand, start fresh) follow the main workflow.
 
-1. Search the target keyword and compare current results with the saved article: new competitors and angles, newly relevant PAA questions, changed snippet format, shifts in intent, and outdated facts.
-2. Present specific recommended edits and the evidence for each. Include new or changed SERP details and identify sections that remain accurate.
-3. Ask the user to approve the proposed changes before editing.
-4. Apply approved edits, refresh `last_updated`, and preserve useful existing material. Recheck article quality and schema under Phases 6–8 of `seo-content/SKILL.md`.
+## Refresh process
 
-Completion: approved updates are saved and reviewed, or the article remains unchanged when approval is declined.
+1. Read the full article, including frontmatter and `serp_snapshot_date`.
+2. Re-run SERP analysis for the target keyword. Compare the current top results, PAA, snippet format, search intent, related topics, and AI Overview with the article's recorded state.
+3. Compare the current and recorded SERP state using `serp_snapshot_date`. Check for new top-five competitors, uncovered PAA questions, Featured Snippet format changes, new angles, intent shifts (for example informational to commercial), newly associated topics, and AI Overview changes. Identify outdated facts and claims in the article.
+4. Present an analysis with article title, publication date, and days since publication when known. Group findings as new competitors (and their uncovered topics), new PAA questions, content gaps or outdated claims, then actionable recommendations. For each recommendation name the exact addition or section, reason, placement, specific revision, and SERP evidence. Include old and verified replacement values for changed statistics, new FAQ answers, and schema updates when FAQ content changes.
+5. Ask for approval before editing. If declined, leave the article unchanged.
+6. Apply approved changes, set `last_updated` and `serp_snapshot_date` to the current date, save, and review the result through Phases 6–8 of `seo-content/SKILL.md`.
+
+Example recommendation shape:
+
+- Add H2 “{new section}” after “{existing section}” because {SERP evidence}.
+- Update “{existing section}” with {specific verified information} because {what changed}.
+- Add FAQ “{new PAA question}” with {concise answer}; update FAQ schema.
+- Replace {old statistic} with {verified new statistic and source}.
+
+Completion: approved edits are saved with refreshed dates and reviewed, or the article remains unchanged when approval is declined.
