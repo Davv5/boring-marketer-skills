@@ -1,15 +1,26 @@
 ---
 name: brand-voice
-description: "Create or refine a brand voice profile from existing content, strategic input, or a URL."
+description: "Create or refine a brand voice profile from existing content, strategic input, or a URL. Use when copy sounds generic or inconsistent."
 ---
 
 # /brand-voice
 
 Create or refine `./brand/voice-profile.md` so other skills can write consistently in the brand's voice.
 
+## Reads
+
+- `./brand/positioning.md` — chosen angle only.
+- `./brand/audience.md` — pain points and language.
+- `./brand/voice-profile.md` — full file when present.
+
+## Writes
+
+- `./brand/voice-profile.md` — confirmed voice profile.
+- `./brand/learnings.md` — voice-specific feedback under `../_system/brand-memory.md` §Write.
+
 ## Steps
 
-1. **Load brand context.** Read `./brand/positioning.md` and `./brand/audience.md` when present, along with the owned file `./brand/voice-profile.md` if present. Follow [`../_system/brand-memory.md`](../_system/brand-memory.md) §Read for directory checks, Reads depth, freshness, reporting, and use. The current profile determines whether this is a returning run.
+1. **Load brand context.** Load the Reads list. Follow [`../_system/brand-memory.md`](../_system/brand-memory.md) §Read for directory checks, Reads depth, freshness, reporting, and use. The current profile determines whether this is a returning run.
    **Done:** Each available Reads file is loaded at its specified depth, or reported missing/stale in the protocol's status line.
 
 2. **Choose the run.** For a returning run, summarize the existing profile and ask whether to make a targeted refinement, incorporate new samples, rebuild, or refresh from a URL. For a first run, use a supplied URL for Scrape; otherwise ask whether the user has representative content (Extract) or wants to shape a new voice (Build). Follow the matching mode file: [`modes/extract.md`](modes/extract.md) for samples, [`modes/build.md`](modes/build.md) for strategic input, or [`modes/scrape.md`](modes/scrape.md) for a URL. If the selected Mode lacks input or evidence, use [`references/mode-fallbacks.md`](references/mode-fallbacks.md). The platform guide is [`references/platform-adaptations.md`](references/platform-adaptations.md), read while completing the profile's platform adaptations. The three worked examples are [`references/worked-examples.md`](references/worked-examples.md), read when a concrete example will help resolve uncertainty.
