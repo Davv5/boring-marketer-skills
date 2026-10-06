@@ -3,8 +3,8 @@
 # doctor.sh - Vibe Marketing Skills v2 Installation Verifier
 # ============================================================================
 # Runs a health check on an installed skill suite. Verifies each skill's
-# SKILL.md and the shared _system files are present, and optional API keys
-# are configured.
+# SKILL.md and the shared _system files are present, lints the pack with
+# lint-skills.sh, and checks optional API keys are configured.
 #
 # Usage:
 #   ./doctor.sh                Verify default installation
@@ -12,7 +12,7 @@
 #
 # Exit codes:
 #   0  All required checks passed
-#   1  One or more required files missing
+#   1  One or more required files missing, or lint failed
 # ============================================================================
 set -euo pipefail
 
@@ -116,6 +116,7 @@ check_file "$SYSTEM_DIR/scripts/install.sh"            "Installer"
 check_file "$SYSTEM_DIR/scripts/doctor.sh"             "Doctor (this script)"
 check_file "$SYSTEM_DIR/scripts/e2e-fresh-install.sh"  "E2E test"
 check_file "$SYSTEM_DIR/scripts/package.sh"            "Packager"
+check_file "$SYSTEM_DIR/scripts/lint-skills.sh"        "Lint script"
 
 # ---------------------------------------------------------------------------
 # Check 2: Core skills (SKILL.md in each). References and modes are not
@@ -152,7 +153,28 @@ else
 fi
 
 # ---------------------------------------------------------------------------
-# Check 4: Optional - Replicate API key
+# Check 4: Lint the pack. Only the pack's own folders are passed, so other
+# skills installed beside it are not linted.
+# ---------------------------------------------------------------------------
+echo ""
+echo -e "${BOLD}  Lint${RESET}"
+LINT_TARGETS=("$SYSTEM_DIR")
+for skill in "${CORE_SKILLS[@]}" "creative"; do
+  if [[ -d "$SKILLS_DIR/$skill" ]]; then
+    LINT_TARGETS+=("$SKILLS_DIR/$skill")
+  fi
+done
+
+if [[ ! -f "$SYSTEM_DIR/scripts/lint-skills.sh" ]]; then
+  check_fail "Lint  ${DIM}(lint-skills.sh missing)${RESET}"
+elif bash "$SYSTEM_DIR/scripts/lint-skills.sh" "${LINT_TARGETS[@]}"; then
+  check_pass "Lint (${#LINT_TARGETS[@]} folders)"
+else
+  check_fail "Lint (${#LINT_TARGETS[@]} folders)"
+fi
+
+# ---------------------------------------------------------------------------
+# Check 5: Optional - Replicate API key
 # ---------------------------------------------------------------------------
 echo ""
 echo -e "${BOLD}  API Keys (optional)${RESET}"
