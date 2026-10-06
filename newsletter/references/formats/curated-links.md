@@ -4,34 +4,8 @@ A small collection whose commentary adds judgment beyond the links.
 
 ## Template
 
-```text
-Subject: [number] useful reads on [topic]
-
-[Personal opener]
-
-## The important one
-[Linked title]
-[Why it matters and your perspective]
-
-## Also worth your time
-[Linked title] — [short useful note]
-[Linked title] — [short useful note]
-
-## One thought to take away
-[Original synthesis and CTA]
-```
-
-## Example
-
-A creator shares a research paper, a practical guide, and a tool. Each link gets a sentence explaining who should care; a closing paragraph connects the three into a point about reducing production friction.
-
-
-## Original detailed format template
-
-### Template 3: Curated Links + Commentary
-
-```
-SUBJECT LINE: [Number] things worth your time: [Hook topic]
+```markdown
+Subject: [Number] things worth your time: [Hook topic]
 
 ---
 
@@ -83,10 +57,38 @@ That's it for this week. Hit reply if anything resonated.
 [Your name]
 ```
 
-**Ben's Bites voice markers:**
-- Genuine enthusiasm (not performative)
-- "I found this and thought you'd like it" energy
-- Commentary adds value beyond the link
-- Organized by type (reading, tools, news)
+## Example
+
+A creator shares a research paper, a practical guide, and a tool. Each link gets a sentence explaining who should care; a closing paragraph connects the three into a point about reducing production friction.
+
+## Ben's Bites — The Curated Commentary
+
+**Stats:** 140K+ subscribers
+**Frequency:** Daily
+**Niche:** AI news and tools
+
+### What Makes It Work
+
+**1. Curation That Adds Value**
+Every link includes Ben's take on *why* it matters. Not just "check this out" but "check this out because..."
+
+**2. Three Content Types**
+- News summaries (time-sensitive)
+- Hand-picked articles (evergreen)
+- Tool showcases (practical)
+
+Variety keeps it interesting.
+
+**3. The AI Project Tracker**
+Created a database of every link ever curated. Became a referral incentive AND a product.
+
+**4. Enthusiasm Without Hype**
+Genuinely excited about AI without the "EVERYTHING IS CHANGING" panic energy.
+
+### Voice Markers
+- "This is cool because..."
+- "I'm skeptical about X but..."
+- "Found this and immediately thought of you all"
+- Friendly, not performative
 
 ---

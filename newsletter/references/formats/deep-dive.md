@@ -4,34 +4,8 @@ One question answered with original insight and practical application.
 
 ## Template
 
-```text
-Subject: [specific question] — [framework promise]
-
-[Personal opener and why this matters]
-
-## [Framework]
-[Explain the idea and its components with examples.]
-
-## How to apply it
-[Concrete steps, checklist or reusable resource.]
-
-## The takeaway
-[Key point and one CTA.]
-
-[Sign-off]
-```
-
-## Example
-
-A reader asks, “How do you decide what to fix first when everything feels urgent?” Introduce a simple impact-and-effort test, demonstrate it on one real decision, and end with a three-question checklist the reader can use this week.
-
-
-## Original detailed format template
-
-### Template 1: Deep-Dive Framework Newsletter
-
-```
-SUBJECT LINE: [Specific question or problem] — [Hint at framework]
+```markdown
+Subject: [Specific question or problem] — [Hint at framework]
 
 ---
 
@@ -71,6 +45,9 @@ Why this matters. What's at stake. Who this is for.
 
 ---
 
+## Other frameworks to consider
+[Brief alternatives and when to use them]
+
 ## Template / Checklist
 
 [Downloadable or copy-paste resource]
@@ -87,7 +64,50 @@ Why this matters. What's at stake. Who this is for.
 P.S. [Personal note, question for readers, or CTA]
 ```
 
-**Example from Lenny Rachitsky:**
+## Example
+
+**Lenny Rachitsky-style question opener:**
 > "How do you make good decisions in situations where you lack perfect information? This question came from three different readers this month, so let me share the frameworks I actually use..."
+
+
+A reader asks, “How do you decide what to fix first when everything feels urgent?” Introduce a simple impact-and-effort test, demonstrate it on one real decision, and end with a three-question checklist the reader can use this week.
+
+## Lenny Rachitsky — The Framework Newsletter
+
+**Stats:** 1M+ subscribers, $15/month paid tier
+**Frequency:** Weekly (free), 2x weekly (paid)
+**Niche:** Product management, growth, startups
+
+### What Makes It Work
+
+**1. Credibility Anchoring**
+Lenny doesn't claim to invent everything. He credits sources:
+> "This framework came from my time at Airbnb, developed with [specific colleague]..."
+
+This makes him more trustworthy, not less.
+
+**2. The Q&A Format**
+Many editions answer reader questions directly. Creates:
+- Proof of engaged audience
+- Content that addresses real problems
+- Variety in topics
+
+**3. Framework + Template**
+Every framework includes implementation guidance:
+> "Here's the RAT Decision Framework. And here's the exact template we used."
+
+Readers can apply it immediately.
+
+**4. Free vs Paid Architecture**
+Free: Frameworks and insights
+Paid: Deep dives, archives, podcast content
+
+Taste → Want more → Pay
+
+### Voice Markers
+- "I've seen this work at Airbnb, Notion, and Stripe..."
+- "The honest answer is..."
+- Credits others liberally
+- Admits what he doesn't know
 
 ---

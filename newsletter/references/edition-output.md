@@ -2,32 +2,6 @@
 
 Use this skill-specific structure inside the newsletter file; the response around it follows `../_system/output-format.md`.
 
-```markdown
-# Newsletter: {title}
-
-## Metadata
-- Format:
-- Date:
-- Subject line:
-- Alternatives:
-- Estimated read time:
-- Platform:
-
-## Newsletter Content
-{edition}
-
-## Send Notes
-{only useful recommendations and assumptions}
-
-## Sources
-{linked sources used}
-```
-
-Save to `./campaigns/newsletters/{YYYY-MM-DD}-{topic}.md`, using a lowercase kebab-case topic. Append `| {date}-{topic} | Newsletter ({format}) | {date} | newsletters | draft | {subject line} |` to `./brand/assets.md`.
-
-
-## Detailed output, registry, and learning instructions retained from the prior skill
-
 ## File Output
 
 Every newsletter edition is saved to disk for version control, repurposing, and campaign tracking.
@@ -51,7 +25,7 @@ Each saved newsletter file follows this structure:
 # Newsletter: {Title}
 
 ## Metadata
-- **Type:** {archetype name}
+- **Format:** {archetype name}
 - **Date:** {YYYY-MM-DD}
 - **Subject Line:** {chosen subject line}
 - **Subject Line Variants:**
@@ -93,11 +67,7 @@ Each saved newsletter file follows this structure:
 After saving the newsletter file, append an entry to `./brand/assets.md`:
 
 ```
-| {date}-{topic} | Newsletter ({type}) | {date} | newsletters | draft | {subject line} |
+| {date}-{topic} | Newsletter ({format}) | {date} | newsletters | draft | {subject line} |
 ```
 
-### Learnings Journal Update
-
-After the user provides feedback (via the standard feedback prompt), append findings to `./brand/learnings.md` under the appropriate section.
-
----
+For feedback and learning updates, apply `../_system/brand-memory.md` §Feedback.

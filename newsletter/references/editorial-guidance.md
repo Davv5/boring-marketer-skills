@@ -6,15 +6,7 @@ Read for edition craft, sourcing, and pre-send review.
 
 ### The Newsletter Voice Spectrum
 
-```
-FORMAL ←————————|————————→ CASUAL
-             Newsletter sweet spot
-                    ↓
-         Professional but personable
-         Smart friend, not professor
-         Opinions with reasoning
-         Direct, not corporate
-```
+Aim for professional but personable: a smart friend, not a professor; opinions with reasoning; direct, not corporate.
 
 ### Voice Principles
 
@@ -157,9 +149,9 @@ OR
 
 For news briefing and curated link formats, this skill uses web search to pull current, relevant content. This ensures every edition references real, timely information -- not stale placeholders.
 
-**This is a research-dependent skill.** When sourcing external content, show the RESEARCH MODE signal per `../_system/brand-memory.md`:
-- **If web search tools are available:** Show `RESEARCH MODE → Data quality: LIVE` and proceed with real sources.
-- **If web search tools are NOT available:** Show `RESEARCH MODE → Data quality: ESTIMATED`. Use conceptual/example content and flag clearly that sources are illustrative, not live. Ask the user whether to proceed or connect web search first.
+**This is a research-dependent skill.** When sourcing external content, show the Data-quality label per `../_system/brand-memory.md`:
+- **If web search tools are available:** Show `Data-quality label: LIVE` and proceed with real sources.
+- **If web search tools are NOT available:** Show `Data-quality label: ESTIMATED`. Use conceptual/example content and flag clearly that sources are illustrative, not live. Ask the user whether to proceed or connect web search first.
 
 ### When Web Search Activates
 
@@ -225,7 +217,7 @@ Step 4: Integrate into newsletter
 - What did you learn/create/notice?
 - What questions are readers asking?
 - What links are worth sharing?
-- **v2: Run web search for current news/trends in niche** (for news briefing and curated formats)
+- **Run web search for current news/trends in niche** (for news briefing and curated formats)
 
 ### Step 2: Select
 - Pick 1 main topic (deep dive) OR 3-5 items (roundup)
@@ -257,7 +249,7 @@ Step 4: Integrate into newsletter
 
 ## Best-in-Class Examples to Study
 
-| Newsletter | Type | What to Learn |
+| Newsletter | Format | What to Learn |
 |------------|------|---------------|
 | **Lenny Rachitsky** | Deep-Dive | Framework presentation, credibility anchoring |
 | **Morning Brew** | News Briefing | Voice, scannability, referral program |
@@ -269,7 +261,7 @@ Step 4: Integrate into newsletter
 | **The Rundown AI** | AI News | Business implications framing |
 | **boringmarketer** | Marketing | Contrarian takes, systems thinking |
 
-See `references/newsletter-examples.md` for detailed breakdowns of each newsletter's structure, voice markers, and sample formats.
+Read the selected `references/formats/{format}.md` for detailed example analysis and voice markers.
 
 ---
 
@@ -286,3 +278,46 @@ Before hitting send, ask:
 If any answer is no, revise before sending.
 
 ---
+
+## Patterns Across All Great Newsletters
+
+### 1. Consistent Format
+Readers know what to expect. Sections are predictable. Navigation is easy.
+
+### 2. Distinct Voice
+You could identify the newsletter from a random paragraph. Not generic, not corporate.
+
+### 3. Clear Value Proposition
+Each Format delivers something specific:
+- Lenny: Frameworks you can use
+- Morning Brew: 5-minute business update
+- Ben's Bites: AI curation you can trust
+- Sahil: Life improvement through reflection
+- Greg: Ideas from the building trenches
+- The Hustle: Business news that doesn't bore you
+
+### 4. Respect for Reader Time
+- Above-fold content earns continued reading
+- Scannability for busy readers
+- Clear sections for different consumption modes
+
+### 5. Human Moments
+- Personal openers
+- Admits uncertainty
+- Shows personality
+- Signs off with a name, not a brand
+
+---
+
+
+## Quick Reference: Which Format for Your Goals?
+
+| Goal | Format | Example |
+|------|--------|---------|
+| Build authority | Deep-Dive Framework | Lenny Rachitsky |
+| Daily habit | News Briefing | Morning Brew |
+| Niche curator | Curated + Commentary | Ben's Bites |
+| Personal brand | Essay/Reflection | Sahil Bloom |
+| Founder audience | Builder Updates | Greg Isenberg |
+| Broad audience | Irreverent News | The Hustle |
+| Fast-moving space | Applied News | The Rundown AI |

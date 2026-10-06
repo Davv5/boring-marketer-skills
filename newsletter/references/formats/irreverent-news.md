@@ -4,37 +4,8 @@ Sourced news with an unexpected angle and light personality.
 
 ## Template
 
-```text
-Subject: [curious but accurate hook]
-
-[Short hook]
-
-## What happened
-[Accurate summary and source]
-
-## Why it is surprising
-[Angle, explained without distorting the facts]
-
-## Also worth knowing
-[Brief sourced items]
-
-## The useful number
-[Verified statistic, source, context]
-
-[Sign-off]
-```
-
-## Example
-
-A new scheduling feature arrives with much fanfare. Explain what actually changed, contrast the claim with the product notes, and end with a concise, light observation that doesn't turn uncertainty into fact.
-
-
-## Original detailed format template
-
-### Template 6: Irreverent News + Story
-
-```
-SUBJECT LINE: [Unexpected angle on news + emoji]
+```markdown
+Subject: [Unexpected angle on news + emoji]
 
 ---
 
@@ -80,11 +51,36 @@ See you tomorrow,
 [Editor nickname] 🦊
 ```
 
-**The Hustle voice markers:**
-- Irreverent but not trying too hard
-- Headlines that create curiosity
-- "Why it's weird" — finds the surprising angle
-- Editor nicknames/personalities
+## Example
+
+A new scheduling feature arrives with much fanfare. Explain what actually changed, contrast the claim with the product notes, and end with a concise, light observation that doesn't turn uncertainty into fact.
+
+## The Hustle — The Irreverent News
+
+**Stats:** 2.5M+ subscribers
+**Frequency:** Daily
+**Niche:** Business news with personality
+
+### What Makes It Work
+
+**1. Unexpected Angles**
+Not "Company raises $50M" but "Why this $50M raise means your coffee is about to get weird"
+
+**2. The Editor Personality**
+Each edition ends with an editor nickname. Creates human connection and encourages reading to the end.
+
+**3. Anecdote-First Structure**
+Opens with human-scale story before zooming out to business implications.
+
+**4. "Why it's weird"**
+Every story answers: why should you care? What's the surprising angle?
+
+### Voice Markers
 - Pop culture and meme fluency
+- Headlines that make you curious
+- "Here's the thing..."
+- Self-aware humor
+- "Later nerds" / personality in sign-offs
+- Knows when to be serious (doesn't joke about everything)
 
 ---

@@ -33,53 +33,35 @@ After generating a newsletter edition, offer to atomize it for social promotion.
 
 ### When to Offer Atomization
 
-Always. After every newsletter edition is saved, present this:
-
-```
-Newsletter saved. Ready to promote it?
-
-→ /content-atomizer    Atomize this edition for social
-                       distribution (~5 min)
-
-This will generate:
-├── Twitter/X thread (key insights)
-├── LinkedIn post (deep-dive summary)
-├── Short-form hooks (for Instagram/TikTok)
-└── Pull quotes for social cards
-```
+Offer `/content-atomizer` under `../_system/output-format.md` §What's Next after the visual-build choice. Explain that the edition can become a thread, LinkedIn summary, short-form hooks, and pull quotes.
 
 ### What Gets Passed to /content-atomizer
 
 When the user accepts, pass the following context:
 
 1. **The newsletter file path:** `./campaigns/newsletters/{date}-{topic}.md`
-2. **The newsletter type:** (archetype name -- affects atomization strategy)
+2. **The newsletter Format:** (archetype name -- affects atomization strategy)
 3. **Key insights:** The 3-5 most shareable points from the edition
 4. **Subject line:** Often makes a good social hook
 5. **Brand voice:** Already loaded; passed through for consistency
 
-### Atomization Strategy by Newsletter Type
+### Atomization Strategy by Newsletter Format
 
-```
-Type                  Best Social Formats
-──────────────────────────────────────────────────
-Deep-Dive Framework   Twitter thread (framework steps),
-                      LinkedIn long post (full summary)
 
-News Briefing         Twitter quick hits (one per story),
-                      LinkedIn carousel (top 3 stories)
+| Type | Best Social Formats |
+| --- | --- |
+| Deep-Dive Framework | Twitter thread (framework steps), |
+| LinkedIn long post (full summary) |  |
+| News Briefing | Twitter quick hits (one per story), |
+| LinkedIn carousel (top 3 stories) |  |
+| Curated Links | Twitter thread (link + hot take), |
+| LinkedIn "5 things" post |  |
+| Personal Essay | Twitter thread (story arc), |
+| Instagram quote cards |  |
+| Builder Update | Twitter thread (trend + examples), |
+| LinkedIn post (contrarian take) |  |
+| Irreverent News | Twitter individual posts (each |
+| with personality), TikTok script |  |
 
-Curated Links         Twitter thread (link + hot take),
-                      LinkedIn "5 things" post
-
-Personal Essay        Twitter thread (story arc),
-                      Instagram quote cards
-
-Builder Update        Twitter thread (trend + examples),
-                      LinkedIn post (contrarian take)
-
-Irreverent News       Twitter individual posts (each
-                      with personality), TikTok script
-```
 
 ---

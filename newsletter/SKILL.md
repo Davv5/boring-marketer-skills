@@ -1,7 +1,6 @@
 ---
 name: newsletter
-description: "Write a newsletter edition, choose a Format, or plan newsletter growth and monetization."
-version: 8.0
+description: "Write a newsletter edition, choose a Format, or plan newsletter growth and monetization. Use when drafting an edition or growing a newsletter audience."
 ---
 
 # Newsletter
@@ -18,7 +17,7 @@ Apply `../_system/brand-memory.md` §Read to the Reads list. If brand memory is 
 
 ## Choose the work
 
-Identify the requested Mode and whether this is a first run or returning run by checking for prior editions and brand files; use their history when relevant.
+Identify the requested Mode and check for existing editions or campaigns; use their history when relevant.
 
 - **Edition:** choose a Format below. Use the user's requested format; otherwise recommend one based on audience, topic, and available material. Ask one focused question if the choice cannot be inferred.
 - **Strategy:** plan growth or monetization. Read `references/strategy.md` and apply its guidance; return a prioritized plan tied to the user's stage and constraints.
@@ -43,7 +42,7 @@ After delivering a completed edition or strategy, apply `../_system/brand-memory
 
 ## Format reference index
 
-Read only the selected Format file; each combines the former format template and the relevant example material after comparison with `references/newsletter-examples.md`.
+Read only the selected Format file for its template and worked example analysis.
 
 - Deep-dive / framework: `references/formats/deep-dive.md`
 - News briefing: `references/formats/news-briefing.md`
@@ -52,6 +51,6 @@ Read only the selected Format file; each combines the former format template and
 - Builder update: `references/formats/builder-update.md`
 - Irreverent news: `references/formats/irreverent-news.md`
 
-For voice, subject lines, scannability, research, and pre-send review, read `references/editorial-guidance.md` while drafting. The six format references retain their full detailed templates; the former examples reference remains available at `references/newsletter-examples.md` for additional examples.
+For voice, subject lines, scannability, research, and pre-send review, read `references/editorial-guidance.md` while drafting.
 
-After saving, read `references/distribution.md` for chain context, the `/content-atomizer` handoff, and the newsletter-type repurposing suggestions. Read `references/editorial-guidance.md` for the final pre-send tests.
+After saving, read `references/distribution.md` for chain context, the `/content-atomizer` handoff, and the newsletter Format repurposing suggestions. Read `references/editorial-guidance.md` for the final pre-send tests.

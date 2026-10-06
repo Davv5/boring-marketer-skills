@@ -4,34 +4,8 @@ A peer-to-peer account of an experiment, project, or emerging pattern.
 
 ## Template
 
-```text
-Subject: [specific observation from building]
-
-[Concrete observation]
-
-## What I am seeing
-[Patterns with named, verifiable examples]
-
-## Why it matters now
-[Context and implications]
-
-## What I am trying
-[Personal experiment and what will count as success]
-
-[Invite a relevant reply]
-```
-
-## Example
-
-Describe a small onboarding experiment, show the before-and-after completion rates only if measured, explain the hypothesis, and invite readers to share what they test. Mark unmeasured expectations as estimates.
-
-
-## Original detailed format template
-
-### Template 5: Builder/Startup Update
-
-```
-SUBJECT LINE: [Contrarian observation or "here's what I'm seeing"]
+```markdown
+Subject: [Contrarian observation or "here's what I'm seeing"]
 
 ---
 
@@ -69,7 +43,7 @@ Here's what's working:
 
 ## What I'm Doing About It
 
-[Personal application - your projects, investments, experiments]
+[Personal application - projects, investments, experiments, and what will count as success]
 
 ---
 
@@ -83,11 +57,40 @@ If you're building in this space, I want to hear about it. Reply to this email.
 🎙️ [Podcast or content plug]
 ```
 
-**Greg Isenberg voice markers:**
+## Example
+
+Describe a small onboarding experiment, show the before-and-after completion rates only if measured, explain the hypothesis, and invite readers to share what they test. Mark unmeasured expectations as estimates.
+
+## Greg Isenberg — The Builder Newsletter
+
+**Stats:** 150K+ subscribers
+**Frequency:** Weekly
+**Niche:** Startups, community, internet business
+
+### What Makes It Work
+
+**1. The "Look..." Opener**
+Conversational, peer-to-peer energy from the first word.
+
+**2. Real Company Examples**
+Every concept includes specific, named examples:
+> "Audible's Shared Clips feature does this perfectly..."
+> "Notion's template universe is engineered for this..."
+
+Not abstract. Concrete.
+
+**3. Building in Public**
+Shares what he's actually doing—investments, projects, experiments. Skin in the game.
+
+**4. Community-First CTAs**
+Calls to action aren't "buy my course" but "come to my event" or "join the community."
+
+### Voice Markers
+- Peer-to-peer energy rather than guru advice
 - "Look..." opener
-- Peer-to-peer energy, not guru
-- Real company examples, named
-- Building in public transparency
-- Community-focused CTAs
+- "Here's what's actually happening..."
+- Names names (companies, people)
+- "Serious." as emphasis
+- Casual punctuation (dashes, ellipses)
 
 ---

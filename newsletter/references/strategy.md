@@ -2,22 +2,9 @@
 
 Read this file only for a growth or monetization request.
 
-## Growth
+Before recommending tactics, diagnose the stage, audience, capacity, and strongest acquisition channel. Prioritize measurable experiments with an owner, effort, time horizon, and success measure. Validate dated benchmarks against actual delivery data; treat them as assumptions, not guarantees. Paid acquisition needs a measurement plan.
 
-Diagnose the current stage, audience, capacity, and strongest existing acquisition channel before recommending tactics. Prioritize a small number of measurable experiments, with an owner, effort, time horizon, and success measure. Possible channels include reader referrals, cross-promotions with complementary newsletters, useful lead magnets, social excerpts, search, guest writing, and community participation. Match rewards and partnerships to the audience; do not recommend paid acquisition without a measurement plan.
-
-Referral programs can reward increasing participation (for example, a useful resource, community access, then a premium experience). Make sharing easy, show progress, and reward the referrer. Cross-promotion options include mutual recommendations, co-authored editions, guest features, and shared resources. Connect a lead magnet to a continuing newsletter promise rather than treating signup as the end of the relationship.
-
-## Monetization
-
-Choose models compatible with reader trust, audience size, and the publisher's capacity. Models include clearly disclosed sponsorships, paid subscriptions, native advertising, and the publisher's own products or courses. Explain tradeoffs and state assumptions; do not present benchmark rates or conversion figures as guarantees.
-
-For sponsorships, price using relevant audience quality and actual delivery data, set placement and reporting expectations, disclose clearly, and recommend only sponsors useful to readers. For paid subscriptions, keep the free edition valuable and make the paid benefit concrete. Native advertising must be disclosed and based on an honest product assessment. Product promotion should remain useful and proportionate to editorial value.
-
-Completion: deliver a prioritized growth or revenue plan with rationale, next actions, and measurable outcomes suited to the user's current stage.
-
-
-## Preserved detailed tactics and benchmarks
+Completion: a prioritized growth or revenue plan with rationale, next actions, and measurable outcomes suited to the user's stage.
 
 ## Growth Strategy
 
@@ -141,20 +128,20 @@ Build credibility signals that make subscribing feel like the obvious choice.
 
 ### Growth Channel Matrix
 
-```
-Channel               Effort   Timeline    Impact
-──────────────────────────────────────────────────
-Referral program      Medium   Ongoing     High
-Cross-promotions      Low      1-2 weeks   Medium
-Social media clips    Medium   Ongoing     Medium
-SEO (blog repurpose)  High     3-6 months  High
-Podcast appearances   Medium   2-4 weeks   Medium
-Lead magnets          Medium   1-2 weeks   High
-Paid ads              High     Immediate   Variable
-Community presence    Low      Ongoing     Low-Med
-Guest writing         High     2-4 weeks   Medium
-Product Hunt launch   Low      One-time    Variable
-```
+
+| Channel | Effort | Timeline | Impact |
+| --- | --- | --- | --- |
+| Referral program | Medium | Ongoing | High |
+| Cross-promotions | Low | 1-2 weeks | Medium |
+| Social media clips | Medium | Ongoing | Medium |
+| SEO (blog repurpose) | High | 3-6 months | High |
+| Podcast appearances | Medium | 2-4 weeks | Medium |
+| Lead magnets | Medium | 1-2 weeks | High |
+| Paid ads | High | Immediate | Variable |
+| Community presence | Low | Ongoing | Low-Med |
+| Guest writing | High | 2-4 weeks | Medium |
+| Product Hunt launch | Low | One-time | Variable |
+
 
 ---
 
@@ -168,18 +155,18 @@ The most common monetization path. Sell placements within your newsletter.
 
 **Sponsorship placement types:**
 
-```
-Placement          Description                CPM Range
-──────────────────────────────────────────────────────────
-Primary sponsor    Top of newsletter, logo,   $25-75
-                   2-3 sentences
-Mid-roll           Between sections,          $15-40
-                   1-2 sentences
-Classified         Bottom section, one-       $5-15
-                   liner with link
-Dedicated email    Entire edition about       $50-150+
-                   the sponsor's topic
-```
+
+| Placement | Description | CPM Range |
+| --- | --- | --- |
+| Primary sponsor | Top of newsletter, logo, | $25-75 |
+| 2-3 sentences |  |  |
+| Mid-roll | Between sections, | $15-40 |
+| 1-2 sentences |  |  |
+| Classified | Bottom section, one- | $5-15 |
+| liner with link |  |  |
+| Dedicated email | Entire edition about | $50-150+ |
+| the sponsor's topic |  |  |
+
 
 **Pricing your sponsorship:**
 
@@ -303,15 +290,15 @@ Stage 5: Premium offer ($1,000+)
 
 ### Revenue Milestone Framework
 
-```
-Subscribers   Primary Revenue        Monthly Target
-──────────────────────────────────────────────────────
-0-1,000       Product funnel         $0-500
-1,000-5,000   Sponsorships + product $500-2,500
-5,000-10,000  Sponsorships + paid    $2,500-7,500
-10,000-25,000 Multi-model            $7,500-25,000
-25,000-50,000 Media business         $25,000-75,000
-50,000+       Full media company     $75,000+
-```
+
+| Subscribers | Primary Revenue | Monthly Target |
+| --- | --- | --- |
+| 0-1,000 | Product funnel | $0-500 |
+| 1,000-5,000 | Sponsorships + product $500-2,500 |  |
+| 5,000-10,000 | Sponsorships + paid | $2,500-7,500 |
+| 10,000-25,000 Multi-model | $7,500-25,000 |  |
+| 25,000-50,000 Media business | $25,000-75,000 |  |
+| 50,000+ | Full media company | $75,000+ |
+
 
 ---
