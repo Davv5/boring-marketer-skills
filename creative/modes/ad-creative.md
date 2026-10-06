@@ -43,14 +43,14 @@ As of this writing, the models used in this mode are:
 
 | Role | Model | Registry Section | Estimated Cost |
 |------|-------|-----------------|---------------|
-| **All static ad creative** | Nano Banana Pro | Image Generation > Default Model | ~$0.02-0.04 per image |
+| **All static ad creative** | image 4K role | Image Generation > Default Model | cost: see references/MODEL_REGISTRY.md |
 
 ### Video Ads
 
 | Role | Model | Registry Section | Estimated Cost |
 |------|-------|-----------------|---------------|
-| **Default video ads** | Kling 2.5 Turbo Pro | Video Generation > Default Model | ~$0.40 per 5s clip |
-| **Hero video ads** | Veo 3.1 / Sora 2 | Video Generation > Comparison Models | ~$0.80-1.50 per clip |
+| **Default video ads** | video default role | Video Generation > Default Model | cost: see references/MODEL_REGISTRY.md clip |
+| **Hero video ads** | hero comparison role / hero comparison role | Video Generation > Comparison Models | cost: see references/MODEL_REGISTRY.md |
 
 ### How to Call
 
@@ -60,9 +60,9 @@ As of this writing, the models used in this mode are:
 4. Insert your constructed prompt and desired aspect ratio
 5. Execute the API call via Replicate
 
-### Why Nano Banana Pro for Ad Creative
+### Why image 4K role for Ad Creative
 
-Nano Banana Pro handles all static ad generation because:
+image 4K role handles all static ad generation because:
 - **Typography rendering:** CTA buttons, headlines, offer text directly in the image
 - **Product placement:** Clean product integration into lifestyle and studio contexts
 - **Aspect ratio control:** Native support for every ad placement ratio
@@ -639,7 +639,7 @@ HEALTH & WELLNESS
 - [ ] Supplement ads include proper disclaimers
 
 FINANCIAL
-- [ ] No guaranteed financial returns ("Make $10,000/month guaranteed")
+- [ ] No guaranteed financial returns ("Make cost: see references/MODEL_REGISTRY.md,000/month guaranteed")
 - [ ] No misleading income claims
 - [ ] Crypto/financial ads follow regional regulations
 
@@ -914,8 +914,8 @@ Bad motion prompt:
 (This describes the scene, not the motion — the model can already see the image)
 
 Step 3: Choose video model from MODEL_REGISTRY.md based on content type:
-- Standard ads: Kling 2.5 (default, fastest, most cost-effective)
-- Hero/flagship: Run Kling 2.5 + Veo 3.1 + Sora 2 in parallel
+- Standard ads: video default role (default, fastest, most cost-effective)
+- Hero/flagship: Run video default role + hero comparison role + hero comparison role in parallel
 
 Step 4: Set duration:
 - Bumper ads: 5s (Kling) or 6s (Veo)
@@ -1361,10 +1361,10 @@ Wave 4 (Ratio Variants): Top performers at additional ratios
 
 | Scope | Asset Count | Estimated Cost | Estimated Time |
 |-------|-------------|---------------|----------------|
-| 12-ad matrix (primary ratio only) | 12 images | ~$0.36-0.48 | ~3-5 min |
-| 12-ad matrix + 3 additional ratios | 48 images | ~$1.44-1.92 | ~10-15 min |
-| Matrix + ratio variants + A/B variants (3 per top 3) | ~60 images | ~$1.80-2.40 | ~12-18 min |
-| Full production (matrix + variants + video ads) | ~70 images + 6 videos | ~$5-10 | ~20-30 min |
+| 12-ad matrix (primary ratio only) | 12 images | cost: see references/MODEL_REGISTRY.md | ~3-5 min |
+| 12-ad matrix + 3 additional ratios | 48 images | cost: see references/MODEL_REGISTRY.md | ~10-15 min |
+| Matrix + ratio variants + A/B variants (3 per top 3) | ~60 images | cost: see references/MODEL_REGISTRY.md | ~12-18 min |
+| Full production (matrix + variants + video ads) | ~70 images + 6 videos | cost: see references/MODEL_REGISTRY.md | ~20-30 min |
 
 ---
 

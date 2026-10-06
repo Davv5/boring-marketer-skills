@@ -31,7 +31,7 @@ Generate professional product photography that sells. Not generic AI images — 
 
 **Do NOT hardcode model IDs.** Always refer to `references/MODEL_REGISTRY.md` for the current default image model and its verified API payload.
 
-As of this writing, the default image model is **Nano Banana Pro** (`google/nano-banana-pro`), selected for best-in-class typography, photorealism, and style control at 15-40 second generation times.
+As of this writing, the default image model is **image 4K role** (`image 4K role`), selected for best-in-class typography, photorealism, and style control at 15-40 second generation times.
 
 ### How to Call
 
@@ -60,7 +60,7 @@ When the user provides an existing product photo, brand reference, or style exam
 4. Include image_input parameter in API payload:
 
    {
-     "model": "[see MODEL_REGISTRY.md]",
+    // Model role and complete payload: see references/MODEL_REGISTRY.md
      "input": {
        "prompt": "{{product description + desired style changes}}",
        "image_input": ["{{reference_image_url}}"],

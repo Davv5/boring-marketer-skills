@@ -34,5 +34,6 @@ Use [`../_system/output-format.md`](../_system/output-format.md) for the four-se
 
 ## Shared references
 
+- [`references/creative-workflows.md`](references/creative-workflows.md): intake choices, brand-kit questions, exploration details, batch patterns, quality dimensions and handoff examples; read for those branches.
 - [`references/VISUAL_INTELLIGENCE.md`](references/VISUAL_INTELLIGENCE.md): prompt construction and visual strategy, read during creative development.
 - [`references/MODEL_REGISTRY.md`](references/MODEL_REGISTRY.md): model roles, verified-on date, prices and API payloads, read before generation or prompt recommendations.

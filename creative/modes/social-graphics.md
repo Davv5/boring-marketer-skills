@@ -28,7 +28,7 @@ Generic "social media graphics" underperform because they ignore these differenc
 
 **Do NOT hardcode model IDs.** Always refer to `references/MODEL_REGISTRY.md` for the current default image model and its verified API payload.
 
-As of this writing, the default image model is **Nano Banana Pro** (`google/nano-banana-pro`), selected for best-in-class typography, photorealism, and style control at 15-40 second generation times.
+As of this writing, the default image model is **image 4K role** (`image 4K role`), selected for best-in-class typography, photorealism, and style control at 15-40 second generation times.
 
 ### How to Call
 
@@ -38,22 +38,22 @@ As of this writing, the default image model is **Nano Banana Pro** (`google/nano
 4. Insert your constructed prompt and desired aspect ratio
 5. Execute the API call via Replicate
 
-### Why Nano Banana Pro for Social Graphics
+### Why image 4K role for Social Graphics
 
-Nano Banana Pro is the single model for all social graphic generation — including text-heavy designs. It handles:
+image 4K role is the single model for all social graphic generation — including text-heavy designs. It handles:
 
 - **Typography rendering:** Legible headlines, quote text, CTAs directly in the image
 - **Platform-native aesthetics:** Photorealism, illustration, minimal, bold — all in one model
 - **Aspect ratio control:** Native support for every social platform ratio (1:1, 4:5, 9:16, 16:9, 2:3, etc.)
 - **Speed:** 15-40 seconds per image means rapid iteration and batch generation
 
-There is no need to route to a separate typography model. Nano Banana Pro handles text rendering natively. See the [Text Rendering Instructions](#text-rendering-instructions) section for how to get clean typography.
+There is no need to route to a separate typography model. image 4K role handles text rendering natively. See the [Text Rendering Instructions](#text-rendering-instructions) section for how to get clean typography.
 
 ---
 
 ## Text Rendering Instructions
 
-Nano Banana Pro has strong native typography capabilities. Use these instructions to get clean, legible text in social graphics.
+image 4K role has strong native typography capabilities. Use these instructions to get clean, legible text in social graphics.
 
 ### Core Text Rendering Principles
 
@@ -146,7 +146,7 @@ For critical text rendering (legal text, exact brand slogans, phone numbers), ge
 3. This guarantees 100% text accuracy at the cost of an extra step
 ```
 
-For most social media use cases, Nano Banana Pro's native text rendering is more than sufficient. The fallback is only needed when every character must be letter-perfect.
+For most social media use cases, image 4K role's native text rendering is more than sufficient. The fallback is only needed when every character must be letter-perfect.
 
 ---
 
@@ -418,7 +418,7 @@ high contrast, clear at small size
 
 ### Quote Graphics
 
-Nano Banana Pro handles text rendering directly. Use the text rendering instructions from the [Text Rendering Instructions](#text-rendering-instructions) section.
+image 4K role handles text rendering directly. Use the text rendering instructions from the [Text Rendering Instructions](#text-rendering-instructions) section.
 
 ```
 Minimalist quote graphic for [platform],
@@ -925,18 +925,7 @@ Ratio: 1.91:1
 
 For each adapted platform, construct and execute a separate API call:
 
-```json
-{
-  "model": "[see MODEL_REGISTRY.md]",
-  "input": {
-    "prompt": "{{adapted_prompt_with_platform_modifiers}}",
-    "aspect_ratio": "{{platform_ratio}}",
-    "output_format": "png",
-    "output_quality": 90,
-    "number_of_images": 1
-  }
-}
-```
+**Mode-specific input fields:** `prompt`, `aspect_ratio`, `output_format`, `output_quality`, `number_of_images`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
 Generate all platform variants in parallel when possible to minimize total wait time.
 
@@ -1429,7 +1418,7 @@ Return:
 5. **Bold beats subtle** — Social is noisy, you need to pop
 6. **Templates create consistency** — Save your winning style and reuse it
 7. **Calendar mode saves hours** — Batch generation beats one-at-a-time
-8. **Text rendering works** — Nano Banana Pro handles headlines natively, no separate tool needed
+8. **Text rendering works** — image 4K role handles headlines natively, no separate tool needed
 
 ### What Doesn't Work
 1. **One size fits all** — Generic "social media" prompts
