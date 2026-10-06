@@ -1,6 +1,6 @@
 # Content brief example
 
-Read this reference while completing Step 8 of `/keyword-research` for a populated brief example. Use `_system/content-brief.md` as the authoritative Markdown template and `_system/schemas/content-brief.schema.json` for field names and allowed values.
+Read this reference while completing Step 8 of `/keyword-research` for a populated brief example. Use `../_system/content-brief.md` as the authoritative Markdown template and `../_system/schemas/content-brief.schema.json` for field names and allowed values.
 
 ```markdown
 # Content Brief: A Practical Guide to AI Marketing Automation
@@ -18,7 +18,7 @@ Metrics: ~1,000/mo, difficulty ~35, trend stable (ESTIMATED)
 ## Search Intent
 informational
 
-## Content Type
+## Content Format
 pillar-guide
 
 ## Priority
@@ -69,4 +69,4 @@ planned
 Output: ./campaigns/content/ai-marketing-automation.md
 ```
 
-Remove empty optional sections, use only evidence actually gathered, and append the schema JSON block per `_system/brand-memory.md` §Write.
+Remove empty optional sections, use only evidence actually gathered, and append the schema JSON block per `../_system/brand-memory.md` §Write.

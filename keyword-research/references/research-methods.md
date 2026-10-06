@@ -146,7 +146,7 @@ For each priority keyword, examine the top search results:
 ```
 Search: "[keyword]"
 → Analyze the top 5-10 results
-→ Note: content type, word count, freshness, domain authority
+→ Note: content Format, word count, freshness, domain authority
 ```
 
 **Capture for each result:**
@@ -183,7 +183,7 @@ Search: "{competitor name} blog"
 
 For each competitor:
 - What topics do they cover?
-- What content types do they use?
+- What content Formats do they use?
 - What keywords do they appear to target?
 - Where are the gaps -- topics they do NOT cover?
 - What is their content quality like?
@@ -205,36 +205,23 @@ For each competitor:
 
 After web search, present findings before clustering:
 
-```
-  ──────────────────────────────────────────────
+### Web research complete
+- Autocomplete suggestions: {N} unique terms
+- People Also Ask: {N} questions
+- SERPs analyzed: {N} keywords
+- Competitor pages reviewed: {N} pages
 
-  WEB RESEARCH COMPLETE
+### Top discoveries
+1. {Unexpected keyword with forum results dominating the SERP}
+2. {Competitor content gap}
+3. {PAA audience insight}
 
-  Autocomplete suggestions:   {N} unique terms
-  People Also Ask questions:  {N} captured
-  SERPs analyzed:             {N} keywords
-  Competitor pages reviewed:  {N} pages
+### New keywords added
+- {Keyword from autocomplete}
+- {Keyword from PAA}
+- {Keyword from competitor gap}
+- {N} more additions
 
-  ──────────────────────────────────────────────
-
-  TOP DISCOVERIES
-
-  ├── {discovery 1 -- e.g., "unexpected keyword
-     with forum results dominating SERP"}
-  ├── {discovery 2 -- e.g., "competitor X has no
-     content on {topic} -- wide open"}
-  ── {discovery 3 -- e.g., "PAA reveals audience
-     cares about {angle} more than expected"}
-
-  NEW KEYWORDS ADDED FROM SEARCH
-
-  ├── {keyword from autocomplete}
-  ├── {keyword from PAA}
-  ├── {keyword from competitor gap}
-  ── +{N} more added to expanded list
-
-  ──────────────────────────────────────────────
-```
 
 ---
 
@@ -243,17 +230,13 @@ After web search, present findings before clustering:
 Group expanded keywords (including web search discoveries) into content pillars
 using the hub-and-spoke model:
 
-```
-                    [PILLAR]
-                 Main Topic Area
-                      |
-        +-------------+-------------+
-        |             |             |
-   [CLUSTER 1]   [CLUSTER 2]   [CLUSTER 3]
-    Subtopic       Subtopic       Subtopic
-        |             |             |
-    Keywords      Keywords      Keywords
-```
+### Cluster example
+
+Pillar: **AI Marketing Automation**
+- Supporting topic: {subtopic 1}, with its long-tail queries.
+- Supporting topic: {subtopic 2}, with its long-tail queries.
+- Supporting topic: {subtopic 3}, with its long-tail queries.
+
 
 ### Identifying Pillars (5-10 per business)
 
@@ -452,9 +435,9 @@ AND live search evidence from Phase 3.
 
 For each priority cluster, assign:
 
-### Content Type
+### Content Format
 
-| Type | When to Use | Word Count |
+| Format | When to Use | Word Count |
 |------|-------------|------------|
 | Pillar Guide | Comprehensive topic coverage | 5,000-8,000 |
 | How-To Tutorial | Step-by-step instructions | 2,000-3,000 |
@@ -482,19 +465,13 @@ For each priority cluster, assign:
 
 For each content piece, use PAA questions to build the outline:
 
-```
-Article: "What is AI Marketing Automation?"
+Article: **What is AI Marketing Automation?**
 
-  Sections derived from PAA:
-  ├── H2: How does AI help marketing?
-     ── {from PAA question}
-  ├── H2: Is AI marketing automation worth it?
-     ── {from PAA question}
-  ├── H2: What are the best AI marketing tools?
-     ── {from PAA question}
-  ── H2: How to get started with AI marketing
-      ── {from PAA question + autocomplete}
-```
+- H2: How does AI help marketing? — from PAA.
+- H2: Is AI marketing automation worth it? — from PAA.
+- H2: What are the best AI marketing tools? — from PAA.
+- H2: How to get started with AI marketing — from PAA and autocomplete.
+
 
 Each PAA question becomes an H2. This aligns your content structure with what
 Google knows people are asking.
@@ -502,3 +479,18 @@ Google knows people are asking.
 ---
 
 ## Phase 8: Content Brief Generation (NEW in v2)
+
+## Free Tools to Supplement
+
+If the user needs additional data validation beyond web search:
+
+- **Google Trends** (trends.google.com) -- Trend direction, seasonality
+- **Google Search Console** -- Your actual ranking data
+- **Google Search** -- SERP analysis, autocomplete, People Also Ask
+- **AnswerThePublic** (free tier) -- Question-based keywords
+- **AlsoAsked** (free tier) -- PAA relationship mapping
+- **Reddit/Quora search** -- Real user questions and language
+- **Ahrefs free tools** -- Limited keyword data
+- **Ubersuggest free tier** -- Basic keyword metrics
+
+---

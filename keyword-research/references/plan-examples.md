@@ -30,7 +30,7 @@ roadmap:
     status: planned
 ```
 
-The Markdown plan is primary. Keep evidence and rationale useful for a returning run; use `_system/schemas/keyword-plan.schema.json` for its structured JSON representation and allowed enum values.
+The Markdown plan is primary. Keep evidence and rationale useful for a returning run; use `../_system/schemas/keyword-plan.schema.json` for its structured JSON representation and allowed enum values.
 
 ## Report example
 

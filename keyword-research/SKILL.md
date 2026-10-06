@@ -24,7 +24,7 @@ Turn business context and search evidence into a prioritized keyword plan and op
 
 ### 1. Load
 
-Apply `_system/brand-memory.md` §Read to the Reads above, including its depth, freshness, missing-file, and visible-use rules. Treat a prior keyword plan as context for a returning run, not as a command to retain weak choices. If brand files are absent, continue by asking the user for the relevant context.
+Apply `../_system/brand-memory.md` §Read to the Reads above, including its depth, freshness, missing-file, and visible-use rules. Treat a prior keyword plan as context for a returning run, not as a command to retain weak choices. If brand files are absent, continue by asking the user for the relevant context.
 
 **Complete when:** every available Reads file has been loaded and every missing or stale file is identified according to §Read.
 
@@ -48,7 +48,7 @@ Expand seeds across six lenses: what is sold, problems solved, outcomes, positio
 
 ### 5. Search and validate
 
-Use available web search for autocomplete, People Also Ask (PAA), current top results, SERP features, and competitor coverage. Search pillar candidates and the strongest long-tail candidates; do not claim unavailable volume or difficulty as measured data. Label estimates per `_system/brand-memory.md` §Data-quality label. Record evidence, URLs, result formats, freshness, weak/thin results, forum presence, and content gaps. When search is unavailable, use the Fallback: report the limitation, label judgments as ESTIMATED, and continue only with user agreement. For query patterns, data capture details, signal interpretation, and the four pillar checks, read [`references/research-methods.md`](references/research-methods.md) §§Phase 3 and Phase 5.
+Use available web search for autocomplete, People Also Ask (PAA), current top results, SERP features, and competitor coverage. Search pillar candidates and the strongest long-tail candidates; do not claim unavailable volume or difficulty as measured data. Label estimates per `../_system/brand-memory.md` §Data-quality label. Record evidence, URLs, result formats, freshness, weak/thin results, forum presence, and content gaps. When search is unavailable, use the Fallback: report the limitation, label judgments as ESTIMATED, and continue only with user agreement. For free supplementary validation tools, query patterns, data capture details, signal interpretation, and the four pillar checks, read [`references/research-methods.md`](references/research-methods.md) §§Phase 3 and Phase 5.
 
 Validate each proposed pillar against four checks: search demand evidence; market rather than product focus; a realistic competitive path; and a proprietary advantage or credible differentiated angle. Demote or remove a pillar failing two or more checks. Use the evidence to distinguish High/Medium/Low business value, opportunity, and speed to win; prioritize commercial relevance, winnability, and freshness together.
 
@@ -62,17 +62,17 @@ Group keywords by shared topic and search intent. For the cluster example, valid
 
 ### 7. Map and save the plan
 
-Map priority clusters to content pieces using dominant intent and the actual SERP format. For content-type guidance, intent-to-format matching, calendar tiers, and PAA outline example, read [`references/research-methods.md`](references/research-methods.md) §Phase 7. Build a roadmap with target keyword, title, type, suggested word-count range, priority, and status. Use PAA questions and content gaps to inform outlines. Save the plan to `./brand/keyword-plan.md`, following `_system/schemas/keyword-plan.schema.json`; include the matching JSON block in a `<details>` section as specified by `_system/brand-memory.md` §Write. For a returning run, compare old and proposed clusters, targets, priorities, and statuses; show material changes and get confirmation before overwriting.
+Map priority clusters to content pieces using dominant intent and the actual SERP format. For content-Format guidance, intent-to-format matching, calendar tiers, and PAA outline example, read [`references/research-methods.md`](references/research-methods.md) §Phase 7. Build a roadmap with target keyword, title, Format, suggested word-count range, priority, and status. Use PAA questions and content gaps to inform outlines. Save the plan to `./brand/keyword-plan.md`, following `../_system/schemas/keyword-plan.schema.json`; include the matching JSON block in a `<details>` section as specified by `../_system/brand-memory.md` §Write. For a returning run, compare old and proposed clusters, targets, priorities, and statuses; show material changes and get confirmation before overwriting.
 
 **Complete when:** the confirmed plan is saved with a schema-valid JSON block and returning-run changes were approved.
 
 ### 8. Create briefs and report
 
-Ask whether to create briefs if scope is not already agreed. Create briefs for the highest-priority unbriefed targets, normally 3–5 unless the user chooses otherwise. Follow `_system/content-brief.md` and `_system/schemas/content-brief.schema.json`; include current SERP evidence, intended audience, angle, differentiation, key points, outline, internal-link suggestions, CTA, and output path where known. Append each created brief to `./brand/assets.md` following §Write. Present results using `_system/output-format.md`'s four-section contract. Apply `_system/brand-memory.md` §Feedback after the deliverable and record keyword-specific learning when offered.
+Ask whether to create briefs if scope is not already agreed. Create briefs for all unbriefed Tier 1 (`do-first`) targets and quick wins. Offer Tier 2 briefs when the user wants them; leave Tier 3 and Tier 4 for later rather than generating them automatically. Follow `../_system/content-brief.md` and `../_system/schemas/content-brief.schema.json`; include current SERP evidence, intended audience, angle, differentiation, key points, outline, internal-link suggestions, CTA, and output path where known. Append each created brief to `./brand/assets.md` following §Write. Present results using `../_system/output-format.md`'s four-section contract. Apply `../_system/brand-memory.md` §Feedback after the deliverable and record keyword-specific learning when offered.
 
 **Complete when:** agreed briefs are saved and registered, the four-section report is delivered, and §Feedback is complete.
 
 ## Disclosed output examples
 
-- For the detailed keyword-plan structure, representative clusters, roadmap, and terminal report example, read [`references/plan-examples.md`](references/plan-examples.md) while completing Steps 6–8.
+- For the detailed keyword-plan structure, representative clusters, roadmap, and markdown report example, read [`references/plan-examples.md`](references/plan-examples.md) while completing Steps 6–8.
 - For a complete sample brief, read [`references/brief-example.md`](references/brief-example.md) while completing Step 8.
