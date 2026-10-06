@@ -60,24 +60,6 @@ When voice-profile.md is loaded, write the whole output in that voice (analysis 
 
 When a brand file conflicts with what the user says in this session, flag it and ask before overriding: "Your voice profile says you avoid humor, but this brief is playful. Want me to update the voice profile?"
 
-### Reads by skill
-
-Each skill's own Reads list is the source; on any conflict, the skill's list wins.
-
-| Skill | Reads |
-|-------|-------|
-| /brand-voice | positioning.md (if exists), audience.md (if exists) |
-| /email-sequences | voice-profile.md, positioning.md, audience.md, creative-kit.md |
-| /seo-content | voice-profile.md, keyword-plan.md, audience.md |
-| /creative | voice-profile.md, positioning.md, creative-kit.md, stack.md |
-| /newsletter | voice-profile.md, audience.md, learnings.md |
-| /lead-magnet | voice-profile.md, positioning.md, audience.md |
-| /keyword-research | positioning.md, audience.md, competitors.md |
-| /direct-response-copy | voice-profile.md, positioning.md, audience.md, creative-kit.md |
-| /content-atomizer | voice-profile.md, creative-kit.md |
-| /positioning-angles | audience.md, competitors.md |
-| /start-here | ALL brand files, .env, ./campaigns/ (orchestrator needs full picture) |
-
 ---
 
 ## Feedback

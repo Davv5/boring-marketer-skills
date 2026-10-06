@@ -1,6 +1,6 @@
 # Vibe Marketing Skills v2.0
 
-Your marketing team in a terminal. 11 skills that build on each other,
+Your marketing team in your coding agent. 11 skills that build on each other,
 remember your brand, and get sharper every time you use them.
 
 Built for Claude Code. Designed for founders, solo marketers, and small
@@ -54,9 +54,9 @@ to the right skill for whatever you are working on.
 |-------|-------------|
 | `/content-atomizer` | Repurposes one piece of content into platform-optimized posts across 8 platforms |
 
-### Creative Engine Modes
+### Creative Modes
 
-The `/creative` skill includes five specialized production modes:
+`/creative` reads the request, picks a Mode, and loads only that Mode's playbook:
 
 | Mode | What it produces |
 |------|-----------------|
@@ -64,7 +64,21 @@ The `/creative` skill includes five specialized production modes:
 | Product Video | Short-form product videos, demos, and motion content |
 | Social Graphics | Platform-sized graphics for feeds, stories, covers, and carousels |
 | Talking Head | Presenter-style video with lip sync from text or audio |
-| Ad Creative | Performance ad variants with hook-format testing matrices |
+| Ad Creative | Performance ad variants with hook-format testing |
+
+Models are chosen by role (default image, premium image, video test, default,
+production, lip-sync) from `creative/references/MODEL_REGISTRY.md`, which holds
+the current slugs, verified prices, and payload examples. The registry's roles:
+Nano Banana 2 and Pro for images, Wan 2.2 Fast, Seedance 1.5 Pro, Kling v2.6 and
+Kling v3 for video, Kling Lip-Sync and Sync lipsync-2-pro for lip sync. A
+multi-model hero comparison runs only when you ask for it, after the estimated
+cost is shown. Without a Replicate token, `/creative` writes model-ready prompts
+instead (a Fallback).
+
+Other skills split the same way: `/brand-voice` (Extract, Build, Scrape),
+`/lead-magnet` (Ideate, Build), `/seo-content` (Refresh), `/content-atomizer`
+(Calendar), `/direct-response-copy` (Testing), and `/newsletter` (six Formats).
+Mode and reference files load only when a run needs them.
 
 ---
 
@@ -83,7 +97,7 @@ The `/creative` skill includes five specialized production modes:
 - GA4 or PostHog for performance tracking
 
 Skills detect your connected tools automatically and adapt. No tool is
-required to start -- every skill produces portable output files you can
+required to start -- every skill produces portable markdown files you can
 use anywhere.
 
 ---
@@ -91,62 +105,60 @@ use anywhere.
 ## File Structure
 
 ```
-skills-v2/
-├── README.md                          <- You are here
-├── _system/                           <- Shared infrastructure
-│   ├── brand-memory.md                <- How skills read/write brand context
-│   ├── output-format.md               <- Visual design system for all output
-│   ├── schemas/                       <- JSON Schema contracts for structured data
-│   │   ├── voice-profile.schema.json
-│   │   ├── campaign-brief.schema.json
-│   │   ├── keyword-plan.schema.json
-│   │   ├── email-sequence-summary.schema.json
-│   │   ├── ad-matrix.schema.json
-│   │   └── content-brief.schema.json
-│   └── scripts/                       <- Install, QA, and packaging scripts
-│       ├── install.sh
-│       ├── doctor.sh
-│       ├── e2e-fresh-install.sh
-│       └── package.sh
-├── start-here/
-│   └── SKILL.md                       <- Orchestrator and router
-├── brand-voice/
-│   └── SKILL.md                       <- Voice extraction and building
-├── positioning-angles/
-│   ├── SKILL.md                       <- Market angle discovery
-│   └── references/                    <- Positioning frameworks (Dunford, Hormozi, Schwartz)
-├── keyword-research/
-│   └── SKILL.md                       <- Keyword strategy and clustering
-├── seo-content/
-│   ├── SKILL.md                       <- SEO article production
-│   └── references/                    <- E-E-A-T guidelines and examples
-├── direct-response-copy/
-│   └── SKILL.md                       <- High-conversion copywriting
-├── email-sequences/
-│   └── SKILL.md                       <- Email automation sequences
-├── lead-magnet/
-│   ├── SKILL.md                       <- Lead magnet concept and build
-│   └── references/                    <- Format examples by business type
-├── newsletter/
-│   ├── SKILL.md                       <- Newsletter edition creation
-│   └── references/                    <- Top newsletter breakdowns
-├── content-atomizer/
-│   ├── SKILL.md                       <- Cross-platform repurposing
-│   └── references/                    <- Platform playbook
-└── creative/
-    ├── SKILL.md                       <- Creative engine router
-    ├── modes/                         <- Five production modes
-    │   ├── product-photo.md
-    │   ├── product-video.md
-    │   ├── social-graphics.md
-    │   ├── talking-head.md
-    │   └── ad-creative.md
-    └── references/                    <- Model registry and visual intelligence
-        ├── MODEL_REGISTRY.md
-        └── VISUAL_INTELLIGENCE.md
+README.md                  <- You are here
+ARCHITECTURE.md            <- Design reasoning
+CHANGES.md                 <- What changed from upstream v2.0
+GLOSSARY.md                <- Vocabulary the skills share
+_system/                   <- Shared files every skill points to
+├── brand-memory.md        <- How skills read and write ./brand/
+├── output-format.md       <- The four-section markdown output contract
+├── ai-tells.md            <- Shared AI-tells editing checklist
+├── content-brief.md       <- Content brief template
+├── schemas/               <- JSON Schemas for files other tools read
+│   ├── voice-profile.schema.json
+│   ├── keyword-plan.schema.json
+│   ├── content-brief.schema.json
+│   └── email-sequence-summary.schema.json
+└── scripts/
+    ├── install.sh
+    ├── doctor.sh          <- Health check (runs the lint)
+    ├── lint-skills.sh     <- Pointer, orphan, frontmatter, format lint
+    ├── e2e-fresh-install.sh
+    └── package.sh
+docs/
+├── adr/                   <- Decisions not to reverse
+├── agents/                <- Skill review standard
+├── research/              <- Evidence behind the decisions
+├── rewrite-decisions.md
+└── playbook.md            <- The Vibe Marketing Playbook (background reading)
+<skill>/                   <- One folder per skill
+├── SKILL.md               <- Reads, Writes, steps, completion criteria
+├── modes/                 <- One file per Mode, where the skill has several
+└── references/            <- Templates, examples, platform and framework detail
 ```
 
+The skills are `start-here`, `brand-voice`, `positioning-angles`,
+`keyword-research`, `lead-magnet`, `direct-response-copy`, `seo-content`,
+`email-sequences`, `newsletter`, `creative`, and `content-atomizer`.
+
 ---
+
+## Install and Check
+
+```
+bash _system/scripts/install.sh              # all skills into ~/.claude/skills
+bash _system/scripts/install.sh --claude-only   # skip /creative (no Replicate)
+bash _system/scripts/doctor.sh               # health check, including lint
+bash _system/scripts/lint-skills.sh          # lint only (one folder: pass its name)
+bash _system/scripts/e2e-fresh-install.sh    # install into a temp HOME and verify
+```
+
+The lint checks that every pointer between files resolves, every mode and
+reference file is pointed to, every SKILL.md has a name and description, and no
+output uses box-drawing characters. Review standard: `docs/agents/standards.md`.
+
+---
+
 
 ## How the Skills Work
 
@@ -162,9 +174,12 @@ The first time you run `/start-here`, it creates your brand foundation:
 - `assets.md` -- Registry of everything the system has produced
 - `learnings.md` -- Performance data that makes future output sharper
 
-Skills only read the brand files they need. A keyword researcher does not
-need your voice profile. A copywriter does not need your keyword plan.
-This selective context keeps output focused and specific.
+Each skill states its own Reads: the brand files it loads, and how much of
+each. A keyword researcher does not need your voice profile; a copywriter does
+not need your keyword plan. That list in the skill is the only statement of
+what it receives, so there is no central table to drift out of date. The shared
+rules for reading, freshness, writing and feedback live in
+`_system/brand-memory.md`.
 
 ### Skill Chaining
 
@@ -185,21 +200,35 @@ Distribution  /content-atomizer, /creative (ad mode)
 The orchestrator (`/start-here`) handles routing and can chain skills into
 complete workflows. Ask for "a lead magnet funnel" and it will run
 `/lead-magnet`, `/direct-response-copy`, `/email-sequences`, and
-`/content-atomizer` in sequence, passing context between each step.
+`/content-atomizer` in sequence, passing a pointer to each step's output to the next.
 
 ### Output Formatting
 
-Every skill uses a consistent visual design system built for terminal
-readability. Output follows a four-section structure:
+Every skill answers in markdown, in four sections (`_system/output-format.md`):
 
 1. **Header** -- What was produced and when
-2. **Content** -- The actual deliverable
+2. **Content** -- The deliverable, or a summary of it when it was saved to a file
 3. **Files Saved** -- Exactly what was written to disk and where
-4. **What's Next** -- Concrete next steps with skill references and time estimates
+4. **What's Next** -- Numbered next steps with the recommended one marked, and
+   time estimates
 
-No markdown rendering, no HTML, no color codes. The visual system uses
-Unicode box-drawing characters and a small set of status indicators
-(`checkmark` for complete, `x` for missing, `star` for recommended).
+Status uses ✓ (done), ✗ (missing), ★ (recommended) and → (next step). Long
+deliverables go to files under `./brand/` or `./campaigns/`; the reply points at
+them.
+
+### Structured Files
+
+Four files also carry a JSON block that matches a schema in `_system/schemas/`,
+inside a `<details>` section at the bottom of the markdown file: the voice
+profile, the keyword plan, the content brief, and the email sequence summary
+(`./campaigns/{name}/sequence-summary.md`). Campaign briefs are plain markdown.
+
+### Background Reading
+
+[The Vibe Marketing Playbook](docs/playbook.md) is an article on the
+process-over-prompts approach behind the workflows. It is background reading;
+the skills do not depend on it. Design reasoning for the pack itself is in
+[ARCHITECTURE.md](ARCHITECTURE.md).
 
 ---
 
@@ -267,8 +296,8 @@ files are deleted without your explicit confirmation.
 
 **Where do campaign assets go?**
 
-Skills write campaign assets to `./campaigns/{campaign-name}/` with
-subdirectories for emails, social content, ads, and other asset types.
+Skills write campaign assets to `./campaigns/{campaign-name}/`, with a
+`brief.md` per campaign and subdirectories by asset type.
 Every asset is also registered in `./brand/assets.md` so the orchestrator
 can track your full inventory.
 
@@ -276,9 +305,7 @@ can track your full inventory.
 
 ## Version
 
-v2.0 -- Built February 2026
-
-11 marketing skills, 5 creative engine modes, shared brand memory,
-selective context passing, pre-built multi-skill workflows, JSON schema
-contracts for downstream automation, and a visual design system built
-for terminal-native output.
+v2.0 base, rewritten. 11 marketing skills, shared brand memory with per-skill
+Reads, markdown output, disclosed modes and references, pre-built multi-skill
+workflows, JSON schemas for the four files other tools consume, and a lint plus
+health check. See [CHANGES.md](CHANGES.md).
