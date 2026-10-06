@@ -20,3 +20,7 @@ Running log of settled decisions for the skill rewrite, fed into `/to-spec`. Har
 - Section map: docs/research/skill-section-map.md. Broken pointers: creative/SKILL.md → modes/product-photos.md, modes/product-videos.md (files are singular).
 - Model research: docs/research/replicate-models-2026-10.md.
 - Matt-standard review of Q11-Q17: docs/research/matt-verdict.md.
+
+## Round 4 (owner answers to the Matt verdict's open items)
+- R1 Hero comparison (multi-model parallel video) runs only on explicit request, with estimated cost shown first.
+- R2 Adopt the researched lineup now (docs/research/replicate-models-2026-10.md), no side-by-side prototype.
