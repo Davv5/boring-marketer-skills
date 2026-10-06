@@ -2,45 +2,117 @@
 
 Read the structure matching the article's Content Format during Phase 3 of `seo-content/SKILL.md`. Adapt sections and length to intent, evidence, and reader needs.
 
-## Pillar guide
+## Pillar Guide Structure (5,000-8,000 words)
 
-Typical range: 5,000–8,000 words.
+```
+1. Hook Intro (150-250 words)
+   - Answer the title question immediately
+   - Why this matters NOW
+   - Who this is for (and who it's not for)
 
-1. Hook and direct answer (150–250 words); state why it matters and who it serves.
-2. Quick answer or TL;DR (200–300 words) when skimmers or snippet format warrant it.
-3. Three to five substantive sections, each answering a major sub-question; use PAA as headings where apt.
-4. Practical application or decision framework.
-5. FAQ with 5–10 useful PAA questions.
-6. Conclusion and CTA.
+2. Quick Answer Section (200-300 words)
+   - Direct answer for Featured Snippet
+   - TL;DR for skimmers
 
-## How-to tutorial
+3. Core Sections (3-5 major sections)
+   - Each 800-1,500 words
+   - Each answers a major sub-question
+   - H2 headers with keyword variations
+   - PAA questions as H2s where appropriate
 
-Typical range: 2,000–3,000 words.
+4. Implementation / How to Apply (300-500 words)
+   - Specific actionable steps
+   - Decision framework if applicable
 
-1. Outcome, time estimate, and prerequisites.
-2. Why this method and relevant alternatives.
-3. Numbered steps with one action per step and inline troubleshooting.
-4. Variations or advanced tips; common mistakes.
-5. FAQ with 3–5 PAA questions; next steps and CTA.
+5. FAQ Section (5-10 questions)
+   - From PAA research
+   - Schema-ready format (used for JSON-LD)
 
-## Comparison
+6. Conclusion with CTA (150-200 words)
+   - Summarize key takeaway
+   - Clear next action
+```
 
-Typical range: 2,500–4,000 words.
+## How-To Tutorial Structure (2,000-3,000 words)
 
-1. Quick verdict: who should choose each option.
-2. Comparison table of relevant differentiators, including pricing only when verified.
-3. Comparable deep dives for each option: features, trade-offs, best fit, and examples.
-4. Scenario-based head-to-head comparison.
-5. FAQ with 3–5 PAA questions and final recommendation/CTA.
+```
+1. What You'll Achieve (150-200 words)
+   - End result shown first
+   - Time estimate
+   - Prerequisites
 
-## Listicle
+2. Why This Method (200-300 words)
+   - Context and alternatives
+   - Why this approach works
 
-Typical range: 2,000–3,000 words.
+3. Step-by-Step Instructions (1,200-2,000 words)
+   - Numbered steps
+   - One action per step
+   - Troubleshooting inline
 
-1. Context and selection criteria.
-2. Summary table or list for skimmers.
-3. Each item: what it is, why it belongs, best fit, and limitations.
-4. Decision framework, FAQ with 3–5 PAA questions, and CTA.
+4. Variations / Advanced Tips (300-400 words)
+
+5. Common Mistakes (200-300 words)
+
+6. FAQ (3-5 questions from PAA)
+
+7. Next Steps with CTA (100-150 words)
+```
+
+## Comparison Structure (2,500-4,000 words)
+
+```
+1. Quick Verdict (200-300 words)
+   - Bottom line recommendation
+   - "Choose X if... Choose Y if..."
+
+2. Comparison Table
+   - 8-12 key differentiators
+   - Pricing (when verified), best for, key features
+
+3. Deep Dive: Option A (800-1,000 words)
+   - What it is
+   - Key features
+   - Pros/cons
+   - Best for
+   - Real example
+
+4. Deep Dive: Option B (800-1,000 words)
+   - Same structure
+
+5. Head-to-Head Comparison (300-500 words)
+   - Specific scenarios
+   - When to pick each
+
+6. FAQ (3-5 questions from PAA)
+
+7. Final Recommendation with CTA
+```
+
+## Listicle Structure (2,000-3,000 words)
+
+```
+1. Intro with Context (150-200 words)
+   - Why this list matters
+   - How items were selected
+
+2. Quick Summary Table/List
+   - All items at a glance
+   - For skimmers
+
+3. Individual Items (150-300 words each)
+   - What it is
+   - Why it's included
+   - Best for / Use case
+   - Limitations (honesty builds trust)
+
+4. How to Choose (200-300 words)
+   - Decision framework
+
+5. FAQ (3-5 questions from PAA)
+
+6. Conclusion with CTA
+```
 
 ## Article + FAQ JSON-LD
 
@@ -101,7 +173,7 @@ title: "{SEO title}"
 meta_description: "{description}"
 primary_keyword: "{keyword}"
 secondary_keywords: ["{keyword}"]
-content_type: "{content Format}"
+content_format: "{content Format}"
 search_intent: "{intent}"
 target_word_count: "{range}"
 actual_word_count: {count}

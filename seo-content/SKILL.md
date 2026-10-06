@@ -1,6 +1,6 @@
 ---
 name: seo-content
-description: "Write or refresh a search-focused article for a target keyword, using live SERP research when available."
+description: "Write or refresh a search-focused article for a target keyword, using live SERP research when available. Use when a keyword needs a publication-ready article or an existing article needs updating."
 ---
 
 # /seo-content
@@ -9,15 +9,13 @@ Write or refresh a publication-ready article that answers search intent, adds a 
 
 ## Reads
 
-- `./brand/voice-profile.md` — voice and vocabulary.
-- `./brand/keyword-plan.md` — prioritized keywords and existing research.
-- `./brand/audience.md` — reader needs and expertise.
-- `./brand/positioning.md` — differentiation and point of view.
-- `./brand/competitors.md` — competitor context.
-- `./brand/learnings.md` — prior content performance.
-- `./campaigns/content-plan/{keyword-slug}.md` — this keyword's brief and research, when present.
-
-Read available files at the depth needed for this article. The list is positive: missing files simply leave that context unavailable. Load brand context under `../_system/brand-memory.md` §Read; apply its depth, freshness, gap-report, and conflict rules.
+- `./brand/voice-profile.md` — full file.
+- `./brand/keyword-plan.md` — target cluster and roadmap entries.
+- `./brand/audience.md` — pain points, language, and expertise.
+- `./brand/positioning.md` — chosen angle only.
+- `./brand/competitors.md` — competitor names and relevant content entries.
+- `./brand/learnings.md` — content-performance entries.
+- `./campaigns/content-plan/{keyword-slug}.md` — full file when present.
 
 ## Writes
 
@@ -29,9 +27,9 @@ Read available files at the depth needed for this article. The list is positive:
 
 Check whether brand files and the campaign content directory exist, then load available Reads per `../_system/brand-memory.md` §Read. Ask for or confirm the target keyword, audience, intent, content Format, and angle using existing context and brief values first. With no brand directory or brief, ask the user for essential inputs and proceed independently. Completion: required inputs and every available Read have been accounted for.
 
-## Choose a Mode
+## Choose the work
 
-A **first run** creates an article. A **returning run** offers a targeted update when an article already exists at `./campaigns/content/{keyword-slug}.md`. For a returning run, read the article and ask whether to Refresh, rewrite, expand, or start fresh; use `modes/refresh.md` for the Refresh Mode. Completion: the chosen Mode and existing article state are clear.
+Create a new article or update the existing article at `./campaigns/content/{keyword-slug}.md`. For an existing article, read it and ask whether to Refresh, rewrite, expand, or create a distinct article; read `modes/refresh.md` only for Refresh Mode. Completion: the chosen work and existing article state are clear.
 
 ## Phase 1: Research
 
@@ -49,7 +47,7 @@ Completion: the brief covers each relevant field and distinguishes known informa
 
 ## Phase 3: Outline
 
-Build a structure matched to intent, Format, SERP, and reader need; account for every captured PAA question as an H2 or FAQ entry, with deeper questions as sections and brief answers in the FAQ. Select one of the four outline structures in `references/content-structures.md` (pillar guide, how-to, comparison, listicle), adapting rather than forcing its length or sections. The detailed four-format outlines and their section guidance are in `references/workflow-detail.md` (Phase 3); use `references/content-structures.md` as the concise format index. Completion: every brief priority and important reader question has an assigned place in the outline.
+Build a structure matched to intent, Format, SERP, and reader need; account for every captured PAA question as an H2 or FAQ entry, with deeper questions as sections and brief answers in the FAQ. Select one of the four outline structures in `references/content-structures.md` (pillar guide, how-to, comparison, listicle), adapting rather than forcing its length or sections. Completion: every brief priority and important reader question has an assigned place in the outline.
 
 ## Phase 4: Draft
 
@@ -59,7 +57,7 @@ For detailed drafting examples, voice techniques, and positioning illustrations,
 
 ## Phase 5: Humanize
 
-Edit the finished draft for generic phrasing, repetitive structure, unsupported certainty, and uniform rhythm. Apply `../_system/ai-tells.md` as the shared editing checklist. Keep the useful specifics and examples in `references/content-structures.md` where relevant to the article's Format. SEO-specific before/after examples, voice-injection examples, and rhythm advice are in `references/workflow-detail.md` (Phase 5); shared detection patterns are in `../_system/ai-tells.md`. Completion: the draft reads naturally, retains its evidence, and reflects a specific voice.
+Edit the finished draft for generic phrasing, repetitive structure, unsupported certainty, and uniform rhythm. Apply `../_system/ai-tells.md` as the shared editing checklist. Keep the useful specifics and examples in `references/content-structures.md` where relevant to the article's Format. SEO-specific before/after examples, voice-injection examples, and rhythm advice are in `references/workflow-detail.md` (Phase 5). Completion: the draft reads naturally, retains its evidence, and reflects a specific voice.
 
 ## Phase 6: Optimize
 
@@ -83,7 +81,7 @@ After the deliverable, use `../_system/brand-memory.md` §Feedback for the canon
 
 ## References
 
-- `references/content-structures.md` — concise four-format outline index, schema JSON examples, and article-specific output fields; read during Phases 3 and 7, and when preparing Phase 8 metadata.
-- `references/workflow-detail.md` — detailed phase instructions, examples, checklists, handoff, and troubleshooting retained from the original workflow; consult from the phase pointers above.
+- `references/content-structures.md` — four-format outlines and section guidance, schema JSON examples, and article-specific output fields; read during Phases 3 and 7, and when preparing Phase 8 metadata.
+- `references/workflow-detail.md` — detailed phase instructions, examples, checklists, handoff, and troubleshooting for the relevant phase; consult from the phase pointers above.
 - `references/eeat-examples.md` — examples of experience, expertise, authority, and trust signals; read during Phase 4 or Phase 8 when claims need an E-E-A-T check.
 - `modes/refresh.md` — existing-article SERP comparison and update workflow; read only for Refresh Mode.

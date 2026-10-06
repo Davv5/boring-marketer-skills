@@ -1,14 +1,16 @@
 # Detailed SEO workflow guidance
 
-Read alongside the relevant phase in `seo-content/SKILL.md` when the detailed research procedure, examples, checks, handoff, or troubleshooting is needed. These are the detailed original instructions retained during the rewrite.
+Read alongside the relevant phase in `seo-content/SKILL.md` when the detailed research procedure, examples, checks, handoff, or troubleshooting is needed.
 
-### SERP Analysis (LIVE -- v2 Enhancement)
+## Phase 1: Research
+
+### SERP Analysis
 
 Search the target keyword using web search tools and analyze the top 5 results.
 
 **For each result, capture:**
 - Title and URL
-- Content type (guide, listicle, tool page, etc.)
+- Content Format (guide, listicle, tool page, etc.)
 - Approximate word count
 - Structure (headers, sections)
 - Unique angles or data
@@ -24,56 +26,31 @@ Search the target keyword using web search tools and analyze the top 5 results.
 
 **Present SERP findings to the user:**
 
-```
-  ──────────────────────────────────────────────
 
-  SERP ANALYSIS: "{target keyword}"
+### SERP analysis: {target keyword}
 
-  Top 5 results:
-  ├── 1. {Title} -- {domain}
-  │      {content type}, ~{N} words, {date}
-  │      Angle: {their angle}
-  │      Gap: {what they miss}
-  │
-  ├── 2. {Title} -- {domain}
-  │      {content type}, ~{N} words, {date}
-  │      Angle: {their angle}
-  │      Gap: {what they miss}
-  │
-  ├── 3. {Title} -- {domain}
-  │      {content type}, ~{N} words, {date}
-  │      Angle: {their angle}
-  │      Gap: {what they miss}
-  │
-  ├── 4. {Title} -- {domain}
-  │      {content type}, ~{N} words, {date}
-  │      Angle: {their angle}
-  │      Gap: {what they miss}
-  │
-  └── 5. {Title} -- {domain}
-         {content type}, ~{N} words, {date}
-         Angle: {their angle}
-         Gap: {what they miss}
+| Result | URL/domain | Format and length | Date | Angle | Gap |
+|---|---|---|---|---|---|
+| 1. {Title} | {URL/domain} | {Format}, ~{N} words | {date} | {angle} | {gap} |
+| 2. {Title} | {URL/domain} | {Format}, ~{N} words | {date} | {angle} | {gap} |
+| 3. {Title} | {URL/domain} | {Format}, ~{N} words | {date} | {angle} | {gap} |
+| 4. {Title} | {URL/domain} | {Format}, ~{N} words | {date} | {angle} | {gap} |
+| 5. {Title} | {URL/domain} | {Format}, ~{N} words | {date} | {angle} | {gap} |
 
-  ──────────────────────────────────────────────
+### SERP features
 
-  SERP FEATURES
+- Featured Snippet: {format or "none"}
+- People Also Ask: {N} questions captured
+- AI Overview: {present/absent, summary}
 
-  ├── Featured Snippet    {format or "none"}
-  ├── People Also Ask     {N} questions captured
-  └── AI Overview         {present/absent, summary}
 
-  ──────────────────────────────────────────────
+### Opportunity assessment
 
-  OPPORTUNITY ASSESSMENT
+{1-3 sentence summary of the gap your content
+will fill and why it can win}
 
-  {1-3 sentence summary of the gap your content
-  will fill and why it can win}
 
-  ──────────────────────────────────────────────
-```
-
-### People Also Ask Integration (v2 Enhancement)
+### People Also Ask Integration
 
 Pull ALL People Also Ask questions for the target keyword via web search.
 These become mandatory sections in your content.
@@ -94,20 +71,20 @@ These become mandatory sections in your content.
 
 **PAA output:**
 
-```
-  PEOPLE ALSO ASK
 
-  Full sections (answer as H2):
-  ├── "{question 1}" -- high search signal
-  ├── "{question 2}" -- aligns with content type
-  └── "{question 3}" -- competitive gap
+### People also ask
 
-  FAQ entries (answer briefly):
-  ├── "{question 4}"
-  ├── "{question 5}"
-  ├── "{question 6}"
-  └── "{question 7}"
-```
+Full sections (answer as H2):
+- "{question 1}" -- high search signal
+- "{question 2}" -- aligns with content Format
+- "{question 3}" -- competitive gap
+
+FAQ entries (answer briefly):
+- "{question 4}"
+- "{question 5}"
+- "{question 6}"
+- "{question 7}"
+
 
 ### Gap Analysis
 
@@ -123,123 +100,12 @@ Your content should fill these gaps.
 ---
 
 ## Phase 2: Content Brief
+
+Use `../_system/content-brief.md` for fields and `../_system/schemas/content-brief.schema.json` for the contract.
+
 ## Phase 3: Outline
 
-Structure the content based on type:
-
-### Pillar Guide Structure (5,000-8,000 words)
-
-```
-1. Hook Intro (150-250 words)
-   - Answer the title question immediately
-   - Why this matters NOW
-   - Who this is for (and who it's not for)
-
-2. Quick Answer Section (200-300 words)
-   - Direct answer for Featured Snippet
-   - TL;DR for skimmers
-
-3. Core Sections (3-5 major sections)
-   - Each 800-1,500 words
-   - Each answers a major sub-question
-   - H2 headers with keyword variations
-   - PAA questions as H2s where appropriate
-
-4. Implementation / How to Apply (300-500 words)
-   - Specific actionable steps
-   - Decision framework if applicable
-
-5. FAQ Section (5-10 questions)
-   - From PAA research
-   - Schema-ready format (used for JSON-LD)
-
-6. Conclusion with CTA (150-200 words)
-   - Summarize key takeaway
-   - Clear next action
-```
-
-### How-To Tutorial Structure (2,000-3,000 words)
-
-```
-1. What You'll Achieve (150-200 words)
-   - End result shown first
-   - Time estimate
-   - Prerequisites
-
-2. Why This Method (200-300 words)
-   - Context and alternatives
-   - Why this approach works
-
-3. Step-by-Step Instructions (1,200-2,000 words)
-   - Numbered steps
-   - One action per step
-   - Troubleshooting inline
-
-4. Variations / Advanced Tips (300-400 words)
-
-5. Common Mistakes (200-300 words)
-
-6. FAQ (3-5 questions from PAA)
-
-7. Next Steps with CTA (100-150 words)
-```
-
-### Comparison Structure (2,500-4,000 words)
-
-```
-1. Quick Verdict (200-300 words)
-   - Bottom line recommendation
-   - "Choose X if... Choose Y if..."
-
-2. Comparison Table
-   - 8-12 key differentiators
-   - Pricing, best for, key features
-
-3. Deep Dive: Option A (800-1,000 words)
-   - What it is
-   - Key features
-   - Pros/cons
-   - Best for
-   - Real example
-
-4. Deep Dive: Option B (800-1,000 words)
-   - Same structure
-
-5. Head-to-Head Comparison (300-500 words)
-   - Specific scenarios
-   - When to pick each
-
-6. FAQ (3-5 questions from PAA)
-
-7. Final Recommendation with CTA
-```
-
-### Listicle Structure (2,000-3,000 words)
-
-```
-1. Intro with Context (150-200 words)
-   - Why this list matters
-   - How items were selected
-
-2. Quick Summary Table/List
-   - All items at a glance
-   - For skimmers
-
-3. Individual Items (150-300 words each)
-   - What it is
-   - Why it's included
-   - Best for / Use case
-   - Limitations (honesty builds trust)
-
-4. How to Choose (200-300 words)
-   - Decision framework
-
-5. FAQ (3-5 questions from PAA)
-
-6. Conclusion with CTA
-```
-
----
+Use `references/content-structures.md` for the four Format outlines and section guidance.
 
 ## Phase 4: Draft
 
@@ -390,18 +256,15 @@ Really.
 
 Before publishing, run through:
 
-```
-[ ] No AI words (delve, comprehensive, crucial, leverage, landscape)
-[ ] No AI phrases (in today's world, it's important to note, let's dive in)
-[ ] Not everything in threes
-[ ] At least one personal opinion stated directly
-[ ] At least one specific number from real experience
-[ ] At least one admission of limitation or uncertainty
-[ ] Sentence lengths vary (some under 5 words, some over 20)
-[ ] Would I say this out loud to a smart friend?
-[ ] Does it sound like a specific person, or a committee?
-[ ] Can I identify whose voice this is?
-```
+
+- [ ] At least one personal opinion stated directly
+- [ ] At least one specific number from real experience
+- [ ] At least one admission of limitation or uncertainty
+- [ ] Sentence lengths vary (some under 5 words, some over 20)
+- [ ] Would I say this out loud to a smart friend?
+- [ ] Does it sound like a specific person, or a committee?
+- [ ] Can I identify whose voice this is?
+
 
 ### The Read-Aloud Test
 
@@ -413,18 +276,18 @@ Read your draft out loud. If you stumble, readers will too. If it sounds like a 
 
 ### On-Page SEO Checklist
 
-```
-[ ] Primary keyword in title (front-loaded if possible)
-[ ] Primary keyword in H1 (can match title)
-[ ] Primary keyword in first 100 words
-[ ] Primary keyword in at least one H2
-[ ] Secondary keywords in H2s naturally
-[ ] Primary keyword in meta description
-[ ] Primary keyword in URL slug
-[ ] Image alt text includes relevant keywords
-[ ] Internal links to related content (4-8 per piece)
-[ ] External links to authoritative sources (2-4 per piece)
-```
+
+- [ ] Primary keyword in title (front-loaded if possible)
+- [ ] Primary keyword in H1 (can match title)
+- [ ] Primary keyword in first 100 words
+- [ ] Primary keyword in at least one H2
+- [ ] Secondary keywords in H2s naturally
+- [ ] Primary keyword in meta description
+- [ ] Primary keyword in URL slug
+- [ ] Image alt text includes relevant keywords
+- [ ] Internal links to related content (4-8 per piece)
+- [ ] External links to authoritative sources (2-4 per piece)
+
 
 ### Title Optimization
 
@@ -456,17 +319,17 @@ Read your draft out loud. If you stumble, readers will too. If it sounds like a 
 
 ### Header Structure
 
-```
+
 H1: Main title (one per page)
-  H2: Major section (keyword variation)
-    H3: Subsection
-    H3: Subsection
-  H2: Major section (keyword variation)
-    H3: Subsection
-  H2: FAQ (if included)
-    H3: Question 1
-    H3: Question 2
-```
+H2: Major section (keyword variation)
+H3: Subsection
+H3: Subsection
+H2: Major section (keyword variation)
+H3: Subsection
+H2: FAQ (if included)
+H3: Question 1
+H3: Question 2
+
 
 Use headers for structure, not decoration. Each H2 should be a scannable summary of what follows.
 
@@ -505,88 +368,85 @@ Use headers for structure, not decoration. Each H2 should be a scannable summary
 
 ---
 
-## Phase 7: Schema Markup Generation (v2 Enhancement)
+## Phase 7: Schema Markup
+
+Use `references/content-structures.md` for Article, FAQPage, and HowTo JSON-LD examples.
+
+## Phase 8: Review and Save
 ### Content Quality Checklist
 
-```
-[ ] Answers title question in first 300 words
-[ ] At least 3 specific examples or numbers
-[ ] At least 1 personal experience or unique insight
-[ ] Unique angle present (not just aggregation)
-[ ] All claims supported by evidence or experience
-[ ] No generic advice (could apply to anyone)
-[ ] Would I bookmark this? Would I share it?
-[ ] PAA questions answered (all of them)
-[ ] SERP gaps addressed (from Phase 1 analysis)
-```
+
+- [ ] Answers title question in first 300 words
+- [ ] At least 3 specific examples or numbers
+- [ ] At least 1 personal experience or unique insight
+- [ ] Unique angle present (not just aggregation)
+- [ ] All claims supported by evidence or experience
+- [ ] No generic advice (could apply to anyone)
+- [ ] Would I bookmark this? Would I share it?
+- [ ] PAA questions answered (all of them)
+- [ ] SERP gaps addressed (from Phase 1 analysis)
+
 
 ### Voice Quality Checklist
 
-```
-[ ] Reads naturally out loud
-[ ] No AI-isms (delve, landscape, comprehensive)
-[ ] No corporate speak (leverage, synergy)
-[ ] Sentence length varies
-[ ] Personality present
-[ ] Would I actually say this to someone?
-[ ] Matches voice-profile.md (if loaded)
-[ ] Positioning angle visible (if loaded)
-```
+
+- [ ] Reads naturally out loud
+- [ ] Sentence length varies
+- [ ] Personality present
+- [ ] Would I actually say this to someone?
+- [ ] Matches voice-profile.md (if loaded)
+- [ ] Positioning angle visible (if loaded)
+
 
 ### SEO Quality Checklist
 
-```
-[ ] Primary keyword in title, H1, first paragraph
-[ ] Secondary keywords in H2s naturally
-[ ] Meta description compelling and <160 chars
-[ ] Internal links included (4-8)
-[ ] External citations for claims (2-4)
-[ ] Alt text on all images
-[ ] Headers create logical structure
-[ ] FAQ section with schema-ready format
-[ ] Schema markup generated (Article + FAQ)
-```
+
+- [ ] Primary keyword in title, H1, first paragraph
+- [ ] Secondary keywords in H2s naturally
+- [ ] Meta description compelling and <160 chars
+- [ ] Internal links included (4-8)
+- [ ] External citations for claims (2-4)
+- [ ] Alt text on all images
+- [ ] Headers create logical structure
+- [ ] FAQ section with schema-ready format
+- [ ] Schema markup generated (Article + FAQ)
+
 
 ### E-E-A-T Signals Checklist
 
-```
-[ ] Experience shown (real examples, specific results)
-[ ] Expertise demonstrated (depth, accuracy, nuance)
-[ ] Author credentials visible
-[ ] Sources cited for factual claims
-[ ] Updated date visible
-[ ] No misleading claims
-```
+
+- [ ] Experience shown (real examples, specific results)
+- [ ] Expertise demonstrated (depth, accuracy, nuance)
+- [ ] Author credentials visible
+- [ ] Sources cited for factual claims
+- [ ] Updated date visible
+- [ ] No misleading claims
+
 
 ---
 
-## File Output Format (v2 Enhancement)
-## Chain to /content-atomizer (v2 Enhancement)
+## Chain to /content-atomizer
 
 After content creation, offer to atomize the article into social distribution
 assets. This is the natural next step -- one article becomes 5-10 social posts.
 
 ### Chain Prompt
 
-```
-  ──────────────────────────────────────────────
 
-  DISTRIBUTE THIS CONTENT
+### Distribute this content
 
-  Your article is {N} words of original content.
-  That is enough raw material for:
+Your article is {N} words of original content.
+That is enough raw material for:
 
-  ├── 3-5 LinkedIn posts
-  ├── 8-12 Twitter/X posts
-  ├── 2-3 Instagram carousel concepts
-  ├── 1 email newsletter excerpt
-  └── 1 thread (Twitter or LinkedIn)
+- 3-5 LinkedIn posts
+- 8-12 Twitter/X posts
+- 2-3 Instagram carousel concepts
+- 1 email newsletter excerpt
+- 1 thread (Twitter or LinkedIn)
 
-  → "Atomize" to run /content-atomizer now
-  → "Not yet" to save the article and stop here
+→ "Atomize" to run /content-atomizer now
+→ "Not yet" to save the article and stop here
 
-  ──────────────────────────────────────────────
-```
 
 ### Handoff Data
 
@@ -602,67 +462,67 @@ If the user says "atomize" or similar, hand off to /content-atomizer with:
 
 ### Input from /keyword-research skill:
 
-```
+
 Target: "what is agentic AI marketing"
 Cluster: agentic AI, AI marketing agents, autonomous marketing
 Intent: Informational
-Content type: Pillar guide
+Content Format: Pillar guide
 Priority: Critical (category definition opportunity)
 Content brief: ./campaigns/content-plan/what-is-agentic-ai-marketing.md
-```
+
 
 ### Brand memory loaded:
 
-```
-  Brand context loaded:
-  ├── Voice Profile   ✓ "Direct, proof-heavy, zero jargon"
-  ├── Keyword Plan    ✓ 5 pillars, 12 briefs
-  ├── Audience        ✓ "Funded startups, 10-50 employees"
-  ├── Positioning     ✓ "Practitioner, not theorist"
-  └── Competitors     ✓ 3 competitors profiled
-```
+
+Brand context loaded:
+- Voice Profile   ✓ "Direct, proof-heavy, zero jargon"
+- Keyword Plan    ✓ 5 pillars, 12 briefs
+- Audience        ✓ "Funded startups, 10-50 employees"
+- Positioning     ✓ "Practitioner, not theorist"
+- Competitors     ✓ 3 competitors profiled
+
 
 ### SERP analysis findings:
 
-```
-  SERP ANALYSIS: "what is agentic AI marketing"
 
-  Top 5 results:
-  ├── 1. "What is Agentic AI?" -- techcrunch.com
-  │      Definition article, ~800 words, 2024
-  │      Angle: General AI explainer
-  │      Gap: No marketing application depth
-  │
-  ├── 2. "Agentic AI in Business" -- forbes.com
-  │      Listicle, ~1,200 words, 2025
-  │      Angle: Enterprise use cases
-  │      Gap: No how-to, no specific tools
-  │
-  ├── 3. "AI Marketing Agents" -- hubspot.com
-  │      Product page, ~600 words, 2025
-  │      Angle: Selling their tool
-  │      Gap: Biased, not comprehensive
-  │
-  ├── 4. Reddit thread -- r/marketing
-  │      Discussion, various, 2025
-  │      Angle: Practitioner questions
-  │      Gap: No structured answer
-  │
-  └── 5. "AI Marketing Automation" -- neilpatel.com
-         Guide, ~2,000 words, 2024
-         Angle: General automation
-         Gap: Not specific to agentic AI
+SERP ANALYSIS: "what is agentic AI marketing"
 
-  SERP FEATURES
-  ├── Featured Snippet    definition format
-  ├── People Also Ask     8 questions captured
-  └── AI Overview         present, thin
+Top 5 results:
+- 1. "What is Agentic AI?" -- techcrunch.com
+Definition article, ~800 words, 2024
+Angle: General AI explainer
+Gap: No marketing application depth
 
-  OPPORTUNITY ASSESSMENT
-  Reddit in top 5 confirms major content gap.
-  No comprehensive practitioner guide exists.
-  Category definition opportunity is real.
-```
+- 2. "Agentic AI in Business" -- forbes.com
+Listicle, ~1,200 words, 2025
+Angle: Enterprise use cases
+Gap: No how-to, no specific tools
+
+- 3. "AI Marketing Agents" -- hubspot.com
+Product page, ~600 words, 2025
+Angle: Selling their tool
+Gap: Biased, not comprehensive
+
+- 4. Reddit thread -- r/marketing
+Discussion, various, 2025
+Angle: Practitioner questions
+Gap: No structured answer
+
+- 5. "AI Marketing Automation" -- neilpatel.com
+Guide, ~2,000 words, 2024
+Angle: General automation
+Gap: Not specific to agentic AI
+
+### SERP features
+- Featured Snippet: definition format
+- People Also Ask: 8 questions captured
+- AI Overview: present, thin
+
+### Opportunity assessment
+Reddit in top 5 confirms major content gap.
+No comprehensive practitioner guide exists.
+Category definition opportunity is real.
+
 
 ### Content brief created:
 - 5,000+ word pillar guide
@@ -703,7 +563,7 @@ Content brief: ./campaigns/content-plan/what-is-agentic-ai-marketing.md
 ## How This Connects to Other Skills
 
 **Input from:**
-- **keyword-research** --> Provides target keyword, cluster, intent, content type, and content briefs
+- **keyword-research** --> Provides target keyword, cluster, intent, content Format, and content briefs
 - **positioning-angles** --> Provides unique angle for differentiation
 - **brand-voice** --> Provides voice profile for consistent tone
 - **./brand/audience.md** --> Provides audience context for appropriate depth and examples
@@ -753,68 +613,34 @@ Study these patterns. The goal is content that reads like these writers -- not l
 
 ## Error States
 
+Present blockers inside `../_system/output-format.md`'s four sections.
+
 ### Web search not available
 
-```
-  +----------------------------------------------+
-  |                                              |
-  |  X  SERP ANALYSIS UNAVAILABLE               |
-  |                                              |
-  |  Web search tools are not available in this  |
-  |  environment. I can still write the article  |
-  |  using brand context and content brief --    |
-  |  but without live SERP analysis, PAA data,   |
-  |  or competitor gap validation.               |
-  |                                              |
-  |  -> Continue without SERP data               |
-  |  -> Provide competitor URLs manually         |
-  |                                              |
-  +----------------------------------------------+
-```
+✗ Live SERP analysis, PAA data, and competitor-gap validation are unavailable.
+- → Continue with a brief-based article and the ESTIMATED data-quality label after user agreement.
+- → Provide competitor URLs manually or connect web search.
 
-When web search is unavailable, skip SERP analysis in Phase 1. Proceed with
-the brief-based approach (Phase 2 onward). Note in the output that SERP
-validation was not performed and recommend the user manually check top
-results for the target keyword.
+If proceeding, report that SERP validation was not performed and recommend a manual check of the top results.
 
 ### No target keyword provided
 
-```
-  +----------------------------------------------+
-  |                                              |
-  |  X  NEED A TARGET KEYWORD                   |
-  |                                              |
-  |  I need a keyword to write for. Options:     |
-  |                                              |
-  |  -> Tell me the keyword to target            |
-  |  -> /keyword-research to find the right one  |
-  |  -> Point me to a content brief              |
-  |                                              |
-  +----------------------------------------------+
-```
+✗ A target keyword is needed.
+- → Supply the keyword or a content brief.
+- → /keyword-research: find an appropriate target.
 
 ### Voice profile not found
 
-```
-  +----------------------------------------------+
-  |                                              |
-  |  X  BRAND VOICE NOT FOUND                   |
-  |                                              |
-  |  I can write this article, but without your  |
-  |  voice profile I will use a default style:   |
-  |  direct, conversational, specific.           |
-  |                                              |
-  |  -> /brand-voice  Build your profile (~10 min|
-  |  -> Continue with defaults                   |
-  |                                              |
-  +----------------------------------------------+
-```
+Use the default direct, conversational, specific style; report missing context through `../_system/brand-memory.md` §Read.
+- → /brand-voice: build a profile (~10 min).
+- → Continue with defaults.
 
 ### Content directory not writable
 
-```
-  +----------------------------------------------+
-  |                                              |
+✗ Could not save to `./campaigns/content/`. Display the generated article so it can be copied manually; report that it was not saved.
+- → Check directory permissions.
+- → Save to a user-approved alternative location.
+
 ## The Test
 
 Before publishing, ask:
@@ -826,53 +652,14 @@ Before publishing, ask:
 5. **Is there at least one thing here they cannot find elsewhere?**
 6. **Does it pass the AI detection checklist?** (Phase 5)
 7. **Does it match the quality bar of the E-E-A-T examples?**
-8. **Does it answer ALL People Also Ask questions?** (v2)
-9. **Is the schema markup valid and complete?** (v2)
-10. **Is it saved to disk with proper frontmatter?** (v2)
+8. **Does it answer ALL People Also Ask questions?**
+9. **Is the schema markup valid and complete?**
+10. **Is it saved to disk with proper frontmatter?**
 
 If any answer is no, revise before publishing.
 
 ---
 
-## Feedback Collection
+## Feedback
 
-After the article is saved and presented, offer the standard feedback prompt
-per brand-memory.md protocol:
-
-```
-  How did this land?
-
-  a) Great -- ready to publish as-is
-  b) Good -- made minor edits
-  c) Rewrote significantly
-  d) Have not published yet
-
-  (You can answer later -- just run
-  /seo-content again and tell me.)
-```
-
-### Processing Feedback
-
-**If (a) "Great":**
-- Log to ./brand/learnings.md under "What Works":
-  `- [{date}] [/seo-content] Article "{title}" shipped as-is. Keyword: "{keyword}". Angle: {angle}. Word count: {N}. Content type: {type}.`
-
-**If (b) "Good -- minor edits":**
-- Ask: "What did you change? Even small details help me improve."
-- Log the change to learnings.md. If it reveals a voice/tone issue, suggest
-  updating voice-profile.md.
-- Example entry: `- [{date}] [/seo-content] User softened tone in intro. Note: default opening may be too aggressive for this audience.`
-
-**If (c) "Rewrote significantly":**
-- Ask: "Can you share what you changed or paste the final version? I will learn from the diff."
-- If they share it, analyze the differences and log specific findings.
-- If the rewrite reveals a pattern (e.g., voice is consistently wrong),
-  suggest re-running /brand-voice.
-- Example entry: `- [{date}] [/seo-content] User rewrote "{title}" -- shifted from data-driven to story-driven. Voice profile may need update.`
-
-**If (d) "Have not published yet":**
-- Note it. Do not log anything to learnings.md yet.
-- Optionally remind them next time: "Last time I wrote an article on '{keyword}'. Did you ever publish it? I would love to know how it ranked."
-
----
-
+Use `seo-content/SKILL.md` §Feedback for the post-delivery step; the prompt and learning format live in `../_system/brand-memory.md` §Feedback.
