@@ -1,0 +1,23 @@
+# Runs the health check (doctor.sh, which lints the pack) on a fresh install,
+# then the fresh-install test. Expected red until #16 lands.
+name: Health check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Health check with lint
+        run: |
+          export TVM_INSTALL_HOME="$RUNNER_TEMP/claude"
+          bash _system/scripts/install.sh
+          bash "$TVM_INSTALL_HOME/skills/_system/scripts/doctor.sh"
+
+      - name: Fresh-install test
+        if: success() || failure()
+        run: bash _system/scripts/e2e-fresh-install.sh
