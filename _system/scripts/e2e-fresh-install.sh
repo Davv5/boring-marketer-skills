@@ -165,7 +165,7 @@ echo ""
 # ---------------------------------------------------------------------------
 echo -e "${BOLD}  Step 4: Run doctor${RESET}"
 
-DOCTOR_SCRIPT="$TVM_INSTALL_HOME/skills/vibe-marketing/_system/scripts/doctor.sh"
+DOCTOR_SCRIPT="$TVM_INSTALL_HOME/skills/_system/scripts/doctor.sh"
 if [[ ! -f "$DOCTOR_SCRIPT" ]]; then
   # Fall back to source copy
   DOCTOR_SCRIPT="$EXTRACTED_ROOT/_system/scripts/doctor.sh"
@@ -189,46 +189,18 @@ echo ""
 # ---------------------------------------------------------------------------
 echo -e "${BOLD}  Step 5: Verify file manifest${RESET}"
 
-INSTALL_DIR="$TVM_INSTALL_HOME/skills/vibe-marketing"
+INSTALL_DIR="$TVM_INSTALL_HOME/skills"
 
-# Define expected files
-EXPECTED_FILES=(
-  "_system/brand-memory.md"
-  "_system/output-format.md"
-  "_system/schemas/voice-profile.schema.json"
-  "_system/schemas/campaign-brief.schema.json"
-  "start-here/SKILL.md"
-  "brand-voice/SKILL.md"
-  "positioning-angles/SKILL.md"
-  "positioning-angles/references/angle-frameworks.md"
-  "positioning-angles/references/dunford-positioning.md"
-  "positioning-angles/references/hormozi-offer.md"
-  "positioning-angles/references/schwartz-sophistication.md"
-  "positioning-angles/references/unique-mechanism.md"
-  "direct-response-copy/SKILL.md"
-  "direct-response-copy/references/COPYWRITING_PLAYBOOK.md"
-  "keyword-research/SKILL.md"
-  "seo-content/SKILL.md"
-  "seo-content/references/eeat-examples.md"
-  "email-sequences/SKILL.md"
-  "lead-magnet/SKILL.md"
-  "lead-magnet/references/format-examples.md"
-  "lead-magnet/references/info-product-magnets.md"
-  "lead-magnet/references/psychology.md"
-  "lead-magnet/references/saas-magnets.md"
-  "lead-magnet/references/services-magnets.md"
-  "newsletter/SKILL.md"
-  "newsletter/references/newsletter-examples.md"
-  "content-atomizer/SKILL.md"
-  "content-atomizer/references/platform-playbook.md"
-  "creative/SKILL.md"
-  "creative/references/MODEL_REGISTRY.md"
-  "creative/references/VISUAL_INTELLIGENCE.md"
-  "creative/modes/product-photo.md"
-  "creative/modes/product-video.md"
-  "creative/modes/social-graphics.md"
-  "creative/modes/talking-head.md"
-  "creative/modes/ad-creative.md"
+# Expected files: everything under _system and under each skill folder
+# (a top-level folder holding SKILL.md) in the source.
+EXPECTED_FILES=()
+while IFS= read -r -d '' file; do
+  EXPECTED_FILES+=("${file#$EXTRACTED_ROOT/}")
+done < <(
+  find "$EXTRACTED_ROOT/_system" -type f -not -name '.DS_Store' -print0
+  for skill_file in "$EXTRACTED_ROOT"/*/SKILL.md; do
+    find "$(dirname "$skill_file")" -type f -not -name '.DS_Store' -print0
+  done
 )
 
 for filepath in "${EXPECTED_FILES[@]}"; do
