@@ -42,20 +42,21 @@ Plus 2-5 additional variants mixing frameworks:
 
 Present as a numbered list. Mark the recommended pick with ★.
 
-Always lead with a QUICK PICK summary so the user can grab the top choice immediately:
+Lead Content with a quick pick summary so the user can grab the top choice immediately:
 
-```
-  QUICK PICK
-  ★ "{Recommended headline}"
-    → Best for: {audience awareness level}
-    → Why: {one-sentence rationale}
+
+### Quick pick
+
+★ "{Recommended headline}"
+- → Best for: {audience awareness level}
+- → Why: {one-sentence rationale}
 
   See all {N} variants below.
-```
+
 
 Example output:
 
-```
+
 Headlines for [Project Name]:
 
 1. Ship your SaaS in a weekend, not a quarter.
@@ -69,7 +70,7 @@ Headlines for [Project Name]:
 Recommended: #3 — combines social proof (2,894 is specific and credible)
 with a curiosity gap (what did they use?). Best for Solution-Aware audiences
 who know they need a tool but haven't picked one yet.
-```
+
 
 ---
 
@@ -123,13 +124,13 @@ THIS solution.
 
 Present each variant as a complete piece. After each, include a note:
 
-```
---- Variant Notes ---
+
+### Variant notes
 Angle: [Control / Contrarian / Proof-Led]
 Best for: [Audience type, awareness level, market condition]
 Tone: [Matches voice profile / adjusted for this angle]
 Recommended test: [What to test this against and why]
-```
+
 
 ---
 
@@ -147,7 +148,6 @@ When writing emails, always generate 5-7 subject line variants:
 
 Mark the recommended pick with ★. Note expected open rate impact.
 
----
 ---
 
 # Copy Scoring Rubric
@@ -173,32 +173,28 @@ rate on these 7 dimensions (1-10 each).
 
 ## Score Format
 
-Present scores in this format:
-
-```
-
-  COPY SCORECARD
+Present the scorecard and priority fixes inside Content under `../_system/output-format.md`:
 
 
-  Clarity:      8/10   "Clear on the offer, vague on the mechanism"
-  Specificity:  6/10   "Uses 'many customers' instead of actual numbers"
-  Voice:        7/10   "Conversational but could be any SaaS brand"
-  Desire:       5/10   "Lists benefits but doesn't make them visceral"
-  Proof:        4/10   "One testimonial, no data, no case study"
-  Urgency:      3/10   "No reason to act now vs next month"
-  Flow:         7/10   "Good transitions, but paragraph 3 is a wall of text"
 
-  ────────────────────────────────────────────────
-  TOTAL:       40/70   (57%)
+### Copy scorecard
 
-  Verdict: Needs rewrite. Below 70% threshold.
+| Dimension | Score | Observation |
+|---|---|---|
+| Clarity | 8/10 | Clear offer, vague mechanism |
+| Specificity | 6/10 | Uses “many customers” instead of actual numbers |
+| Voice | 7/10 | Conversational but could be any SaaS brand |
+| Desire | 5/10 | Lists benefits without making them visceral |
+| Proof | 4/10 | One testimonial, no data or case study |
+| Urgency | 3/10 | No authentic reason to act now |
+| Flow | 7/10 | Good transitions, but paragraph 3 is a wall of text |
 
-  Priority fixes:
-  1. Add 2-3 specific testimonials with numbers (Proof: 4 → 7)
-  2. Quantify the pain -- do the math for them (Desire: 5 → 8)
-  3. Add authentic urgency (limited spots, price increase) (Urgency: 3 → 6)
+**Total:** 40/70 (57%). **Verdict:** needs rewrite; below the 70% threshold.
 
-```
+### Priority fixes
+1. Add 2–3 supported testimonials with numbers (Proof: 4 → 7).
+2. Quantify the pain using actual data (Desire: 5 → 8).
+3. Add urgency only if authentic (Urgency: 3 → 6).
 
 ---
 
@@ -223,7 +219,6 @@ Present scores in this format:
 - **On request:** When user says "score this" or "rate this copy" or "how good is this."
 
 ---
----
 
 # A/B Testing Suggestions
 
@@ -235,13 +230,13 @@ After generating copy, suggest 3-5 specific tests to optimize performance.
 
 For each test, provide:
 
-```
-  Test [N]: [Element] — [Version A] vs [Version B]
-  Why:     [Hypothesis based on copywriting principles from methodology]
-  Metric:  [Which metric this targets: CTR, conversion, engagement, etc.]
-  Impact:  [Expected direction and magnitude]
-  Priority: [HIGH / MEDIUM / LOW] — [Reasoning]
-```
+
+### Test [N]: [Element] — [Version A] vs [Version B]
+- **Why:** [Hypothesis based on copywriting principles from methodology]
+- **Metric:** [Which metric this targets: CTR, conversion, engagement, etc.]
+- **Impact:** [Expected direction and magnitude]
+- **Priority:** [HIGH / MEDIUM / LOW] — [Reasoning]
+
 
 ---
 
@@ -291,44 +286,47 @@ Expected impact: +2-8% CTA clicks
 
 ## Example Test Suggestions
 
-```
+
 After generating landing page copy for [Product]:
 
-  Test 1: Headline — Story vs Direct Benefit
-  Why:     Your audience shows skepticism (competitors over-promise).
+### Test 1: Headline — Story vs Direct Benefit
+- **Why:** Your audience shows skepticism (competitors over-promise).
            Story may build trust faster than straight benefit claim.
-  Metric:  CTR from ad → landing page, and scroll depth
-  Impact:  +15-30% CTR if story resonates with skeptical audience
-  Priority: HIGH — headline is 80% of the work
+- **Metric:** CTR from ad → landing page, and scroll depth
+- **Impact:** +15-30% CTR if story resonates with skeptical audience
+- **Priority:** HIGH — headline is 80% of the work
 
-  Test 2: Opening — Pain quantification vs Founder story
-  Why:     Two strongest hooks for Solution-Aware audiences.
+### Test 2: Opening — Pain quantification vs Founder story
+- **Why:** Two strongest hooks for Solution-Aware audiences.
            Math makes it rational; story makes it emotional.
-  Metric:  Scroll depth past fold, time on page
-  Impact:  +10-20% engagement
-  Priority: HIGH — determines if they read past the first screen
+- **Metric:** Scroll depth past fold, time on page
+- **Impact:** +10-20% engagement
+- **Priority:** HIGH — determines if they read past the first screen
 
-  Test 3: CTA — "Start building" vs "See what's inside"
-  Why:     First is action-oriented (confident buyers). Second is
+### Test 3: CTA — "Start building" vs "See what's inside"
+- **Why:** First is action-oriented (confident buyers). Second is
            curiosity-oriented (researchers still evaluating).
-  Metric:  CTA click rate
-  Impact:  +5-15% clicks
-  Priority: MEDIUM — meaningful but smaller than headline/hook
+- **Metric:** CTA click rate
+- **Impact:** +5-15% clicks
+- **Priority:** MEDIUM — meaningful but smaller than headline/hook
 
-  Test 4: Social proof — Testimonial-first vs Data-first
-  Why:     Testimonials create emotional proof. Data creates
+### Test 4: Social proof — Testimonial-first vs Data-first
+- **Why:** Testimonials create emotional proof. Data creates
            rational proof. Test which your audience responds to.
-  Metric:  Conversion rate (sign-up or purchase)
-  Impact:  +5-12% conversion
-  Priority: MEDIUM — refines an already-working page
+- **Metric:** Conversion rate (sign-up or purchase)
+- **Impact:** +5-12% conversion
+- **Priority:** MEDIUM — refines an already-working page
 
-  Test 5: Body length — 800 words vs 1,500 words
-  Why:     Your audience is Solution-Aware (level 3). They need
+### Test 5: Body length — 800 words vs 1,500 words
+- **Why:** Your audience is Solution-Aware (level 3). They need
            enough to differentiate but not a full education.
-  Metric:  Conversion rate, bounce rate
-  Impact:  +5-20% conversion
-  Priority: LOW — test after headline and hook are optimized
-```
+- **Metric:** Conversion rate, bounce rate
+- **Impact:** +5-20% conversion
+- **Priority:** LOW — test after headline and hook are optimized
+
 
 ---
----
+
+## Completion
+
+Done when the requested variants, scores, or tests are complete, one recommendation has a rationale, claims use supplied evidence, and requested artifacts are saved and reported under `../_system/output-format.md`.

@@ -1,14 +1,9 @@
 ---
 name: direct-response-copy
-description: "Write or revise persuasive copy for landing pages, sales pages, email, ads, and social posts."
-version: 7.0
+description: "Write or revise persuasive copy for landing pages, sales pages, email, ads, and social posts. Use when copy needs to convert or an existing campaign needs stronger messaging."
 ---
 
 # Direct Response Copy
-
-## Brand Memory Integration
-
-Brand-memory handling is defined by `_system/brand-memory.md` §Read and §Feedback.
 
 ## Reads
 
@@ -25,34 +20,27 @@ Campaign copy under `./campaigns/{campaign-name}/` and entries in `./brand/asset
 
 ### 1. Load brand context
 
-Apply `_system/brand-memory.md` §Read to the Reads list above. If `./brand/` is absent, use the standalone path there. Carry relevant context visibly into the work. **Done when** every listed file is loaded at its stated depth or named missing/stale in one status line.
+Apply `../_system/brand-memory.md` §Read to the Reads list above. If `./brand/` is absent, use the standalone path there. Carry relevant context visibly into the work. **Done when** every listed file is loaded at its stated depth or named missing/stale in one status line.
 
 ### 2. Establish the assignment
-
-**What Are We Writing?** Establish the Format, audience, offer, desired action, evidence, and constraints. Existing campaign choices follow the returning-run path below. **Iteration Detection:** when campaign files exist, read the relevant copy and ask whether to revise, add a piece, or start fresh; when none exist, proceed from the brief.
-
-- **If campaign files exist in ./campaigns/{name}/:** follow the returning-run choice above.
-- **If no campaign files exist:** proceed directly from the user's brief.
 
 Identify the Format (landing page, sales page, email, ad, social post, or another requested format), audience, offer, desired action, evidence, and constraints. Infer clear details from the brief; ask only for details whose absence would change the copy materially. For an existing campaign, read its relevant copy and ask whether to revise it, add a piece, or start fresh. **Done when** the Format and essential brief facts are clear or explicitly marked as assumptions.
 
 ### 3. Draft and review
 
-Write to the reader's need, with specific support for claims and a clear next action. Match the audience and brand context; preserve uncertainty instead of inventing proof. Read the finished copy aloud and revise awkward, generic, or unsupported passages. For the craft library, consult `references/COPYWRITING_PLAYBOOK.md`; the main file inlines only run-critical guidance. For the full practical technique set and worked examples, consult `references/copy-application.md`. For AI-tell edits, apply `_system/ai-tells.md` to the finished draft. (The former local `AI tells to avoid` list is now in that shared file.) **Done when** the draft fulfills the brief, claims have support or qualification, and the read-aloud review is complete.
+Write to the reader's need, with specific support for claims and a clear next action. Match the audience and brand context; preserve uncertainty instead of inventing proof. Read the finished copy aloud and revise awkward, generic, or unsupported passages. For the craft library, consult `references/COPYWRITING_PLAYBOOK.md` for frameworks, practical techniques, and worked examples. For AI-tell edits, apply `../_system/ai-tells.md` to the finished draft. **Done when** the draft fulfills the brief, claims have support or qualification, and the read-aloud review is complete.
 
 ### 4. Save campaign copy
 
-Save completed copy in the campaign directory using clear Format-specific filenames. Follow campaign layout and `brief.md` conventions in `_system/brand-memory.md` §Campaigns. Append each new asset to `./brand/assets.md` under §Write; do not replace existing entries. **Done when** each requested file is saved and registered, or the user requested analysis only.
+Save completed copy in the campaign directory using clear Format-specific filenames. Follow campaign layout and `brief.md` conventions in `../_system/brand-memory.md` §Campaigns. Append each new asset to `./brand/assets.md` under §Write; do not replace existing entries. **Done when** each requested file is saved and registered, or the user requested analysis only.
 
 ### 5. Present the deliverable
 
-Use `_system/output-format.md` for the four-section markdown contract and its Quick mode. The copy layouts and campaign file conventions are skill-specific: consult `references/output-templates.md` when choosing a saved-copy frontmatter or presentation layout. This reference retains the former File Naming, File Frontmatter, and After Writing material. Its Section 1: Header, Section 2: Content, Section 3: Files Saved, and Section 4: What's Next templates are superseded by the shared four-section contract. **Done when** Header, Content, Files Saved, and What's Next are present in order, with saved paths listed.
+Use `../_system/output-format.md` for the four-section markdown contract and its Quick output. The copy layouts and campaign file conventions are skill-specific: consult `references/output-templates.md` when choosing a saved-copy frontmatter or presentation layout. **Done when** Header, Content, Files Saved, and What's Next are present in order, with saved paths listed.
 
 ### 6. Collect feedback
 
-The former Standard Feedback Prompt and Recording Feedback rules are superseded by `_system/brand-memory.md` §Feedback.
-
-After a deliverable, apply `_system/brand-memory.md` §Feedback. For copy-specific learnings, record the useful format, angle, or voice preference in the prescribed journal; apply requested edits and save them. **Done when** the canonical feedback prompt is shown and any answer is processed.
+After a deliverable, apply `../_system/brand-memory.md` §Feedback. For copy-specific learnings, record the useful format, angle, or voice preference in the prescribed journal; apply requested edits and save them. **Done when** the canonical feedback prompt is shown and any answer is processed.
 
 ## Testing Mode
 
