@@ -258,7 +258,7 @@ After resolving a tool, add it to `./brand/stack.md` if it is not listed. stack.
 
 ## Data-quality label
 
-For skills whose output depends on external research (SERP data, keyword volumes, competitors, trending topics, news): today /keyword-research, /seo-content, /positioning-angles and /newsletter. Right after the header, before the content, state where the research came from:
+For any output that depends on external research (SERP data, keyword volumes, competitors, trending topics, news), state right after the header and before the content where the research came from:
 
 - **LIVE**: web search or an MCP research tool was available. List the sources consulted (the first few, then "and {n} more").
 - **ESTIMATED**: no research tool was available. Before proceeding, ask: "I don't have web search connected. I can give you a conceptual analysis based on what I know, but live data would be more accurate. Want me to proceed, or set up web search first?" To upgrade, the user connects a web search MCP server (firecrawl, playwright or web-search).

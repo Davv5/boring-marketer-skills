@@ -68,8 +68,8 @@ Or tell me what you're working on and I'll route you.
 
 When the output finishes a workflow, say so, and point to `/start-here` to review the project or start something new.
 
-**Visual build first.** /direct-response-copy, /lead-magnet, /newsletter, /email-sequences and /content-atomizer make `→ /creative` (build this as a visual) the first next step, and name the next skill in the chain as the skip option. The user chooses; the run stops there.
+**Visual build first.** When a run delivers publishable text assets that could benefit from visual production, make `→ /creative` (build this as a visual) the first next step, and name the next skill in the chain as the skip option. The user chooses; the run stops there.
 
-## Quick mode
+## Quick output
 
 When the user asks for one specific asset with clear parameters ("write me a LinkedIn post about X", "give me 5 subject lines"), deliver just that asset: no project scan, workflow proposal or gap warnings, and a What's Next of two or three lines. Exploratory requests ("help me with...", "where should I start", "set up my...") get the full run.

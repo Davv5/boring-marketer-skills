@@ -68,9 +68,7 @@ to the right skill for whatever you are working on.
 
 Models are chosen by role (default image, premium image, video test, default,
 production, lip-sync) from `creative/references/MODEL_REGISTRY.md`, which holds
-the current slugs, verified prices, and payload examples. The registry's roles:
-Nano Banana 2 and Pro for images, Wan 2.2 Fast, Seedance 1.5 Pro, Kling v2.6 and
-Kling v3 for video, Kling Lip-Sync and Sync lipsync-2-pro for lip sync. A
+the current slugs, verified prices, and payload examples. A
 multi-model hero comparison runs only when you ask for it, after the estimated
 cost is shown. Without a Replicate token, `/creative` writes model-ready prompts
 instead (a Fallback).
@@ -189,12 +187,12 @@ Distribution. Each layer builds on the one before it.
 ```
 Foundation    /brand-voice + /positioning-angles
      |
-Strategy      /keyword-research, /lead-magnet, /creative (setup)
+Strategy      /keyword-research, /lead-magnet
      |
 Execution     /direct-response-copy, /seo-content, /email-sequences,
               /newsletter, /creative
      |
-Distribution  /content-atomizer, /creative (ad mode)
+Distribution  /content-atomizer
 ```
 
 The orchestrator (`/start-here`) handles routing and can chain skills into

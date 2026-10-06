@@ -2,7 +2,9 @@
 
 One brief per content piece. /keyword-research writes it to `./campaigns/content-plan/{keyword-slug}.md` (slug in lowercase-kebab-case: "Best marketing automation tools" → `best-marketing-automation-tools.md`). /seo-content reads it before drafting and fills any field still empty from its own research.
 
-The fields are defined once in `_system/schemas/content-brief.schema.json`; each heading below maps to the schema property in brackets. Enum values (search intent, content type, priority, status) use the schema's spelling. Leave out a section with nothing to say, except the required ones: title, Target Keyword (primary), Search Intent, Content Type and Last Updated.
+When reading legacy briefs, interpret status `planning` or `brief-ready` as `planned`, and priority `DO FIRST` as `do-first`; use the schema spellings in newly written JSON while preserving the old brief until an update is confirmed.
+
+The fields are defined once in `_system/schemas/content-brief.schema.json`; each heading below maps to the schema property in brackets. Enum values (search intent, content Format, priority, status) use the schema's spelling. Leave out a section with nothing to say, except the required ones: title, Target Keyword (primary), Search Intent, Content Format and Last Updated.
 
 ```markdown
 # Content Brief: {title}
@@ -20,7 +22,7 @@ Metrics: {volume}/mo, difficulty {0-100}, CPC ${n}, {trend}   [keyword_metrics]
 ## Search Intent
 {informational | commercial | transactional | navigational}   [search_intent]
 
-## Content Type
+## Content Format
 {pillar-guide | how-to | comparison | listicle | ...}         [content_type]
 
 ## Priority
@@ -36,7 +38,7 @@ Metrics: {volume}/mo, difficulty {0-100}, CPC ${n}, {trend}   [keyword_metrics]
 {How we approach it, from positioning.md}     [angle]
 
 ## SERP Snapshot                              [serp_analysis]
-1. {title} | {url} | {content type} | {assessment}
+1. {title} | {url} | {content Format} | {assessment}
 2. ...
 3. ...
 Features: {featured snippet, video carousel, ...}
