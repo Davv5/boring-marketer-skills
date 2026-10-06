@@ -2,19 +2,33 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://vibemarketing.dev/schemas/content-brief.schema.json",
   "title": "Content Brief",
-  "description": "Structured brief for an individual content piece, produced by /keyword-research and consumed by /seo-content. Contains target keyword, SERP analysis data, recommended structure, and writing guidelines. Enables automated handoff from keyword planning to content production.",
+  "description": "Brief for one content piece, written by /keyword-research to ./campaigns/content-plan/{keyword-slug}.md and read by /seo-content. Each property maps to one heading of the markdown template in _system/content-brief.md.",
   "type": "object",
   "required": [
     "title",
     "target_keyword",
-    "created_date",
-    "content_type"
+    "search_intent",
+    "content_type",
+    "created_date"
   ],
   "properties": {
     "title": {
       "type": "string",
       "description": "Recommended article title, e.g. 'The Complete Guide to Cold Email for Freelancers'.",
       "minLength": 1
+    },
+    "created_date": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date the brief was written. Markdown: the date on the Last Updated line."
+    },
+    "created_by": {
+      "type": "string",
+      "description": "Skill that wrote the brief, typically '/keyword-research'. Markdown: the skill on the Last Updated line."
+    },
+    "cluster_ref": {
+      "type": "string",
+      "description": "Keyword cluster in ./brand/keyword-plan.md this brief belongs to, e.g. 'Cold Email Templates'."
     },
     "target_keyword": {
       "type": "string",
@@ -23,37 +37,17 @@
     },
     "secondary_keywords": {
       "type": "array",
-      "description": "Secondary and related keywords to incorporate naturally throughout the content.",
-      "items": {
-        "type": "string"
-      }
+      "description": "2-5 supporting keywords to work in naturally.",
+      "items": { "type": "string" }
     },
-    "created_date": {
-      "type": "string",
-      "format": "date",
-      "description": "ISO 8601 date when this brief was created."
-    },
-    "created_by": {
-      "type": "string",
-      "description": "The skill that created this brief, typically '/keyword-research'."
-    },
-    "cluster_ref": {
-      "type": "string",
-      "description": "Name of the keyword cluster this brief belongs to, e.g. 'Cold Email Templates'."
-    },
-    "content_type": {
-      "type": "string",
-      "enum": ["pillar-guide", "how-to", "listicle", "comparison", "case-study", "tutorial", "roundup", "opinion", "news", "review", "custom"],
-      "description": "The recommended content format based on SERP analysis."
-    },
-    "search_intent": {
-      "type": "string",
-      "enum": ["informational", "commercial", "transactional", "navigational"],
-      "description": "Dominant search intent for the target keyword."
+    "long_tail_keywords": {
+      "type": "array",
+      "description": "3-5 long-tail variations of the target keyword.",
+      "items": { "type": "string" }
     },
     "keyword_metrics": {
       "type": "object",
-      "description": "Search metrics for the target keyword.",
+      "description": "Search metrics for the target keyword. Mark estimates per the data-quality label in _system/brand-memory.md.",
       "properties": {
         "monthly_volume": {
           "type": "integer",
@@ -79,13 +73,40 @@
       },
       "additionalProperties": false
     },
+    "search_intent": {
+      "type": "string",
+      "enum": ["informational", "commercial", "transactional", "navigational"],
+      "description": "Dominant search intent for the target keyword."
+    },
+    "content_type": {
+      "type": "string",
+      "enum": ["pillar-guide", "how-to", "comparison", "listicle", "use-case", "definition", "case-study", "tutorial", "roundup", "opinion", "news", "review", "custom"],
+      "description": "Content format, chosen from what ranks for the keyword."
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["do-first", "do-second", "do-third", "quick-win", "long-play", "backlog"],
+      "description": "Priority from the /keyword-research priority matrix."
+    },
+    "target_word_count": {
+      "type": "string",
+      "description": "Word count range from the ranking pages, e.g. '2,500-3,000'."
+    },
+    "audience": {
+      "type": "string",
+      "description": "Who searches this keyword and what they need, informed by ./brand/audience.md."
+    },
+    "angle": {
+      "type": "string",
+      "description": "How this piece approaches the topic given the brand's positioning (./brand/positioning.md)."
+    },
     "serp_analysis": {
       "type": "object",
-      "description": "Analysis of the current SERP landscape for the target keyword.",
+      "description": "The current search results for the target keyword.",
       "properties": {
         "top_results": {
           "type": "array",
-          "description": "Summary of the top-ranking pages for this keyword.",
+          "description": "The top-ranking pages, usually the top 3.",
           "items": {
             "type": "object",
             "required": ["position", "title", "url"],
@@ -97,28 +118,24 @@
               },
               "title": {
                 "type": "string",
-                "description": "Page title as shown in SERP."
+                "description": "Page title as shown in the results."
               },
               "url": {
                 "type": "string",
                 "description": "URL of the ranking page."
+              },
+              "content_type": {
+                "type": "string",
+                "description": "Format of the ranking page, e.g. 'listicle', 'guide', 'tool page'."
               },
               "word_count": {
                 "type": "integer",
                 "minimum": 0,
                 "description": "Approximate word count of the ranking page."
               },
-              "content_type": {
+              "assessment": {
                 "type": "string",
-                "description": "Content format of the ranking page, e.g. 'listicle', 'guide', 'tool page'."
-              },
-              "strengths": {
-                "type": "string",
-                "description": "What this page does well."
-              },
-              "weaknesses": {
-                "type": "string",
-                "description": "Gaps or weaknesses to exploit."
+                "description": "What the page does well and where it falls short."
               }
             },
             "additionalProperties": false
@@ -126,108 +143,84 @@
         },
         "serp_features": {
           "type": "array",
-          "description": "SERP features present on the results page.",
-          "items": {
-            "type": "string"
-          }
+          "description": "Result-page features present, e.g. 'featured snippet', 'video carousel'.",
+          "items": { "type": "string" }
         },
         "people_also_ask": {
           "type": "array",
-          "description": "Questions from the People Also Ask section. These should be addressed in the content.",
-          "items": {
-            "type": "string"
-          }
+          "description": "People Also Ask questions the piece answers.",
+          "items": { "type": "string" }
         },
-        "content_gap": {
-          "type": "string",
-          "description": "What existing top results fail to cover. This is the primary differentiation opportunity."
+        "content_gaps": {
+          "type": "array",
+          "description": "What the ranking pages miss and this piece fills.",
+          "items": { "type": "string" }
         }
       },
       "additionalProperties": false
     },
-    "recommended_structure": {
-      "type": "object",
-      "description": "Recommended article structure based on SERP analysis and content type.",
-      "properties": {
-        "target_word_count": {
-          "type": "integer",
-          "minimum": 0,
-          "description": "Recommended word count based on top-ranking content analysis."
-        },
-        "outline": {
-          "type": "array",
-          "description": "Recommended H2/H3 outline for the article.",
-          "items": {
-            "type": "object",
-            "required": ["heading"],
-            "properties": {
-              "heading": {
-                "type": "string",
-                "description": "Section heading text."
-              },
-              "level": {
-                "type": "string",
-                "enum": ["h2", "h3"],
-                "description": "Heading level."
-              },
-              "guidance": {
-                "type": "string",
-                "description": "What this section should cover and why."
-              },
-              "keywords_to_include": {
-                "type": "array",
-                "description": "Secondary keywords to work into this section.",
-                "items": {
-                  "type": "string"
-                }
-              }
-            },
-            "additionalProperties": false
-          }
-        },
-        "must_include": {
-          "type": "array",
-          "description": "Elements the content must include to compete, e.g. 'real examples', 'downloadable template', 'comparison table'.",
-          "items": {
-            "type": "string"
-          }
-        },
-        "differentiation_angle": {
-          "type": "string",
-          "description": "How to make this content stand out from existing top results."
-        }
-      },
-      "additionalProperties": false
-    },
-    "voice_notes": {
+    "differentiation": {
       "type": "string",
-      "description": "Content-specific voice guidance. References the brand voice profile but may include adjustments, e.g. 'More authoritative than usual -- this is a definitive guide'."
+      "description": "What this piece brings that ranking pages lack: proprietary data, a unique method, practitioner experience."
     },
-    "internal_links": {
+    "key_points": {
       "type": "array",
-      "description": "Recommended internal links to other content or pages.",
+      "description": "Points and elements the piece must cover to compete, e.g. 'pricing comparison table', 'real cold email examples'.",
+      "items": { "type": "string" }
+    },
+    "outline": {
+      "type": "array",
+      "description": "Recommended H2/H3 outline, built from People Also Ask and the logical flow.",
       "items": {
         "type": "object",
+        "required": ["heading"],
         "properties": {
-          "anchor_text": {
+          "heading": {
             "type": "string",
-            "description": "Suggested anchor text for the link."
+            "description": "Section heading text."
           },
-          "target_path": {
+          "level": {
             "type": "string",
-            "description": "Path or URL to link to."
+            "enum": ["h2", "h3"],
+            "description": "Heading level."
           },
-          "context": {
+          "guidance": {
             "type": "string",
-            "description": "Where in the article to place this link."
+            "description": "What this section covers and why."
+          },
+          "keywords_to_include": {
+            "type": "array",
+            "description": "Secondary keywords to work into this section.",
+            "items": { "type": "string" }
           }
         },
         "additionalProperties": false
       }
     },
+    "voice_notes": {
+      "type": "string",
+      "description": "Adjustments to ./brand/voice-profile.md for this piece, e.g. 'More authoritative than usual: this is a definitive guide'."
+    },
+    "internal_links": {
+      "type": "object",
+      "description": "Internal links in both directions.",
+      "properties": {
+        "to": {
+          "type": "array",
+          "description": "Pages this piece links to.",
+          "items": { "$ref": "#/$defs/internal_link" }
+        },
+        "from": {
+          "type": "array",
+          "description": "Existing pages that should link to this piece.",
+          "items": { "$ref": "#/$defs/internal_link" }
+        }
+      },
+      "additionalProperties": false
+    },
     "cta": {
       "type": "object",
-      "description": "Primary call-to-action for this content piece.",
+      "description": "The action the reader takes after reading.",
       "properties": {
         "type": {
           "type": "string",
@@ -240,19 +233,40 @@
         },
         "placement": {
           "type": "string",
-          "description": "Where to place the CTA, e.g. 'After intro + end of article' or 'Inline after section 3'."
+          "description": "Where the CTA goes, e.g. 'after intro and at the end'."
         }
       },
       "additionalProperties": false
     },
     "status": {
       "type": "string",
-      "enum": ["brief-ready", "writing", "review", "published", "needs-refresh"],
-      "description": "Current status of this content piece."
+      "enum": ["planned", "writing", "review", "published", "needs-refresh"],
+      "description": "Where the piece is. /keyword-research writes 'planned'."
     },
     "output_path": {
       "type": "string",
-      "description": "Path where the finished content will be written, e.g. './campaigns/content/cold-email-template-freelancer.md'."
+      "description": "Where the finished content will be written, e.g. './campaigns/content/cold-email-template-freelancer.md'."
+    }
+  },
+  "$defs": {
+    "internal_link": {
+      "type": "object",
+      "required": ["path"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path or URL of the linked page, or the planned brief's slug."
+        },
+        "anchor_text": {
+          "type": "string",
+          "description": "Suggested anchor text."
+        },
+        "context": {
+          "type": "string",
+          "description": "Where in the article the link goes."
+        }
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": false
