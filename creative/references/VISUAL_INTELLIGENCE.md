@@ -15,7 +15,7 @@ This reference document contains the visual psychology, anti-generic techniques,
 5. [Style Vocabulary Taxonomy](#part-5-style-vocabulary-taxonomy)
 6. [Leading Brand Visual Identities](#part-6-leading-brand-visual-identities)
 7. [Platform-Specific Visual Strategy](#part-7-platform-specific-visual-strategy)
-8. [Prompt Construction for image 4K role](#part-8-prompt-construction-for-nano-banana-pro)
+8. [Prompt Construction](#part-8-prompt-construction)
 9. [Text Rendering & Typography in AI Images](#part-9-text-rendering--typography-in-ai-images)
 10. [Brand Consistency Across Multiple Generations](#part-10-brand-consistency-across-multiple-generations)
 11. [Prompt Templates](#part-11-prompt-templates)
@@ -771,9 +771,9 @@ As AI-generated content floods feeds with hyper-polished digital imagery, audien
 
 ---
 
-## Part 8: Prompt Construction for image 4K role
+## Part 8: Prompt Construction
 
-image 4K role (image 4K role) is the default image model for the creative engine. These guidelines are specific to how this model interprets prompts.
+Use Image default for ordinary images and Image premium for requested 4K or complex work, as routed by `references/MODEL_REGISTRY.md`. These are prompt construction techniques; inspect results rather than assuming model-specific performance.
 
 ### The Prompt Formula
 
@@ -784,7 +784,7 @@ image 4K role (image 4K role) is the default image model for the creative engine
 [TECHNICAL reference for texture/processing]
 ```
 
-### How image 4K role Reads Prompts
+### Prompt hierarchy
 
 **What it does well:**
 - Follows detailed natural language descriptions faithfully
@@ -828,7 +828,7 @@ WEAK ─────────────────────────
 
 ### Lighting as Mood Control
 
-Lighting is the single most impactful prompt element after the subject. image 4K role responds particularly well to specific lighting descriptions.
+Lighting is the single most impactful prompt element after the subject. Specify lighting precisely rather than relying on a generic mood.
 
 | Lighting Description | Mood It Creates | When to Use |
 |---------------------|-----------------|-------------|
@@ -853,7 +853,7 @@ Never say "colorful" or "vibrant colors." Always specify the palette.
 "muted earth tones: sand, warm grey, dried sage, soft clay"
 ```
 
-**image 4K role understands hex codes** in prompts. Using them produces more precise color results than generic color names alone.
+**Include brand hex codes** as color targets, then inspect output colors against the approved palette.
 
 ### Quality and Realism Modifiers
 
@@ -890,7 +890,7 @@ Never say "colorful" or "vibrant colors." Always specify the palette.
 
 ## Part 9: Text Rendering & Typography in AI Images
 
-image 4K role has significantly better text rendering capabilities than previous generation models. However, text in AI-generated images still requires specific techniques to get clean results.
+Text in AI-generated images requires specific prompting and a character-by-character review.
 
 ### When to Render Text in the Image vs. Overlay Later
 
@@ -936,7 +936,7 @@ Bad:  'a sign that says something about being open'
 | Text does not interact with lighting | Add: "text catching the same [lighting description] as the scene" |
 | Text floats unnaturally | Specify the surface: "text painted on the wall", "text engraved in the surface" |
 
-### Typography Style Keywords for image 4K role
+### Typography Style Keywords for Image default
 
 ```
 Serif:        "elegant serif", "classic roman", "editorial serif", "high-contrast serif"
@@ -1002,7 +1002,7 @@ After the 5-direction exploration process (described in SKILL.md), create a styl
 
 **1. Anchor Colors with Hex Codes**
 
-image 4K role understands hex codes. Using them produces more consistent color results than descriptive names.
+Use brand hex codes as color targets and verify them in the generated output.
 
 ```
 Less consistent: "warm orange and cream"
@@ -1031,13 +1031,13 @@ Locked technical: "shot on Hasselblad X2D, 90mm f/3.2, slight film emulation"
 
 Use this exact phrase in every prompt for the project.
 
-**4. Seed Reuse for Variations**
+**4. Controlled variations**
 
-When you find a generation you like, note the seed. Use that seed with modified prompts to get variations that share a similar "feel" (though this is not guaranteed — it increases consistency probability, not certainty).
+Keep approved prompt elements stable and change only the requested visual variable. Check the role's supported inputs in `references/MODEL_REGISTRY.md`; do not assume deterministic controls exist.
 
 **5. Reference Image Workflow**
 
-For maximum consistency, use the image editing capability of image 4K role:
+For maximum consistency, use the image editing capability of Image default:
 1. Generate the first image and approve it
 2. For subsequent images, provide the approved image as `image_input` with a prompt describing the variation
 3. This anchors the model to the established visual style

@@ -14,8 +14,8 @@ Generate talking head videos, presenter content, UGC-style testimonials, and lip
 
 **The problem:** Talking head videos are the most persuasive content format but:
 1. Recording yourself is time-consuming and requires confidence
-2. Professional presenters are expensive (cost: see references/MODEL_REGISTRY.md+ per video)
-3. UGC creators charge cost: see references/MODEL_REGISTRY.md per post and may not match your brand
+2. Professional presenters are expensive ($500-5000+ per video)
+3. UGC creators charge $100-500 per post and may not match your brand
 4. Iterating on scripts means re-filming everything
 5. Scaling personalized video is nearly impossible manually
 6. Each video model has a different API interface, making multi-model comparison error-prone
@@ -29,7 +29,7 @@ Generate talking head videos, presenter content, UGC-style testimonials, and lip
 - Maintain consistent brand presenter identity
 - Scale personalized outreach cost-effectively
 - Reference MODEL_REGISTRY.md for all API payloads (never hardcodes model names)
-- Run parallel multi-model generation and let the user pick the winner
+- Offer Hero comparison only on request after its registry total is approved
 - Include proper AI-generated content disclosures
 - Save approved presenters to the creative kit for cross-video reuse
 
@@ -45,185 +45,19 @@ Generate talking head videos, presenter content, UGC-style testimonials, and lip
 
 ## Model Selection
 
-**Do NOT hardcode model IDs.** Always refer to `references/MODEL_REGISTRY.md` for the current default video model and its verified API payload.
+Read `references/MODEL_REGISTRY.md` for role selection, verified costs, payloads, and model constraints. Use its role names:
 
-As of this writing, the models used in this mode are:
+- **Image default:** ordinary image generation.
+- **Image premium:** requested 4K or complex work.
+- **Video test:** inexpensive motion/presenter experiments before committing production budget.
+- **Video mid-tier:** product shots needing camera lock.
+- **Video default:** ordinary video generation.
+- **Video production:** multi-shot or production delivery.
+- **Hero comparison:** only when the user explicitly requests a comparison. Show the registry's total for the selected durations, audio, and resolution before generation and obtain approval; a hero asset or uncertainty alone does not request a comparison.
+- **Lip-sync default:** text/TTS or batch synchronization.
+- **Lip-sync hero:** requested cinematic synchronization using existing footage and WAV audio.
 
-### Video Generation Models
-
-| Role | Model | Registry Section | Estimated Cost (5s clip) |
-|------|-------|-----------------|--------------------------|
-| **Default** | video default role | Video Generation > Default Model | cost: see references/MODEL_REGISTRY.md |
-| **Comparison** | hero comparison role | Video Generation > Comparison Model: hero comparison role | cost: see references/MODEL_REGISTRY.md |
-| **Comparison** | hero comparison role | Video Generation > Comparison Model: hero comparison role | cost: see references/MODEL_REGISTRY.md |
-
-### Lip-Sync Model
-
-| Role | Model | Registry Section | Estimated Cost |
-|------|-------|-----------------|---------------|
-| **Lip-Sync** | lip-sync role | Lip-Sync > Model: lip-sync role | cost: see references/MODEL_REGISTRY.md |
-
-### How to Call
-
-1. Open `references/MODEL_REGISTRY.md`
-2. Find the **Video Generation** or **Lip-Sync** section
-3. Copy the verified payload structure for the desired model
-4. Insert your constructed prompt, source image, and parameters
-5. Execute the API call via Replicate
-6. For hero content: run all three video models in parallel (see Parallel Multi-Model Generation below)
-
-### Cross-Model Parameter Cheat Sheet
-
-Every video model uses different parameter names for the same concept. Always consult MODEL_REGISTRY.md before writing any API call.
-
-| Concept | video default role | hero comparison role | hero comparison role |
-|---------|-----------|---------|--------|
-| **Starting image** | `start_image` | `image` | `input_reference` |
-| **Duration** | `duration` (5, 10) | `duration` (4, 6, 8) | `seconds` (4-12) |
-| **Aspect ratio** | `aspect_ratio` ("16:9") | `aspect_ratio` ("16:9") | `aspect_ratio` ("landscape") |
-| **Prompt adherence** | `guidance_scale` (0-1) | — | — |
-| **Negative prompt** | `negative_prompt` | `negative_prompt` | — |
-| **Audio generation** | Not native | `generate_audio` | Native (always on) |
-| **Ending frame** | `end_image` | `last_frame` | — |
-| **Resolution control** | Fixed 1080p | `resolution` ("720p", "1080p") | Fixed |
-| **Reproducibility** | — | `seed` | — |
-
-### Model Strengths for Talking Head Content
-
-Refer to MODEL_REGISTRY.md for authoritative details. Summary for presenter-specific routing decisions:
-
-**video default role (Default for Talking Heads):**
-- Best for people and natural movement
-- Most realistic human faces
-- Handles casual movements well (ideal for UGC)
-- Best lip-sync ecosystem (lip-sync role pairs natively)
-- Strong at controlled expressions and gestures
-
-**hero comparison role:**
-- Highest fidelity video output
-- Native audio generation (set `generate_audio: true`)
-- Good for establishing scenes with ambient audio
-- Slower generation, higher cost
-- No square aspect ratio support
-
-**hero comparison role:**
-- Strong prompt comprehension
-- Good at character-driven content
-- Native audio generation (always on)
-- Most variable generation times
-- No square aspect ratio support
-
-### When to Use Which — Talking Head Specific
-
-```
-FOR MAXIMUM REALISM (people quality):
-    → video default role (best faces, most natural movement)
-
-FOR SPEED + QUALITY BALANCE:
-    → video default role (fastest for people content)
-
-FOR BUILT-IN AUDIO:
-    → hero comparison role (generates audio with video)
-
-FOR UGC AUTHENTICITY:
-    → video default role (handles casual movements well)
-
-FOR CORPORATE/FORMAL:
-    → video default role or hero comparison role (cleaner, more controlled)
-
-FOR HERO/FLAGSHIP:
-    → Run all 3 in parallel, pick winner
-```
-
----
-
-## Parallel Multi-Model Generation
-
-For hero content and any case where quality matters more than cost, run the same presenter prompt through all three video models simultaneously.
-
-### Why Parallel Beats Sequential
-
-- No single model wins every prompt — the best output varies by content
-- Running in parallel takes the same wall-clock time as the slowest model (~6 min)
-- Running sequentially would take ~15 minutes for all three
-- Total cost for a parallel comparison run: cost: see references/MODEL_REGISTRY.md (see Cost Awareness below)
-- Eliminates guessing — present all three, let the user pick
-
-### Parallel Execution Pattern
-
-Use task agents to fire all three API calls simultaneously:
-
-```
-PARALLEL GENERATION PLAN
-─────────────────────────────────────────────
-Task 1: video default role     → cost: see references/MODEL_REGISTRY.md, time ~3min
-Task 2: hero comparison role       → cost: see references/MODEL_REGISTRY.md, time ~5min
-Task 3: hero comparison role        → cost: see references/MODEL_REGISTRY.md, time ~6min
-─────────────────────────────────────────────
-Total:                   cost: see references/MODEL_REGISTRY.md, ~6min (parallel)
-```
-
-### Translating One Prompt to Three APIs
-
-Given a presenter prompt, the payload differs per model. Example for a 16:9 talking head T2V call:
-
-**video default role payload (from MODEL_REGISTRY.md):**
-**Mode-specific input fields:** `prompt`, `duration`, `aspect_ratio`, `guidance_scale`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
-
-**hero comparison role payload (from MODEL_REGISTRY.md):**
-**Mode-specific input fields:** `prompt`, `duration`, `aspect_ratio`, `resolution`, `generate_audio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
-
-**hero comparison role payload (from MODEL_REGISTRY.md):**
-**Mode-specific input fields:** `prompt`, `seconds`, `aspect_ratio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
-
-**Critical:** Always verify these payloads against MODEL_REGISTRY.md before execution. Parameter names change when models update.
-
----
-
-## Cost Awareness
-
-Before generating, always estimate and communicate the cost to the user.
-
-### Per-Generation Estimates
-
-| Model | Duration | Estimated Cost | Typical Time |
-|-------|----------|---------------|--------------|
-| video default role | 5s clip | cost: see references/MODEL_REGISTRY.md | 2-5min |
-| video default role | 10s clip | cost: see references/MODEL_REGISTRY.md | 4-8min |
-| hero comparison role | 8s clip (720p) | cost: see references/MODEL_REGISTRY.md | 3-6min |
-| hero comparison role | 8s clip (1080p) | cost: see references/MODEL_REGISTRY.md | 5-8min |
-| hero comparison role | 8s clip | cost: see references/MODEL_REGISTRY.md | 3-10min |
-| lip-sync role | 2-10s clip | cost: see references/MODEL_REGISTRY.md | 1-3min |
-
-### Common Workflow Cost Estimates
-
-| Workflow | What You Get | Estimated Cost |
-|----------|-------------|---------------|
-| Single model presenter | 1 video | cost: see references/MODEL_REGISTRY.md |
-| Parallel comparison (3 models) | 3 videos to compare | cost: see references/MODEL_REGISTRY.md |
-| Style exploration (5 styles x 1 model) | 5 presenter approaches | cost: see references/MODEL_REGISTRY.md |
-| Presenter + lip-sync | 1 presenter video + 1 synced video | cost: see references/MODEL_REGISTRY.md |
-| Full pipeline (generate + lip-sync + 3 models) | 3 videos + lip-sync on winner | cost: see references/MODEL_REGISTRY.md |
-| UGC batch (5 variants, single model) | 5 different UGC videos | cost: see references/MODEL_REGISTRY.md |
-
-### Cost Communication Template
-
-Before executing, inform the user:
-
-```
-ESTIMATED GENERATION COST
-─────────────────────────
-Models: [list models]
-Clips: [number of clips]
-Duration per clip: [seconds]
-Lip-sync: [yes/no]
-Estimated total: ~$X.XX
-Estimated time: ~Xmin (parallel) / ~Xmin (sequential)
-
-Proceed? [Y/n]
-```
-
----
+Copy the selected role's payload from the registry and insert the approved prompt and media. Model selection belongs in the URL. Set audio and resolution explicitly where supported. For any paid run, present the selected role, asset count, duration, resolution, audio plan, and estimated total in Content under `../_system/output-format.md`; proceed after approval. Do not assume a latency or comparative quality benchmark.
 
 ## Presenter Style Exploration (Before Generation)
 
@@ -575,7 +409,7 @@ but graceful movement], aspirational lifestyle aesthetic
 
 ### Why External TTS Matters
 
-The lip-sync role model includes basic TTS via `text` + `voice_id`, but it has limited voice options and no voice consistency across sessions. For brand-level talking head content, external TTS gives you:
+The Lip-sync default model includes basic TTS via `text` + `voice_id`, but it has limited voice options and no voice consistency across sessions. For brand-level talking head content, external TTS gives you:
 
 - **Voice cloning** — match a specific voice consistently
 - **Voice selection** — hundreds of voices to match any archetype
@@ -618,7 +452,7 @@ ElevenLabs is the recommended TTS provider for talking head content due to voice
 ```
 1. Generate audio from script text using selected voice
 2. Download audio file (MP3 or WAV)
-3. Pass audio_file to lip-sync role
+3. Pass audio_file to Lip-sync default
 4. Result: presenter video with perfectly matched voiceover
 ```
 
@@ -642,12 +476,12 @@ ElevenLabs is the recommended TTS provider for talking head content due to voice
 ### TTS to Lip-Sync Workflow
 
 ```
-SCRIPT → TTS (ElevenLabs) → AUDIO FILE → LIP-SYNC (Kling) → FINAL VIDEO
+SCRIPT → TTS (ElevenLabs) → AUDIO FILE → LIP-SYNC (Lip-sync default) → FINAL VIDEO
 
 Step 1: Write script (use duration calculator below)
 Step 2: Generate audio via TTS with selected voice
 Step 3: Download audio as MP3 or WAV
-Step 4: Pass audio_file + presenter video to lip-sync role
+Step 4: Pass audio_file + presenter video to Lip-sync default
 Step 5: Review sync quality
 Step 6: Deliver or iterate
 ```
@@ -660,37 +494,20 @@ The complete pipeline from key message to finished talking head video.
 
 ### Pipeline Overview
 
-```
-KEY MESSAGE
-    |
-    ▼
-SCRIPT WRITING (exact duration targeting)
-    |
-    ▼
-TTS AUDIO GENERATION (brand voice)
-    |
-    ▼
-PRESENTER VIDEO GENERATION (multi-model)
-    |
-    ▼
-LIP-SYNC APPLICATION
-    |
-    ▼
-FTC COMPLIANCE CHECK
-    |
-    ▼
-PLATFORM OPTIMIZATION
-    |
-    ▼
-FILE OUTPUT to ./campaigns/{campaign}/video/talking-head/
-```
+1. Key message.
+2. Duration-targeted script.
+3. Brand-voice TTS or recorded audio.
+4. Presenter generation using the approved role (comparison only on explicit request).
+5. Lip-sync when needed.
+6. Disclosure and platform checks.
+7. Saved output under `./campaigns/{campaign}/video/talking-head/`.
+
 
 ### Step 1: Key Message Extraction
 
 Start with the core message:
-```
-KEY MESSAGE BRIEF
-─────────────────
+
+### Key message brief
 Product/Service: [name]
 Core message: [one sentence]
 Target audience: [who]
@@ -698,7 +515,7 @@ Desired action: [what they should do]
 Tone: [archetype reference]
 Platform: [where it will go]
 Duration target: [seconds]
-```
+
 
 ### Step 2: Script Writing to Exact Duration
 
@@ -718,19 +535,17 @@ Use the duration calculator to write a script that fits the target length precis
 **Rule:** ~150 words per minute at natural conversational pace
 
 **Script Writing Template:**
-```
+
 TARGET: [X] seconds = [Y] words
 
-SCRIPT DRAFT:
-───────────────────────────
+### Script draft:
 [Hook - first 1-3 seconds, ~5-10 words]
 [Value/Story - middle section]
 [CTA - final 3-5 seconds, ~10-15 words]
-───────────────────────────
 WORD COUNT: [actual count]
 ESTIMATED DURATION: [seconds]
 ADJUSTMENT NEEDED: [add/cut X words]
-```
+
 
 ### Step 3: TTS Audio Generation
 
@@ -750,7 +565,7 @@ Generate the presenter video using the approved presenter spec (from creative-ki
 ```
 1. Load presenter spec from creative-kit.md
 2. Construct presenter prompt from saved specification
-3. Generate via multi-model parallel (hero) or default model (standard)
+3. Generate with the approved role; Hero comparison is request-only with its registry total approved first.
 4. Duration should match or slightly exceed audio duration
 5. User selects preferred video output
 ```
@@ -760,7 +575,7 @@ Generate the presenter video using the approved presenter spec (from creative-ki
 Apply the TTS audio to the selected presenter video:
 
 **Audio-driven lip-sync (from MODEL_REGISTRY.md):**
-**Mode-specific input fields:** `video_url`, `audio_file`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
+Use the complete role payload in `references/MODEL_REGISTRY.md`.
 
 ### Step 6: Quality Review and Delivery
 
@@ -827,7 +642,7 @@ Here's what actually works: [insight]. Let me show you..."
 
 ## Lip-Sync Workflow
 
-For adding speech to existing videos using lip-sync role.
+Use Lip-sync default for text/TTS and routine batch synchronization. Use Lip-sync hero for requested cinematic delivery with existing video and WAV audio; select its payload and estimate in `references/MODEL_REGISTRY.md`.
 
 ### When to Use Lip-Sync
 
@@ -842,15 +657,15 @@ For adding speech to existing videos using lip-sync role.
 
 Use when you have a pre-recorded or TTS-generated audio file.
 
-**Payload (from MODEL_REGISTRY.md):**
-**Mode-specific input fields:** `video_url`, `audio_file`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
+Use the complete role payload in `references/MODEL_REGISTRY.md`.
+Use the complete role payload in `references/MODEL_REGISTRY.md`.
 
 ### Text-Driven Lip-Sync (Quick Prototyping)
 
 Use for quick tests when voice quality is not critical.
 
-**Payload (from MODEL_REGISTRY.md):**
-**Mode-specific input fields:** `video_url`, `text`, `voice_id`, `voice_speed`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
+Use the complete role payload in `references/MODEL_REGISTRY.md`.
+Use the complete role payload in `references/MODEL_REGISTRY.md`.
 
 ### When to Use Model TTS vs. External Audio
 
@@ -871,16 +686,14 @@ Use for quick tests when voice quality is not critical.
 - Avoid videos with heavy face movement/turning
 - Audio should be clear without background noise
 - Script pacing should match natural speech
-- Video must be 2-10 seconds (lip-sync role requirement)
-- Video resolution must be 720p-1080p
-- Audio file must be under 5MB
+- Validate source-media duration, resolution, size, and audio format against the selected lip-sync role in `references/MODEL_REGISTRY.md`.
 - Keep sentences short (easier sync)
 
 ---
 
 ## Audio and Voice Considerations
 
-### When Using hero comparison role Native Audio
+### When Using Requested Native Audio
 
 **Strengths:**
 - Generates synchronized audio with video
@@ -896,33 +709,33 @@ Use for quick tests when voice quality is not critical.
 ### Voice-Over Tips
 
 **If recording your own VO for lip-sync:**
-```
-[ ] Record in quiet environment
-[ ] Use consistent distance from mic
-[ ] Match energy to presenter style
-[ ] Natural pauses between sentences
-[ ] Clear enunciation
-[ ] Export as MP3 or WAV
-```
 
-**If using TTS (text input via Kling built-in):**
-```
-[ ] Use punctuation for natural pauses
-[ ] Write phonetically for tricky words
-[ ] Keep sentences conversational length
-[ ] Test different phrasings
-[ ] Consider adding "..." for pauses
-```
+- [ ] Record in quiet environment
+- [ ] Use consistent distance from mic
+- [ ] Match energy to presenter style
+- [ ] Natural pauses between sentences
+- [ ] Clear enunciation
+- [ ] Export as MP3 or WAV
+
+
+**If using TTS (text input via Lip-sync default built-in):**
+
+- [ ] Use punctuation for natural pauses
+- [ ] Write phonetically for tricky words
+- [ ] Keep sentences conversational length
+- [ ] Test different phrasings
+- [ ] Consider adding "..." for pauses
+
 
 **If using external TTS (ElevenLabs recommended):**
-```
-[ ] Select voice matching presenter archetype
-[ ] Test voice with sample script before full generation
-[ ] Adjust pace to match archetype (see TTS Voice Selection tables)
-[ ] Export at highest quality (WAV preferred, MP3 acceptable)
-[ ] Verify audio duration matches video duration
-[ ] Save voice_id to creative-kit.md for future use
-```
+
+- [ ] Select voice matching presenter archetype
+- [ ] Test voice with sample script before full generation
+- [ ] Adjust pace to match archetype (see TTS Voice Selection tables)
+- [ ] Export at highest quality (WAV preferred, MP3 acceptable)
+- [ ] Verify audio duration matches video duration
+- [ ] Save voice_id to creative-kit.md for future use
+
 
 ---
 
@@ -1109,17 +922,17 @@ Add to video description/caption:
 ### Compliance Checklist
 
 Before publishing any talking head video:
-```
-[ ] AI-generated presenter disclosure included in video (text overlay or verbal)
-[ ] Platform-specific AI content label applied (Meta, TikTok, YouTube, etc.)
-[ ] Video description/caption includes disclosure
-[ ] Disclosure appears within first 5 seconds
-[ ] Disclosure is clear and conspicuous (readable, not hidden)
-[ ] No claims of real person endorsement
-[ ] No impersonation of real individuals
-[ ] Testimonial claims are truthful (even with AI presenter)
-[ ] Check platform's current AI content policy (policies evolve)
-```
+
+- [ ] AI-generated presenter disclosure included in video (text overlay or verbal)
+- [ ] Platform-specific AI content label applied (Meta, TikTok, YouTube, etc.)
+- [ ] Video description/caption includes disclosure
+- [ ] Disclosure appears within first 5 seconds
+- [ ] Disclosure is clear and conspicuous (readable, not hidden)
+- [ ] No claims of real person endorsement
+- [ ] No impersonation of real individuals
+- [ ] Testimonial claims are truthful (even with AI presenter)
+- [ ] Check platform's current AI content policy (policies evolve)
+
 
 ### What NOT to Do
 
@@ -1275,10 +1088,10 @@ business casual in modern office environment
 - Audio file (MP3, WAV) OR text script
 
 **Workflow:**
-**Mode-specific input fields:** `video_url`, `audio_file`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
+Use the complete role payload in `references/MODEL_REGISTRY.md`.
 
 **Or with text (uses built-in TTS):**
-**Mode-specific input fields:** `video_url`, `text`, `voice_id`, `voice_speed`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
+Use the complete role payload in `references/MODEL_REGISTRY.md`.
 
 ---
 
@@ -1286,16 +1099,10 @@ business casual in modern office environment
 
 **Best for:** Creating presenter content from scratch, brand spokesperson
 
-**Multi-Model Workflow (from MODEL_REGISTRY.md):**
-
-**Mode-specific input fields:** `prompt`, `aspect_ratio`, `duration`, `guidance_scale`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
-
-**Mode-specific input fields:** `prompt`, `aspect_ratio`, `duration`, `generate_audio`, `resolution`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
-
-**Mode-specific input fields:** `prompt`, `seconds`, `aspect_ratio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
+Generate with the approved Video default or Video production payload in `references/MODEL_REGISTRY.md`; compare only on explicit request and approved total.
 
 **Then add lip-sync if specific script needed (from MODEL_REGISTRY.md):**
-**Mode-specific input fields:** `video_url`, `audio_file`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
+Use the complete role payload in `references/MODEL_REGISTRY.md`.
 
 ---
 
@@ -1354,11 +1161,11 @@ Only change: Script and specific content
 1. Generate presenter video once (approve visual)
 2. Write scripts in each target language
 3. Generate TTS audio per language using ElevenLabs multi-language voices
-4. Run lip-sync role for each language version
+4. Run Lip-sync default for each language version
 5. Result: Same presenter, multiple languages
 ```
 
-**Cost advantage:** One presenter video generation (cost: see references/MODEL_REGISTRY.md) + one lip-sync per language (cost: see references/MODEL_REGISTRY.md each) = dramatically cheaper than filming multiple takes.
+**Cost advantage:** One presenter video generation (estimated from `references/MODEL_REGISTRY.md`) + one lip-sync per language (estimated from `references/MODEL_REGISTRY.md` each) = dramatically cheaper than filming multiple takes.
 
 ---
 
@@ -1367,53 +1174,52 @@ Only change: Script and specific content
 ### Step 1: Clarify Requirements
 
 Before generating:
-```
-[ ] What's the use case? (UGC, corporate, educational, etc.)
-[ ] What platform? (TikTok, YouTube, LinkedIn, ads)
-[ ] What aspect ratio? (9:16, 16:9, 1:1)
-[ ] What duration? (and word count)
-[ ] What presenter style? (see archetypes)
-[ ] What's the script/message?
-[ ] Need lip-sync to specific audio?
-[ ] Is there an approved presenter in creative-kit.md?
-[ ] Budget constraints?
-```
+
+- [ ] What's the use case? (UGC, corporate, educational, etc.)
+- [ ] What platform? (TikTok, YouTube, LinkedIn, ads)
+- [ ] What aspect ratio? (9:16, 16:9, 1:1)
+- [ ] What duration? (and word count)
+- [ ] What presenter style? (see archetypes)
+- [ ] What's the script/message?
+- [ ] Need lip-sync to specific audio?
+- [ ] Is there an approved presenter in creative-kit.md?
+- [ ] Budget constraints?
+
 
 ### Step 2: Style Selection
 
 If not predefined and no approved presenter in creative-kit.md:
-```
-[ ] Generate style exploration with 4-5 different presenter styles
-[ ] Present options to user
-[ ] Extract principles from winner
-[ ] Save to creative-kit.md for future reuse
-[ ] Document voice selection alongside visual spec
-```
+
+- [ ] Generate style exploration with 4-5 different presenter styles
+- [ ] Present options to user
+- [ ] Extract principles from winner
+- [ ] Save to creative-kit.md for future reuse
+- [ ] Document voice selection alongside visual spec
+
 
 If approved presenter exists in creative-kit.md:
-```
-[ ] Load presenter spec from creative-kit.md
-[ ] Load voice_id from creative-kit.md
-[ ] Skip to Step 3
-```
+
+- [ ] Load presenter spec from creative-kit.md
+- [ ] Load voice_id from creative-kit.md
+- [ ] Skip to Step 3
+
 
 ### Step 3: Script Writing
 
-```
-[ ] Extract key message
-[ ] Calculate word count for target duration
-[ ] Write script using appropriate structure (Hook-Value-CTA, PAS, Before-After)
-[ ] Apply tone template matching archetype
-[ ] Review word count against duration target
-[ ] Finalize script
-```
+
+- [ ] Extract key message
+- [ ] Calculate word count for target duration
+- [ ] Write script using appropriate structure (Hook-Value-CTA, PAS, Before-After)
+- [ ] Apply tone template matching archetype
+- [ ] Review word count against duration target
+- [ ] Finalize script
+
 
 ### Step 4: Estimate Cost and Confirm
 
-```
-ESTIMATED GENERATION COST
-─────────────────────────
-Models: [list models]
+
+### Estimated generation cost
+Roles: [approved roles]
 Clips: [number of clips]
 Duration per clip: [seconds]
 TTS generation: [included/separate]
@@ -1422,7 +1228,7 @@ Estimated total: ~$X.XX
 Estimated time: ~Xmin
 
 Proceed? [Y/n]
-```
+
 
 ### Step 5: Construct Prompt
 
@@ -1432,18 +1238,9 @@ Use this formula:
 [EXPRESSION/ENERGY] + [ACTION] + [STYLE MODIFIER] + [DURATION]
 ```
 
-### Step 6: Multi-Model Generation
+### Step 6: Generate
 
-```
-Run same prompt through:
-1. video default role (~3min) — default, best for faces
-2. hero comparison role (~5min) — with audio, highest fidelity
-3. hero comparison role (~6min) — strong prompt adherence
-
-Present all three to user for selection.
-```
-
-For standard content (not hero), use default model only (video default role).
+Use the approved Video default or Video production payload from `references/MODEL_REGISTRY.md`. Hero comparison runs only on explicit request after its registry total is shown and approved. Present only generated outputs for review; use numbered comparison members rather than model names.
 
 ### Step 7: TTS Audio Generation
 
@@ -1460,23 +1257,23 @@ If lip-sync is needed:
 If specific script delivery required:
 ```
 1. User approves video from Step 6
-2. Run through lip-sync role with TTS audio
+2. Run through Lip-sync default with TTS audio
 3. Input: selected video + audio file
 4. Output: synced talking head
 ```
 
-**Payload (from MODEL_REGISTRY.md):**
-**Mode-specific input fields:** `video_url`, `audio_file`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
+Use the complete role payload in `references/MODEL_REGISTRY.md`.
+Use the complete role payload in `references/MODEL_REGISTRY.md`.
 
 ### Step 9: FTC Compliance Check
 
-```
-[ ] AI disclosure text overlay added (or planned for post-production)
-[ ] Platform-specific AI label will be applied on upload
-[ ] Script does not make unsubstantiated claims
-[ ] No impersonation of real individuals
-[ ] Description/caption disclosure prepared
-```
+
+- [ ] AI disclosure text overlay added (or planned for post-production)
+- [ ] Platform-specific AI label will be applied on upload
+- [ ] Script does not make unsubstantiated claims
+- [ ] No impersonation of real individuals
+- [ ] Description/caption disclosure prepared
+
 
 ### Step 10: Deliver and Iterate
 
@@ -1522,39 +1319,39 @@ All generated talking head assets are saved to the campaign directory.
 ```
 ./campaigns/{campaign}/video/talking-head/
 ├── presenter-exploration/
-|   ├── corporate-authority-kling-v1.mp4
-|   ├── relatable-friend-kling-v1.mp4
-|   ├── energetic-creator-kling-v1.mp4
-|   ├── expert-educator-kling-v1.mp4
-|   +── lifestyle-aspirational-kling-v1.mp4
+│   ├── corporate-authority-video-default-v1.mp4
+│   ├── relatable-friend-video-default-v1.mp4
+│   ├── energetic-creator-video-default-v1.mp4
+│   ├── expert-educator-video-default-v1.mp4
+│   └── lifestyle-aspirational-video-default-v1.mp4
 ├── generation/
-|   ├── presenter-kling-v1.mp4
-|   ├── presenter-veo-v1.mp4
-|   ├── presenter-sora-v1.mp4
-|   +── presenter-kling-v2.mp4       (iteration)
+│   ├── presenter-video-default-v1.mp4
+│   ├── presenter-hero-comparison-02-v1.mp4
+│   ├── presenter-hero-comparison-03-v1.mp4
+│   └── presenter-video-default-v2.mp4       (iteration)
 ├── audio/
-|   ├── script-v1-elevenlabs.mp3
-|   ├── script-v2-elevenlabs.mp3
-|   +── script-v1-spanish.mp3        (localization)
+│   ├── script-v1-elevenlabs.mp3
+│   ├── script-v2-elevenlabs.mp3
+│   └── script-v1-spanish.mp3        (localization)
 ├── lip-sync/
-|   ├── presenter-synced-v1.mp4
-|   ├── presenter-synced-v2.mp4
-|   +── presenter-synced-spanish.mp4  (localization)
-+── approved/
+│   ├── presenter-synced-v1.mp4
+│   ├── presenter-synced-v2.mp4
+│   └── presenter-synced-spanish.mp4  (localization)
+└── approved/
     ├── final-talking-head.mp4        (selected winner)
-    +── final-talking-head-spanish.mp4
+    └── final-talking-head-spanish.mp4
 ```
 
 ### File Naming Convention
 
 ```
-{purpose}-{model}-v{version}.mp4
+{purpose}-{role}-v{version}.mp4
 
 Examples:
-  presenter-kling-v1.mp4
-  ugc-testimonial-kling-v1.mp4
-  corporate-intro-veo-v1.mp4
-  product-explainer-sora-v1.mp4
+  presenter-video-default-v1.mp4
+  ugc-testimonial-video-default-v1.mp4
+  corporate-intro-hero-comparison-02-v1.mp4
+  product-explainer-hero-comparison-03-v1.mp4
   presenter-synced-v1.mp4            (lip-synced version)
   presenter-synced-spanish-v1.mp4    (localized lip-sync)
 ```
@@ -1629,7 +1426,7 @@ After the user approves a video:
 
 | Issue | Cause | Solution |
 |-------|-------|----------|
-| Uncanny valley feel | Model limitations | Use Kling v2.5 for most realistic faces |
+| Uncanny valley feel | Model limitations | Use Video default for the approved delivery role and review face artifacts |
 | Face morphing mid-video | Long duration | Keep videos shorter (5-10 sec), extend with cuts |
 | Lip-sync drift | Audio/video mismatch | Use shorter scripts, clear enunciation |
 | Wrong energy level | Prompt too vague | Be explicit about energy: "calm" vs "enthusiastic" |
@@ -1640,13 +1437,13 @@ After the user approves a video:
 | Doesn't look like brand | No style consistency | Save presenter spec to creative-kit.md and reuse |
 | Audio quality poor | Model TTS limitations | Use external TTS (ElevenLabs) instead of text input |
 | Voice doesn't match visual | Wrong TTS voice selected | Re-select voice per archetype guidelines |
-| Lip-sync rejected | Video too long/short | Trim video to 2-10 seconds per lip-sync role requirements |
-| Audio file too large | Uncompressed audio | Compress to MP3 under 5MB |
+| Lip-sync rejected | Invalid source media | Validate the selected role’s media limits in `references/MODEL_REGISTRY.md`. |
+| Audio file rejected | Unsupported size or encoding | Use the selected role’s permitted audio format and size in `references/MODEL_REGISTRY.md`. |
 | Side profile sync fails | Non-frontal face | Use front-facing presenter videos for lip-sync |
 | Script too long for duration | Word count miscalculation | Recalculate: ~150 words per minute |
-| API parameter error | Wrong param name for model | Check cross-model cheat sheet in MODEL_REGISTRY.md |
-| Aspect ratio rejected | Model doesn't support it | Check MODEL_REGISTRY.md — Veo/Sora have no square support |
-| Generation timeout | Model overloaded | Retry; allow extra buffer for hero comparison role |
+| API parameter error | Wrong param name for model | Check the role’s gotchas and payload in `references/MODEL_REGISTRY.md` |
+| Aspect ratio rejected | Model doesn't support it | Check the role’s supported ratios in `references/MODEL_REGISTRY.md` |
+| Generation timeout | Model overloaded | Retry; allow extra buffer for Hero comparison |
 | Presenter inconsistent across videos | Not using saved spec | Load presenter prompt from creative-kit.md |
 
 ---
@@ -1675,7 +1472,7 @@ Don't iterate on broken foundation:
 1. Try different archetype entirely
 2. Try different model
 3. Simplify prompt dramatically
-4. Check if Kling v2.5 gives better face quality
+4. Test a revised prompt on the approved delivery role; propose a comparison only if the user requests it.
 
 ### When Lip-Sync Quality Is Poor
 
@@ -1688,7 +1485,7 @@ Don't iterate on broken foundation:
 - Use front-facing video (not profiles)
 - Try generating a new presenter video with more frontal positioning
 - Use recorded audio instead of model TTS for better quality
-- Verify video is 2-10 seconds
+- Validate video duration against the selected lip-sync role’s limits in `references/MODEL_REGISTRY.md`
 - Check audio file is under 5MB
 ```
 
@@ -1711,9 +1508,9 @@ Don't iterate on broken foundation:
 **Strategy:** Targeted model selection
 
 ```
-- Use video default role only (cheapest at cost: see references/MODEL_REGISTRY.md)
+- Use Video test for presenter experiments; quote delivery separately.
 - Use model TTS (text input) instead of external TTS for prototyping
-- Skip parallel comparison for non-hero content
+- Skip Hero comparison unless explicitly requested and cost-approved
 - Reuse approved presenter video for multiple scripts via lip-sync
 - Plan scripts carefully before generating (avoid wasted generations)
 ```
@@ -1775,13 +1572,11 @@ Don't iterate on broken foundation:
 **Duration:** [X seconds]
 **Presenter:** [From creative-kit.md or "New"]
 
-### Model Outputs:
+### Generated outputs
+- {Approved role/member}: {URL}, {estimated cost from registry}, {actual audio status}.
+- Repeat only for outputs actually generated; a comparison is not automatic.
 
-**video default role:** [URL] (cost: see references/MODEL_REGISTRY.md)
-**hero comparison role:** [URL] (includes audio) (cost: see references/MODEL_REGISTRY.md)
-**hero comparison role:** [URL] (cost: see references/MODEL_REGISTRY.md)
-
-**Total generation cost:** cost: see references/MODEL_REGISTRY.md
+**Total generation cost:** {estimate for the approved run}
 
 **Prompt Used:**
 > [full prompt for reference]
@@ -1830,68 +1625,13 @@ Don't iterate on broken foundation:
 
 ## Pipeline Integration
 
-```
-TALKING HEAD PIPELINE
-
-+─────────────────────────────────────────+
-|  Request arrives (direct or routed)     |
-|  → Clarify: platform, duration, style   |
-|  → Determine: generation vs lip-sync    |
-|  → Check creative-kit.md for presenter  |
-+─────────────────────────────────────────+
-                    |
-        +───────────┴───────────+
-        ▼                       ▼
-+──────────────────+   +──────────────────+
-|  Style Undefined |   |  Style Defined   |
-|  (no approved    |   |  (approved       |
-|   presenter in   |   |   presenter in   |
-|   creative-kit)  |   |   creative-kit)  |
-|  → Run style     |   |  → Load spec     |
-|    exploration   |   |  → Skip to       |
-|  → Save winner   |   |    generation    |
-+──────────────────+   +──────────────────+
-                    |
-                    ▼
-+─────────────────────────────────────────+
-|  Script Writing                         |
-|  → Key message extraction               |
-|  → Duration-targeted word count         |
-|  → Tone matching archetype              |
-+─────────────────────────────────────────+
-                    |
-                    ▼
-+─────────────────────────────────────────+
-|  Cost Estimation                        |
-|  → Calculate based on models + clips    |
-|  → Include TTS + lip-sync costs         |
-|  → Present to user for confirmation     |
-+─────────────────────────────────────────+
-                    |
-                    ▼
-+─────────────────────────────────────────+
-|  talking-head mode (THIS MODE)          |
-|  → Multi-model generation               |
-|  → Present options                      |
-|  → TTS audio generation                 |
-|  → Add lip-sync                         |
-|  → FTC compliance check                 |
-|  → Quality check                        |
-|  → Save to campaigns/{campaign}/        |
-|    video/talking-head/                  |
-+─────────────────────────────────────────+
-                    |
-                    ▼
-+─────────────────────────────────────────+
-|  Delivery                               |
-|  → Platform-optimized output            |
-|  → AI disclosure included               |
-|  → Ready for ads/social/content         |
-|  → Presenter saved to creative-kit.md   |
-+─────────────────────────────────────────+
-```
-
----
+1. Confirm platform, duration, presenter style, and generation versus existing-video lip-sync.
+2. If there is no approved presenter, explore styles and save the winner; otherwise load the approved presenter spec.
+3. Extract the message, duration-target the script, and match tone to the presenter archetype.
+4. Quote the approved role, clip count, TTS, and lip-sync costs. Hero comparison requires an explicit request and approved registry total.
+5. Generate or reuse the presenter, produce the approved script audio, and synchronize using the chosen lip-sync role when needed.
+6. Check disclosure, quality, and platform fit; save under `./campaigns/{campaign}/video/talking-head/`.
+7. Deliver the ready-to-use asset with AI disclosure and reusable presenter/voice settings in the creative kit.
 
 ## Handoff Protocols
 
@@ -1955,10 +1695,10 @@ Route to product-video mode:
 ### What Works
 
 1. **Consistency beats variety** — Same presenter across videos builds recognition
-2. **Kling v2.5 for faces** — Most realistic human generation
+2. **Review faces** — inspect eyes, teeth, hands, and mouth movement before delivery
 3. **Shorter is safer** — 5-10 second clips avoid quality degradation
 4. **Explicit energy levels** — "calm and measured" vs "enthusiastic and dynamic"
-5. **Multi-model approach** — Always generate with 2-3 models for hero content, let user pick
+5. **Requested comparison** — Only run Hero comparison after the user requests it and approves the registry total.
 6. **Lip-sync extends value** — One good video can become many scripts
 7. **External TTS for production** — ElevenLabs voice quality far exceeds model built-in TTS
 8. **Save everything to creative-kit.md** — Presenter spec + voice_id = instant reuse
@@ -1984,101 +1724,41 @@ Route to product-video mode:
 1. Clear presenter archetype selection
 2. Matching energy to platform
 3. Short, punchy scripts at exact word count
-4. Using Kling v2.5 for realism
+4. Reviewing the approved role’s output for face artifacts
 
 Get these four right, and you'll get good results.
 
 ### Multi-Model Strategy
 
 When to invest in parallel comparison:
-- **Hero content** (website presenters, launch videos) — Always run all three
+- **Hero content** (website presenters, launch videos) — use Video production; Hero comparison is opt-in only.
 - **Social content** (feed posts, stories) — Default model is fine
 - **UGC batch** (multiple testimonial variants) — Default model, iterate on scripts
-- **Ad creative** (paid campaigns) — Run all three, A/B test the winners
+- **Ad creative** (paid campaigns) — test creative variants on the approved role; compare models only on explicit request.
 - **Personalized outreach** (sales videos) — Default model + lip-sync
 
 ### Budget Management
 
-```
-BUDGET TIERS
-─────────────────────────────────
-Lean:     1 model, no lip-sync           cost: see references/MODEL_REGISTRY.md
-Standard: 1 model + lip-sync            cost: see references/MODEL_REGISTRY.md
-Premium:  3 models, lip-sync on winner   cost: see references/MODEL_REGISTRY.md
-Hero:     3 models + exploration + sync  cost: see references/MODEL_REGISTRY.md
-Campaign: 5 variants + 3 languages       cost: see references/MODEL_REGISTRY.md+
-```
+
+### Budget tiers
+- **Lean:** 1 model, no lip-sync; estimated from `references/MODEL_REGISTRY.md`
+- **Standard:** 1 model + lip-sync; estimated from `references/MODEL_REGISTRY.md`
+- **Premium:** Hero comparison (opt-in), lip-sync on winner; estimated from `references/MODEL_REGISTRY.md`
+- **Hero:** Hero comparison (opt-in) + exploration + sync; estimated from `references/MODEL_REGISTRY.md`
+- **Campaign:** 5 variants + 3 languages; estimated from `references/MODEL_REGISTRY.md`+
+
 
 ---
 
 ## Quick Reference
 
-| Task | Model | Process |
-|------|-------|---------|
-| Generate presenter video | All 3 models | Multi-model parallel, user picks |
-| Add speech to existing video | lip-sync role | Direct, ~1min |
-| Presenter + specific script | Generate → TTS → Lip-Sync | Three-step pipeline |
-| Video with built-in audio | hero comparison role | Single generation |
-| Most realistic face | Kling v2.5 | Single or multi-model |
-| Fastest generation | Kling v2.5 | Single generation |
-| UGC style | Kling v2.5 | Handles casual movement best |
-| Brand voice consistency | ElevenLabs TTS → Lip-Sync | External TTS, saved voice_id |
-| Multi-language dubbing | lip-sync role (per language) | One video + multiple audio files |
-| Quick script test | lip-sync role with `text` | Built-in TTS, fastest path |
-| Reuse approved presenter | Load from creative-kit.md | Skip exploration, direct generation |
+- Presenter generation: Video test for exploration, Video default for ordinary delivery, Video production for production requirements.
+- Specific script: approved presenter → external TTS/recording → Lip-sync default, or Lip-sync hero for requested cinematic delivery.
+- Native audio: select the single video role's audio settings from the registry, not Hero comparison by default.
+- Localization: one approved presenter plus recorded/TTS audio per language.
+- Reuse: load approved presenter and voice settings from the creative kit rather than exploring again.
 
----
 
-## Appendix: Model API Quick Reference
+## Completion
 
-**Always verify against MODEL_REGISTRY.md before executing.** This appendix is a convenience reference only.
-
-### Video Generation Call Patterns
-
-**video default role T2V (Presenter Generation):**
-```
-Model: video default role
-Duration param: duration (5 or 10)
-Ratio param: aspect_ratio ("16:9", "9:16", "1:1")
-Extras: guidance_scale (0-1), negative_prompt
-```
-
-**hero comparison role T2V (Presenter with Audio):**
-```
-Model: hero comparison role
-Duration param: duration (4, 6, or 8)
-Ratio param: aspect_ratio ("16:9", "9:16")
-Extras: generate_audio (bool), resolution ("720p", "1080p"), negative_prompt, seed
-```
-
-**hero comparison role T2V (Presenter Generation):**
-```
-Model: hero comparison role
-Duration param: seconds (4-12)
-Ratio param: aspect_ratio ("landscape", "portrait")
-Extras: openai_api_key (optional)
-```
-
-### Lip-Sync Call Patterns
-
-**lip-sync role (Audio-Driven):**
-```
-Model: lip-sync role
-Video param: video_url (2-10s, 720p-1080p, <100MB)
-Audio param: audio_file (.mp3, .wav, .m4a, .aac, <5MB)
-```
-
-**lip-sync role (Text-Driven):**
-```
-Model: lip-sync role
-Video param: video_url (2-10s, 720p-1080p, <100MB)
-Text param: text (free text)
-Voice param: voice_id (e.g., "en_AOT")
-Speed param: voice_speed (0.5-2.0, default 1)
-```
-
-**Important:** `audio_file` and `text` are mutually exclusive. `video_url` and `video_id` are mutually exclusive.
-
----
-
-*This mode is part of the Vibe Marketing Skills v2 creative engine. Model configurations are maintained in `references/MODEL_REGISTRY.md`. When model schemas change upstream, MODEL_REGISTRY.md is updated first, then this mode file is updated to match.*
+Done when the agreed assets (or Fallback prompts) are complete, reviewed against this Mode's quality and platform checks, and saved with the approved role, prompt, media, and settings documented. The reported generation and audio status match actual outputs; comparisons were explicitly requested and cost-approved. Deliver and collect feedback through `creative/SKILL.md` and the shared contracts.

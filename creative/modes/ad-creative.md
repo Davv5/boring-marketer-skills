@@ -35,41 +35,19 @@ Generate performance-optimized paid advertising creative across Meta, Google, Li
 
 ## Model Selection
 
-**Do NOT hardcode model IDs.** Always refer to `references/MODEL_REGISTRY.md` for the current default image model and its verified API payload.
+Read `references/MODEL_REGISTRY.md` for role selection, verified costs, payloads, and model constraints. Use its role names:
 
-As of this writing, the models used in this mode are:
+- **Image default:** ordinary image generation.
+- **Image premium:** requested 4K or complex work.
+- **Video test:** inexpensive motion/presenter experiments before committing production budget.
+- **Video mid-tier:** product shots needing camera lock.
+- **Video default:** ordinary video generation.
+- **Video production:** multi-shot or production delivery.
+- **Hero comparison:** only when the user explicitly requests a comparison. Show the registry's total for the selected durations, audio, and resolution before generation and obtain approval; a hero asset or uncertainty alone does not request a comparison.
+- **Lip-sync default:** text/TTS or batch synchronization.
+- **Lip-sync hero:** requested cinematic synchronization using existing footage and WAV audio.
 
-### Image Ads
-
-| Role | Model | Registry Section | Estimated Cost |
-|------|-------|-----------------|---------------|
-| **All static ad creative** | image 4K role | Image Generation > Default Model | cost: see references/MODEL_REGISTRY.md |
-
-### Video Ads
-
-| Role | Model | Registry Section | Estimated Cost |
-|------|-------|-----------------|---------------|
-| **Default video ads** | video default role | Video Generation > Default Model | cost: see references/MODEL_REGISTRY.md clip |
-| **Hero video ads** | hero comparison role / hero comparison role | Video Generation > Comparison Models | cost: see references/MODEL_REGISTRY.md |
-
-### How to Call
-
-1. Open `references/MODEL_REGISTRY.md`
-2. Find the **Image Generation** section (for static ads) or **Video Generation** section (for video ads)
-3. Copy the verified payload structure
-4. Insert your constructed prompt and desired aspect ratio
-5. Execute the API call via Replicate
-
-### Why image 4K role for Ad Creative
-
-image 4K role handles all static ad generation because:
-- **Typography rendering:** CTA buttons, headlines, offer text directly in the image
-- **Product placement:** Clean product integration into lifestyle and studio contexts
-- **Aspect ratio control:** Native support for every ad placement ratio
-- **Speed:** 15-40 seconds per image enables rapid iteration across a full testing matrix
-- **Consistency:** Same model across all variants ensures controlled testing (only the creative variable changes, not the model)
-
----
+Copy the selected role's payload from the registry and insert the approved prompt and media. Model selection belongs in the URL. Set audio and resolution explicitly where supported. For any paid run, present the selected role, asset count, duration, resolution, audio plan, and estimated total in Content under `../_system/output-format.md`; proceed after approval. Do not assume a latency or comparative quality benchmark.
 
 ## Platform Specifications
 
@@ -428,16 +406,13 @@ Formats are visual structures for delivering the hook. Each must look different 
 
 For each cell in the matrix, define:
 
-```
-+─────────────────┬──────────────────┬──────────────────┬──────────────────+
-|                 | Product Hero     | UGC/Testimonial  | Bold Typography  |
-├─────────────────┼──────────────────┼──────────────────┼──────────────────┤
-| Pain Point      | Ad 1             | Ad 2             | Ad 3             |
-| Transformation  | Ad 4             | Ad 5             | Ad 6             |
-| Social Proof    | Ad 7             | Ad 8             | Ad 9             |
-| Curiosity Gap   | Ad 10            | Ad 11            | Ad 12            |
-+─────────────────┴──────────────────┴──────────────────┴──────────────────+
-```
+
+| Hook | Product Hero | UGC/Testimonial | Bold Typography |
+|---|---|---|---|
+| Pain Point | Ad 1 | Ad 2 | Ad 3 |
+| Transformation | Ad 4 | Ad 5 | Ad 6 |
+| Social Proof | Ad 7 | Ad 8 | Ad 9 |
+| Curiosity Gap | Ad 10 | Ad 11 | Ad 12 |
 
 ### Step 4: Per-Ad Specification
 
@@ -623,8 +598,8 @@ Every ad platform has content policies. Violations waste time, delay campaigns, 
 
 Before submitting any ad to Meta (Facebook/Instagram):
 
-```
-CONTENT RESTRICTIONS
+
+### Content restrictions
 - [ ] No "before and after" images that depict unlikely results
 - [ ] No personal attributes assertion ("You are overweight" — instead: "Looking to get fit?")
 - [ ] No misleading claims about product capabilities
@@ -632,43 +607,43 @@ CONTENT RESTRICTIONS
 - [ ] No discriminatory content (race, ethnicity, gender, age, disability, etc.)
 - [ ] No sensational or shocking content designed to provoke
 
-HEALTH & WELLNESS
+### Health & wellness
 - [ ] No unrealistic health claims ("Lose 30lbs in 7 days")
 - [ ] No before/after body images for weight loss
 - [ ] No claims about curing diseases
 - [ ] Supplement ads include proper disclaimers
 
-FINANCIAL
-- [ ] No guaranteed financial returns ("Make cost: see references/MODEL_REGISTRY.md,000/month guaranteed")
+### Financial
+- [ ] No guaranteed financial returns ("Make $10,000/month guaranteed")
 - [ ] No misleading income claims
 - [ ] Crypto/financial ads follow regional regulations
 
-IMAGE QUALITY
+### Image quality
 - [ ] Text overlay below 20% of image area (not policy but affects delivery)
 - [ ] No excessive skin exposure beyond platform norms
 - [ ] No violent, graphic, or disturbing imagery
 - [ ] Image is not misleading about the product/service
 
-VIDEO
+### Video
 - [ ] No disruptive audio (sudden volume, jarring sounds) for auto-play
 - [ ] Closed captions recommended (many users watch with sound off)
 
-LANDING PAGE
+### Landing page
 - [ ] Ad creative matches landing page content (no bait-and-switch)
 - [ ] Landing page is functional and matches ad claims
-```
+
 
 ### Google Ads Policy Checklist
 
-```
-CONTENT RESTRICTIONS
+
+### Content restrictions
 - [ ] No misleading content or false claims
 - [ ] No counterfeit goods promotion
 - [ ] No dangerous products or services (without proper certification)
 - [ ] No inappropriate content (shocking, hateful, exploitative)
 - [ ] No unrealistic promises
 
-EDITORIAL STANDARDS
+### Editorial standards
 - [ ] Correct spelling and grammar in all text
 - [ ] No excessive capitalization ("FREE AMAZING DEAL TODAY")
 - [ ] No gimmicky use of symbols or punctuation ("$$$ Save Big $$$")
@@ -682,66 +657,66 @@ IMAGE QUALITY (Display Ads)
 - [ ] Image fills the ad space (no excessive white space with tiny centered image)
 - [ ] Text in image is legible at actual display size
 
-RESPONSIVE DISPLAY
+### Responsive display
 - [ ] Images do not contain text (Google overlays text dynamically)
 - [ ] Product is the clear focal point
 - [ ] Background is clean enough for dynamic text overlay
 - [ ] Works at multiple sizes without critical content being cropped
-```
+
 
 ### LinkedIn Ads Policy Checklist
 
-```
-PROFESSIONAL STANDARDS
+
+### Professional standards
 - [ ] Content appropriate for professional context
 - [ ] No sensational or clickbait-style creative
 - [ ] Tone is authoritative, not aggressive or pushy
 - [ ] Avoids hyperbole ("The BEST product EVER created")
 
-ACCURACY
+### Accuracy
 - [ ] Claims are verifiable and accurate
 - [ ] Statistics include source attribution
 - [ ] Testimonials are from real, identifiable people (or clearly marked as illustrative)
 - [ ] Job ads comply with employment advertising laws
 
-IMAGE STANDARDS
+### Image standards
 - [ ] Professional quality imagery
 - [ ] No stock photos with watermarks
 - [ ] No overly edited or unrealistic imagery
 - [ ] No provocative or inappropriate imagery for professional context
 
-B2B SPECIFIC
+### B2b specific
 - [ ] Company claims are verifiable
 - [ ] No implied LinkedIn endorsement
 - [ ] ROI/performance claims include methodology or footnote
-```
+
 
 ### TikTok Ads Policy Checklist
 
-```
-AUTHENTICITY
+
+### Authenticity
 - [ ] Creative feels native to TikTok (not repurposed TV/Facebook ads)
 - [ ] No misleading content or fake interactivity (fake "close" buttons, fake UI elements)
 - [ ] No unauthorized use of TikTok branding or interface elements
 
-CONTENT RESTRICTIONS
+### Content restrictions
 - [ ] No unrealistic beauty/body standards being promoted
 - [ ] No dangerous stunts or challenges
 - [ ] No misleading pricing (hidden fees, unclear terms)
 - [ ] No weight loss claims with unrealistic promises
 - [ ] Meets age-gating requirements for restricted categories
 
-DISCLOSURE
+### Disclosure
 - [ ] AI-generated content clearly labeled where required by law
 - [ ] Sponsored/partnership content properly disclosed
 - [ ] Influencer/creator relationships transparently identified
 - [ ] Testimonials clearly marked as paid if applicable
 
-CREATIVE QUALITY
+### Creative quality
 - [ ] Audio quality acceptable (no distortion, no copyrighted music without license)
 - [ ] No watermarks from other platforms (Instagram logo, YouTube logo)
 - [ ] No low-resolution or heavily compressed visuals
-```
+
 
 ### Universal AI-Generated Content Disclosure
 
@@ -913,17 +888,14 @@ Bad motion prompt:
 "A bottle of skincare product on a marble surface with nice lighting"
 (This describes the scene, not the motion — the model can already see the image)
 
-Step 3: Choose video model from MODEL_REGISTRY.md based on content type:
-- Standard ads: video default role (default, fastest, most cost-effective)
-- Hero/flagship: Run video default role + hero comparison role + hero comparison role in parallel
+Step 3: Choose Video test for experiments, Video mid-tier for camera lock,
+Video default for standard ads, or Video production for multi-shot delivery.
+Run Hero comparison only if explicitly requested, after showing and approving
+its total from references/MODEL_REGISTRY.md.
 
-Step 4: Set duration:
-- Bumper ads: 5s (Kling) or 6s (Veo)
-- Standard ads: 5-10s (Kling) or 8s (Veo/Sora)
-
-Step 5: Set aspect ratio:
-- Feed: "16:9" or "1:1" (Kling/Veo) / "landscape" (Sora)
-- Stories/Reels/TikTok: "9:16" (Kling/Veo) / "portrait" (Sora)
+Step 4: Match requested duration to the selected role's supported inputs.
+Step 5: Match the delivery ratio to the selected role's supported inputs;
+use portrait for Stories/Reels/TikTok and landscape or square for feeds where supported.
 ```
 
 ---
@@ -936,38 +908,35 @@ Meta's Advantage+ and Google's Performance Max use machine learning to assemble 
 
 Instead of generating one "perfect" ad, generate a library of components:
 
-```
+
 IMAGE ASSETS (generate all of these):
-├── Product shots (3-5 variants)
-|   ├── Clean white background — 1:1
-|   ├── Lifestyle context — 4:5
-|   ├── Close-up detail — 1:1
-|   ├── In-use / action — 4:5
-|   +── Flat lay / group — 1:1
-|
-├── Lifestyle / contextual (3-5 variants)
-|   ├── Target audience using product — 4:5
-|   ├── Environmental / setting shot — 16:9
-|   +── Aspirational outcome — 4:5
-|
-├── Bold graphic variants (2-3 variants)
-|   ├── Stat/number highlighted — 1:1
-|   ├── Testimonial quote — 1:1
-|   +── Offer/promotion — 1:1
-|
-+── All images at MULTIPLE ratios:
-    ├── 1:1 (Meta feed, Google display, LinkedIn)
-    ├── 4:5 (Meta feed optimal, maximum real estate)
-    ├── 9:16 (Stories, Reels, TikTok)
-    +── 16:9 (Google display, YouTube)
+- Product shots (3-5 variants)
+  - Clean white background — 1:1
+  - Lifestyle context — 4:5
+  - Close-up detail — 1:1
+  - In-use / action — 4:5
+  - Flat lay / group — 1:1
+- Lifestyle / contextual (3-5 variants)
+  - Target audience using product — 4:5
+  - Environmental / setting shot — 16:9
+  - Aspirational outcome — 4:5
+- Bold graphic variants (2-3 variants)
+  - Stat/number highlighted — 1:1
+  - Testimonial quote — 1:1
+  - Offer/promotion — 1:1
+- All images at MULTIPLE ratios:
+- 1:1 (Meta feed, Google display, LinkedIn)
+- 4:5 (Meta feed optimal, maximum real estate)
+- 9:16 (Stories, Reels, TikTok)
+- 16:9 (Google display, YouTube)
 
 TEXT ASSETS (write all of these):
-├── Short headlines (5): 30 chars max each, varied hooks
-├── Long headlines (5): 90 chars max each, expanded value props
-├── Descriptions (5): 90 chars max each, different benefits
-├── Primary text (5): 125 chars max each, varied angles
-+── CTA options: ["Shop Now", "Learn More", "Get Started", "Sign Up", "Book Now"]
-```
+- Short headlines (5): 30 chars max each, varied hooks
+- Long headlines (5): 90 chars max each, expanded value props
+- Descriptions (5): 90 chars max each, different benefits
+- Primary text (5): 125 chars max each, varied angles
+- CTA options: ["Shop Now", "Learn More", "Get Started", "Sign Up", "Book Now"]
+
 
 ### Key Rules for Algorithm-Optimized Creative
 
@@ -1018,57 +987,57 @@ typical ad style, unexpected visual language, pattern interrupt
 
 ### Full Campaign Workflow
 
-```
+
 Step 1: BRAND CONTEXT
-├── Read ./brand/creative-kit.md
-├── Load brand colors, typography, style direction
-├── Identify product/service being advertised
-+── Confirm campaign objective (awareness/consideration/conversion)
+- Read ./brand/creative-kit.md
+- Load brand colors, typography, style direction
+- Identify product/service being advertised
+- Confirm campaign objective (awareness/consideration/conversion)
 
 Step 2: DEFINE TARGET PLATFORMS
-├── Which platforms? (Meta, Google, LinkedIn, TikTok)
-├── Which placements per platform?
-├── Budget allocation across platforms
-+── Confirm aspect ratios needed per placement
+- Which platforms? (Meta, Google, LinkedIn, TikTok)
+- Which placements per platform?
+- Budget allocation across platforms
+- Confirm aspect ratios needed per placement
 
 Step 3: STYLE EXPLORATION (if new campaign)
-├── Generate 5 visual directions
-├── User selects direction or combines elements
-├── Lock style principles for the campaign
-+── Document in campaign brief
+- Generate 5 visual directions
+- User selects direction or combines elements
+- Lock style principles for the campaign
+- Document in campaign brief
 
 Step 4: DEFINE HOOKS
-├── Write 4 hook angles specific to the product/audience
-├── Pain Point: [specific]
-├── Transformation: [specific]
-├── Social Proof: [specific]
-+── Curiosity Gap: [specific]
+- Write 4 hook angles specific to the product/audience
+- Pain Point: [specific]
+- Transformation: [specific]
+- Social Proof: [specific]
+- Curiosity Gap: [specific]
 
 Step 5: GENERATE 12-AD MATRIX
-├── 4 hooks x 3 formats = 12 unique ads
-├── Each ad: prompt, on-image text, headline, primary text, CTA, tracking name
-├── Generate at primary ratio first (usually 4:5 for Meta)
-├── Generate platform-specific ratio variants for each winning ad
-+── Batch generate using parallel task agents
+- 4 hooks x 3 formats = 12 unique ads
+- Each ad: prompt, on-image text, headline, primary text, CTA, tracking name
+- Generate at primary ratio first (usually 4:5 for Meta)
+- Generate platform-specific ratio variants for each winning ad
+- Batch generate using parallel task agents
 
 Step 6: POLICY COMPLIANCE CHECK
-├── Run applicable platform policy checklist
-├── Flag any potential violations
-├── Adjust creative before submission
-+── Document compliance review
+- Run applicable platform policy checklist
+- Flag any potential violations
+- Adjust creative before submission
+- Document compliance review
 
 Step 7: ORGANIZE DELIVERABLES
-├── Save to ./campaigns/{campaign}/ads/{platform}/
-├── Generate ad matrix document
-├── Include tracking names for analytics setup
-+── Package for upload to each platform
+- Save to ./campaigns/{campaign}/ads/{platform}/
+- Generate ad matrix document
+- Include tracking names for analytics setup
+- Package for upload to each platform
 
 Step 8: A/B VARIANT GENERATION (after initial results)
-├── Identify top 3 performers from matrix
-├── Select variable to test for each
-├── Generate 3-5 variants per winner
-+── Name systematically for tracking
-```
+- Identify top 3 performers from matrix
+- Select variable to test for each
+- Generate 3-5 variants per winner
+- Name systematically for tracking
+
 
 ### Quick Workflow: Single Platform Ad
 
@@ -1104,64 +1073,64 @@ Step 8: A/B VARIANT GENERATION (after initial results)
 ```
 ./campaigns/{campaign-name}/ads/
 ├── matrix/
-|   +── ad-testing-matrix.md          # The 12-ad matrix document
-|
+│   └── ad-testing-matrix.md          # The 12-ad matrix document
+│
 ├── meta/
-|   ├── feed/
-|   |   ├── {hook}-{format}-1x1-v1.png
-|   |   ├── {hook}-{format}-4x5-v1.png
-|   |   +── ...
-|   ├── stories/
-|   |   ├── {hook}-{format}-9x16-v1.png
-|   |   +── ...
-|   ├── carousel/
-|   |   ├── card-1-hook-1x1.png
-|   |   ├── card-2-problem-1x1.png
-|   |   +── ...
-|   +── video/
-|       ├── {hook}-{format}-4x5-v1.mp4
-|       +── ...
-|
+│   ├── feed/
+│   │   ├── {hook}-{format}-1x1-v1.png
+│   │   ├── {hook}-{format}-4x5-v1.png
+│   │   └── ...
+│   ├── stories/
+│   │   ├── {hook}-{format}-9x16-v1.png
+│   │   └── ...
+│   ├── carousel/
+│   │   ├── card-1-hook-1x1.png
+│   │   ├── card-2-problem-1x1.png
+│   │   └── ...
+│   └── video/
+│       ├── {hook}-{format}-4x5-v1.mp4
+│       └── ...
+│
 ├── google/
-|   ├── display/
-|   |   ├── {concept}-300x250.png
-|   |   ├── {concept}-728x90.png
-|   |   ├── {concept}-160x600.png
-|   |   +── ...
-|   ├── responsive/
-|   |   ├── {concept}-landscape-16x9.png
-|   |   ├── {concept}-square-1x1.png
-|   |   +── ...
-|   +── youtube/
-|       ├── thumbnail-{concept}-16x9.png
-|       +── ...
-|
+│   ├── display/
+│   │   ├── {concept}-300x250.png
+│   │   ├── {concept}-728x90.png
+│   │   ├── {concept}-160x600.png
+│   │   └── ...
+│   ├── responsive/
+│   │   ├── {concept}-landscape-16x9.png
+│   │   ├── {concept}-square-1x1.png
+│   │   └── ...
+│   └── youtube/
+│       ├── thumbnail-{concept}-16x9.png
+│       └── ...
+│
 ├── linkedin/
-|   ├── sponsored/
-|   |   ├── {concept}-landscape-16x9.png
-|   |   ├── {concept}-square-1x1.png
-|   |   +── ...
-|   ├── inmail/
-|   |   +── banner-{concept}-300x250.png
-|   +── carousel/
-|       ├── card-1-{concept}-1x1.png
-|       +── ...
-|
+│   ├── sponsored/
+│   │   ├── {concept}-landscape-16x9.png
+│   │   ├── {concept}-square-1x1.png
+│   │   └── ...
+│   ├── inmail/
+│   │   └── banner-{concept}-300x250.png
+│   └── carousel/
+│       ├── card-1-{concept}-1x1.png
+│       └── ...
+│
 ├── tiktok/
-|   ├── in-feed/
-|   |   ├── {hook}-{format}-9x16-v1.png
-|   |   +── ...
-|   +── video/
-|       ├── {hook}-{format}-9x16-v1.mp4
-|       +── ...
-|
+│   ├── in-feed/
+│   │   ├── {hook}-{format}-9x16-v1.png
+│   │   └── ...
+│   └── video/
+│       ├── {hook}-{format}-9x16-v1.mp4
+│       └── ...
+│
 ├── variants/
-|   ├── {base-ad}-var-a-{change}.png
-|   ├── {base-ad}-var-b-{change}.png
-|   +── ...
-|
-+── exports/
-    +── {platform}-upload-ready/      # Final packaged per platform
+│   ├── {base-ad}-var-a-{change}.png
+│   ├── {base-ad}-var-b-{change}.png
+│   └── ...
+│
+└── exports/
+    └── {platform}-upload-ready/      # Final packaged per platform
 ```
 
 ### File Naming Convention
@@ -1328,102 +1297,54 @@ For producing a full 12-ad matrix efficiently, use parallel generation.
 
 ### Parallel Generation Strategy
 
-```
+
 Wave 1 (Ads 1-4): Pain Point hook x all 3 formats + 1 extra
-├── Task 1: Pain Point x Product Hero — generate at 4:5
-├── Task 2: Pain Point x UGC/Testimonial — generate at 4:5
-├── Task 3: Pain Point x Bold Typography — generate at 1:1
-├── Task 4: Transformation x Product Hero — generate at 4:5
+- Task 1: Pain Point x Product Hero — generate at 4:5
+- Task 2: Pain Point x UGC/Testimonial — generate at 4:5
+- Task 3: Pain Point x Bold Typography — generate at 1:1
+- Task 4: Transformation x Product Hero — generate at 4:5
 [Wait for wave 1 to complete — review quality]
 
 Wave 2 (Ads 5-8): Remaining Transformation + Social Proof
-├── Task 5: Transformation x UGC/Testimonial — generate at 4:5
-├── Task 6: Transformation x Bold Typography — generate at 1:1
-├── Task 7: Social Proof x Product Hero — generate at 4:5
-├── Task 8: Social Proof x UGC/Testimonial — generate at 4:5
+- Task 5: Transformation x UGC/Testimonial — generate at 4:5
+- Task 6: Transformation x Bold Typography — generate at 1:1
+- Task 7: Social Proof x Product Hero — generate at 4:5
+- Task 8: Social Proof x UGC/Testimonial — generate at 4:5
 [Wait for wave 2 to complete — review quality]
 
 Wave 3 (Ads 9-12): Remaining Social Proof + Curiosity Gap
-├── Task 9: Social Proof x Bold Typography — generate at 1:1
-├── Task 10: Curiosity Gap x Product Hero — generate at 4:5
-├── Task 11: Curiosity Gap x UGC/Testimonial — generate at 4:5
-├── Task 12: Curiosity Gap x Bold Typography — generate at 1:1
+- Task 9: Social Proof x Bold Typography — generate at 1:1
+- Task 10: Curiosity Gap x Product Hero — generate at 4:5
+- Task 11: Curiosity Gap x UGC/Testimonial — generate at 4:5
+- Task 12: Curiosity Gap x Bold Typography — generate at 1:1
 [Wait for wave 3 to complete — review quality]
 
 Wave 4 (Ratio Variants): Top performers at additional ratios
-├── Generate top 6 ads at 1:1 (if primary was 4:5)
-├── Generate top 6 ads at 9:16 (Stories/TikTok)
-├── Generate top 6 ads at 16:9 (YouTube/Google)
-+── Generate Google Display sizes for top 3
-```
+- Generate top 6 ads at 1:1 (if primary was 4:5)
+- Generate top 6 ads at 9:16 (Stories/TikTok)
+- Generate top 6 ads at 16:9 (YouTube/Google)
+- Generate Google Display sizes for top 3
+
 
 ### Batch Cost Estimate
 
 | Scope | Asset Count | Estimated Cost | Estimated Time |
 |-------|-------------|---------------|----------------|
-| 12-ad matrix (primary ratio only) | 12 images | cost: see references/MODEL_REGISTRY.md | ~3-5 min |
-| 12-ad matrix + 3 additional ratios | 48 images | cost: see references/MODEL_REGISTRY.md | ~10-15 min |
-| Matrix + ratio variants + A/B variants (3 per top 3) | ~60 images | cost: see references/MODEL_REGISTRY.md | ~12-18 min |
-| Full production (matrix + variants + video ads) | ~70 images + 6 videos | cost: see references/MODEL_REGISTRY.md | ~20-30 min |
+| 12-ad matrix (primary ratio only) | 12 images | estimated from `references/MODEL_REGISTRY.md` | ~3-5 min |
+| 12-ad matrix + 3 additional ratios | 48 images | estimated from `references/MODEL_REGISTRY.md` | ~10-15 min |
+| Matrix + ratio variants + A/B variants (3 per top 3) | ~60 images | estimated from `references/MODEL_REGISTRY.md` | ~12-18 min |
+| Full production (matrix + variants + video ads) | ~70 images + 6 videos | estimated from `references/MODEL_REGISTRY.md` | ~20-30 min |
 
 ---
 
 ## Integration with Creative Engine
 
-```
-AD CREATIVE PIPELINE
-
-+─────────────────────────────────────────+
-|  Request: "ad creative" / "paid ads"    |
-|  -> Route from creative/SKILL.md       |
-+─────────────────────────────────────────+
-                    |
-                    v
-+─────────────────────────────────────────+
-|  LOAD BRAND CONTEXT                     |
-|  -> Read ./brand/creative-kit.md       |
-|  -> Extract brand colors, style, tone  |
-|  -> Identify product/service           |
-|  -> Confirm campaign objective         |
-+─────────────────────────────────────────+
-                    |
-                    v
-+─────────────────────────────────────────+
-|  ad-creative mode (THIS FILE)           |
-|  -> Define target platforms            |
-|  -> Run style exploration (if new)     |
-|  -> Build 4 hooks for this product     |
-|  -> Generate 12-ad testing matrix      |
-|  -> Generate platform ratio variants   |
-|  -> Run policy compliance checks       |
-|  -> Save all to campaign directory     |
-+─────────────────────────────────────────+
-                    |
-        +───────────┼───────────+
-        v           v           v
-+──────────────+ +──────────+ +──────────────+
-| Static Ads   | | Video Ads| | Copy Package |
-| -> Nano      | | -> Kling | | -> Headlines |
-|    Banana    | |    2.5   | | -> Primary   |
-|    Pro for   | |    for   | |    text      |
-|    all       | |  default | | -> CTAs      |
-|    stills    | | -> Hero: | | -> Per       |
-|              | |  parallel| |   platform   |
-|              | |  3-model | |              |
-+──────────────+ +──────────+ +──────────────+
-        |           |           |
-        v           v           v
-+─────────────────────────────────────────+
-|  DELIVERABLES                           |
-|  -> ./campaigns/{campaign}/ads/        |
-|  -> Ad testing matrix document         |
-|  -> Platform-organized assets          |
-|  -> Tracking names for analytics       |
-|  -> A/B variant sets (post-results)    |
-+─────────────────────────────────────────+
-```
-
----
+1. Receive the campaign brief and loaded brand context from `creative/SKILL.md`.
+2. Confirm platforms and objective; explore style for a new direction.
+3. Build four hooks and the agreed testing matrix; generate approved ratio variants.
+4. Static assets use Image default, with Image premium for requested 4K/complex work. Video assets use the approved video role; Hero comparison stays opt-in.
+5. Prepare headlines, primary text, CTAs, policy checks, tracking names, and A/B sets.
+6. Save platform-organized assets and the matrix under `./campaigns/{campaign}/ads/`.
 
 ## Handoff Protocols
 
@@ -1721,3 +1642,7 @@ Get these four right and your paid creative will outperform most competitors reg
 ---
 
 *This mode is the paid advertising creative system for Vibe Marketing Skills v2. Every ad image, every video ad, every testing matrix, and every A/B variant flows through this engine. Feed it a product and an audience — it produces a structured, policy-compliant, platform-optimized ad testing program.*
+
+## Completion
+
+Done when the agreed assets (or Fallback prompts) are complete, reviewed against this Mode's quality and platform checks, and saved with the approved role, prompt, media, and settings documented. The reported generation and audio status match actual outputs; comparisons were explicitly requested and cost-approved. Deliver and collect feedback through `creative/SKILL.md` and the shared contracts.

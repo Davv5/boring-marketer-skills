@@ -29,17 +29,7 @@ Generate professional product photography that sells. Not generic AI images — 
 
 ## Model Selection
 
-**Do NOT hardcode model IDs.** Always refer to `references/MODEL_REGISTRY.md` for the current default image model and its verified API payload.
-
-As of this writing, the default image model is **image 4K role** (`image 4K role`), selected for best-in-class typography, photorealism, and style control at 15-40 second generation times.
-
-### How to Call
-
-1. Open `references/MODEL_REGISTRY.md`
-2. Find the **Image Generation** section
-3. Copy the verified payload structure
-4. Insert your constructed prompt and desired aspect ratio
-5. Execute the API call via Replicate
+Use **Image default** for ordinary generation and **Image premium** when the request needs 4K or complex work. Read `references/MODEL_REGISTRY.md` for costs, supported inputs, and the complete payload before calling. Copy that payload and substitute the approved prompt, ratio, and media; show the total before paid generation.
 
 ### Reference Image Workflow (Image-to-Image)
 
@@ -52,33 +42,17 @@ When the user provides an existing product photo, brand reference, or style exam
 - User needs consistency with previously generated images
 
 **Workflow:**
-
-```
-1. Receive reference image URL or file path
-2. Upload to accessible URL if local file
-3. Construct prompt describing desired changes/style
-4. Include image_input parameter in API payload:
-
-   {
-    // Model role and complete payload: see references/MODEL_REGISTRY.md
-     "input": {
-       "prompt": "{{product description + desired style changes}}",
-       "image_input": ["{{reference_image_url}}"],
-       "aspect_ratio": "{{ratio}}",
-       "output_format": "png"
-     }
-   }
-
-5. The model uses the reference to guide composition, color, and structure
-6. Review output against reference for consistency
-```
+1. Receive the reference image URL or file; upload locally supplied media to an accessible URL.
+2. Construct a prompt describing the desired changes/style.
+3. Use the selected image role's complete payload in `references/MODEL_REGISTRY.md`, including the reference image, explicit resolution, and requested ratio.
+4. Review composition, color, product details, and style against the reference.
 
 **Reference image best practices:**
 - Use high-resolution references (1000px+ on longest side)
 - The prompt should describe what to CHANGE, not what the reference already shows
 - For style transfer: describe the new style, let the image provide the composition
 - For enhancement: describe the improvements, let the image provide the product
-- Combine with seed locking for reproducible reference-guided outputs
+- Reuse the approved reference and documented prompt for consistency; inspect each result rather than assuming deterministic output.
 
 ---
 
@@ -704,7 +678,7 @@ Before generating any set of related images, establish and lock these parameters
 - Background: [specific setup]
 
 **Seed Strategy:**
-- Base seed: [number] (use same seed across shots for maximum consistency)
+- Approved reference: [URL/path] (reuse as the visual anchor)
 - Vary only: [what changes between shots — angle, crop, props]
 ```
 
@@ -748,18 +722,9 @@ warm studio lighting from upper left, neutral white balance,
 marble surface, top-down composition, premium commercial quality
 ```
 
-### Seed Locking for Maximum Consistency
+### Reference locking for consistency
 
-For the tightest visual consistency, use the `seed` parameter from MODEL_REGISTRY.md:
-
-1. Generate the first image (hero shot) without a seed
-2. If the result is good, note the generation — use that image as the style anchor
-3. For subsequent shots, use a fixed seed value and vary only the shot-specific content
-4. Same seed + similar prompt structure = consistent lighting, color grading, and rendering style
-
-**Important:** Seed ensures consistency only when prompts are structurally similar. Drastically different prompts will diverge even with the same seed. Keep the locked parameters identical across all prompts.
-
----
+Use an approved image as the style anchor and keep lighting, palette, background, and prompt structure consistent across shots. Inspect each result against the anchor; use only supported inputs from `references/MODEL_REGISTRY.md` rather than assuming seed control exists.
 
 ## Complete Shoot Mode
 
@@ -787,47 +752,47 @@ User says any of:
 
 ### Execution Flow
 
-```
-COMPLETE SHOOT WORKFLOW
+
+### Complete shoot workflow
 
 Step 1: Gather Product Brief
-├─ Product name and description
-├─ Key features to highlight
-├─ Target platform(s)
-├─ Brand kit loaded? (if not, prompt for it)
-+─ Style preference (or run style exploration first)
+- Product name and description
+- Key features to highlight
+- Target platform(s)
+- Brand kit loaded? (if not, prompt for it)
+- Style preference (or run style exploration first)
 
 Step 2: Establish Consistency Lock
-├─ Lock lighting, color temp, background, styling
-├─ Document in consistency lock format
-+─ All 5 agents will read this lock
+- Lock lighting, color temp, background, styling
+- Document in consistency lock format
+- All 5 agents will read this lock
 
 Step 3: Dispatch 5 Parallel Agents
-├─ Agent 1: Hero shot (16:9)
-├─ Agent 2: Detail shot (1:1)
-├─ Agent 3: Lifestyle shot (4:5)
-├─ Agent 4: Flat lay (1:1)
-+─ Agent 5: Scale reference (1:1)
+- Agent 1: Hero shot (16:9)
+- Agent 2: Detail shot (1:1)
+- Agent 3: Lifestyle shot (4:5)
+- Agent 4: Flat lay (1:1)
+- Agent 5: Scale reference (1:1)
 
 Each agent:
-  1. Reads brand kit (creative-kit.md)
-  2. Reads consistency lock
-  3. Constructs shot-specific prompt
-  4. Calls MODEL_REGISTRY.md image API
-  5. Saves to ./campaigns/{product}/photos/{shot-type}/
-  6. Reports back with URL + quality assessment
+1. Reads brand kit (creative-kit.md)
+2. Reads consistency lock
+3. Constructs shot-specific prompt
+4. Calls MODEL_REGISTRY.md image API
+5. Saves to ./campaigns/{product}/photos/{shot-type}/
+6. Reports back with URL + quality assessment
 
 Step 4: Present All 5 Results
-├─ Display all shots in a grid review
-├─ Note any consistency issues
-├─ Offer per-shot iteration or full reshoot
-+─ Run e-commerce compliance check if needed
+- Display all shots in a grid review
+- Note any consistency issues
+- Offer per-shot iteration or full reshoot
+- Run e-commerce compliance check if needed
 
 Step 5: Iterate or Approve
-├─ Replace individual shots that need work
-├─ Approve complete set
-+─ Export to campaigns directory
-```
+- Replace individual shots that need work
+- Approve complete set
+- Export to campaigns directory
+
 
 ### Complete Shoot Output Template
 
@@ -888,7 +853,7 @@ Step 5: Iterate or Approve
 
 ### Wall-Clock Time
 
-Because all 5 shots generate in parallel, total time equals the slowest single generation (typically 15-40 seconds per image), not the sum. A full 5-image shoot completes in under 1 minute.
+Parallel dispatch can reduce waiting time, but latency is unverified; report actual completion times rather than promising a sub-minute shoot.
 
 ---
 
@@ -982,24 +947,6 @@ All product photo outputs are saved to organized directories under the project r
 
 ```
 ./campaigns/{product-name}/photos/
-├── hero/
-|   +── hero-{product}-16x9-v1.png
-├── detail/
-|   +── detail-{feature}-1x1-v1.png
-├── lifestyle/
-|   +── lifestyle-{setting}-4x5-v1.png
-├── ecommerce/
-|   +── ecommerce-{product}-1x1-v1.png
-├── flat-lay/
-|   +── flatlay-{product}-1x1-v1.png
-├── scale/
-|   +── scale-{product}-1x1-v1.png
-+── explorations/
-    ├── direction-1.png
-    ├── direction-2.png
-    ├── direction-3.png
-    ├── direction-4.png
-    +── direction-5.png
 ```
 
 ### Naming Convention
@@ -1042,16 +989,16 @@ This path is referenced by other skills (ad-creative, social-graphics, content-a
 
 ### Step 1: Gather Requirements
 
-```
-[ ] What product? (specific details, materials, features)
-[ ] What use case? (Amazon, hero banner, social, etc.)
-[ ] What style? (or need style exploration?)
-[ ] What aspect ratio?
-[ ] Text space needed?
-[ ] Brand colors/aesthetic?
-[ ] Reference images available?
-[ ] Complete shoot or single shot?
-```
+
+- [ ] What product? (specific details, materials, features)
+- [ ] What use case? (Amazon, hero banner, social, etc.)
+- [ ] What style? (or need style exploration?)
+- [ ] What aspect ratio?
+- [ ] Text space needed?
+- [ ] Brand colors/aesthetic?
+- [ ] Reference images available?
+- [ ] Complete shoot or single shot?
+
 
 ### Step 2: Style Exploration (if new product/brand)
 
@@ -1070,13 +1017,7 @@ Use the formula:
 
 Refer to `references/MODEL_REGISTRY.md` for the current image generation payload. Construct the API call with your prompt and the verified payload structure.
 
-```
-Model: [see MODEL_REGISTRY.md → Image Generation → Default Model]
-Payload: [see MODEL_REGISTRY.md → Verified API Payload]
-Inputs: prompt, aspect_ratio, output_format, output_quality
-```
-
-If using a reference image, add `image_input` to the payload per MODEL_REGISTRY.md specifications.
+Use Image default or Image premium as selected in Model Selection, with the complete registry payload. Include reference media through that role's supported input when needed.
 
 ### Step 5: Review & Iterate
 
@@ -1154,7 +1095,7 @@ Not premium enough → add "luxury, premium, high-end"
 | Competing elements | Props too prominent | Simplify staging, props should be subtle |
 | Inconsistent set | No consistency lock | Apply multi-shot consistency technique |
 | Amazon rejection | Non-compliant image | Run e-commerce compliance checker |
-| Style drift across shots | Different prompts diverge | Use seed locking + identical locked parameters |
+| Style drift across shots | Different prompts diverge | Reuse the approved reference + identical locked visual direction |
 
 ---
 
@@ -1201,65 +1142,12 @@ Not premium enough → add "luxury, premium, high-end"
 
 ## Integration with Creative Engine
 
-```
-PRODUCT PHOTO PIPELINE (v2)
-
-+─────────────────────────────────────────+
-|  Request arrives                        |
-|  → From creative SKILL.md (mode 1)     |
-|  → Or direct invocation                 |
-|  → Clarify product and requirements     |
-+─────────────────────────────────────────+
-                    |
-                    ▼
-+─────────────────────────────────────────+
-|  Brand Kit Check                        |
-|  → Load ./brand/creative-kit.md        |
-|  → If missing, prompt user to create    |
-|  → Apply brand colors/style to prompts  |
-+─────────────────────────────────────────+
-                    |
-                    ▼
-+─────────────────────────────────────────+
-|  Style Exploration (if needed)          |
-|  → Generate 5 different approaches      |
-|  → User selects winner                  |
-|  → Extract principles for consistency   |
-|  → Save explorations to campaigns dir   |
-+─────────────────────────────────────────+
-                    |
-          +─────────┴──────────+
-          ▼                    ▼
-+──────────────────+  +──────────────────────+
-|  Single Shot     |  |  Complete Shoot       |
-|  → One prompt    |  |  → 5 parallel agents  |
-|  → One image     |  |  → Consistency lock   |
-|  → Quick iterate |  |  → Full product set   |
-+──────────────────+  +──────────────────────+
-          |                    |
-          +─────────┬──────────+
-                    ▼
-+─────────────────────────────────────────+
-|  Product Photo Mode (THIS FILE)         |
-|  → Construct platform-optimized prompt  |
-|  → Reference MODEL_REGISTRY.md for API  |
-|  → Generate image(s)                    |
-|  → Review against quality checklist     |
-|  → Run compliance check (if e-commerce) |
-|  → Iterate as needed                    |
-+─────────────────────────────────────────+
-                    |
-          +─────────┴──────────+
-          ▼                    ▼
-+──────────────────+  +──────────────────+
-|  Save & Deliver  |  |  Route to Video  |
-|  → Save to       |  |  → Product video |
-|    campaigns dir |  |    mode for      |
-|  → Export ready  |  |    animation     |
-+──────────────────+  +──────────────────+
-```
-
----
+1. Receive product and platform requirements directly or from `creative/SKILL.md`.
+2. Apply loaded creative-kit colors/style, or establish a kit with the user.
+3. Explore five directions when needed; document the winning lighting, background, and styling.
+4. Generate a single shot or the five-shot complete set with that consistency lock, using the approved image role payload.
+5. Review quality and e-commerce compliance; revise deficient shots.
+6. Save ready-to-use files to the campaign directory; offer Product Video to animate an approved image.
 
 ## Handoff Protocols
 
@@ -1517,3 +1405,7 @@ API: Include image_input parameter per MODEL_REGISTRY.md
 ---
 
 *This mode is part of the Vibe Marketing Skills v2 creative engine. It is loaded by `creative/SKILL.md` when the user selects mode 1 (Product Photos). All model configurations are maintained in `references/MODEL_REGISTRY.md` — never hardcode model IDs in this file.*
+
+## Completion
+
+Done when the agreed assets (or Fallback prompts) are complete, reviewed against this Mode's quality and platform checks, and saved with the approved role, prompt, media, and settings documented. The reported generation and audio status match actual outputs; comparisons were explicitly requested and cost-approved. Deliver and collect feedback through `creative/SKILL.md` and the shared contracts.

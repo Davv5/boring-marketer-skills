@@ -119,9 +119,9 @@ Each task:
 For hero content comparison, dispatch three tasks simultaneously:
 
 ```
-Task 1: video default role — same prompt, same start_image
-Task 2: hero comparison role — same prompt, adapted parameters
-Task 3: hero comparison role — same prompt, adapted parameters
+Task 1: Video default — same prompt, same start_image
+Task 2: Hero comparison — same prompt, adapted parameters
+Task 3: Hero comparison — same prompt, adapted parameters
 ```
 
 Wall-clock time = the slowest model (usually 5-8 minutes), not the sum of all three.
@@ -243,38 +243,70 @@ Before delivering any creative asset, verify:
 ---
 
 
+## Setup: Replicate token and access
+
+Read this section when generation access is missing or needs verification. Preserve the Fallback in `creative/SKILL.md` if the user declines setup.
+
+### Configure the token
+
+Check whether `REPLICATE_API_TOKEN` is set in the environment or project `.env`, without displaying its value. If absent:
+1. Open https://replicate.com/account/api-tokens and create a token.
+2. Add `REPLICATE_API_TOKEN=r8_your_token_here` to the local `.env`; keep it out of version control.
+3. Export it into the shell running the API call (or load a trusted project `.env`). Replicate is pay-per-use; consult `references/MODEL_REGISTRY.md` for current estimates, not an old setup price.
+
+### Smoke test
+
+Copy the Image default slug from `references/MODEL_REGISTRY.md` into `MODEL_SLUG`. This GET checks credentials/model metadata without generating a paid prediction:
+
+```bash
+# MODEL_SLUG is the registry's Image default owner/name, not a guessed slug.
+# REPLICATE_API_TOKEN is exported from the local environment; do not print it.
+curl --fail --silent --show-error \
+  -H "Authorization: Bearer $REPLICATE_API_TOKEN" \
+  "https://api.replicate.com/v1/models/${MODEL_SLUG}" | jq '.name'
+```
+
+Expected: the name component of the chosen registry slug. On authentication failure, check the exported variable and token validity; on model failure, verify the role's slug/access rather than submitting a prediction blindly.
+
+### Verify access by role
+
+For full stack setup, repeat the GET for each slug in the registry's Roles and prices table (both Video test variants and all three Hero comparison members). For a single production request, check its chosen role only. Compare `.name` with that slug's name component and record ✓ accessible or ✗ unavailable per role/member. GET metadata access is not a guarantee that a paid prediction will succeed.
+
+Pass verified roles, date, and access notes to `/start-here` to record in `./brand/stack.md` under `../_system/brand-memory.md` §Stack and tools when brand memory exists. Obtain approval before any paid smoke generation; the metadata check alone costs no generation budget.
+
 ## Handoff Protocols
 
-
-### Receiving Work from Other Skills
-
-The creative engine can receive briefs from other skills:
+### Receiving work
 
 ```yaml
+creative_brief:
+  subject: "what to create"
+  audience: "who it is for"
+  message: "key communication point"
+  platform: "where it will be published"
+  style_notes: "any visual direction"
+```
 
-### Delivering to Other Skills
+### Delivering work
 
 ```yaml
-
-## What's Next After Creative Production
-
-After generating creative assets, suggest next steps:
-
-```
-WHAT'S NEXT
-
-Your creative assets are generated and saved. Next moves:
-
-→ /content-atomizer  Create platform-specific variants
-                     for social distribution (~10 min)
-→ /direct-response-copy  If these visuals need
-                     accompanying copy — landing pages,
-                     ads, or email (~15 min)
-→ /start-here        Review your full project status
-
-Or tell me what you are working on and I will route you.
+creative_delivery:
+  assets:
+    - path: "creative-output/product-photos/hero/hero-product-16x9-v1.png"
+      format: "image"
+      dimensions: "1280x720"
+      prompt_used: "the exact prompt"
+    - path: "creative-output/videos/hero/reveal-16x9-v1.mp4"
+      format: "video"
+      duration: "5s"
+      role_used: "Video default"
+  brand_kit: "./brand/creative-kit.md"
+  style_locked: true
 ```
 
----
+## Next steps after production
 
-*This is the entry point for all visual creative production in Vibe Marketing Skills v2. Every image, every video, every visual asset flows through this engine.*
+Follow `../_system/output-format.md` §What's Next. Choose relevant handoffs:
+- → /content-atomizer: create platform-specific distribution variants (~10 min).
+- → /direct-response-copy: write accompanying landing-page, ad, or email copy (~15 min).
+- → /start-here: review project status.

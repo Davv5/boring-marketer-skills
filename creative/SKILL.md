@@ -1,6 +1,6 @@
 ---
 name: creative
-description: "Create brand-aware image and video assets, or model-ready prompts when generation access is unavailable."
+description: "Create brand-aware product photos, product video, social graphics, talking heads, and ad creative, or model-ready prompts when generation access is unavailable."
 ---
 
 # Creative
@@ -8,7 +8,7 @@ description: "Create brand-aware image and video assets, or model-ready prompts 
 Create images, video, social graphics, talking-head assets, and ad creative.
 
 **Reads:** `voice-profile.md` (full), `positioning.md` (chosen angle), `creative-kit.md` (full), `stack.md` (full).
-**Writes:** `creative-kit.md` when established or changed; append completed assets to `assets.md`.
+**Writes:** `creative-kit.md` when established or changed; append completed assets to `assets.md` and creative-specific feedback to `learnings.md` under `../_system/brand-memory.md` §Write and §Feedback.
 
 ## Steps
 
@@ -22,7 +22,7 @@ Clarify the asset and its use only when not already clear. Choose the matching M
 
 ### 3. Develop the creative
 
-For a new project, offer five distinct visual directions and get the user's selection before scaling; skip exploration for a clear one-off, follow-up matching an established style, or an explicit skip. For generation, choose a model by role in [`references/MODEL_REGISTRY.md`](references/MODEL_REGISTRY.md); use its payload and current prices, and show estimated cost before paid generation. A hero comparison runs only when requested, with its total estimated cost shown first. Every payload sets audio and resolution explicitly where supported, and sends model selection in the URL rather than the body. If no token is available, use **Fallback**: deliver a ready-to-use prompt, recommended model role, settings, ratio, resolution and exclusions; generation can proceed later. Completion: user has approved the direction or specified a one-off, and the chosen generation path and cost are clear.
+For a new project, offer five distinct visual directions and get the user's selection before scaling; skip exploration for a clear one-off, follow-up matching an established style, or an explicit skip. For missing or unverified access, read `references/creative-workflows.md` §Setup for token/.env configuration, the smoke test, and per-role access verification. For generation, choose a model by role in [`references/MODEL_REGISTRY.md`](references/MODEL_REGISTRY.md); use its payload and current prices, and show estimated cost before paid generation. A hero comparison runs only when requested, with its total estimated cost shown first. Every payload sets audio and resolution explicitly where supported, and sends model selection in the URL rather than the body. If no token is available, use **Fallback**: deliver a ready-to-use prompt, recommended model role, settings, ratio, resolution and exclusions; generation can proceed later. Completion: user has approved the direction or specified a one-off, and the chosen generation path and cost are clear.
 
 ### 4. Generate and review
 
@@ -30,7 +30,7 @@ Generate the requested asset(s), then assess technical fit, brand alignment, str
 
 ### 5. Deliver and learn
 
-Use [`../_system/output-format.md`](../_system/output-format.md) for the four-section markdown contract. Disclose skill-specific layouts through the selected Mode playbook. Apply [`../_system/brand-memory.md` §Write](../_system/brand-memory.md) to brand files and §Feedback after the deliverable; retain only creative-specific learning in the asset log. Completion: deliverable, saved-file status, next steps and feedback prompt are present.
+Use [`../_system/output-format.md`](../_system/output-format.md) for the four-section markdown contract. Disclose skill-specific layouts through the selected Mode playbook. Apply [`../_system/brand-memory.md` §Write](../_system/brand-memory.md) to brand files and §Feedback after the deliverable; record creative-specific learning in `./brand/learnings.md` under §Feedback. Completion: deliverable, saved-file status, next steps and feedback prompt are present.
 
 ## Shared references
 

@@ -22,10 +22,10 @@ Transform static product images into cinematic video content. This mode handles 
 **The solution:** A systematic approach that:
 - Uses proven commercial motion styles
 - Matches motion to product category and positioning
-- Leverages multi-model generation for quality selection
+- Supports opt-in Hero comparison for user selection
 - Anchors animation to approved static images (I2V workflow)
 - References MODEL_REGISTRY.md for all API payloads (never hardcodes model names)
-- Runs parallel multi-model generation and lets the user pick the winner
+- Offers Hero comparison only on request after approving its registry total
 - Plans multi-clip sequences that edit together into longer pieces
 - Tracks estimated generation cost per model before execution
 
@@ -33,173 +33,19 @@ Transform static product images into cinematic video content. This mode handles 
 
 ## Model Selection
 
-**Do NOT hardcode model IDs.** Always refer to `references/MODEL_REGISTRY.md` for the current default video model and its verified API payload.
+Read `references/MODEL_REGISTRY.md` for role selection, verified costs, payloads, and model constraints. Use its role names:
 
-As of this writing, the three video models available are:
+- **Image default:** ordinary image generation.
+- **Image premium:** requested 4K or complex work.
+- **Video test:** inexpensive motion/presenter experiments before committing production budget.
+- **Video mid-tier:** product shots needing camera lock.
+- **Video default:** ordinary video generation.
+- **Video production:** multi-shot or production delivery.
+- **Hero comparison:** only when the user explicitly requests a comparison. Show the registry's total for the selected durations, audio, and resolution before generation and obtain approval; a hero asset or uncertainty alone does not request a comparison.
+- **Lip-sync default:** text/TTS or batch synchronization.
+- **Lip-sync hero:** requested cinematic synchronization using existing footage and WAV audio.
 
-| Role | Model | Registry Section | Estimated Cost (5s clip) |
-|------|-------|-----------------|--------------------------|
-| **Default** | video default role | Video Generation > Default Model | cost: see references/MODEL_REGISTRY.md |
-| **Comparison** | hero comparison role | Video Generation > Comparison Model: hero comparison role | cost: see references/MODEL_REGISTRY.md |
-| **Comparison** | hero comparison role | Video Generation > Comparison Model: hero comparison role | cost: see references/MODEL_REGISTRY.md |
-
-### How to Call
-
-1. Open `references/MODEL_REGISTRY.md`
-2. Find the **Video Generation** section
-3. Copy the verified payload structure for the desired model
-4. Insert your constructed motion prompt, source image, and aspect ratio
-5. Execute the API call via Replicate
-6. For hero content: run all three models in parallel (see Parallel Multi-Model Generation below)
-
-### Cross-Model Parameter Cheat Sheet
-
-Every video model uses different parameter names for the same concept. Always consult MODEL_REGISTRY.md before writing any API call.
-
-| Concept | video default role | hero comparison role | hero comparison role |
-|---------|-----------|---------|--------|
-| **Starting image** | `start_image` | `image` | `input_reference` |
-| **Duration** | `duration` (5, 10) | `duration` (4, 6, 8) | `seconds` (4-12) |
-| **Aspect ratio** | `aspect_ratio` ("16:9") | `aspect_ratio` ("16:9") | `aspect_ratio` ("landscape") |
-| **Prompt adherence** | *(removed)* | — | — |
-| **Negative prompt** | `negative_prompt` | `negative_prompt` | — |
-| **Audio generation** | Not native | `generate_audio` | Native (always on) |
-| **Ending frame** | `end_image` | `last_frame` | — |
-| **Resolution control** | Fixed 1080p | `resolution` ("720p", "1080p") | Fixed |
-| **Reproducibility** | — | `seed` | — |
-
-### Model Strengths and Weaknesses
-
-Refer to MODEL_REGISTRY.md for authoritative details. Summary for prompt-routing decisions:
-
-**video default role (Default):**
-- Best motion control, cinematic depth, consistent quality
-- Strong prompt adherence
-- Best for human subjects and natural motion
-- Longer video coherence (5s and 10s)
-- Sometimes adds unwanted elements
-- Fast camera movements can cause warping at edges
-
-**hero comparison role:**
-- Highest fidelity video output
-- Can generate matching audio (set `generate_audio: true`)
-- Cinematic quality
-- Slower generation, higher cost
-- Sometimes "interprets" prompts loosely
-- No square aspect ratio support
-
-**hero comparison role:**
-- Strong prompt comprehension
-- Good motion coherence
-- Native audio generation (always on)
-- Most variable generation times
-- Sometimes over-stylizes
-- No square aspect ratio support
-
-### When to Use Which
-
-```
-GENERAL PRODUCT → video default role (reliable, fast, cheapest)
-NEEDS AUDIO → hero comparison role (native audio, highest fidelity)
-HAS PEOPLE → video default role (best human motion)
-HERO/FLAGSHIP → Run all 3 in parallel, pick winner
-UNCERTAIN → Run all 3 in parallel, pick winner
-```
-
----
-
-## Parallel Multi-Model Generation
-
-For hero content and any case where quality matters more than cost, run the same motion prompt through all three video models simultaneously.
-
-### Why Parallel Beats Sequential
-
-- No single model wins every prompt — the best output varies by content
-- Running in parallel takes the same wall-clock time as the slowest model (~6 min)
-- Running sequentially would take ~15 minutes for all three
-- Total cost for a parallel comparison run: cost: see references/MODEL_REGISTRY.md (see Cost Awareness below)
-- Eliminates guessing — present all three, let the user pick
-
-### Parallel Execution Pattern
-
-Use task agents to fire all three API calls simultaneously:
-
-```
-PARALLEL GENERATION PLAN
-─────────────────────────────────────────────
-Task 1: video default role     → cost: see references/MODEL_REGISTRY.md, time ~3min
-Task 2: hero comparison role       → cost: see references/MODEL_REGISTRY.md, time ~5min
-Task 3: hero comparison role        → cost: see references/MODEL_REGISTRY.md, time ~6min
-─────────────────────────────────────────────
-Total:                   cost: see references/MODEL_REGISTRY.md, ~6min (parallel)
-```
-
-**Steps:**
-1. Construct the motion prompt (shared across all models)
-2. Translate the prompt into each model's API format (check MODEL_REGISTRY.md for parameter names)
-3. Launch all three API calls in parallel
-4. Poll for completion (all should finish within ~6 minutes)
-5. Present all three outputs side-by-side for user selection
-
-### Translating One Prompt to Three APIs
-
-Given a motion prompt and source image, the payload differs per model. Example for a 16:9 I2V call:
-
-**video default role payload (from MODEL_REGISTRY.md):**
-**Mode-specific input fields:** `prompt`, `start_image`, `duration`, `aspect_ratio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
-
-**hero comparison role payload (from MODEL_REGISTRY.md):**
-**Mode-specific input fields:** `prompt`, `image`, `duration`, `aspect_ratio`, `resolution`, `generate_audio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
-
-**hero comparison role payload (from MODEL_REGISTRY.md):**
-**Mode-specific input fields:** `prompt`, `input_reference`, `seconds`, `aspect_ratio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
-
-**Critical:** Always verify these payloads against MODEL_REGISTRY.md before execution. Parameter names change when models update.
-
----
-
-## Cost Awareness
-
-Before generating, always estimate and communicate the cost to the user.
-
-### Per-Generation Estimates
-
-| Model | Duration | Estimated Cost | Typical Time |
-|-------|----------|---------------|--------------|
-| video default role | 5s clip | cost: see references/MODEL_REGISTRY.md | 2-5min |
-| video default role | 10s clip | cost: see references/MODEL_REGISTRY.md | 4-8min |
-| hero comparison role | 8s clip (720p) | cost: see references/MODEL_REGISTRY.md | 3-6min |
-| hero comparison role | 8s clip (1080p) | cost: see references/MODEL_REGISTRY.md | 5-8min |
-| hero comparison role | 8s clip | cost: see references/MODEL_REGISTRY.md | 3-10min |
-
-### Common Workflow Cost Estimates
-
-| Workflow | What You Get | Estimated Cost |
-|----------|-------------|---------------|
-| Single model, single clip | 1 video | cost: see references/MODEL_REGISTRY.md |
-| Parallel comparison (3 models) | 3 videos to compare | cost: see references/MODEL_REGISTRY.md |
-| Multi-style exploration (3 styles x 1 model) | 3 motion approaches | cost: see references/MODEL_REGISTRY.md |
-| Multi-style x multi-model (3 styles x 3 models) | 9 videos to compare | cost: see references/MODEL_REGISTRY.md |
-| Multi-clip stitch (4 clips x 1 model) | 1 edited sequence | cost: see references/MODEL_REGISTRY.md |
-| Full hero production (stitch + comparison) | Complete hero video | cost: see references/MODEL_REGISTRY.md |
-
-### Cost Communication Template
-
-Before executing, inform the user:
-
-```
-ESTIMATED GENERATION COST
-─────────────────────────
-Models: [list models]
-Clips: [number of clips]
-Duration per clip: [seconds]
-Estimated total: ~$X.XX
-Estimated time: ~Xmin (parallel) / ~Xmin (sequential)
-
-Proceed? [Y/n]
-```
-
----
+Copy the selected role's payload from the registry and insert the approved prompt and media. Model selection belongs in the URL. Set audio and resolution explicitly where supported. For any paid run, present the selected role, asset count, duration, resolution, audio plan, and estimated total in Content under `../_system/output-format.md`; proceed after approval. Do not assume a latency or comparative quality benchmark.
 
 ## I2V vs T2V: Why Image-First Wins
 
@@ -592,23 +438,7 @@ Video content often needs audio. There are three distinct approaches, and the ri
 
 Some video models generate synchronized audio as part of the video output. This is the fastest path to audio-inclusive video.
 
-**hero comparison role (native audio via `generate_audio: true`):**
-- Generates contextually aware audio matched to visual content
-- Best for ambient sounds, environmental audio, product sounds
-- Adds processing time (~30-60s extra)
-- Quality is good for ambient/environmental, weaker for speech
-- Set `generate_audio: true` in the API payload (see MODEL_REGISTRY.md)
-
-**hero comparison role (audio always on):**
-- Always generates audio alongside video
-- Cannot be disabled
-- Audio quality varies — sometimes excellent, sometimes distracting
-- Review audio carefully; you may want to strip it in post
-
-**video default role (no native audio):**
-- Does not generate audio
-- Output is silent video
-- Add audio in post-production if needed
+For an audio-inclusive single clip, use Video default or Video production with the registry's audio-enabled settings and updated estimate. Hero comparison is not an audio routing shortcut: it remains opt-in, with the total shown first. Check each comparison member's audio constraints in the registry; strip unwanted native audio in post if necessary.
 
 ### Approach 2: Voiceover via TTS
 
@@ -649,7 +479,7 @@ Sometimes the best audio is no audio. Many platforms auto-mute video in feeds.
 
 | Content Type | Platform | Recommended Audio Approach |
 |--------------|----------|---------------------------|
-| Premium reveal | Website hero | Model-native ambient (hero comparison role) |
+| Premium reveal | Website hero | Model-native ambient (Video production) |
 | Tech product | Product page | Silence or subtle ambient |
 | Lifestyle context | Instagram feed | Silence (auto-muted) |
 | Feature walkthrough | YouTube | TTS voiceover |
@@ -658,9 +488,9 @@ Sometimes the best audio is no audio. Many platforms auto-mute video in feeds.
 | Testimonial | Landing page | TTS voiceover or recorded audio |
 | E-commerce listing | Amazon/Shopify | Silence |
 
-### Audio Prompt Additions (hero comparison role)
+### Audio Prompt Additions
 
-When using hero comparison role with `generate_audio: true`, append audio direction to your motion prompt:
+When native audio is requested and supported by the selected role, append audio direction to your motion prompt:
 
 ```
 With accompanying audio:
@@ -697,37 +527,35 @@ AI video models produce their best output in short durations (5-8 seconds). Long
 
 Before generating any clips, plan the full sequence:
 
-```
-CLIP SEQUENCE PLAN
-─────────────────────────────────────────────
+
+### Clip sequence plan
 Product: [product name]
 Total duration: [target seconds]
 Clips: [number]
 Edit style: [cut/dissolve/matched]
 
 Clip 1 (0:00-0:05): [description]
-  Motion: [style]
-  Camera: [movement]
-  Purpose: [establish/reveal/detail/context/close]
+Motion: [style]
+Camera: [movement]
+Purpose: [establish/reveal/detail/context/close]
 
 Clip 2 (0:05-0:10): [description]
-  Motion: [style]
-  Camera: [movement]
-  Purpose: [establish/reveal/detail/context/close]
+Motion: [style]
+Camera: [movement]
+Purpose: [establish/reveal/detail/context/close]
 
 Clip 3 (0:10-0:15): [description]
-  Motion: [style]
-  Camera: [movement]
-  Purpose: [establish/reveal/detail/context/close]
+Motion: [style]
+Camera: [movement]
+Purpose: [establish/reveal/detail/context/close]
 
 Clip 4 (0:15-0:20): [description]
-  Motion: [style]
-  Camera: [movement]
-  Purpose: [establish/reveal/detail/context/close]
-─────────────────────────────────────────────
+Motion: [style]
+Camera: [movement]
+Purpose: [establish/reveal/detail/context/close]
 Estimated cost: [clips x per-clip cost]
 Estimated time: [max clip time if parallel]
-```
+
 
 ### Common Sequence Structures
 
@@ -770,18 +598,18 @@ Clip 3: Clean product shot with space for text overlay
 3. **Vary camera angle and distance** between clips — this is what makes edits feel professional
 4. **Plan transition moments** — end each clip in a state that cuts naturally to the next
 5. **Generate all clips for a sequence in parallel** to save time
-6. **Use end_image/last_frame** parameters (Kling and Veo) to control clip endpoints for smoother transitions
+6. **Control clip endpoints** using only the selected role’s supported ending-frame input in `references/MODEL_REGISTRY.md`
 7. **Cost multiplies linearly** — a 4-clip sequence costs 4x a single clip
 
 ### Stitching Cost Estimate
 
 | Sequence Length | Clips | Model | Estimated Cost | Estimated Time |
 |----------------|-------|-------|---------------|----------------|
-| 15 seconds | 3 clips | video default role | cost: see references/MODEL_REGISTRY.md | ~5min parallel |
-| 20 seconds | 4 clips | video default role | cost: see references/MODEL_REGISTRY.md | ~5min parallel |
-| 20 seconds | 4 clips | All 3 models | cost: see references/MODEL_REGISTRY.md | ~6min parallel |
-| 25 seconds | 5 clips | video default role | cost: see references/MODEL_REGISTRY.md | ~5min parallel |
-| 30 seconds | 6 clips | video default role | cost: see references/MODEL_REGISTRY.md | ~5min parallel |
+| 15 seconds | 3 clips | Video default | estimated from `references/MODEL_REGISTRY.md` | Measured after execution |
+| 20 seconds | 4 clips | Video default | estimated from `references/MODEL_REGISTRY.md` | Measured after execution |
+| 20 seconds | 4 clips | Hero comparison (opt-in) | estimated from `references/MODEL_REGISTRY.md` | Measured after execution |
+| 25 seconds | 5 clips | Video default | estimated from `references/MODEL_REGISTRY.md` | Measured after execution |
+| 30 seconds | 6 clips | Video default | estimated from `references/MODEL_REGISTRY.md` | Measured after execution |
 
 ---
 
@@ -803,7 +631,7 @@ Consider these recommendations based on content type:
 
 When stitching clips into a sequence, audio strategy needs to be consistent across all clips:
 
-**Option A: Generate audio per-clip (hero comparison role)**
+**Option A: Generate audio per-clip (Video production)**
 - Each clip gets its own audio
 - May need post-production to smooth audio transitions between clips
 - Best for environmental/ambient audio that can overlap
@@ -815,7 +643,7 @@ When stitching clips into a sequence, audio strategy needs to be consistent acro
 - Recommended for sequences longer than 10 seconds
 
 **Option C: Audio on hero clip only**
-- Generate the key clip with audio (hero comparison role)
+- Generate the key clip with audio (Video production)
 - Generate supporting clips silently
 - Use the audio clip as the anchor, extend audio in post
 
@@ -843,7 +671,7 @@ Motion: Scroll-stopping first frame
 Quality: Mobile-optimized
 ```
 
-**Note on square (1:1):** video default role supports 1:1 natively. hero comparison role and hero comparison role do not — generate at 16:9 and crop to square in post. See MODEL_REGISTRY.md for supported aspect ratios per model.
+**Square delivery:** check the selected role’s ratios in `references/MODEL_REGISTRY.md`; if square is unavailable, generate landscape and crop in post with a safe centered subject.
 
 ### Instagram Stories/Reels
 
@@ -883,7 +711,7 @@ Ratio: 16:9 (standard) or 9:16 (Shorts)
 Duration: 6-15 seconds (pre-roll), 15-60 seconds (Shorts)
 Motion: Hook in first 2 seconds
 Quality: 1080p minimum
-Audio: Required for YouTube (use hero comparison role or add in post)
+Audio: Required for YouTube (request native audio from Video default/Video production or add it in post)
 ```
 
 ---
@@ -905,14 +733,14 @@ Route to product-photo mode, approve the image, then return here.
 
 Choose approach or generate multiple for comparison:
 
-```
-[ ] Slow Reveal (Premium)
-[ ] Orbit Showcase (360)
-[ ] Floating Premium (Tech)
-[ ] Dynamic Energy (Bold)
-[ ] Contextual/Lifestyle
-[ ] Explore multiple (generate 2-3 approaches)
-```
+
+- [ ] Slow Reveal (Premium)
+- [ ] Orbit Showcase (360)
+- [ ] Floating Premium (Tech)
+- [ ] Dynamic Energy (Bold)
+- [ ] Contextual/Lifestyle
+- [ ] Explore multiple (generate 2-3 approaches)
+
 
 ### Step 3: Construct Motion Prompt
 
@@ -928,71 +756,24 @@ Formula:
 
 Before generating, present the cost estimate:
 
-```
-GENERATION PLAN
-─────────────────────────
-Model(s): [list]
+
+### Generation plan
+Roles: [approved roles]
 Clips: [number]
 Duration: [seconds per clip]
 Estimated cost: ~$X.XX
 Estimated time: ~Xmin
 
 Proceed? [Y/n]
-```
 
-### Step 5: Multi-Model Generation
 
-For hero content, run the same prompt through all three models in parallel. For standard content, use the default model (video default role).
+### Step 5: Generate
 
-**video default role (from MODEL_REGISTRY.md):**
-**Mode-specific input fields:** `prompt`, `start_image`, `duration`, `aspect_ratio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
+Generate with the approved role payload from `references/MODEL_REGISTRY.md`. Use Video default for ordinary work or Video production for production requirements. Run Hero comparison only on explicit request, after showing the registry's estimated total and receiving approval. Poll until terminal status; report failures separately.
 
-**hero comparison role (from MODEL_REGISTRY.md):**
-**Mode-specific input fields:** `prompt`, `image`, `duration`, `aspect_ratio`, `resolution`, `generate_audio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
+### Step 6: Present the generated assets
 
-**hero comparison role (from MODEL_REGISTRY.md):**
-**Mode-specific input fields:** `prompt`, `input_reference`, `seconds`, `aspect_ratio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
-
-**Run in parallel.** Poll for completion (~2-6 minutes depending on model).
-
-**Critical reminder:** Always verify payload structure against MODEL_REGISTRY.md before execution. Parameter names differ across models and may change when models update.
-
-### Step 6: Present Options
-
-```markdown
-## Product Video Options Generated
-
-**Source Image:** [URL]
-**Motion Style:** [style description]
-**Aspect Ratio:** [ratio]
-
-### Option 1: video default role
-**Video URL:** [URL]
-**Generation Time:** [actual time]
-**Estimated Cost:** cost: see references/MODEL_REGISTRY.md
-**Audio:** None (silent)
-**Notes:** [any observations]
-
-### Option 2: hero comparison role (with audio)
-**Video URL:** [URL]
-**Generation Time:** [actual time]
-**Estimated Cost:** cost: see references/MODEL_REGISTRY.md
-**Audio:** Native audio generated
-**Notes:** [any observations]
-
-### Option 3: hero comparison role
-**Video URL:** [URL]
-**Generation Time:** [actual time]
-**Estimated Cost:** cost: see references/MODEL_REGISTRY.md
-**Audio:** Native audio generated
-**Notes:** [any observations]
-
-**Which output do you prefer?**
-- Motion quality?
-- Matches product positioning?
-- Audio appropriate?
-- Ready to approve or try different style?
-```
+Inside Content, list only outputs actually generated: role (and numbered member for an approved Hero comparison), URL, actual generation time, estimated cost, audio status, and review notes. Ask the user to select a preferred output when there are alternatives. Keep Files Saved and What's Next under `../_system/output-format.md`.
 
 ### Step 7: Approve or Iterate
 
@@ -1012,31 +793,31 @@ All generated video assets are saved to the campaign directory for the product.
 
 ```
 ./campaigns/{product}/video/
-├── hero-reveal-kling-v1.mp4
-├── hero-reveal-veo-v1.mp4
-├── hero-reveal-sora-v1.mp4
-├── hero-reveal-kling-v2.mp4        (iteration)
-├── orbit-showcase-kling-v1.mp4
+├── hero-reveal-video-default-v1.mp4
+├── hero-reveal-hero-comparison-02-v1.mp4
+├── hero-reveal-hero-comparison-03-v1.mp4
+├── hero-reveal-video-default-v2.mp4        (iteration)
+├── orbit-showcase-video-default-v1.mp4
 ├── sequence/
-|   ├── clip-01-establish.mp4
-|   ├── clip-02-detail.mp4
-|   ├── clip-03-feature.mp4
-|   +── clip-04-hero.mp4
-+── approved/
+│   ├── clip-01-establish.mp4
+│   ├── clip-02-detail.mp4
+│   ├── clip-03-feature.mp4
+│   └── clip-04-hero.mp4
+└── approved/
     ├── hero-reveal-final.mp4        (selected winner)
-    +── orbit-showcase-final.mp4
+    └── orbit-showcase-final.mp4
 ```
 
 ### File Naming Convention
 
 ```
-{style}-{model}-v{version}.mp4
+{style}-{role}-v{version}.mp4
 
 Examples:
-  slow-reveal-kling-v1.mp4
-  orbit-showcase-veo-v1.mp4
-  dynamic-energy-sora-v2.mp4
-  lifestyle-context-kling-v1.mp4
+  slow-reveal-video-default-v1.mp4
+  orbit-showcase-hero-comparison-02-v1.mp4
+  dynamic-energy-hero-comparison-03-v2.mp4
+  lifestyle-context-video-default-v1.mp4
 ```
 
 ### Saving Deliverables
@@ -1100,11 +881,11 @@ After the user approves a video:
 | Looks cheap | Wrong motion style | Match style to positioning |
 | Doesn't loop | Not specified | Add "seamless loop" to prompt |
 | Wrong aspect | Default used | Specify ratio in API call (check MODEL_REGISTRY.md for parameter name) |
-| No audio (Veo) | Not enabled | Set `generate_audio: true` |
+| Requested audio missing | Role settings or post-production issue | Check the role’s audio guidance in `references/MODEL_REGISTRY.md`; revise with a new estimate or add audio in post. |
 | Background changes | Unstable composition | Use cleaner source image |
-| API parameter error | Wrong param name for model | Check cross-model cheat sheet in MODEL_REGISTRY.md |
-| Aspect ratio rejected | Model doesn't support it | Check MODEL_REGISTRY.md — Veo/Sora have no square support |
-| Generation timeout | Model overloaded | Retry; allow extra buffer for hero comparison role |
+| API parameter error | Wrong param name for model | Check the selected role’s payload and gotchas in `references/MODEL_REGISTRY.md` |
+| Aspect ratio rejected | Model doesn't support it | Check the selected role’s ratios in `references/MODEL_REGISTRY.md` |
+| Generation timeout | Model overloaded | Retry; allow extra buffer for Hero comparison |
 | Quality dip mid-video | 10s generation issue | Use 5s clips and stitch instead |
 
 ---
@@ -1144,9 +925,9 @@ Don't iterate on broken foundation:
 - Simpler motion request
 - Different model
 - Lower complexity prompt
-- For Kling: reduce camera speed to avoid edge warping
-- For Veo: check portrait aspect ratio for unexpected cropping
-- For Sora: ensure reference image matches aspect ratio
+- Reduce camera speed if edge warping appears
+- Check portrait framing for unexpected cropping
+- Ensure reference media matches the selected delivery ratio
 ```
 
 ### When Budget Is a Concern
@@ -1155,7 +936,7 @@ Don't iterate on broken foundation:
 **Strategy:** Targeted model selection
 
 ```
-- Use video default role only (cheapest at cost: see references/MODEL_REGISTRY.md)
+- Use Video test for motion experiments; quote the approved delivery role separately.
 - Skip parallel comparison
 - Get motion style right with one model before comparing
 - Use 5s clips, not 10s
@@ -1196,24 +977,26 @@ Don't iterate on broken foundation:
 - Ready to approve or iterate?
 ```
 
-### Multi-Option Output
+### Requested comparison output
+
+Use this only for an explicitly requested, cost-approved Hero comparison; otherwise present the actual single-role outputs.
 ```markdown
 ## Product Video Options
 
 **Source Image:** [URL]
 **Motion Style:** [style]
 
-### Option 1: [Model] (~$[cost])
+### Option 1: [Approved role/member] (~$[cost])
 - URL: [video URL]
 - Audio: [yes/no]
 - Observations: [notes]
 
-### Option 2: [Model] (~$[cost])
+### Option 2: [Approved role/member] (~$[cost])
 - URL: [video URL]
 - Audio: [yes/no]
 - Observations: [notes]
 
-### Option 3: [Model] (~$[cost])
+### Option 3: [Approved role/member] (~$[cost])
 - URL: [video URL]
 - Audio: [yes/no]
 - Observations: [notes]
@@ -1234,7 +1017,7 @@ Don't iterate on broken foundation:
 **Product:** [name]
 **Sequence:** [description]
 **Total Duration:** [seconds]
-**Model:** [model]
+**Role:** [approved role]
 **Total Cost:** ~$[amount]
 
 ### Clip 1: [purpose]
@@ -1270,66 +1053,12 @@ Don't iterate on broken foundation:
 
 ## Integration with Pipeline
 
-```
-PRODUCT VIDEO PIPELINE
-
-+─────────────────────────────────────────+
-|  Request arrives                        |
-|  → Direct or from creative workflow     |
-|  → Source image required?               |
-+─────────────────────────────────────────+
-                    |
-        +───────────┴───────────+
-        ▼                       ▼
-+──────────────────+   +──────────────────+
-|  Has source      |   |  Needs source    |
-|  image           |   |  image           |
-+───────┬──────────+   +────────┬─────────+
-        |                       |
-        |                       ▼
-        |              +──────────────────+
-        |              |  product-photo   |
-        |              |  mode            |
-        |              |  → Generate      |
-        |              |  → Approve       |
-        |              +────────┬─────────+
-        |                       |
-        +───────────┬───────────+
-                    ▼
-+─────────────────────────────────────────+
-|  Motion Style Selection                 |
-|  → Single style or multiple exploration |
-+─────────────────────────────────────────+
-                    |
-                    ▼
-+─────────────────────────────────────────+
-|  Cost Estimation                        |
-|  → Calculate based on models + clips    |
-|  → Present to user for confirmation     |
-+─────────────────────────────────────────+
-                    |
-                    ▼
-+─────────────────────────────────────────+
-|  product-video mode (THIS MODE)         |
-|  → Construct motion prompt              |
-|  → Multi-model parallel generation      |
-|  → Present options                      |
-|  → User selects winner                  |
-|  → Save to campaigns/{product}/video/   |
-+─────────────────────────────────────────+
-                    |
-        +───────────┼───────────+
-        ▼           ▼           ▼
-+──────────+ +──────────+ +──────────────+
-| Delivery | | Clip     | | Route to     |
-| → Final  | | Stitch   | | talking-head |
-|   video  | | → Plan   | | mode         |
-|          | |   more   | | → Voiceover  |
-|          | |   clips  | | → Lip-sync   |
-+──────────+ +──────────+ +──────────────+
-```
-
----
+1. Receive the video brief directly or from `creative/SKILL.md`; use an approved source image when available.
+2. If a source image is needed, produce and approve it through Product Photo first.
+3. Select a motion style (or approved style exploration), duration, and clip count.
+4. Quote the chosen role and total; Hero comparison remains request-only with the registry total approved first.
+5. Generate the approved plan, review outputs, and save selected files under `./campaigns/{product}/video/`.
+6. Deliver the video, plan additional clips for stitching when requested, or route to Talking Head for voiceover/lip-sync.
 
 ## Handoff Protocols
 
@@ -1419,22 +1148,21 @@ Get these four right and you'll outperform most AI product videos.
 ### Multi-Model Strategy
 
 When to invest in parallel comparison:
-- **Hero content** (website banners, launch videos) — Always run all three
-- **Social content** (feed posts, stories) — Default model is fine
-- **Product pages** (e-commerce listings) — Default model, maybe two for key products
-- **Ad creative** (paid campaigns) — Run all three, A/B test the winners
+- **Hero content** (website banners, launch videos) — use Video production; Hero comparison requires an explicit request and approved registry total.
+- **Social content** (feed posts, stories) — Video default.
+- **Product pages** (e-commerce listings) — Video default; compare only on explicit request.
+- **Ad creative** (paid campaigns) — test creative variants on the approved role; compare models only on explicit request.
 
 ### Budget Management
 
-```
-BUDGET TIERS
-─────────────────────────────────
-Lean:     1 model, 1 style         cost: see references/MODEL_REGISTRY.md
-Standard: 1 model, 3 styles        cost: see references/MODEL_REGISTRY.md
-Premium:  3 models, 1 style        cost: see references/MODEL_REGISTRY.md
-Hero:     3 models, 3 styles       cost: see references/MODEL_REGISTRY.md
-Campaign: 3 models, 3 styles, stitch cost: see references/MODEL_REGISTRY.md+
-```
+
+### Budget tiers
+- **Lean:** 1 model, 1 style; estimated from `references/MODEL_REGISTRY.md`
+- **Standard:** 1 model, 3 styles; estimated from `references/MODEL_REGISTRY.md`
+- **Premium:** Hero comparison (opt-in), 1 style; estimated from `references/MODEL_REGISTRY.md`
+- **Hero:** Hero comparison (opt-in), 3 styles; estimated from `references/MODEL_REGISTRY.md`
+- **Campaign:** Hero comparison (opt-in), 3 styles, stitch estimated from `references/MODEL_REGISTRY.md`+
+
 
 ---
 
@@ -1492,9 +1220,8 @@ lifestyle commercial aesthetic, 5 seconds, 4:5
 
 ### Clip Stitch: Premium Headphone Launch (4 clips)
 
-```
+
 CLIP SEQUENCE: Premium Headphone Launch
-─────────────────────────────────────────
 
 Clip 1 — Emergence (5s, 16:9):
 Premium wireless headphones emerging from darkness,
@@ -1519,74 +1246,12 @@ Headphones settling onto reflective surface with elegant motion,
 final hero positioning, dramatic front-facing angle,
 controlled reflections on surface below, premium closing shot,
 commercial end-frame quality, sophisticated motion
-─────────────────────────────────────────
-Estimated: 4 clips x video default role = cost: see references/MODEL_REGISTRY.md, ~5min parallel
-```
+Estimate four clips using Video default pricing in `references/MODEL_REGISTRY.md`; report actual elapsed time after execution.
+
 
 ---
 
-## Appendix: Model API Quick Reference
 
-**Always verify against MODEL_REGISTRY.md before executing.** This appendix is a convenience reference only.
+## Completion
 
-### Image-to-Video Call Patterns
-
-**video default role I2V:**
-```
-Model: video default role
-Image param: start_image
-Duration param: duration (5 or 10)
-Ratio param: aspect_ratio ("16:9", "9:16", "1:1")
-Extras: negative_prompt (guidance_scale has been REMOVED from API)
-```
-
-**hero comparison role I2V:**
-```
-Model: hero comparison role
-Image param: image
-Duration param: duration (4, 6, or 8)
-Ratio param: aspect_ratio ("16:9", "9:16")
-Extras: generate_audio (bool), resolution ("720p", "1080p"), negative_prompt, seed
-```
-
-**hero comparison role I2V:**
-```
-Model: hero comparison role
-Image param: input_reference
-Duration param: seconds (4-12)
-Ratio param: aspect_ratio ("landscape", "portrait")
-Extras: openai_api_key (optional)
-```
-
-### Text-to-Video Call Patterns
-
-**video default role T2V:**
-```
-Model: video default role
-No image param needed
-Duration param: duration (5 or 10)
-Ratio param: aspect_ratio ("16:9", "9:16", "1:1")
-Extras: negative_prompt (guidance_scale has been REMOVED from API)
-```
-
-**hero comparison role T2V:**
-```
-Model: hero comparison role
-No image param needed
-Duration param: duration (4, 6, or 8)
-Ratio param: aspect_ratio ("16:9", "9:16")
-Extras: generate_audio (bool), resolution ("720p", "1080p"), negative_prompt, seed
-```
-
-**hero comparison role T2V:**
-```
-Model: hero comparison role
-No image param needed
-Duration param: seconds (4-12)
-Ratio param: aspect_ratio ("landscape", "portrait")
-Extras: openai_api_key (optional)
-```
-
----
-
-*This mode is part of the Vibe Marketing Skills v2 creative engine. Model configurations are maintained in `references/MODEL_REGISTRY.md`. When model schemas change upstream, MODEL_REGISTRY.md is updated first, then this mode file is updated to match.*
+Done when the agreed assets (or Fallback prompts) are complete, reviewed against this Mode's quality and platform checks, and saved with the approved role, prompt, media, and settings documented. The reported generation and audio status match actual outputs; comparisons were explicitly requested and cost-approved. Deliver and collect feedback through `creative/SKILL.md` and the shared contracts.

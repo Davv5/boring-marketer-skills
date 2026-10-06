@@ -26,34 +26,11 @@ Generic "social media graphics" underperform because they ignore these differenc
 
 ## Model Selection
 
-**Do NOT hardcode model IDs.** Always refer to `references/MODEL_REGISTRY.md` for the current default image model and its verified API payload.
-
-As of this writing, the default image model is **image 4K role** (`image 4K role`), selected for best-in-class typography, photorealism, and style control at 15-40 second generation times.
-
-### How to Call
-
-1. Open `references/MODEL_REGISTRY.md`
-2. Find the **Image Generation** section
-3. Copy the verified payload structure
-4. Insert your constructed prompt and desired aspect ratio
-5. Execute the API call via Replicate
-
-### Why image 4K role for Social Graphics
-
-image 4K role is the single model for all social graphic generation — including text-heavy designs. It handles:
-
-- **Typography rendering:** Legible headlines, quote text, CTAs directly in the image
-- **Platform-native aesthetics:** Photorealism, illustration, minimal, bold — all in one model
-- **Aspect ratio control:** Native support for every social platform ratio (1:1, 4:5, 9:16, 16:9, 2:3, etc.)
-- **Speed:** 15-40 seconds per image means rapid iteration and batch generation
-
-There is no need to route to a separate typography model. image 4K role handles text rendering natively. See the [Text Rendering Instructions](#text-rendering-instructions) section for how to get clean typography.
-
----
+Use **Image default** for ordinary generation and **Image premium** when the request needs 4K or complex work. Read `references/MODEL_REGISTRY.md` for costs, supported inputs, and the complete payload before calling. Copy that payload and substitute the approved prompt, ratio, and media; show the total before paid generation.
 
 ## Text Rendering Instructions
 
-image 4K role has strong native typography capabilities. Use these instructions to get clean, legible text in social graphics.
+Use these prompt techniques and inspect all rendered text. Apply these instructions to get clean, legible text in social graphics.
 
 ### Core Text Rendering Principles
 
@@ -146,7 +123,7 @@ For critical text rendering (legal text, exact brand slogans, phone numbers), ge
 3. This guarantees 100% text accuracy at the cost of an extra step
 ```
 
-For most social media use cases, image 4K role's native text rendering is more than sufficient. The fallback is only needed when every character must be letter-perfect.
+For most social media use cases, generated text may be sufficient after review. The fallback is only needed when every character must be letter-perfect.
 
 ---
 
@@ -418,7 +395,7 @@ high contrast, clear at small size
 
 ### Quote Graphics
 
-image 4K role handles text rendering directly. Use the text rendering instructions from the [Text Rendering Instructions](#text-rendering-instructions) section.
+Image default handles text rendering directly. Use the text rendering instructions from the [Text Rendering Instructions](#text-rendering-instructions) section.
 
 ```
 Minimalist quote graphic for [platform],
@@ -827,20 +804,20 @@ When generating for multiple platforms simultaneously:
 ```
 ./campaigns/{campaign}/social/
 ├── instagram/
-|   ├── day-1-educate.png      (4:5)
-|   ├── day-2-inspire.png      (4:5)
-|   ├── ...
-|   +── day-7-inspire.png      (4:5)
+│   ├── day-1-educate.png      (4:5)
+│   ├── day-2-inspire.png      (4:5)
+│   ├── ...
+│   └── day-7-inspire.png      (4:5)
 ├── linkedin/
-|   ├── day-1-educate.png      (1.91:1)
-|   ├── day-2-inspire.png      (1.91:1)
-|   ├── ...
-|   +── day-7-inspire.png      (1.91:1)
+│   ├── day-1-educate.png      (1.91:1)
+│   ├── day-2-inspire.png      (1.91:1)
+│   ├── ...
+│   └── day-7-inspire.png      (1.91:1)
 ├── twitter/
-|   ├── day-1-educate.png      (16:9)
-|   ├── ...
-|   +── day-7-inspire.png      (16:9)
-+── calendar-summary.md
+│   ├── day-1-educate.png      (16:9)
+│   ├── ...
+│   └── day-7-inspire.png      (16:9)
+└── calendar-summary.md
 ```
 
 Each platform variant uses the same concept but adapts composition and aspect ratio. The template's platform adaptation notes guide the differences.
@@ -925,7 +902,7 @@ Ratio: 1.91:1
 
 For each adapted platform, construct and execute a separate API call:
 
-**Mode-specific input fields:** `prompt`, `aspect_ratio`, `output_format`, `output_quality`, `number_of_images`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
+Use the complete role payload in `references/MODEL_REGISTRY.md`.
 
 Generate all platform variants in parallel when possible to minimize total wait time.
 
@@ -970,7 +947,7 @@ Refer to `references/MODEL_REGISTRY.md` for the verified API payload. Insert you
 
 ```
 1. Open references/MODEL_REGISTRY.md
-2. Copy the Image Generation verified payload
+2. Copy the selected Image default or Image premium payload from `references/MODEL_REGISTRY.md`
 3. Insert prompt and aspect_ratio
 4. Execute via Replicate API
 5. Access output[0] for the image URL
@@ -1027,18 +1004,18 @@ When one concept needs multiple platforms:
 
 ### Batch Generation
 
-```
+
 For campaign "Product Launch":
-├── instagram/
-|   ├── feed-4x5.png               (4:5) - primary
-|   +── stories-9x16.png           (9:16) - adapted
-├── linkedin/
-|   +── feed-1.91x1.png            (1.91:1) - professional version
-├── twitter/
-|   +── feed-16x9.png              (16:9) - punchy version
-+── facebook/
-    +── feed-1.91x1.png            (1.91:1) - broader appeal version
-```
+- instagram/
+  - feed-4x5.png               (4:5) - primary
+  - stories-9x16.png           (9:16) - adapted
+- linkedin/
+  - feed-1.91x1.png            (1.91:1) - professional version
+- twitter/
+  - feed-16x9.png              (16:9) - punchy version
+- facebook/
+- feed-1.91x1.png            (1.91:1) - broader appeal version
+
 
 ---
 
@@ -1051,36 +1028,36 @@ All social graphics are saved to an organized directory structure for easy hando
 ```
 ./campaigns/{campaign-name}/social/
 ├── instagram/
-|   ├── feed/
-|   |   ├── {concept}-4x5.png
-|   |   +── ...
-|   ├── stories/
-|   |   ├── {concept}-9x16.png
-|   |   +── ...
-|   +── reels/
-|       +── {concept}-cover-9x16.png
+│   ├── feed/
+│   │   ├── {concept}-4x5.png
+│   │   └── ...
+│   ├── stories/
+│   │   ├── {concept}-9x16.png
+│   │   └── ...
+│   └── reels/
+│       └── {concept}-cover-9x16.png
 ├── youtube/
-|   ├── thumbnails/
-|   |   ├── {concept}-16x9.png
-|   |   +── ...
-|   +── community/
-|       +── {concept}-1x1.png
+│   ├── thumbnails/
+│   │   ├── {concept}-16x9.png
+│   │   └── ...
+│   └── community/
+│       └── {concept}-1x1.png
 ├── linkedin/
-|   ├── {concept}-1.91x1.png
-|   +── ...
+│   ├── {concept}-1.91x1.png
+│   └── ...
 ├── twitter/
-|   ├── {concept}-16x9.png
-|   +── ...
+│   ├── {concept}-16x9.png
+│   └── ...
 ├── pinterest/
-|   ├── {concept}-2x3.png
-|   +── ...
+│   ├── {concept}-2x3.png
+│   └── ...
 ├── facebook/
-|   ├── {concept}-1.91x1.png
-|   +── ...
+│   ├── {concept}-1.91x1.png
+│   └── ...
 ├── tiktok/
-|   ├── {concept}-cover-9x16.png
-|   +── ...
-+── calendar-summary.md (if using content calendar mode)
+│   ├── {concept}-cover-9x16.png
+│   └── ...
+└── calendar-summary.md (if using content calendar mode)
 ```
 
 ### File Naming Convention
@@ -1316,55 +1293,11 @@ After each successful generation:
 
 ## Integration with Creative Engine
 
-```
-SOCIAL GRAPHICS PIPELINE
-
-+─────────────────────────────────────────+
-|  Request with platform specified        |
-|  -> Or route from creative/SKILL.md    |
-+─────────────────────────────────────────+
-                    |
-                    v
-+─────────────────────────────────────────+
-|  LOAD BRAND CONTEXT                     |
-|  -> Read ./brand/creative-kit.md       |
-|  -> Load template if exists            |
-|  -> Extract brand colors, style, tone  |
-+─────────────────────────────────────────+
-                    |
-                    v
-+─────────────────────────────────────────+
-|  social-graphics mode (THIS FILE)       |
-|  -> Identify platform requirements     |
-|  -> Apply platform-specific template   |
-|  -> Apply brand template if available  |
-|  -> Generate with MODEL_REGISTRY.md    |
-|  -> Review against platform checklist  |
-+─────────────────────────────────────────+
-                    |
-        +───────────┴───────────+
-        v                       v
-+──────────────────+   +──────────────────+
-|  Single Platform |   |  Multi-Platform  |
-|  -> Generate     |   |  -> Generate     |
-|  -> Save to      |   |    primary       |
-|    campaigns/    |   |  -> Auto-adapt   |
-|                  |   |    variants      |
-|                  |   |  -> Save all to  |
-|                  |   |    campaigns/    |
-+──────────────────+   +──────────────────+
-        |                       |
-        v                       v
-+──────────────────+   +──────────────────+
-|  Content Calendar|   |  Template Save   |
-|  -> Batch gen    |   |  -> If new style |
-|  -> All pillars  |   |    approved,     |
-|  -> Calendar     |   |    save to       |
-|    summary       |   |    creative-kit  |
-+──────────────────+   +──────────────────+
-```
-
----
+1. Receive the requested platforms directly or from `creative/SKILL.md`.
+2. Apply loaded creative-kit colors, style, tone, and any approved brand template.
+3. Match platform requirements and generate with the approved image role payload.
+4. Review the platform checklist. For one platform, save its graphic; for multiple platforms, adapt the primary concept separately and save every variant.
+5. For a calendar, batch the agreed content pillars and save a calendar summary. If a new reusable style is approved, save it to the creative kit.
 
 ## Handoff Protocols
 
@@ -1418,7 +1351,7 @@ Return:
 5. **Bold beats subtle** — Social is noisy, you need to pop
 6. **Templates create consistency** — Save your winning style and reuse it
 7. **Calendar mode saves hours** — Batch generation beats one-at-a-time
-8. **Text rendering works** — image 4K role handles headlines natively, no separate tool needed
+8. **Text rendering works** — inspect generated headlines; composite exact text in post when needed
 
 ### What Doesn't Work
 1. **One size fits all** — Generic "social media" prompts
@@ -1497,3 +1430,7 @@ Get these four right and you'll outperform most content.
 6. Verify text renders cleanly
 7. If text is garbled, regenerate or use fallback (background + post-production text)
 ```
+
+## Completion
+
+Done when the agreed assets (or Fallback prompts) are complete, reviewed against this Mode's quality and platform checks, and saved with the approved role, prompt, media, and settings documented. The reported generation and audio status match actual outputs; comparisons were explicitly requested and cost-approved. Deliver and collect feedback through `creative/SKILL.md` and the shared contracts.
