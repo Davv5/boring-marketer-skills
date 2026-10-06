@@ -38,3 +38,15 @@ Keep the campaign layout in `_system/brand-memory.md` §Campaigns as the source 
 - Requested scorecard: use a compact table or list with all seven dimension scores, total, verdict, and priority fixes.
 
 All presentations remain inside `_system/output-format.md`'s four sections.
+
+## File Naming
+
+The Format-specific filename patterns above retain the former naming conventions. `brief.md` and campaign directory layout follow `_system/brand-memory.md` §Campaigns.
+
+## File Frontmatter
+
+The saved-copy frontmatter above retains the former metadata fields; include only values supported by the brief and omit unknown values.
+
+## After Writing
+
+Step 4 saves each requested copy file and appends its asset entry; Step 5 reports saved paths under Files Saved.
