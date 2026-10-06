@@ -20,6 +20,8 @@ A **warning** is a judgement call: how a pointer is worded, where material sits 
 - No box frames or heavy dividers (┌ ┐ └ ┘ │ ━) in any skill or `_system` markdown file. Tree diagrams (├── └── │) are allowed inside code fences; ✓ ✗ ★ → are allowed anywhere.
 - Warning only: SKILL.md over 500 lines.
 
+`bash _system/scripts/loss-check.sh` reports base-ref heading bodies whose non-empty normalized text occurs nowhere in current skill or `_system` markdown. Identical relocated text does not warn. `BASE_REF` defaults to `origin/main`; CI uses the pull request base commit. This script always exits 0: investigate its warnings during review, since edits and legitimate deletions can also warn.
+
 ## Pack rules
 
 - **Markdown output** ([ADR 0002](../adr/0002-markdown-output-format.md)). Output is markdown in four sections (Header, Content, Files Saved, What's Next) with ✓ ✗ ★ status symbols and → next steps.

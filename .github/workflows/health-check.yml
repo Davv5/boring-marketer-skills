@@ -1,5 +1,5 @@
 # Runs the health check (doctor.sh, which lints the pack) on a fresh install,
-# then the fresh-install test. Expected red until #16 lands.
+# then the fresh-install test. Pull requests also report possible text loss.
 name: Health check
 
 on:
@@ -11,6 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Loss check against pull request base
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.sha }}
+        run: bash _system/scripts/loss-check.sh
+
+      - name: Check regression fixtures
+        run: |
+          bash _system/scripts/test-lint-skills.sh
+          bash _system/scripts/test-loss-check.sh
 
       - name: Health check with lint
         run: |
