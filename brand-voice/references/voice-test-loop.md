@@ -16,6 +16,6 @@ Ask: “Does this sound like you?” Offer:
 
 ## Three-round checkpoint
 
-After three rounds without confirmation, offer to save the current version for later refinement, take one more round if the likely fix is clear, or restart in Build Mode with its 15 questions. A provisional save requires the user's choice.
+After three rounds without confirmation, offer to save the current version for later refinement, take one more round if the likely fix is clear, or restart in Build Mode with its 15 questions. A provisional save requires the user's choice. <!-- lint-allow-avoid: Build Mode -->
 
 **Done:** The user confirms the samples or explicitly chooses a provisional save after considering the available next steps.

@@ -193,7 +193,7 @@ INSTALL_DIR="$TVM_INSTALL_HOME/skills"
 
 # Expected files: everything under _system and under each skill folder
 # (a top-level folder holding SKILL.md) in the source.
-EXPECTED_FILES=()
+EXPECTED_FILES=("GLOSSARY.md")
 while IFS= read -r -d '' file; do
   EXPECTED_FILES+=("${file#$EXTRACTED_ROOT/}")
 done < <(

@@ -240,7 +240,7 @@ STYLE ARCHITECTURE:
 - Texture: "Film grain, natural skin texture"
 - Mood: "Contemplative tension, quiet intensity"
 
-**4. The Iteration Loop**
+**4. The Iteration Loop** <!-- lint-allow-avoid: Iteration -->
 
 Professional workflow: Generate → Critique → Refine (repeat)
 

@@ -1448,7 +1448,7 @@ After the user approves a video:
 
 ---
 
-## Iteration Strategies
+## Iteration Strategies <!-- lint-allow-avoid: Iteration -->
 
 ### When Presenter Is Close But Not Right
 

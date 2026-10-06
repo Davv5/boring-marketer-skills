@@ -157,11 +157,11 @@ For news briefing and curated link formats, this skill uses web search to pull c
 
 Web search is used when the newsletter format requires external content:
 
-1. **News Briefing format (Template 2):** Search for the latest news in the user's niche. Pull 5-10 stories from the past 24-72 hours. Prioritize stories with business implications.
+1. **News Briefing Format:** Search for the latest news in the user's niche. Pull 5-10 stories from the past 24-72 hours. Prioritize stories with business implications.
 
-2. **Curated Links format (Template 3):** Search for high-quality articles, tools, and resources relevant to the user's topic. Prioritize original research, actionable guides, and new tools.
+2. **Curated Links Format:** Search for high-quality articles, tools, and resources relevant to the user's topic. Prioritize original research, actionable guides, and new tools.
 
-3. **Irreverent News format (Template 6):** Search for news stories with surprising angles. Look for the weird, unexpected, or counterintuitive in the user's space.
+3. **Irreverent News Format:** Search for news stories with surprising angles. Look for the weird, unexpected, or counterintuitive in the user's space.
 
 4. **Any format when the user specifies a topic:** Search for current data, statistics, examples, and trends related to the specified topic to ground the newsletter in reality.
 
@@ -225,7 +225,7 @@ Step 4: Integrate into newsletter
 - Cut anything that's "fine but not great"
 
 ### Step 3: Structure
-- Choose your template
+- Choose your Format
 - Outline before writing
 - Front-load the best stuff
 

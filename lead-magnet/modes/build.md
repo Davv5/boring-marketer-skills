@@ -1,11 +1,11 @@
-# Build Mode: Complete Resource Guidance
+# Build Mode: Complete Resource Guidance <!-- lint-allow-avoid: Build Mode -->
 
 Load this file when producing the selected lead magnet. The main skill owns brand-memory, campaign-brief and shared output protocols.
 
 For an existing campaign, check `./campaigns/*/` for existing `lead-magnet.md` assets and checks `./brand/assets.md`. When one exists and the user intent is ambiguous, summarize campaign name, Format, title, hook and available landing page, then ask whether to revise it, create a distinct magnet, or develop additional concepts. Read the existing asset before revision. Build saves use lowercase kebab case derived from the concept name.
 
 
-### Build Mode Activation
+### Build Mode Activation <!-- lint-allow-avoid: Build Mode -->
 
 Build mode activates when the user says:
 - "Build 1" / "Build ①" / "Let's go with concept 1"

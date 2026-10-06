@@ -46,7 +46,26 @@ expect_clean() {
   if ! lint; then cat "$TEMP/output"; exit 1; fi
 }
 
-case "${1:-models}" in
+case "${1:-all}" in
+  all)
+    for rule in models glossary; do bash "$0" "$rule"; done
+    ;;
+  glossary)
+    printf '\n_Avoid_: Fixture Term, using "mode" for something else\n' >> "$TEMP/GLOSSARY.md"
+    printf '\nUse Fixture Term.\n' >> "$TEMP/sample/SKILL.md"
+    expect_failure 'glossary Avoid term: Fixture Term'
+    sed '$d' "$TEMP/sample/SKILL.md" > "$TEMP/clean"
+    mv "$TEMP/clean" "$TEMP/sample/SKILL.md"
+    printf 'Use Fixture Term. <!-- lint-allow-avoid: Fixture Term -->\n' >> "$TEMP/sample/SKILL.md"
+    printf 'A modal mode, a prototype, type and template are not mechanical Avoid terms.\n```text\nReturning Mode\n```\n' >> "$TEMP/sample/SKILL.md"
+    expect_clean
+    printf 'Returning Mode is forbidden. <!-- lint-allow-avoid: Fixture Term -->\n' >> "$TEMP/sample/SKILL.md"
+    expect_failure 'glossary Avoid term: Returning Mode'
+    sed '$d' "$TEMP/sample/SKILL.md" > "$TEMP/clean"
+    mv "$TEMP/clean" "$TEMP/sample/SKILL.md"
+    rm "$TEMP/GLOSSARY.md"
+    expect_failure 'GLOSSARY.md  missing glossary'
+    ;;
   models)
     # A new table entry must become forbidden without changing the linter.
     printf '\n| Test role | `fixture/new-model` | $0.01 | Test | Test |\n' >> "$TEMP/creative/references/MODEL_REGISTRY.md"
@@ -64,4 +83,4 @@ case "${1:-models}" in
     ;;
   *) echo "Unknown case: $1" >&2; exit 2 ;;
 esac
-echo "PASS: lint $1"
+echo "PASS: lint ${1:-all}"

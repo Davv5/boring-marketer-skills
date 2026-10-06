@@ -890,7 +890,7 @@ After the user approves a video:
 
 ---
 
-## Iteration Strategies
+## Iteration Strategies <!-- lint-allow-avoid: Iteration -->
 
 ### When Motion Is Close But Not Right
 

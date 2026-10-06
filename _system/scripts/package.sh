@@ -132,7 +132,7 @@ fi
 success "Zip archive created"
 
 # ---------------------------------------------------------------------------
-# Expected manifest: README.md, everything under _system and under each skill
+# Expected manifest: README.md, GLOSSARY.md, _system and each skill
 # folder (a top-level folder holding SKILL.md), minus the excluded patterns
 # ---------------------------------------------------------------------------
 is_excluded() {
@@ -154,7 +154,7 @@ while IFS= read -r -d '' file; do
     EXPECTED_FILES+=("$expected")
   fi
 done < <(
-  printf '%s\0' "$SKILLS_ROOT/README.md"
+  printf '%s\0' "$SKILLS_ROOT/README.md" "$SKILLS_ROOT/GLOSSARY.md"
   find "$SKILLS_ROOT/_system" -type f -print0
   for skill_file in "$SKILLS_ROOT"/*/SKILL.md; do
     find "$(dirname "$skill_file")" -type f -print0

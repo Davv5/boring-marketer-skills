@@ -1,4 +1,4 @@
-# Build Mode
+# Build Mode <!-- lint-allow-avoid: Build Mode -->
 
 Use when starting fresh, when existing content is weak or generic, or when the user wants to evolve the voice strategically. Treat answers as intended voice, not evidence of established practice.
 

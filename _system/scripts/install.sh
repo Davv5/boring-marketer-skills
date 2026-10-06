@@ -129,6 +129,7 @@ copy_tree() {
 # --- System files ---
 info "Installing system files..."
 copy_tree "$SKILLS_ROOT/_system" "$SYSTEM_DIR"
+cp "$SKILLS_ROOT/GLOSSARY.md" "$SKILLS_DIR/GLOSSARY.md"
 # Preserve execute permissions
 chmod +x "$SYSTEM_DIR/scripts/"*.sh 2>/dev/null || true
 success "_system/ ($(find "$SYSTEM_DIR" -type f | wc -l | tr -d ' ') files)"
@@ -145,7 +146,7 @@ done
 # ---------------------------------------------------------------------------
 # Summary
 # ---------------------------------------------------------------------------
-TOTAL_FILES=$(find "$SYSTEM_DIR" -type f 2>/dev/null | wc -l | tr -d ' ')
+TOTAL_FILES=$((1 + $(find "$SYSTEM_DIR" -type f 2>/dev/null | wc -l | tr -d ' ')))
 for skill in "${SKILLS[@]}"; do
   TOTAL_FILES=$((TOTAL_FILES + $(find "$SKILLS_DIR/$skill" -type f 2>/dev/null | wc -l | tr -d ' ')))
 done

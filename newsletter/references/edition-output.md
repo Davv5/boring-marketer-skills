@@ -45,7 +45,7 @@ Each saved newsletter file follows this structure:
 
 ## Newsletter Content
 
-{Full newsletter body, formatted per the chosen template}
+{Full newsletter body, formatted per the chosen Format}
 
 ---
 

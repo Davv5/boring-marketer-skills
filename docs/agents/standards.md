@@ -15,6 +15,8 @@ A **warning** is a judgement call: how a pointer is worded, where material sits 
 - Every pointer resolves. Write a pointer as a path: `references/x.md` or `modes/x.md` from the skill folder, `../_system/x.md`, or `<skill>/SKILL.md` from the pack root. A bare file name is not a pointer, so lint cannot check it.
 - Every file in a skill folder besides SKILL.md is pointed to by another file.
 - Every SKILL.md frontmatter has `name` and `description`.
+- Model slugs parsed from the registry, and same-line model prices, appear only in `creative/references/MODEL_REGISTRY.md`. The registry is required when creative is installed.
+- Named terms parsed from GLOSSARY.md _Avoid_ lists are forbidden in prose, headings and paths (case-sensitive, outside fenced code). Explanatory “using ...” prose and single lowercase sense-dependent words (`type`, `template`) remain review-only. The glossary is required, including in installed packs. For a legitimate other sense, add a term-specific line-local escape: `<!-- lint-allow-avoid: Build Mode -->`. For example, Build Mode may name actual work, not a first run; Iteration may mean creative refinement, not a returning run.
 - No box frames or heavy dividers (┌ ┐ └ ┘ │ ━) in any skill or `_system` markdown file. Tree diagrams (├── └── │) are allowed inside code fences; ✓ ✗ ★ → are allowed anywhere.
 - Warning only: SKILL.md over 500 lines.
 

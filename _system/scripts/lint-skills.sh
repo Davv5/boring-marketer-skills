@@ -171,6 +171,27 @@ if [[ -f "$REGISTRY" ]]; then
   ' "$REGISTRY" > "$WORK_DIR/models"
 fi
 
+# Named comma-separated Avoid terms; explanatory "using ..." prose is not a term.
+# Single lowercase words (type/template) are sense-dependent and review-only.
+: > "$WORK_DIR/avoid"
+if [[ -f GLOSSARY.md ]]; then
+  awk '
+    /^_Avoid_:[ \t]*using[ \t]/ { next }
+    /^_Avoid_:/ {
+      sub(/^_Avoid_:[ \t]*/, "")
+      n = split($0, terms, ",")
+      for (i = 1; i <= n; i++) {
+        term = terms[i]
+        sub(/[ \t]*\(.*$/, "", term)
+        gsub(/^[ \t]+|[ \t]+$/, "", term)
+        if (term != "" && term !~ /^using[ \t]/ && term !~ /^[a-z]+$/) print term
+      }
+    }
+  ' GLOSSARY.md > "$WORK_DIR/avoid"
+else
+  fail "GLOSSARY.md  missing glossary"
+fi
+
 # ---------------------------------------------------------------------------
 # Lint each target
 # ---------------------------------------------------------------------------
@@ -249,6 +270,43 @@ for target in "${TARGETS[@]}"; do
         }
       }
     ' "$WORK_DIR/models" "$file")
+  done < <(find "$target" -type f -name '*.md' -not -name '.*' | sort)
+
+  # --- Glossary Avoid terms, with a term-specific line-local escape ---
+  while IFS= read -r file; do
+    while IFS=$'\t' read -r line term; do
+      fail "$file:$line  glossary Avoid term: $term"
+    done < <(awk '
+      NR == FNR { terms[$0] = 1; next }
+      /^[ 	]*(```|~~~)/ { fence = !fence; next }
+      fence { next }
+      {
+        text = $0
+        allowed = ""
+        rest = text
+        while (match(rest, /<!--[ \t]*lint-allow-avoid:[^>]*-->/)) {
+          escape = substr(rest, RSTART, RLENGTH)
+          sub(/^<!--[ \t]*lint-allow-avoid:[ \t]*/, "", escape)
+          sub(/[ \t]*-->$/, "", escape)
+          allowed = allowed "\t" escape "\t"
+          rest = substr(rest, RSTART + RLENGTH)
+        }
+        gsub(/<!--[ \t]*lint-allow-avoid:[^>]*-->/, "", text)
+        for (term in terms) {
+          if (index(allowed, "\t" term "\t")) continue
+          rest = text
+          while ((pos = index(rest, term)) > 0) {
+            before = pos > 1 ? substr(rest, pos - 1, 1) : ""
+            after = substr(rest, pos + length(term), 1)
+            if (before !~ /[[:alnum:]_]/ && after !~ /[[:alnum:]_]/) {
+              print FNR "\t" term
+              break
+            }
+            rest = substr(rest, pos + length(term))
+          }
+        }
+      }
+    ' "$WORK_DIR/avoid" "$file")
   done < <(find "$target" -type f -name '*.md' -not -name '.*' | sort)
 
   # --- Box frames and heavy dividers ---

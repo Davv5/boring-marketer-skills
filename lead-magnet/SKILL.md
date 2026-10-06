@@ -42,7 +42,7 @@ Load [`modes/ideate.md`](modes/ideate.md) for the detailed concept frameworks an
 
 For business-type-specific strategy, load [`references/info-product-magnets.md`](references/info-product-magnets.md) for info products/coaching, [`references/saas-magnets.md`](references/saas-magnets.md) for software businesses, and [`references/services-magnets.md`](references/services-magnets.md) for service businesses. Load [`references/psychology.md`](references/psychology.md) when developing or assessing the value exchange and conversion rationale. Use [`references/format-examples.md`](references/format-examples.md) when examples by Format will help distinguish concepts.
 
-## Build Mode
+## Build Mode <!-- lint-allow-avoid: Build Mode -->
 
 Read `modes/build.md` when entering Build for Format-specific production requirements and the worked checklist example.
 

@@ -1,6 +1,6 @@
 # Lead Magnet Format Examples
 
-Best-in-class examples organized by format type.
+Best-in-class examples organized by Format.
 
 ---
 
