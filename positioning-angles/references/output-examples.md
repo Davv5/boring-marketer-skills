@@ -2,8 +2,6 @@
 
 Load this reference when showing a worked example, saving selected positioning, or generating the optional ad-matrix seed.
 
-## File output protocol
-
 ## Saved positioning format
 
 ```markdown
@@ -32,7 +30,7 @@ White space identified:
 - Headline: [Headline]
 ```
 
-Include every angle actually presented. Keep sourced observations distinct from hypotheses and include useful source URLs where available. Follow `_system/brand-memory.md` §Write for the shared file conventions.
+Include every angle actually presented. Keep sourced observations distinct from hypotheses and include useful source URLs where available. Follow `../_system/brand-memory.md` §Write for the shared file conventions.
 
 ## Angle Options
 

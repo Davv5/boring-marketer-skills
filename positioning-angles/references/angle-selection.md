@@ -48,15 +48,15 @@ Check each candidate:
 4. **Audience relevance:** verify fit with loaded audience segments and pain points; beginner language may fail for experts.
 5. **Usability:** ensure a headline and downstream copy can follow from it.
 
-## Iteration and update mode
+## Returning run
 
-When `./brand/positioning.md` exists, show the current primary angle, statement, and last-updated date, then offer refine or first run from scratch. Preserve the current file until the user confirms a replacement.
+When `./brand/positioning.md` exists, show the current primary angle, statement, and last-updated date, then offer refine or rebuild from scratch. Preserve the current file until the user confirms a replacement.
 
 ### Display current state
 
 Show the current primary angle, statement, last-updated date, and the choice to refine or start fresh.
 
-### Refine mode
+### Refine existing positioning
 
 1. Load saved angles and run fresh competitive web research.
 2. Compare the new landscape with the saved one.
@@ -64,13 +64,11 @@ Show the current primary angle, statement, last-updated date, and the choice to 
 4. State whether the current angle still has room, needs sharpening, or a new opportunity supports a pivot. Do not recommend change without a reason.
 5. Present 1–3 refinements beside the original; let the user keep, tweak, or replace it.
 
-### Start fresh mode
+### Rebuild positioning
 
 Run the full skill process; preserve existing positioning until explicit replacement confirmation.
 
-## How this skill gets invoked
-
-## What this skill is NOT
+## Invocation and scope
 
 Activate when the user asks how to position an offer, find its angle or hook, diagnose weak sales, differentiate it, or establish positioning before writing a landing page or copy. A downstream skill may invoke this work when it needs a strategic angle.
 
