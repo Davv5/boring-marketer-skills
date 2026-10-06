@@ -18,6 +18,8 @@ Follow [`../_system/brand-memory.md`](../_system/brand-memory.md) §Read and loa
 
 ## Ideate Mode
 
+Load [`modes/ideate.md`](modes/ideate.md) for the detailed concept frameworks and research process. Use [`modes/build.md`](modes/build.md) only when entering Build Mode.
+
 1. Establish business type (info product, SaaS, or services), paid offer and transformation, target audience, and any user constraints. Ask only for missing information needed to make useful recommendations.
 2. Research competitor lead magnets with web search when available. Note observed formats, hooks, gaps, and crowded approaches. If search is unavailable, label the research unavailable and base recommendations on supplied context.
 3. Develop 3–5 distinct concepts. Each names the resource and Format, a specific outcome and hook, the audience, the bridge to the paid offer, and realistic effort/resources. Prefer a fast, complete win over a broad teaser. Recommend the best-fit option with a concise reason.
@@ -30,7 +32,7 @@ For business-type-specific strategy, load [`references/info-product-magnets.md`]
 1. Confirm the selected concept, Format, audience, and paid-offer bridge. Ask for missing facts that materially affect accuracy; do not invent business claims or data.
 2. Create the complete resource in the selected Format. Give the reader an actionable result, make the promised outcome feasible, and connect the next step to the paid offer without making the free resource a mere teaser.
 3. Save the deliverable as `./campaigns/{kebab-case-name}/lead-magnet.md`. If a campaign needs a brief, use the canonical campaign layout and brief in [`../_system/brand-memory.md`](../_system/brand-memory.md) §Campaigns; don't restate that schema. Append the asset to `./brand/assets.md` following [`../_system/brand-memory.md`](../_system/brand-memory.md) §Write when brand memory exists. With no brand directory, save the campaign deliverable and report that no brand registry was available.
-4. Deliver the complete resource and a concise summary using the four-section contract in [`../_system/output-format.md`](../_system/output-format.md). Disclose format-specific build summaries in [`references/format-examples.md`](references/format-examples.md) when the selected Format needs an example. Offer relevant next steps: landing page via `/direct-response-copy`, delivery sequence via `/email-sequences`, or promotion via `/content-atomizer`.
+4. Deliver the complete resource and a concise summary using the four-section contract in [`../_system/output-format.md`](../_system/output-format.md). Disclose format-specific build summaries in [`references/format-examples.md`](references/format-examples.md) when the selected Format needs an example. Offer the funnel chain: landing page via `/direct-response-copy` (pass title, hook, format, audience, bridge); delivery and welcome sequence via `/email-sequences` (pass name, format, bridge, paid-offer details); social promotion via `/content-atomizer` (pass the saved resource). State why each next piece follows from this resource.
 5. After delivery, follow [`../_system/brand-memory.md`](../_system/brand-memory.md) §Feedback. Record only lead-magnet-specific details needed for future learning. Completion: saved files are listed, the requested resource is complete, and feedback has been handled or is awaiting the user's response.
 
 ## Format guidance
