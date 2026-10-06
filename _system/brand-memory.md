@@ -187,7 +187,7 @@ Files with a structured contract have a JSON Schema in `_system/schemas/`. The s
 | ./brand/voice-profile.md | voice-profile.schema.json | /brand-voice |
 | ./brand/keyword-plan.md | keyword-plan.schema.json | /keyword-research |
 | Content brief, `./campaigns/content-plan/{keyword-slug}.md` | content-brief.schema.json, with its markdown template in `_system/content-brief.md` | /keyword-research (read by /seo-content) |
-| Email sequence summary, in the sequence's `./campaigns/{name}/` directory | email-sequence-summary.schema.json | /email-sequences |
+| ./campaigns/{name}/sequence-summary.md | email-sequence-summary.schema.json | /email-sequences |
 
 ---
 
