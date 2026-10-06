@@ -48,7 +48,15 @@ expect_clean() {
 
 case "${1:-all}" in
   all)
-    for rule in models glossary headings system-orphans; do bash "$0" "$rule"; done
+    for rule in models registry glossary headings system-orphans; do bash "$0" "$rule"; done
+    ;;
+  registry)
+    # A single-skill lint still requires the registry if creative is installed.
+    lint() { bash "$SCRIPT_DIR/lint-skills.sh" "$TEMP/sample" > "$TEMP/output" 2>&1; }
+    rm "$TEMP/creative/references/MODEL_REGISTRY.md"
+    expect_failure 'missing model registry table'
+    rm -rf "$TEMP/creative"
+    expect_clean
     ;;
   system-orphans)
     printf '# Shared\nSee _system/shared.md.\n' > "$TEMP/_system/shared.md"

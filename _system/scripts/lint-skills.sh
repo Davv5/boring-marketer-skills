@@ -6,7 +6,10 @@
 #   - every pointer to a pack path resolves
 #   - every file in a skill folder besides SKILL.md is pointed to by
 #     another file
-#   - every SKILL.md has a name and a description in its frontmatter
+#   - every SKILL.md has name/description frontmatter and Reads/Writes headings
+#   - shared markdown outside scripts/schemas has an inbound pointer
+#   - model slugs/prices stay in the installed creative model registry
+#   - glossary Avoid names stay out of prose (documented other-sense escape)
 #   - no box frames or heavy dividers (┌ ┐ └ ┘ │ ━) in any markdown file;
 #     tree diagrams are allowed inside code fences
 #   - warns (does not fail) when a SKILL.md is over 500 lines
@@ -171,6 +174,10 @@ if [[ -f "$REGISTRY" ]]; then
   ' "$REGISTRY" > "$WORK_DIR/models"
 fi
 
+if [[ -d creative && ! -s "$WORK_DIR/models" ]]; then
+  fail "$REGISTRY  missing model registry table"
+fi
+
 # Named comma-separated Avoid terms; explanatory "using ..." prose is not a term.
 # Single lowercase words (type/template) are sense-dependent and review-only.
 : > "$WORK_DIR/avoid"
@@ -258,9 +265,6 @@ for target in "${TARGETS[@]}"; do
     done < "$WORK_DIR/orphans"
 
   # --- Model slugs and prices have one home ---
-  if [[ "$target" == "creative" && ! -s "$WORK_DIR/models" ]]; then
-    fail "$REGISTRY  missing model registry table"
-  fi
   while IFS= read -r file; do
     [[ "$file" == "$REGISTRY" ]] && continue
     while IFS=$'\t' read -r line kind; do
