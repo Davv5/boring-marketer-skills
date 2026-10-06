@@ -14,8 +14,8 @@ Generate talking head videos, presenter content, UGC-style testimonials, and lip
 
 **The problem:** Talking head videos are the most persuasive content format but:
 1. Recording yourself is time-consuming and requires confidence
-2. Professional presenters are expensive ($500-5000+ per video)
-3. UGC creators charge $100-500 per post and may not match your brand
+2. Professional presenters are expensive (cost: see references/MODEL_REGISTRY.md+ per video)
+3. UGC creators charge cost: see references/MODEL_REGISTRY.md per post and may not match your brand
 4. Iterating on scripts means re-filming everything
 5. Scaling personalized video is nearly impossible manually
 6. Each video model has a different API interface, making multi-model comparison error-prone
@@ -53,15 +53,15 @@ As of this writing, the models used in this mode are:
 
 | Role | Model | Registry Section | Estimated Cost (5s clip) |
 |------|-------|-----------------|--------------------------|
-| **Default** | Kling 2.5 Turbo Pro | Video Generation > Default Model | ~$0.40 |
-| **Comparison** | Google Veo 3.1 | Video Generation > Comparison Model: Google Veo 3.1 | ~$0.80-1.50 |
-| **Comparison** | OpenAI Sora 2 | Video Generation > Comparison Model: OpenAI Sora 2 | ~$0.60-1.20 |
+| **Default** | video default role | Video Generation > Default Model | cost: see references/MODEL_REGISTRY.md |
+| **Comparison** | hero comparison role | Video Generation > Comparison Model: hero comparison role | cost: see references/MODEL_REGISTRY.md |
+| **Comparison** | hero comparison role | Video Generation > Comparison Model: hero comparison role | cost: see references/MODEL_REGISTRY.md |
 
 ### Lip-Sync Model
 
 | Role | Model | Registry Section | Estimated Cost |
 |------|-------|-----------------|---------------|
-| **Lip-Sync** | Kling Lip-Sync | Lip-Sync > Model: Kling Lip-Sync | ~$0.30-0.60 |
+| **Lip-Sync** | lip-sync role | Lip-Sync > Model: lip-sync role | cost: see references/MODEL_REGISTRY.md |
 
 ### How to Call
 
@@ -76,7 +76,7 @@ As of this writing, the models used in this mode are:
 
 Every video model uses different parameter names for the same concept. Always consult MODEL_REGISTRY.md before writing any API call.
 
-| Concept | Kling 2.5 | Veo 3.1 | Sora 2 |
+| Concept | video default role | hero comparison role | hero comparison role |
 |---------|-----------|---------|--------|
 | **Starting image** | `start_image` | `image` | `input_reference` |
 | **Duration** | `duration` (5, 10) | `duration` (4, 6, 8) | `seconds` (4-12) |
@@ -92,21 +92,21 @@ Every video model uses different parameter names for the same concept. Always co
 
 Refer to MODEL_REGISTRY.md for authoritative details. Summary for presenter-specific routing decisions:
 
-**Kling 2.5 Turbo Pro (Default for Talking Heads):**
+**video default role (Default for Talking Heads):**
 - Best for people and natural movement
 - Most realistic human faces
 - Handles casual movements well (ideal for UGC)
-- Best lip-sync ecosystem (Kling Lip-Sync pairs natively)
+- Best lip-sync ecosystem (lip-sync role pairs natively)
 - Strong at controlled expressions and gestures
 
-**Google Veo 3.1:**
+**hero comparison role:**
 - Highest fidelity video output
 - Native audio generation (set `generate_audio: true`)
 - Good for establishing scenes with ambient audio
 - Slower generation, higher cost
 - No square aspect ratio support
 
-**OpenAI Sora 2:**
+**hero comparison role:**
 - Strong prompt comprehension
 - Good at character-driven content
 - Native audio generation (always on)
@@ -117,19 +117,19 @@ Refer to MODEL_REGISTRY.md for authoritative details. Summary for presenter-spec
 
 ```
 FOR MAXIMUM REALISM (people quality):
-    → Kling 2.5 Turbo Pro (best faces, most natural movement)
+    → video default role (best faces, most natural movement)
 
 FOR SPEED + QUALITY BALANCE:
-    → Kling 2.5 Turbo Pro (fastest for people content)
+    → video default role (fastest for people content)
 
 FOR BUILT-IN AUDIO:
-    → Veo 3.1 (generates audio with video)
+    → hero comparison role (generates audio with video)
 
 FOR UGC AUTHENTICITY:
-    → Kling 2.5 (handles casual movements well)
+    → video default role (handles casual movements well)
 
 FOR CORPORATE/FORMAL:
-    → Kling 2.5 or Sora 2 (cleaner, more controlled)
+    → video default role or hero comparison role (cleaner, more controlled)
 
 FOR HERO/FLAGSHIP:
     → Run all 3 in parallel, pick winner
@@ -146,7 +146,7 @@ For hero content and any case where quality matters more than cost, run the same
 - No single model wins every prompt — the best output varies by content
 - Running in parallel takes the same wall-clock time as the slowest model (~6 min)
 - Running sequentially would take ~15 minutes for all three
-- Total cost for a parallel comparison run: ~$2.20 (see Cost Awareness below)
+- Total cost for a parallel comparison run: cost: see references/MODEL_REGISTRY.md (see Cost Awareness below)
 - Eliminates guessing — present all three, let the user pick
 
 ### Parallel Execution Pattern
@@ -156,55 +156,25 @@ Use task agents to fire all three API calls simultaneously:
 ```
 PARALLEL GENERATION PLAN
 ─────────────────────────────────────────────
-Task 1: Kling 2.5     → cost ~$0.40, time ~3min
-Task 2: Veo 3.1       → cost ~$1.00, time ~5min
-Task 3: Sora 2        → cost ~$0.80, time ~6min
+Task 1: video default role     → cost: see references/MODEL_REGISTRY.md, time ~3min
+Task 2: hero comparison role       → cost: see references/MODEL_REGISTRY.md, time ~5min
+Task 3: hero comparison role        → cost: see references/MODEL_REGISTRY.md, time ~6min
 ─────────────────────────────────────────────
-Total:                   ~$2.20, ~6min (parallel)
+Total:                   cost: see references/MODEL_REGISTRY.md, ~6min (parallel)
 ```
 
 ### Translating One Prompt to Three APIs
 
 Given a presenter prompt, the payload differs per model. Example for a 16:9 talking head T2V call:
 
-**Kling 2.5 payload (from MODEL_REGISTRY.md):**
-```json
-{
-  "model": "kwaivgi/kling-v2.5-turbo-pro",
-  "input": {
-    "prompt": "{{presenter_prompt}}",
-    "duration": 5,
-    "aspect_ratio": "16:9",
-    "guidance_scale": 0.5
-  }
-}
-```
+**video default role payload (from MODEL_REGISTRY.md):**
+**Mode-specific input fields:** `prompt`, `duration`, `aspect_ratio`, `guidance_scale`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
-**Veo 3.1 payload (from MODEL_REGISTRY.md):**
-```json
-{
-  "model": "google/veo-3.1",
-  "input": {
-    "prompt": "{{presenter_prompt}}",
-    "duration": 8,
-    "aspect_ratio": "16:9",
-    "resolution": "1080p",
-    "generate_audio": true
-  }
-}
-```
+**hero comparison role payload (from MODEL_REGISTRY.md):**
+**Mode-specific input fields:** `prompt`, `duration`, `aspect_ratio`, `resolution`, `generate_audio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
-**Sora 2 payload (from MODEL_REGISTRY.md):**
-```json
-{
-  "model": "openai/sora-2",
-  "input": {
-    "prompt": "{{presenter_prompt}}",
-    "seconds": 8,
-    "aspect_ratio": "landscape"
-  }
-}
-```
+**hero comparison role payload (from MODEL_REGISTRY.md):**
+**Mode-specific input fields:** `prompt`, `seconds`, `aspect_ratio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
 **Critical:** Always verify these payloads against MODEL_REGISTRY.md before execution. Parameter names change when models update.
 
@@ -218,23 +188,23 @@ Before generating, always estimate and communicate the cost to the user.
 
 | Model | Duration | Estimated Cost | Typical Time |
 |-------|----------|---------------|--------------|
-| Kling 2.5 | 5s clip | $0.30-0.50 | 2-5min |
-| Kling 2.5 | 10s clip | $0.60-1.00 | 4-8min |
-| Veo 3.1 | 8s clip (720p) | $0.60-0.80 | 3-6min |
-| Veo 3.1 | 8s clip (1080p) | $1.00-1.50 | 5-8min |
-| Sora 2 | 8s clip | $0.60-1.20 | 3-10min |
-| Kling Lip-Sync | 2-10s clip | $0.30-0.60 | 1-3min |
+| video default role | 5s clip | cost: see references/MODEL_REGISTRY.md | 2-5min |
+| video default role | 10s clip | cost: see references/MODEL_REGISTRY.md | 4-8min |
+| hero comparison role | 8s clip (720p) | cost: see references/MODEL_REGISTRY.md | 3-6min |
+| hero comparison role | 8s clip (1080p) | cost: see references/MODEL_REGISTRY.md | 5-8min |
+| hero comparison role | 8s clip | cost: see references/MODEL_REGISTRY.md | 3-10min |
+| lip-sync role | 2-10s clip | cost: see references/MODEL_REGISTRY.md | 1-3min |
 
 ### Common Workflow Cost Estimates
 
 | Workflow | What You Get | Estimated Cost |
 |----------|-------------|---------------|
-| Single model presenter | 1 video | ~$0.40-1.20 |
-| Parallel comparison (3 models) | 3 videos to compare | ~$2.00-2.50 |
-| Style exploration (5 styles x 1 model) | 5 presenter approaches | ~$2.00-6.00 |
-| Presenter + lip-sync | 1 presenter video + 1 synced video | ~$0.70-1.80 |
-| Full pipeline (generate + lip-sync + 3 models) | 3 videos + lip-sync on winner | ~$2.50-3.10 |
-| UGC batch (5 variants, single model) | 5 different UGC videos | ~$2.00-5.00 |
+| Single model presenter | 1 video | cost: see references/MODEL_REGISTRY.md |
+| Parallel comparison (3 models) | 3 videos to compare | cost: see references/MODEL_REGISTRY.md |
+| Style exploration (5 styles x 1 model) | 5 presenter approaches | cost: see references/MODEL_REGISTRY.md |
+| Presenter + lip-sync | 1 presenter video + 1 synced video | cost: see references/MODEL_REGISTRY.md |
+| Full pipeline (generate + lip-sync + 3 models) | 3 videos + lip-sync on winner | cost: see references/MODEL_REGISTRY.md |
+| UGC batch (5 variants, single model) | 5 different UGC videos | cost: see references/MODEL_REGISTRY.md |
 
 ### Cost Communication Template
 
@@ -605,7 +575,7 @@ but graceful movement], aspirational lifestyle aesthetic
 
 ### Why External TTS Matters
 
-The Kling Lip-Sync model includes basic TTS via `text` + `voice_id`, but it has limited voice options and no voice consistency across sessions. For brand-level talking head content, external TTS gives you:
+The lip-sync role model includes basic TTS via `text` + `voice_id`, but it has limited voice options and no voice consistency across sessions. For brand-level talking head content, external TTS gives you:
 
 - **Voice cloning** — match a specific voice consistently
 - **Voice selection** — hundreds of voices to match any archetype
@@ -648,7 +618,7 @@ ElevenLabs is the recommended TTS provider for talking head content due to voice
 ```
 1. Generate audio from script text using selected voice
 2. Download audio file (MP3 or WAV)
-3. Pass audio_file to Kling Lip-Sync
+3. Pass audio_file to lip-sync role
 4. Result: presenter video with perfectly matched voiceover
 ```
 
@@ -677,7 +647,7 @@ SCRIPT → TTS (ElevenLabs) → AUDIO FILE → LIP-SYNC (Kling) → FINAL VIDEO
 Step 1: Write script (use duration calculator below)
 Step 2: Generate audio via TTS with selected voice
 Step 3: Download audio as MP3 or WAV
-Step 4: Pass audio_file + presenter video to Kling Lip-Sync
+Step 4: Pass audio_file + presenter video to lip-sync role
 Step 5: Review sync quality
 Step 6: Deliver or iterate
 ```
@@ -692,25 +662,25 @@ The complete pipeline from key message to finished talking head video.
 
 ```
 KEY MESSAGE
-    │
+    |
     ▼
 SCRIPT WRITING (exact duration targeting)
-    │
+    |
     ▼
 TTS AUDIO GENERATION (brand voice)
-    │
+    |
     ▼
 PRESENTER VIDEO GENERATION (multi-model)
-    │
+    |
     ▼
 LIP-SYNC APPLICATION
-    │
+    |
     ▼
 FTC COMPLIANCE CHECK
-    │
+    |
     ▼
 PLATFORM OPTIMIZATION
-    │
+    |
     ▼
 FILE OUTPUT to ./campaigns/{campaign}/video/talking-head/
 ```
@@ -790,15 +760,7 @@ Generate the presenter video using the approved presenter spec (from creative-ki
 Apply the TTS audio to the selected presenter video:
 
 **Audio-driven lip-sync (from MODEL_REGISTRY.md):**
-```json
-{
-  "model": "kwaivgi/kling-lip-sync",
-  "input": {
-    "video_url": "{{selected_presenter_video_url}}",
-    "audio_file": "{{tts_audio_url}}"
-  }
-}
-```
+**Mode-specific input fields:** `video_url`, `audio_file`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
 ### Step 6: Quality Review and Delivery
 
@@ -865,7 +827,7 @@ Here's what actually works: [insight]. Let me show you..."
 
 ## Lip-Sync Workflow
 
-For adding speech to existing videos using Kling Lip-Sync.
+For adding speech to existing videos using lip-sync role.
 
 ### When to Use Lip-Sync
 
@@ -881,32 +843,14 @@ For adding speech to existing videos using Kling Lip-Sync.
 Use when you have a pre-recorded or TTS-generated audio file.
 
 **Payload (from MODEL_REGISTRY.md):**
-```json
-{
-  "model": "kwaivgi/kling-lip-sync",
-  "input": {
-    "video_url": "{{source_video_url}}",
-    "audio_file": "{{audio_url}}"
-  }
-}
-```
+**Mode-specific input fields:** `video_url`, `audio_file`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
 ### Text-Driven Lip-Sync (Quick Prototyping)
 
 Use for quick tests when voice quality is not critical.
 
 **Payload (from MODEL_REGISTRY.md):**
-```json
-{
-  "model": "kwaivgi/kling-lip-sync",
-  "input": {
-    "video_url": "{{source_video_url}}",
-    "text": "{{spoken_text}}",
-    "voice_id": "en_AOT",
-    "voice_speed": 1
-  }
-}
-```
+**Mode-specific input fields:** `video_url`, `text`, `voice_id`, `voice_speed`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
 ### When to Use Model TTS vs. External Audio
 
@@ -927,7 +871,7 @@ Use for quick tests when voice quality is not critical.
 - Avoid videos with heavy face movement/turning
 - Audio should be clear without background noise
 - Script pacing should match natural speech
-- Video must be 2-10 seconds (Kling Lip-Sync requirement)
+- Video must be 2-10 seconds (lip-sync role requirement)
 - Video resolution must be 720p-1080p
 - Audio file must be under 5MB
 - Keep sentences short (easier sync)
@@ -936,7 +880,7 @@ Use for quick tests when voice quality is not critical.
 
 ## Audio and Voice Considerations
 
-### When Using Veo 3.1 Native Audio
+### When Using hero comparison role Native Audio
 
 **Strengths:**
 - Generates synchronized audio with video
@@ -1331,28 +1275,10 @@ business casual in modern office environment
 - Audio file (MP3, WAV) OR text script
 
 **Workflow:**
-```json
-{
-  "model": "kwaivgi/kling-lip-sync",
-  "input": {
-    "video_url": "{{source_video_url}}",
-    "audio_file": "{{audio_url}}"
-  }
-}
-```
+**Mode-specific input fields:** `video_url`, `audio_file`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
 **Or with text (uses built-in TTS):**
-```json
-{
-  "model": "kwaivgi/kling-lip-sync",
-  "input": {
-    "video_url": "{{source_video_url}}",
-    "text": "{{spoken_text}}",
-    "voice_id": "en_AOT",
-    "voice_speed": 1
-  }
-}
-```
+**Mode-specific input fields:** `video_url`, `text`, `voice_id`, `voice_speed`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
 ---
 
@@ -1362,55 +1288,14 @@ business casual in modern office environment
 
 **Multi-Model Workflow (from MODEL_REGISTRY.md):**
 
-```json
-// Kling 2.5
-{
-  "model": "kwaivgi/kling-v2.5-turbo-pro",
-  "input": {
-    "prompt": "[presenter prompt]",
-    "aspect_ratio": "16:9",
-    "duration": 5,
-    "guidance_scale": 0.5
-  }
-}
-```
+**Mode-specific input fields:** `prompt`, `aspect_ratio`, `duration`, `guidance_scale`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
-```json
-// Veo 3.1 (with native audio)
-{
-  "model": "google/veo-3.1",
-  "input": {
-    "prompt": "[presenter prompt]",
-    "aspect_ratio": "16:9",
-    "duration": 8,
-    "generate_audio": true,
-    "resolution": "1080p"
-  }
-}
-```
+**Mode-specific input fields:** `prompt`, `aspect_ratio`, `duration`, `generate_audio`, `resolution`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
-```json
-// Sora 2
-{
-  "model": "openai/sora-2",
-  "input": {
-    "prompt": "[presenter prompt]",
-    "seconds": 8,
-    "aspect_ratio": "landscape"
-  }
-}
-```
+**Mode-specific input fields:** `prompt`, `seconds`, `aspect_ratio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
 **Then add lip-sync if specific script needed (from MODEL_REGISTRY.md):**
-```json
-{
-  "model": "kwaivgi/kling-lip-sync",
-  "input": {
-    "video_url": "[generated video URL]",
-    "audio_file": "[TTS audio URL]"
-  }
-}
-```
+**Mode-specific input fields:** `video_url`, `audio_file`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
 ---
 
@@ -1469,11 +1354,11 @@ Only change: Script and specific content
 1. Generate presenter video once (approve visual)
 2. Write scripts in each target language
 3. Generate TTS audio per language using ElevenLabs multi-language voices
-4. Run Kling Lip-Sync for each language version
+4. Run lip-sync role for each language version
 5. Result: Same presenter, multiple languages
 ```
 
-**Cost advantage:** One presenter video generation (~$0.40-1.20) + one lip-sync per language (~$0.30-0.60 each) = dramatically cheaper than filming multiple takes.
+**Cost advantage:** One presenter video generation (cost: see references/MODEL_REGISTRY.md) + one lip-sync per language (cost: see references/MODEL_REGISTRY.md each) = dramatically cheaper than filming multiple takes.
 
 ---
 
@@ -1551,14 +1436,14 @@ Use this formula:
 
 ```
 Run same prompt through:
-1. Kling 2.5 (~3min) — default, best for faces
-2. Veo 3.1 (~5min) — with audio, highest fidelity
-3. Sora 2 (~6min) — strong prompt adherence
+1. video default role (~3min) — default, best for faces
+2. hero comparison role (~5min) — with audio, highest fidelity
+3. hero comparison role (~6min) — strong prompt adherence
 
 Present all three to user for selection.
 ```
 
-For standard content (not hero), use default model only (Kling 2.5).
+For standard content (not hero), use default model only (video default role).
 
 ### Step 7: TTS Audio Generation
 
@@ -1575,21 +1460,13 @@ If lip-sync is needed:
 If specific script delivery required:
 ```
 1. User approves video from Step 6
-2. Run through Kling Lip-Sync with TTS audio
+2. Run through lip-sync role with TTS audio
 3. Input: selected video + audio file
 4. Output: synced talking head
 ```
 
 **Payload (from MODEL_REGISTRY.md):**
-```json
-{
-  "model": "kwaivgi/kling-lip-sync",
-  "input": {
-    "video_url": "[approved video URL]",
-    "audio_file": "[TTS audio URL]"
-  }
-}
-```
+**Mode-specific input fields:** `video_url`, `audio_file`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
 ### Step 9: FTC Compliance Check
 
@@ -1645,27 +1522,27 @@ All generated talking head assets are saved to the campaign directory.
 ```
 ./campaigns/{campaign}/video/talking-head/
 ├── presenter-exploration/
-│   ├── corporate-authority-kling-v1.mp4
-│   ├── relatable-friend-kling-v1.mp4
-│   ├── energetic-creator-kling-v1.mp4
-│   ├── expert-educator-kling-v1.mp4
-│   └── lifestyle-aspirational-kling-v1.mp4
+|   ├── corporate-authority-kling-v1.mp4
+|   ├── relatable-friend-kling-v1.mp4
+|   ├── energetic-creator-kling-v1.mp4
+|   ├── expert-educator-kling-v1.mp4
+|   +── lifestyle-aspirational-kling-v1.mp4
 ├── generation/
-│   ├── presenter-kling-v1.mp4
-│   ├── presenter-veo-v1.mp4
-│   ├── presenter-sora-v1.mp4
-│   └── presenter-kling-v2.mp4       (iteration)
+|   ├── presenter-kling-v1.mp4
+|   ├── presenter-veo-v1.mp4
+|   ├── presenter-sora-v1.mp4
+|   +── presenter-kling-v2.mp4       (iteration)
 ├── audio/
-│   ├── script-v1-elevenlabs.mp3
-│   ├── script-v2-elevenlabs.mp3
-│   └── script-v1-spanish.mp3        (localization)
+|   ├── script-v1-elevenlabs.mp3
+|   ├── script-v2-elevenlabs.mp3
+|   +── script-v1-spanish.mp3        (localization)
 ├── lip-sync/
-│   ├── presenter-synced-v1.mp4
-│   ├── presenter-synced-v2.mp4
-│   └── presenter-synced-spanish.mp4  (localization)
-└── approved/
+|   ├── presenter-synced-v1.mp4
+|   ├── presenter-synced-v2.mp4
+|   +── presenter-synced-spanish.mp4  (localization)
++── approved/
     ├── final-talking-head.mp4        (selected winner)
-    └── final-talking-head-spanish.mp4
+    +── final-talking-head-spanish.mp4
 ```
 
 ### File Naming Convention
@@ -1763,13 +1640,13 @@ After the user approves a video:
 | Doesn't look like brand | No style consistency | Save presenter spec to creative-kit.md and reuse |
 | Audio quality poor | Model TTS limitations | Use external TTS (ElevenLabs) instead of text input |
 | Voice doesn't match visual | Wrong TTS voice selected | Re-select voice per archetype guidelines |
-| Lip-sync rejected | Video too long/short | Trim video to 2-10 seconds per Kling Lip-Sync requirements |
+| Lip-sync rejected | Video too long/short | Trim video to 2-10 seconds per lip-sync role requirements |
 | Audio file too large | Uncompressed audio | Compress to MP3 under 5MB |
 | Side profile sync fails | Non-frontal face | Use front-facing presenter videos for lip-sync |
 | Script too long for duration | Word count miscalculation | Recalculate: ~150 words per minute |
 | API parameter error | Wrong param name for model | Check cross-model cheat sheet in MODEL_REGISTRY.md |
 | Aspect ratio rejected | Model doesn't support it | Check MODEL_REGISTRY.md — Veo/Sora have no square support |
-| Generation timeout | Model overloaded | Retry; allow extra buffer for Sora 2 |
+| Generation timeout | Model overloaded | Retry; allow extra buffer for hero comparison role |
 | Presenter inconsistent across videos | Not using saved spec | Load presenter prompt from creative-kit.md |
 
 ---
@@ -1834,7 +1711,7 @@ Don't iterate on broken foundation:
 **Strategy:** Targeted model selection
 
 ```
-- Use Kling 2.5 only (cheapest at ~$0.40/clip)
+- Use video default role only (cheapest at cost: see references/MODEL_REGISTRY.md)
 - Use model TTS (text input) instead of external TTS for prototyping
 - Skip parallel comparison for non-hero content
 - Reuse approved presenter video for multiple scripts via lip-sync
@@ -1900,11 +1777,11 @@ Don't iterate on broken foundation:
 
 ### Model Outputs:
 
-**Kling 2.5:** [URL] (~$0.40)
-**Veo 3.1:** [URL] (includes audio) (~$1.00)
-**Sora 2:** [URL] (~$0.80)
+**video default role:** [URL] (cost: see references/MODEL_REGISTRY.md)
+**hero comparison role:** [URL] (includes audio) (cost: see references/MODEL_REGISTRY.md)
+**hero comparison role:** [URL] (cost: see references/MODEL_REGISTRY.md)
 
-**Total generation cost:** ~$2.20
+**Total generation cost:** cost: see references/MODEL_REGISTRY.md
 
 **Prompt Used:**
 > [full prompt for reference]
@@ -1956,62 +1833,62 @@ Don't iterate on broken foundation:
 ```
 TALKING HEAD PIPELINE
 
-┌─────────────────────────────────────────┐
-│  Request arrives (direct or routed)     │
-│  → Clarify: platform, duration, style   │
-│  → Determine: generation vs lip-sync    │
-│  → Check creative-kit.md for presenter  │
-└─────────────────────────────────────────┘
-                    │
-        ┌───────────┴───────────┐
++─────────────────────────────────────────+
+|  Request arrives (direct or routed)     |
+|  → Clarify: platform, duration, style   |
+|  → Determine: generation vs lip-sync    |
+|  → Check creative-kit.md for presenter  |
++─────────────────────────────────────────+
+                    |
+        +───────────┴───────────+
         ▼                       ▼
-┌──────────────────┐   ┌──────────────────┐
-│  Style Undefined │   │  Style Defined   │
-│  (no approved    │   │  (approved       │
-│   presenter in   │   │   presenter in   │
-│   creative-kit)  │   │   creative-kit)  │
-│  → Run style     │   │  → Load spec     │
-│    exploration   │   │  → Skip to       │
-│  → Save winner   │   │    generation    │
-└──────────────────┘   └──────────────────┘
-                    │
++──────────────────+   +──────────────────+
+|  Style Undefined |   |  Style Defined   |
+|  (no approved    |   |  (approved       |
+|   presenter in   |   |   presenter in   |
+|   creative-kit)  |   |   creative-kit)  |
+|  → Run style     |   |  → Load spec     |
+|    exploration   |   |  → Skip to       |
+|  → Save winner   |   |    generation    |
++──────────────────+   +──────────────────+
+                    |
                     ▼
-┌─────────────────────────────────────────┐
-│  Script Writing                         │
-│  → Key message extraction               │
-│  → Duration-targeted word count         │
-│  → Tone matching archetype              │
-└─────────────────────────────────────────┘
-                    │
++─────────────────────────────────────────+
+|  Script Writing                         |
+|  → Key message extraction               |
+|  → Duration-targeted word count         |
+|  → Tone matching archetype              |
++─────────────────────────────────────────+
+                    |
                     ▼
-┌─────────────────────────────────────────┐
-│  Cost Estimation                        │
-│  → Calculate based on models + clips    │
-│  → Include TTS + lip-sync costs         │
-│  → Present to user for confirmation     │
-└─────────────────────────────────────────┘
-                    │
++─────────────────────────────────────────+
+|  Cost Estimation                        |
+|  → Calculate based on models + clips    |
+|  → Include TTS + lip-sync costs         |
+|  → Present to user for confirmation     |
++─────────────────────────────────────────+
+                    |
                     ▼
-┌─────────────────────────────────────────┐
-│  talking-head mode (THIS MODE)          │
-│  → Multi-model generation               │
-│  → Present options                      │
-│  → TTS audio generation                 │
-│  → Add lip-sync                         │
-│  → FTC compliance check                 │
-│  → Quality check                        │
-│  → Save to campaigns/{campaign}/        │
-│    video/talking-head/                  │
-└─────────────────────────────────────────┘
-                    │
++─────────────────────────────────────────+
+|  talking-head mode (THIS MODE)          |
+|  → Multi-model generation               |
+|  → Present options                      |
+|  → TTS audio generation                 |
+|  → Add lip-sync                         |
+|  → FTC compliance check                 |
+|  → Quality check                        |
+|  → Save to campaigns/{campaign}/        |
+|    video/talking-head/                  |
++─────────────────────────────────────────+
+                    |
                     ▼
-┌─────────────────────────────────────────┐
-│  Delivery                               │
-│  → Platform-optimized output            │
-│  → AI disclosure included               │
-│  → Ready for ads/social/content         │
-│  → Presenter saved to creative-kit.md   │
-└─────────────────────────────────────────┘
++─────────────────────────────────────────+
+|  Delivery                               |
+|  → Platform-optimized output            |
+|  → AI disclosure included               |
+|  → Ready for ads/social/content         |
+|  → Presenter saved to creative-kit.md   |
++─────────────────────────────────────────+
 ```
 
 ---
@@ -2125,11 +2002,11 @@ When to invest in parallel comparison:
 ```
 BUDGET TIERS
 ─────────────────────────────────
-Lean:     1 model, no lip-sync           ~$0.40
-Standard: 1 model + lip-sync            ~$0.70-1.00
-Premium:  3 models, lip-sync on winner   ~$2.50-3.10
-Hero:     3 models + exploration + sync  ~$4.50-6.00
-Campaign: 5 variants + 3 languages       ~$5.00-10.00+
+Lean:     1 model, no lip-sync           cost: see references/MODEL_REGISTRY.md
+Standard: 1 model + lip-sync            cost: see references/MODEL_REGISTRY.md
+Premium:  3 models, lip-sync on winner   cost: see references/MODEL_REGISTRY.md
+Hero:     3 models + exploration + sync  cost: see references/MODEL_REGISTRY.md
+Campaign: 5 variants + 3 languages       cost: see references/MODEL_REGISTRY.md+
 ```
 
 ---
@@ -2139,15 +2016,15 @@ Campaign: 5 variants + 3 languages       ~$5.00-10.00+
 | Task | Model | Process |
 |------|-------|---------|
 | Generate presenter video | All 3 models | Multi-model parallel, user picks |
-| Add speech to existing video | Kling Lip-Sync | Direct, ~1min |
+| Add speech to existing video | lip-sync role | Direct, ~1min |
 | Presenter + specific script | Generate → TTS → Lip-Sync | Three-step pipeline |
-| Video with built-in audio | Veo 3.1 | Single generation |
+| Video with built-in audio | hero comparison role | Single generation |
 | Most realistic face | Kling v2.5 | Single or multi-model |
 | Fastest generation | Kling v2.5 | Single generation |
 | UGC style | Kling v2.5 | Handles casual movement best |
 | Brand voice consistency | ElevenLabs TTS → Lip-Sync | External TTS, saved voice_id |
-| Multi-language dubbing | Kling Lip-Sync (per language) | One video + multiple audio files |
-| Quick script test | Kling Lip-Sync with `text` | Built-in TTS, fastest path |
+| Multi-language dubbing | lip-sync role (per language) | One video + multiple audio files |
+| Quick script test | lip-sync role with `text` | Built-in TTS, fastest path |
 | Reuse approved presenter | Load from creative-kit.md | Skip exploration, direct generation |
 
 ---
@@ -2158,25 +2035,25 @@ Campaign: 5 variants + 3 languages       ~$5.00-10.00+
 
 ### Video Generation Call Patterns
 
-**Kling 2.5 T2V (Presenter Generation):**
+**video default role T2V (Presenter Generation):**
 ```
-Model: kwaivgi/kling-v2.5-turbo-pro
+Model: video default role
 Duration param: duration (5 or 10)
 Ratio param: aspect_ratio ("16:9", "9:16", "1:1")
 Extras: guidance_scale (0-1), negative_prompt
 ```
 
-**Veo 3.1 T2V (Presenter with Audio):**
+**hero comparison role T2V (Presenter with Audio):**
 ```
-Model: google/veo-3.1
+Model: hero comparison role
 Duration param: duration (4, 6, or 8)
 Ratio param: aspect_ratio ("16:9", "9:16")
 Extras: generate_audio (bool), resolution ("720p", "1080p"), negative_prompt, seed
 ```
 
-**Sora 2 T2V (Presenter Generation):**
+**hero comparison role T2V (Presenter Generation):**
 ```
-Model: openai/sora-2
+Model: hero comparison role
 Duration param: seconds (4-12)
 Ratio param: aspect_ratio ("landscape", "portrait")
 Extras: openai_api_key (optional)
@@ -2184,16 +2061,16 @@ Extras: openai_api_key (optional)
 
 ### Lip-Sync Call Patterns
 
-**Kling Lip-Sync (Audio-Driven):**
+**lip-sync role (Audio-Driven):**
 ```
-Model: kwaivgi/kling-lip-sync
+Model: lip-sync role
 Video param: video_url (2-10s, 720p-1080p, <100MB)
 Audio param: audio_file (.mp3, .wav, .m4a, .aac, <5MB)
 ```
 
-**Kling Lip-Sync (Text-Driven):**
+**lip-sync role (Text-Driven):**
 ```
-Model: kwaivgi/kling-lip-sync
+Model: lip-sync role
 Video param: video_url (2-10s, 720p-1080p, <100MB)
 Text param: text (free text)
 Voice param: voice_id (e.g., "en_AOT")

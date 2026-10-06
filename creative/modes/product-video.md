@@ -39,9 +39,9 @@ As of this writing, the three video models available are:
 
 | Role | Model | Registry Section | Estimated Cost (5s clip) |
 |------|-------|-----------------|--------------------------|
-| **Default** | Kling 2.5 Turbo Pro | Video Generation > Default Model | ~$0.40 |
-| **Comparison** | Google Veo 3.1 | Video Generation > Comparison Model: Google Veo 3.1 | ~$0.80-1.50 |
-| **Comparison** | OpenAI Sora 2 | Video Generation > Comparison Model: OpenAI Sora 2 | ~$0.60-1.20 |
+| **Default** | video default role | Video Generation > Default Model | cost: see references/MODEL_REGISTRY.md |
+| **Comparison** | hero comparison role | Video Generation > Comparison Model: hero comparison role | cost: see references/MODEL_REGISTRY.md |
+| **Comparison** | hero comparison role | Video Generation > Comparison Model: hero comparison role | cost: see references/MODEL_REGISTRY.md |
 
 ### How to Call
 
@@ -56,7 +56,7 @@ As of this writing, the three video models available are:
 
 Every video model uses different parameter names for the same concept. Always consult MODEL_REGISTRY.md before writing any API call.
 
-| Concept | Kling 2.5 | Veo 3.1 | Sora 2 |
+| Concept | video default role | hero comparison role | hero comparison role |
 |---------|-----------|---------|--------|
 | **Starting image** | `start_image` | `image` | `input_reference` |
 | **Duration** | `duration` (5, 10) | `duration` (4, 6, 8) | `seconds` (4-12) |
@@ -72,7 +72,7 @@ Every video model uses different parameter names for the same concept. Always co
 
 Refer to MODEL_REGISTRY.md for authoritative details. Summary for prompt-routing decisions:
 
-**Kling 2.5 Turbo Pro (Default):**
+**video default role (Default):**
 - Best motion control, cinematic depth, consistent quality
 - Strong prompt adherence
 - Best for human subjects and natural motion
@@ -80,7 +80,7 @@ Refer to MODEL_REGISTRY.md for authoritative details. Summary for prompt-routing
 - Sometimes adds unwanted elements
 - Fast camera movements can cause warping at edges
 
-**Google Veo 3.1:**
+**hero comparison role:**
 - Highest fidelity video output
 - Can generate matching audio (set `generate_audio: true`)
 - Cinematic quality
@@ -88,7 +88,7 @@ Refer to MODEL_REGISTRY.md for authoritative details. Summary for prompt-routing
 - Sometimes "interprets" prompts loosely
 - No square aspect ratio support
 
-**OpenAI Sora 2:**
+**hero comparison role:**
 - Strong prompt comprehension
 - Good motion coherence
 - Native audio generation (always on)
@@ -99,9 +99,9 @@ Refer to MODEL_REGISTRY.md for authoritative details. Summary for prompt-routing
 ### When to Use Which
 
 ```
-GENERAL PRODUCT → Kling 2.5 (reliable, fast, cheapest)
-NEEDS AUDIO → Veo 3.1 (native audio, highest fidelity)
-HAS PEOPLE → Kling 2.5 (best human motion)
+GENERAL PRODUCT → video default role (reliable, fast, cheapest)
+NEEDS AUDIO → hero comparison role (native audio, highest fidelity)
+HAS PEOPLE → video default role (best human motion)
 HERO/FLAGSHIP → Run all 3 in parallel, pick winner
 UNCERTAIN → Run all 3 in parallel, pick winner
 ```
@@ -117,7 +117,7 @@ For hero content and any case where quality matters more than cost, run the same
 - No single model wins every prompt — the best output varies by content
 - Running in parallel takes the same wall-clock time as the slowest model (~6 min)
 - Running sequentially would take ~15 minutes for all three
-- Total cost for a parallel comparison run: ~$2.20 (see Cost Awareness below)
+- Total cost for a parallel comparison run: cost: see references/MODEL_REGISTRY.md (see Cost Awareness below)
 - Eliminates guessing — present all three, let the user pick
 
 ### Parallel Execution Pattern
@@ -127,11 +127,11 @@ Use task agents to fire all three API calls simultaneously:
 ```
 PARALLEL GENERATION PLAN
 ─────────────────────────────────────────────
-Task 1: Kling 2.5     → cost ~$0.40, time ~3min
-Task 2: Veo 3.1       → cost ~$1.00, time ~5min
-Task 3: Sora 2        → cost ~$0.80, time ~6min
+Task 1: video default role     → cost: see references/MODEL_REGISTRY.md, time ~3min
+Task 2: hero comparison role       → cost: see references/MODEL_REGISTRY.md, time ~5min
+Task 3: hero comparison role        → cost: see references/MODEL_REGISTRY.md, time ~6min
 ─────────────────────────────────────────────
-Total:                   ~$2.20, ~6min (parallel)
+Total:                   cost: see references/MODEL_REGISTRY.md, ~6min (parallel)
 ```
 
 **Steps:**
@@ -145,46 +145,14 @@ Total:                   ~$2.20, ~6min (parallel)
 
 Given a motion prompt and source image, the payload differs per model. Example for a 16:9 I2V call:
 
-**Kling 2.5 payload (from MODEL_REGISTRY.md):**
-```json
-{
-  "model": "kwaivgi/kling-v2.5-turbo-pro",
-  "input": {
-    "prompt": "{{motion_prompt}}",
-    "start_image": "{{source_image_url}}",
-    "duration": 5,
-    "aspect_ratio": "16:9"
-  }
-}
-```
+**video default role payload (from MODEL_REGISTRY.md):**
+**Mode-specific input fields:** `prompt`, `start_image`, `duration`, `aspect_ratio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
-**Veo 3.1 payload (from MODEL_REGISTRY.md):**
-```json
-{
-  "model": "google/veo-3.1",
-  "input": {
-    "prompt": "{{motion_prompt}}",
-    "image": "{{source_image_url}}",
-    "duration": 8,
-    "aspect_ratio": "16:9",
-    "resolution": "1080p",
-    "generate_audio": true
-  }
-}
-```
+**hero comparison role payload (from MODEL_REGISTRY.md):**
+**Mode-specific input fields:** `prompt`, `image`, `duration`, `aspect_ratio`, `resolution`, `generate_audio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
-**Sora 2 payload (from MODEL_REGISTRY.md):**
-```json
-{
-  "model": "openai/sora-2",
-  "input": {
-    "prompt": "{{motion_prompt}}",
-    "input_reference": "{{source_image_url}}",
-    "seconds": 8,
-    "aspect_ratio": "landscape"
-  }
-}
-```
+**hero comparison role payload (from MODEL_REGISTRY.md):**
+**Mode-specific input fields:** `prompt`, `input_reference`, `seconds`, `aspect_ratio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
 **Critical:** Always verify these payloads against MODEL_REGISTRY.md before execution. Parameter names change when models update.
 
@@ -198,22 +166,22 @@ Before generating, always estimate and communicate the cost to the user.
 
 | Model | Duration | Estimated Cost | Typical Time |
 |-------|----------|---------------|--------------|
-| Kling 2.5 | 5s clip | $0.30-0.50 | 2-5min |
-| Kling 2.5 | 10s clip | $0.60-1.00 | 4-8min |
-| Veo 3.1 | 8s clip (720p) | $0.60-0.80 | 3-6min |
-| Veo 3.1 | 8s clip (1080p) | $1.00-1.50 | 5-8min |
-| Sora 2 | 8s clip | $0.60-1.20 | 3-10min |
+| video default role | 5s clip | cost: see references/MODEL_REGISTRY.md | 2-5min |
+| video default role | 10s clip | cost: see references/MODEL_REGISTRY.md | 4-8min |
+| hero comparison role | 8s clip (720p) | cost: see references/MODEL_REGISTRY.md | 3-6min |
+| hero comparison role | 8s clip (1080p) | cost: see references/MODEL_REGISTRY.md | 5-8min |
+| hero comparison role | 8s clip | cost: see references/MODEL_REGISTRY.md | 3-10min |
 
 ### Common Workflow Cost Estimates
 
 | Workflow | What You Get | Estimated Cost |
 |----------|-------------|---------------|
-| Single model, single clip | 1 video | ~$0.40-1.20 |
-| Parallel comparison (3 models) | 3 videos to compare | ~$2.00-2.50 |
-| Multi-style exploration (3 styles x 1 model) | 3 motion approaches | ~$1.20-3.60 |
-| Multi-style x multi-model (3 styles x 3 models) | 9 videos to compare | ~$6.00-7.50 |
-| Multi-clip stitch (4 clips x 1 model) | 1 edited sequence | ~$1.60-4.80 |
-| Full hero production (stitch + comparison) | Complete hero video | ~$5.00-10.00 |
+| Single model, single clip | 1 video | cost: see references/MODEL_REGISTRY.md |
+| Parallel comparison (3 models) | 3 videos to compare | cost: see references/MODEL_REGISTRY.md |
+| Multi-style exploration (3 styles x 1 model) | 3 motion approaches | cost: see references/MODEL_REGISTRY.md |
+| Multi-style x multi-model (3 styles x 3 models) | 9 videos to compare | cost: see references/MODEL_REGISTRY.md |
+| Multi-clip stitch (4 clips x 1 model) | 1 edited sequence | cost: see references/MODEL_REGISTRY.md |
+| Full hero production (stitch + comparison) | Complete hero video | cost: see references/MODEL_REGISTRY.md |
 
 ### Cost Communication Template
 
@@ -624,20 +592,20 @@ Video content often needs audio. There are three distinct approaches, and the ri
 
 Some video models generate synchronized audio as part of the video output. This is the fastest path to audio-inclusive video.
 
-**Veo 3.1 (native audio via `generate_audio: true`):**
+**hero comparison role (native audio via `generate_audio: true`):**
 - Generates contextually aware audio matched to visual content
 - Best for ambient sounds, environmental audio, product sounds
 - Adds processing time (~30-60s extra)
 - Quality is good for ambient/environmental, weaker for speech
 - Set `generate_audio: true` in the API payload (see MODEL_REGISTRY.md)
 
-**Sora 2 (audio always on):**
+**hero comparison role (audio always on):**
 - Always generates audio alongside video
 - Cannot be disabled
 - Audio quality varies — sometimes excellent, sometimes distracting
 - Review audio carefully; you may want to strip it in post
 
-**Kling 2.5 (no native audio):**
+**video default role (no native audio):**
 - Does not generate audio
 - Output is silent video
 - Add audio in post-production if needed
@@ -681,7 +649,7 @@ Sometimes the best audio is no audio. Many platforms auto-mute video in feeds.
 
 | Content Type | Platform | Recommended Audio Approach |
 |--------------|----------|---------------------------|
-| Premium reveal | Website hero | Model-native ambient (Veo 3.1) |
+| Premium reveal | Website hero | Model-native ambient (hero comparison role) |
 | Tech product | Product page | Silence or subtle ambient |
 | Lifestyle context | Instagram feed | Silence (auto-muted) |
 | Feature walkthrough | YouTube | TTS voiceover |
@@ -690,9 +658,9 @@ Sometimes the best audio is no audio. Many platforms auto-mute video in feeds.
 | Testimonial | Landing page | TTS voiceover or recorded audio |
 | E-commerce listing | Amazon/Shopify | Silence |
 
-### Audio Prompt Additions (Veo 3.1)
+### Audio Prompt Additions (hero comparison role)
 
-When using Veo 3.1 with `generate_audio: true`, append audio direction to your motion prompt:
+When using hero comparison role with `generate_audio: true`, append audio direction to your motion prompt:
 
 ```
 With accompanying audio:
@@ -809,11 +777,11 @@ Clip 3: Clean product shot with space for text overlay
 
 | Sequence Length | Clips | Model | Estimated Cost | Estimated Time |
 |----------------|-------|-------|---------------|----------------|
-| 15 seconds | 3 clips | Kling 2.5 | ~$1.20 | ~5min parallel |
-| 20 seconds | 4 clips | Kling 2.5 | ~$1.60 | ~5min parallel |
-| 20 seconds | 4 clips | All 3 models | ~$8.80 | ~6min parallel |
-| 25 seconds | 5 clips | Kling 2.5 | ~$2.00 | ~5min parallel |
-| 30 seconds | 6 clips | Kling 2.5 | ~$2.40 | ~5min parallel |
+| 15 seconds | 3 clips | video default role | cost: see references/MODEL_REGISTRY.md | ~5min parallel |
+| 20 seconds | 4 clips | video default role | cost: see references/MODEL_REGISTRY.md | ~5min parallel |
+| 20 seconds | 4 clips | All 3 models | cost: see references/MODEL_REGISTRY.md | ~6min parallel |
+| 25 seconds | 5 clips | video default role | cost: see references/MODEL_REGISTRY.md | ~5min parallel |
+| 30 seconds | 6 clips | video default role | cost: see references/MODEL_REGISTRY.md | ~5min parallel |
 
 ---
 
@@ -835,7 +803,7 @@ Consider these recommendations based on content type:
 
 When stitching clips into a sequence, audio strategy needs to be consistent across all clips:
 
-**Option A: Generate audio per-clip (Veo 3.1)**
+**Option A: Generate audio per-clip (hero comparison role)**
 - Each clip gets its own audio
 - May need post-production to smooth audio transitions between clips
 - Best for environmental/ambient audio that can overlap
@@ -847,7 +815,7 @@ When stitching clips into a sequence, audio strategy needs to be consistent acro
 - Recommended for sequences longer than 10 seconds
 
 **Option C: Audio on hero clip only**
-- Generate the key clip with audio (Veo 3.1)
+- Generate the key clip with audio (hero comparison role)
 - Generate supporting clips silently
 - Use the audio clip as the anchor, extend audio in post
 
@@ -875,7 +843,7 @@ Motion: Scroll-stopping first frame
 Quality: Mobile-optimized
 ```
 
-**Note on square (1:1):** Kling 2.5 supports 1:1 natively. Veo 3.1 and Sora 2 do not — generate at 16:9 and crop to square in post. See MODEL_REGISTRY.md for supported aspect ratios per model.
+**Note on square (1:1):** video default role supports 1:1 natively. hero comparison role and hero comparison role do not — generate at 16:9 and crop to square in post. See MODEL_REGISTRY.md for supported aspect ratios per model.
 
 ### Instagram Stories/Reels
 
@@ -915,7 +883,7 @@ Ratio: 16:9 (standard) or 9:16 (Shorts)
 Duration: 6-15 seconds (pre-roll), 15-60 seconds (Shorts)
 Motion: Hook in first 2 seconds
 Quality: 1080p minimum
-Audio: Required for YouTube (use Veo 3.1 or add in post)
+Audio: Required for YouTube (use hero comparison role or add in post)
 ```
 
 ---
@@ -974,48 +942,16 @@ Proceed? [Y/n]
 
 ### Step 5: Multi-Model Generation
 
-For hero content, run the same prompt through all three models in parallel. For standard content, use the default model (Kling 2.5).
+For hero content, run the same prompt through all three models in parallel. For standard content, use the default model (video default role).
 
-**Kling 2.5 (from MODEL_REGISTRY.md):**
-```json
-{
-  "model": "kwaivgi/kling-v2.5-turbo-pro",
-  "input": {
-    "prompt": "[motion prompt]",
-    "start_image": "[source image URL]",
-    "duration": 5,
-    "aspect_ratio": "16:9"
-  }
-}
-```
+**video default role (from MODEL_REGISTRY.md):**
+**Mode-specific input fields:** `prompt`, `start_image`, `duration`, `aspect_ratio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
-**Veo 3.1 (from MODEL_REGISTRY.md):**
-```json
-{
-  "model": "google/veo-3.1",
-  "input": {
-    "prompt": "[motion prompt]",
-    "image": "[source image URL]",
-    "duration": 8,
-    "aspect_ratio": "16:9",
-    "resolution": "1080p",
-    "generate_audio": true
-  }
-}
-```
+**hero comparison role (from MODEL_REGISTRY.md):**
+**Mode-specific input fields:** `prompt`, `image`, `duration`, `aspect_ratio`, `resolution`, `generate_audio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
-**Sora 2 (from MODEL_REGISTRY.md):**
-```json
-{
-  "model": "openai/sora-2",
-  "input": {
-    "prompt": "[motion prompt]",
-    "input_reference": "[source image URL]",
-    "seconds": 8,
-    "aspect_ratio": "landscape"
-  }
-}
-```
+**hero comparison role (from MODEL_REGISTRY.md):**
+**Mode-specific input fields:** `prompt`, `input_reference`, `seconds`, `aspect_ratio`. For complete model payload including resolution/audio settings, use `references/MODEL_REGISTRY.md`.
 
 **Run in parallel.** Poll for completion (~2-6 minutes depending on model).
 
@@ -1030,24 +966,24 @@ For hero content, run the same prompt through all three models in parallel. For 
 **Motion Style:** [style description]
 **Aspect Ratio:** [ratio]
 
-### Option 1: Kling 2.5
+### Option 1: video default role
 **Video URL:** [URL]
 **Generation Time:** [actual time]
-**Estimated Cost:** ~$0.40
+**Estimated Cost:** cost: see references/MODEL_REGISTRY.md
 **Audio:** None (silent)
 **Notes:** [any observations]
 
-### Option 2: Veo 3.1 (with audio)
+### Option 2: hero comparison role (with audio)
 **Video URL:** [URL]
 **Generation Time:** [actual time]
-**Estimated Cost:** ~$1.00
+**Estimated Cost:** cost: see references/MODEL_REGISTRY.md
 **Audio:** Native audio generated
 **Notes:** [any observations]
 
-### Option 3: Sora 2
+### Option 3: hero comparison role
 **Video URL:** [URL]
 **Generation Time:** [actual time]
-**Estimated Cost:** ~$0.80
+**Estimated Cost:** cost: see references/MODEL_REGISTRY.md
 **Audio:** Native audio generated
 **Notes:** [any observations]
 
@@ -1082,13 +1018,13 @@ All generated video assets are saved to the campaign directory for the product.
 ├── hero-reveal-kling-v2.mp4        (iteration)
 ├── orbit-showcase-kling-v1.mp4
 ├── sequence/
-│   ├── clip-01-establish.mp4
-│   ├── clip-02-detail.mp4
-│   ├── clip-03-feature.mp4
-│   └── clip-04-hero.mp4
-└── approved/
+|   ├── clip-01-establish.mp4
+|   ├── clip-02-detail.mp4
+|   ├── clip-03-feature.mp4
+|   +── clip-04-hero.mp4
++── approved/
     ├── hero-reveal-final.mp4        (selected winner)
-    └── orbit-showcase-final.mp4
+    +── orbit-showcase-final.mp4
 ```
 
 ### File Naming Convention
@@ -1168,7 +1104,7 @@ After the user approves a video:
 | Background changes | Unstable composition | Use cleaner source image |
 | API parameter error | Wrong param name for model | Check cross-model cheat sheet in MODEL_REGISTRY.md |
 | Aspect ratio rejected | Model doesn't support it | Check MODEL_REGISTRY.md — Veo/Sora have no square support |
-| Generation timeout | Model overloaded | Retry; allow extra buffer for Sora 2 |
+| Generation timeout | Model overloaded | Retry; allow extra buffer for hero comparison role |
 | Quality dip mid-video | 10s generation issue | Use 5s clips and stitch instead |
 
 ---
@@ -1219,7 +1155,7 @@ Don't iterate on broken foundation:
 **Strategy:** Targeted model selection
 
 ```
-- Use Kling 2.5 only (cheapest at ~$0.40/clip)
+- Use video default role only (cheapest at cost: see references/MODEL_REGISTRY.md)
 - Skip parallel comparison
 - Get motion style right with one model before comparing
 - Use 5s clips, not 10s
@@ -1337,60 +1273,60 @@ Don't iterate on broken foundation:
 ```
 PRODUCT VIDEO PIPELINE
 
-┌─────────────────────────────────────────┐
-│  Request arrives                        │
-│  → Direct or from creative workflow     │
-│  → Source image required?               │
-└─────────────────────────────────────────┘
-                    │
-        ┌───────────┴───────────┐
++─────────────────────────────────────────+
+|  Request arrives                        |
+|  → Direct or from creative workflow     |
+|  → Source image required?               |
++─────────────────────────────────────────+
+                    |
+        +───────────┴───────────+
         ▼                       ▼
-┌──────────────────┐   ┌──────────────────┐
-│  Has source      │   │  Needs source    │
-│  image           │   │  image           │
-└───────┬──────────┘   └────────┬─────────┘
-        │                       │
-        │                       ▼
-        │              ┌──────────────────┐
-        │              │  product-photo   │
-        │              │  mode            │
-        │              │  → Generate      │
-        │              │  → Approve       │
-        │              └────────┬─────────┘
-        │                       │
-        └───────────┬───────────┘
++──────────────────+   +──────────────────+
+|  Has source      |   |  Needs source    |
+|  image           |   |  image           |
++───────┬──────────+   +────────┬─────────+
+        |                       |
+        |                       ▼
+        |              +──────────────────+
+        |              |  product-photo   |
+        |              |  mode            |
+        |              |  → Generate      |
+        |              |  → Approve       |
+        |              +────────┬─────────+
+        |                       |
+        +───────────┬───────────+
                     ▼
-┌─────────────────────────────────────────┐
-│  Motion Style Selection                 │
-│  → Single style or multiple exploration │
-└─────────────────────────────────────────┘
-                    │
++─────────────────────────────────────────+
+|  Motion Style Selection                 |
+|  → Single style or multiple exploration |
++─────────────────────────────────────────+
+                    |
                     ▼
-┌─────────────────────────────────────────┐
-│  Cost Estimation                        │
-│  → Calculate based on models + clips    │
-│  → Present to user for confirmation     │
-└─────────────────────────────────────────┘
-                    │
++─────────────────────────────────────────+
+|  Cost Estimation                        |
+|  → Calculate based on models + clips    |
+|  → Present to user for confirmation     |
++─────────────────────────────────────────+
+                    |
                     ▼
-┌─────────────────────────────────────────┐
-│  product-video mode (THIS MODE)         │
-│  → Construct motion prompt              │
-│  → Multi-model parallel generation      │
-│  → Present options                      │
-│  → User selects winner                  │
-│  → Save to campaigns/{product}/video/   │
-└─────────────────────────────────────────┘
-                    │
-        ┌───────────┼───────────┐
++─────────────────────────────────────────+
+|  product-video mode (THIS MODE)         |
+|  → Construct motion prompt              |
+|  → Multi-model parallel generation      |
+|  → Present options                      |
+|  → User selects winner                  |
+|  → Save to campaigns/{product}/video/   |
++─────────────────────────────────────────+
+                    |
+        +───────────┼───────────+
         ▼           ▼           ▼
-┌──────────┐ ┌──────────┐ ┌──────────────┐
-│ Delivery │ │ Clip     │ │ Route to     │
-│ → Final  │ │ Stitch   │ │ talking-head │
-│   video  │ │ → Plan   │ │ mode         │
-│          │ │   more   │ │ → Voiceover  │
-│          │ │   clips  │ │ → Lip-sync   │
-└──────────┘ └──────────┘ └──────────────┘
++──────────+ +──────────+ +──────────────+
+| Delivery | | Clip     | | Route to     |
+| → Final  | | Stitch   | | talking-head |
+|   video  | | → Plan   | | mode         |
+|          | |   more   | | → Voiceover  |
+|          | |   clips  | | → Lip-sync   |
++──────────+ +──────────+ +──────────────+
 ```
 
 ---
@@ -1493,11 +1429,11 @@ When to invest in parallel comparison:
 ```
 BUDGET TIERS
 ─────────────────────────────────
-Lean:     1 model, 1 style         ~$0.40
-Standard: 1 model, 3 styles        ~$1.20
-Premium:  3 models, 1 style        ~$2.20
-Hero:     3 models, 3 styles       ~$6.60
-Campaign: 3 models, 3 styles, stitch ~$10+
+Lean:     1 model, 1 style         cost: see references/MODEL_REGISTRY.md
+Standard: 1 model, 3 styles        cost: see references/MODEL_REGISTRY.md
+Premium:  3 models, 1 style        cost: see references/MODEL_REGISTRY.md
+Hero:     3 models, 3 styles       cost: see references/MODEL_REGISTRY.md
+Campaign: 3 models, 3 styles, stitch cost: see references/MODEL_REGISTRY.md+
 ```
 
 ---
@@ -1584,7 +1520,7 @@ final hero positioning, dramatic front-facing angle,
 controlled reflections on surface below, premium closing shot,
 commercial end-frame quality, sophisticated motion
 ─────────────────────────────────────────
-Estimated: 4 clips x Kling 2.5 = ~$1.60, ~5min parallel
+Estimated: 4 clips x video default role = cost: see references/MODEL_REGISTRY.md, ~5min parallel
 ```
 
 ---
@@ -1595,27 +1531,27 @@ Estimated: 4 clips x Kling 2.5 = ~$1.60, ~5min parallel
 
 ### Image-to-Video Call Patterns
 
-**Kling 2.5 I2V:**
+**video default role I2V:**
 ```
-Model: kwaivgi/kling-v2.5-turbo-pro
+Model: video default role
 Image param: start_image
 Duration param: duration (5 or 10)
 Ratio param: aspect_ratio ("16:9", "9:16", "1:1")
 Extras: negative_prompt (guidance_scale has been REMOVED from API)
 ```
 
-**Veo 3.1 I2V:**
+**hero comparison role I2V:**
 ```
-Model: google/veo-3.1
+Model: hero comparison role
 Image param: image
 Duration param: duration (4, 6, or 8)
 Ratio param: aspect_ratio ("16:9", "9:16")
 Extras: generate_audio (bool), resolution ("720p", "1080p"), negative_prompt, seed
 ```
 
-**Sora 2 I2V:**
+**hero comparison role I2V:**
 ```
-Model: openai/sora-2
+Model: hero comparison role
 Image param: input_reference
 Duration param: seconds (4-12)
 Ratio param: aspect_ratio ("landscape", "portrait")
@@ -1624,27 +1560,27 @@ Extras: openai_api_key (optional)
 
 ### Text-to-Video Call Patterns
 
-**Kling 2.5 T2V:**
+**video default role T2V:**
 ```
-Model: kwaivgi/kling-v2.5-turbo-pro
+Model: video default role
 No image param needed
 Duration param: duration (5 or 10)
 Ratio param: aspect_ratio ("16:9", "9:16", "1:1")
 Extras: negative_prompt (guidance_scale has been REMOVED from API)
 ```
 
-**Veo 3.1 T2V:**
+**hero comparison role T2V:**
 ```
-Model: google/veo-3.1
+Model: hero comparison role
 No image param needed
 Duration param: duration (4, 6, or 8)
 Ratio param: aspect_ratio ("16:9", "9:16")
 Extras: generate_audio (bool), resolution ("720p", "1080p"), negative_prompt, seed
 ```
 
-**Sora 2 T2V:**
+**hero comparison role T2V:**
 ```
-Model: openai/sora-2
+Model: hero comparison role
 No image param needed
 Duration param: seconds (4-12)
 Ratio param: aspect_ratio ("landscape", "portrait")
