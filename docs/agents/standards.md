@@ -29,5 +29,11 @@ A **warning** is a judgement call: how a pointer is worded, where material sits 
 - **The Reads list is the only context contract** ([ADR 0004](../adr/0004-per-skill-reads-replace-context-matrix.md)). Each skill's Reads list, stated positively with depth, is the only statement of which brand files it receives.
 - **Glossary terms** ([GLOSSARY.md](../../GLOSSARY.md)). Mode, first run, returning run, Fallback, Format and data-quality label mean what the glossary says, and the terms it lists under _Avoid_ are not used for those meanings.
 - **Single source of truth.** Each meaning has one home and every other file points to it. Model slugs and prices live only in `creative/references/MODEL_REGISTRY.md`; skill and mode files name roles. The AI-tells list and the content brief each have one shared home in `_system`. Before deleting text as a duplicate, diff it against its home and keep anything unique.
+- **Relocation: move, don't summarise (blocking).** Material leaves a file only by being (a) moved behind a pointer with its substance kept, (b) deleted as a duplicate with its other home named, (c) deleted because a shared `_system` file or another step owns it, or (d) deleted as a no-op or banned output. A shorter summary is not a substitute for unique substance. Every rewrite ticket must include a disposition table naming each removed section, its disposition, its destination/owner/other home where applicable, and the evidence or reason for deletion:
+
+  | Source section | Disposition (a–d) | Destination, owner or other home | Evidence/reason |
+  |---|---|---|---|
+
+  Review the table against the diff and investigate loss-check warnings before accepting a rewrite.
 
 The reasons behind these rules are in [docs/rewrite-decisions.md](../rewrite-decisions.md).

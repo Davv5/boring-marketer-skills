@@ -12,6 +12,6 @@ Single-context: `GLOSSARY.md` and `docs/adr/` at the repo root. See `docs/agents
 
 Writing or reviewing a skill or `_system` file: `docs/agents/standards.md` (the review standard, blocking vs warning, and the lint check).
 
-## Rewrite in progress
+## Pack rules and decisions
 
-Spec #1, tickets #2-#16. Decisions and their reasons: `docs/rewrite-decisions.md`. Vocabulary: `GLOSSARY.md`. Decisions not to reverse: `docs/adr/`. Evidence: `docs/research/`.
+Review and relocation rules: `docs/agents/standards.md`. Decisions not to reverse: `docs/adr/`.
