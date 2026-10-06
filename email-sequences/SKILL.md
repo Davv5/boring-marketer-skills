@@ -1,7 +1,6 @@
 ---
 name: email-sequences
-description: "Write or revise a multi-email sequence: welcome, nurture, conversion, launch, re-engagement, post-purchase, cart abandonment."
-version: 8.0
+description: "Write or revise a multi-email sequence: welcome, nurture, conversion, launch, re-engagement, post-purchase, cart abandonment. Use when writing or revising a multi-email series."
 ---
 
 # Email Sequences
@@ -25,11 +24,11 @@ Apply `../_system/brand-memory.md` §Read to the Reads list. If `./brand/` is ab
 
 ## 2. Check for an existing sequence
 
-Look in `./campaigns/*/emails/`. When email files exist, read them and present what exists: the campaign, each file with its send day and subject, the email count, the sequence type, and the last-updated date. Then ask: "Do you want to revise this sequence, add emails, or start a new one?"
+Look in `./campaigns/*/emails/`. When email files exist, read them and present what exists: the campaign, each file with its send day and subject, the email count, the sequence Format, and the last-updated date. Then ask: "Do you want to revise this sequence, add emails, or start a new one?"
 
 - **Revise:** load the existing emails, identify weak spots, rewrite specific emails.
 - **Add:** add emails to the existing sequence (for example, extend with re-engagement).
-- **New:** create a different sequence type (for example, a conversion sequence after welcome).
+- **New:** create a different sequence Format (for example, a conversion sequence after welcome).
 
 When no email files exist, continue to step 3. Completion: the work is named as new, revise or add, and any existing emails it touches have been read.
 
@@ -46,7 +45,7 @@ Get these inputs before writing any sequence:
 
 When brand memory answers any of these, confirm instead of re-asking: "Your lead magnet is '[name]' and your paid offer is '[product]' at $[price]. Sound right, or has anything changed?"
 
-Completion: the sequence type, lead magnet, paid offer with price and bridge logic, audience type (B2B, B2C, creator or ecommerce) and at least the top 3 objections are each stated or confirmed.
+Completion: the sequence Format, lead magnet, paid offer with price and bridge logic, audience type (B2B, B2C, creator or ecommerce) and at least the top 3 objections are each stated or confirmed.
 
 ## 4. Check the ESP
 
@@ -54,7 +53,7 @@ Read `references/esp.md` for the detection order and platform handoff. It decide
 
 ## 5. Plan the sequence
 
-Pick the sequence type, then read its file:
+Pick the sequence Format, then read its file:
 
 | Sequence | Purpose | Length | When to use | Framework and emails |
 |----------|---------|--------|-------------|----------------------|
@@ -63,10 +62,10 @@ Pick the sequence type, then read its file:
 | **Conversion** | Sell the product | 4-7 emails | When ready to pitch | `references/conversion.md` |
 | **Launch** | Time-bound campaign | 6-10 emails | Product launch | `references/launch.md` |
 | **Re-engagement** | Win back cold subscribers | 3-4 emails | Inactive 30+ days | `references/re-engagement.md` |
-| **Post-Purchase** | Onboard, reduce refunds, upsell | 4-6 emails | After purchase | File names in `references/file-output.md` |
-| **Cart abandonment** | Recover an abandoned cart | Three emails | Ecommerce cart left | At 1 hour, 24 hours, 72 hours (`references/send-timing.md`) |
+| **Post-Purchase** | Onboard, reduce refunds, upsell | 4-6 emails | After purchase | `references/post-purchase.md` |
+| **Cart abandonment** | Recover an abandoned cart | Three emails | Ecommerce cart left | `references/cart-abandonment.md`; timing in `references/send-timing.md` |
 
-Choose how the emails connect from `references/architecture.md` (straight line, branch, hybrid). Assign every email a send day and time from `references/send-timing.md`, using the audience type, the sequence type, the price point (the higher the price, the more value emails before the pitch) and any send-time data in `learnings.md`.
+Choose how the emails connect from `references/architecture.md` (straight line, branch, hybrid). Assign every email a send day and time from `references/send-timing.md`, using the audience type, the sequence Format, the price point (the higher the price, the more value emails before the pitch) and any send-time data in `learnings.md`.
 
 Completion: each email has a purpose, a send day and time with rationale, and the first pitch lands after the number of value emails the price point calls for.
 
@@ -95,7 +94,7 @@ A run of "content, content, content, BUY NOW BUY NOW" has failed; rework it unti
 
 ## 8. Save
 
-Read `references/file-output.md` for the directory layout, the `{nn}-{purpose}.md` naming, the individual email file format, and the sequence sections of `brief.md` (the base format is `../_system/brand-memory.md` §Campaigns). Write `brief.md`, one file per email, and `sequence-summary.md`: its sequence overview, architecture and send timing tables, with a JSON block conforming to `_system/schemas/email-sequence-summary.schema.json` at the bottom inside a `<details>` section (layout in `references/summary-output.md`). Append the sequence to `./brand/assets.md` as `draft`. Where the ESP step chose "Set it up", create the automation through the platform API after the files exist.
+Read `references/file-output.md` for the directory layout, the `{nn}-{purpose}.md` naming, the individual email file format, and the sequence sections of `brief.md` (the base format is `../_system/brand-memory.md` §Campaigns). Write `brief.md`, one file per email, and `sequence-summary.md`: its sequence overview, architecture and send timing tables, with a JSON block conforming to `../_system/schemas/email-sequence-summary.schema.json` at the bottom inside a `<details>` section (layout in `references/summary-output.md`). Append the sequence to `./brand/assets.md` as `draft`. Where the ESP step chose "Set it up", create the automation through the platform API after the files exist.
 
 Completion: `brief.md`, every email file and `sequence-summary.md` exist, the summary JSON validates against the schema, and `assets.md` has the entry.
 
@@ -105,7 +104,7 @@ Follow `../_system/output-format.md`, filling its Content section with the layou
 
 ## 10. Feedback
 
-Apply `../_system/brand-memory.md` §Feedback. When logging, record the specifics of this skill: the number of emails and the sequence type, the angle, the tone, the subject-line style chosen, what the user changed, and any voice, subject-line direction or send-timing corrections they give. If the user reports which subject-line variant won an A/B test, log it under "What Works" or "What Doesn't Work":
+Apply `../_system/brand-memory.md` §Feedback. When logging, record the specifics of this skill: the number of emails and the sequence Format, the angle, the tone, the subject-line style chosen, what the user changed, and any voice, subject-line direction or send-timing corrections they give. If the user reports which subject-line variant won an A/B test, log it under "What Works" or "What Doesn't Work":
 
 ```
 - [YYYY-MM-DD] [/email-sequences] Subject line A/B test: "{winner}" beat "{loser}" ({open rate difference if known}). Pattern: {what the winner had that the loser didn't}.

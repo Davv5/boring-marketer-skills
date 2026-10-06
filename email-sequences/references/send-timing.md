@@ -2,7 +2,7 @@
 
 Read by the plan step when assigning each email a send day and time, and when deciding how many value emails come before the pitch.
 
-## Timing by sequence type
+## Timing by sequence Format
 
 | Sequence | Frequency | Notes |
 |----------|-----------|-------|
@@ -42,7 +42,7 @@ Read by the plan step when assigning each email a send day and time, and when de
 Assign a specific send day and time to each email based on:
 
 1. **Audience type** from `./brand/audience.md` (or ask if not available)
-2. **Sequence type** (welcome sequences are daily/every-other-day; nurture is weekly)
+2. **Sequence Format** (welcome sequences are daily/every-other-day; nurture is weekly)
 3. **Price point** (higher price = more value emails before pitch)
 4. **Learnings data** from `./brand/learnings.md` (if send time performance data exists, use it)
 

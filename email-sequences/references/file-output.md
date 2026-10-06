@@ -28,13 +28,14 @@ Files use the pattern `{nn}-{purpose}.md`:
 - `{purpose}`: lowercase kebab-case description of the email's job
 - Use descriptive names ("01-delivery"), not generic ones ("email-1")
 
-Standard purpose names by sequence type:
+Standard purpose names by sequence Format:
 
 - **Welcome:** `references/welcome.md` (File names)
 - **Conversion:** `references/conversion.md` (File names)
 - **Launch:** `references/launch.md` (File names)
 - **Re-engagement:** `references/re-engagement.md` (File names)
-- **Post-purchase:** 01-welcome-aboard, 02-quick-start, 03-first-win, 04-advanced-tip, 05-community, 06-upsell
+- **Post-purchase:** `references/post-purchase.md` (Email purposes and file names)
+- **Cart abandonment:** `references/cart-abandonment.md` (Email purposes and file names)
 
 ## Individual email file format
 
@@ -160,10 +161,10 @@ Quick question: What project are you hoping to use this for? Hit reply and tell 
 
 ## brief.md
 
-`brief.md` follows the campaign brief format in `_system/brand-memory.md` §Campaigns (Goal, Angle, Audience Segment, Timeline, Channels, Status, Voice Notes). Add these sequence sections after Goal:
+`brief.md` follows the campaign brief format in `../_system/brand-memory.md` §Campaigns (Goal, Angle, Audience Segment, Timeline, Channels, Status, Voice Notes). Add these sequence sections after Goal:
 
 ```markdown
-## Sequence Type
+## Sequence Format
 {Welcome / Nurture / Conversion / Launch / Re-engagement / Post-Purchase}
 
 ## Emails
