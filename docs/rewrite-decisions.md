@@ -17,5 +17,6 @@ Running log of settled decisions for the skill rewrite, fed into `/to-spec`. Har
 - Q10 Move `The Vibe Marketing Playbook.md` to `docs/playbook.md`, linked from README.
 
 ## Facts gathered
-- Section map: /tmp/bm-skill-map.md (scout). Broken pointers: creative/SKILL.md → modes/product-photos.md, modes/product-videos.md (files are singular).
+- Section map: docs/research/skill-section-map.md. Broken pointers: creative/SKILL.md → modes/product-photos.md, modes/product-videos.md (files are singular).
 - Model research: docs/research/replicate-models-2026-10.md.
+- Matt-standard review of Q11-Q17: docs/research/matt-verdict.md.
