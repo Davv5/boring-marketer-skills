@@ -90,40 +90,24 @@ if [[ ! -f "$SKILLS_ROOT/_system/brand-memory.md" ]]; then
 fi
 
 # ---------------------------------------------------------------------------
-# Build list of skills to install
+# Build list of skills to install: each top-level folder holding SKILL.md
 # ---------------------------------------------------------------------------
-SKILLS=(
-  "start-here"
-  "brand-voice"
-  "positioning-angles"
-  "direct-response-copy"
-  "keyword-research"
-  "seo-content"
-  "email-sequences"
-  "lead-magnet"
-  "newsletter"
-  "content-atomizer"
-)
-
-if ! $CLAUDE_ONLY; then
-  SKILLS+=("creative")
-fi
+SKILLS=()
+for skill_file in "$SKILLS_ROOT"/*/SKILL.md; do
+  skill="$(basename "$(dirname "$skill_file")")"
+  if $CLAUDE_ONLY && [[ "$skill" == "creative" ]]; then
+    continue
+  fi
+  SKILLS+=("$skill")
+done
 
 # ---------------------------------------------------------------------------
 # Create target directory structure
 # ---------------------------------------------------------------------------
 info "Creating directory structure..."
-mkdir -p "$SYSTEM_DIR/schemas"
-mkdir -p "$SYSTEM_DIR/scripts"
+mkdir -p "$SYSTEM_DIR"
 for skill in "${SKILLS[@]}"; do
   mkdir -p "$SKILLS_DIR/$skill"
-  # Create references/ and modes/ subdirectories if they exist in source
-  if [[ -d "$SKILLS_ROOT/$skill/references" ]]; then
-    mkdir -p "$SKILLS_DIR/$skill/references"
-  fi
-  if [[ -d "$SKILLS_ROOT/$skill/modes" ]]; then
-    mkdir -p "$SKILLS_DIR/$skill/modes"
-  fi
 done
 success "Directory structure ready"
 
@@ -142,30 +126,12 @@ copy_tree() {
   fi
 }
 
-copy_file() {
-  local src="$1"
-  local dst="$2"
-  cp "$src" "$dst"
-}
-
 # --- System files ---
 info "Installing system files..."
-copy_file "$SKILLS_ROOT/_system/brand-memory.md"  "$SYSTEM_DIR/brand-memory.md"
-copy_file "$SKILLS_ROOT/_system/output-format.md"  "$SYSTEM_DIR/output-format.md"
-success "_system/brand-memory.md"
-success "_system/output-format.md"
-
-# --- Schemas ---
-info "Installing schemas..."
-copy_tree "$SKILLS_ROOT/_system/schemas" "$SYSTEM_DIR/schemas"
-success "_system/schemas/ ($(ls "$SKILLS_ROOT/_system/schemas" | wc -l | tr -d ' ') files)"
-
-# --- Scripts ---
-info "Installing scripts..."
-copy_tree "$SKILLS_ROOT/_system/scripts" "$SYSTEM_DIR/scripts"
+copy_tree "$SKILLS_ROOT/_system" "$SYSTEM_DIR"
 # Preserve execute permissions
 chmod +x "$SYSTEM_DIR/scripts/"*.sh 2>/dev/null || true
-success "_system/scripts/ ($(ls "$SKILLS_ROOT/_system/scripts/"*.sh 2>/dev/null | wc -l | tr -d ' ') files)"
+success "_system/ ($(find "$SYSTEM_DIR" -type f | wc -l | tr -d ' ') files)"
 
 # --- Individual skills ---
 INSTALLED_COUNT=0
