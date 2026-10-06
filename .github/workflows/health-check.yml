@@ -24,6 +24,7 @@ jobs:
         run: |
           bash _system/scripts/test-lint-skills.sh
           bash _system/scripts/test-loss-check.sh
+          bash _system/scripts/test-doctor.sh
 
       - name: Health check with lint
         run: |

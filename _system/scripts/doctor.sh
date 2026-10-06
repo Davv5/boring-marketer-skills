@@ -2,12 +2,12 @@
 # ============================================================================
 # doctor.sh - Vibe Marketing Skills v2 Installation Verifier
 # ============================================================================
-# Runs a health check on an installed skill suite. Verifies each skill's
+# Runs a health check on a checkout or installed skill suite. Verifies each skill's
 # SKILL.md and the shared _system files are present, lints the pack with
 # lint-skills.sh, and checks optional API keys are configured.
 #
 # Usage:
-#   ./doctor.sh                Verify default installation
+#   ./doctor.sh                Verify this checkout, or default installation
 #   TVM_INSTALL_HOME=/tmp/test ./doctor.sh   Verify custom location
 #
 # Exit codes:
@@ -19,8 +19,16 @@ set -euo pipefail
 # ---------------------------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------------------------
-INSTALL_HOME="${TVM_INSTALL_HOME:-$HOME/.claude}"
-SKILLS_DIR="$INSTALL_HOME/skills"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PACK_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+CHECKOUT_ROOT="$(git -C "$PACK_ROOT" rev-parse --show-toplevel 2>/dev/null || true)"
+if [[ -n "${TVM_INSTALL_HOME:-}" ]]; then
+  SKILLS_DIR="$TVM_INSTALL_HOME/skills"
+elif [[ -n "$CHECKOUT_ROOT" && "$CHECKOUT_ROOT" -ef "$PACK_ROOT" ]]; then
+  SKILLS_DIR="$PACK_ROOT"
+else
+  SKILLS_DIR="$HOME/.claude/skills"
+fi
 SYSTEM_DIR="$SKILLS_DIR/_system"
 
 # ---------------------------------------------------------------------------
