@@ -8,6 +8,10 @@ GitHub Issues on `Davv5/boring-marketer-skills`, via the `gh` CLI. See `docs/age
 
 Single-context: `GLOSSARY.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
 
+### Skill standards
+
+Writing or reviewing a skill or `_system` file: `docs/agents/standards.md` (the review standard, blocking vs warning, and the lint check).
+
 ## Rewrite in progress
 
 Spec #1, tickets #2-#16. Decisions and their reasons: `docs/rewrite-decisions.md`. Vocabulary: `GLOSSARY.md`. Decisions not to reverse: `docs/adr/`. Evidence: `docs/research/`.

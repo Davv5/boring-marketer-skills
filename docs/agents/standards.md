@@ -1,0 +1,29 @@
+# Skill standards
+
+The standard `/code-review` applies to every skill and `_system` file in this pack. The base standard is Matt Pocock's `/writing-for-agents` skill (context pointers, information hierarchy, completion criteria, leading words, pruning): read it before writing or reviewing a skill. The rules below are this pack's own.
+
+## Blocking and warning
+
+A **blocking** finding is a lint failure or a hard violation of a rule under Pack rules. A ticket is done when the health check and fresh-install test pass and review has no blocking findings.
+
+A **warning** is a judgement call: how a pointer is worded, where material sits on the information hierarchy, a weak leading word, a suspected no-op, a SKILL.md over 500 lines. Report warnings; they do not block.
+
+## Lint
+
+`_system/scripts/lint-skills.sh` checks the mechanical rules, and the health check (`_system/scripts/doctor.sh`) runs it for the whole pack. Lint one skill with `bash _system/scripts/lint-skills.sh <skill-folder>`, or the shared files with `bash _system/scripts/lint-skills.sh _system`.
+
+- Every pointer resolves. Write a pointer as a path: `references/x.md` or `modes/x.md` from the skill folder, `../_system/x.md`, or `<skill>/SKILL.md` from the pack root. A bare file name is not a pointer, so lint cannot check it.
+- Every file in a skill folder besides SKILL.md is pointed to by another file.
+- Every SKILL.md frontmatter has `name` and `description`.
+- No box frames or heavy dividers (┌ ┐ └ ┘ │ ━) in any skill or `_system` markdown file. Tree diagrams (├── └── │) are allowed inside code fences; ✓ ✗ ★ → are allowed anywhere.
+- Warning only: SKILL.md over 500 lines.
+
+## Pack rules
+
+- **Markdown output** ([ADR 0002](../adr/0002-markdown-output-format.md)). Output is markdown in four sections (Header, Content, Files Saved, What's Next) with ✓ ✗ ★ status symbols and → next steps.
+- **`_system` is the single source** ([ADR 0003](../adr/0003-system-files-single-source.md)). Brand-memory and output rules live only in `_system/brand-memory.md` and `_system/output-format.md`. A skill keeps its own Reads (with depth), Writes, a load step and a feedback step, each pointing at `_system`.
+- **The Reads list is the only context contract** ([ADR 0004](../adr/0004-per-skill-reads-replace-context-matrix.md)). Each skill's Reads list, stated positively with depth, is the only statement of which brand files it receives.
+- **Glossary terms** ([GLOSSARY.md](../../GLOSSARY.md)). Mode, first run, returning run, Fallback, Format and data-quality label mean what the glossary says, and the terms it lists under _Avoid_ are not used for those meanings.
+- **Single source of truth.** Each meaning has one home and every other file points to it. Model slugs and prices live only in `creative/references/MODEL_REGISTRY.md`; skill and mode files name roles. The AI-tells list and the content brief each have one shared home in `_system`. Before deleting text as a duplicate, diff it against its home and keep anything unique.
+
+The reasons behind these rules are in [docs/rewrite-decisions.md](../rewrite-decisions.md).
