@@ -232,3 +232,11 @@ LinkedIn uses a **three-step process**: quality filtering (spam/low/high classif
 - "Comment with your biggest takeaway"
 - "Tag someone who needs to see this"
 - "Save this for later (bookmark in top right)"
+
+
+### LinkedIn Mistakes
+1. Posting links in main body (kills reach)
+2. Too many hashtags (3-5 max)
+3. No line breaks (wall of text)
+4. Hashtags in carousel slides
+5. Copying Twitter energy (too casual)

@@ -219,3 +219,11 @@ TikTok's 2025 algorithm prioritizes **enhanced personalization**, focusing on wa
 - "Save this" (drives saves)
 - "Duet this with your take"
 - "Link in bio"
+
+
+### TikTok Mistakes
+1. Slow intros (no hook for 3+ seconds)
+2. Not using captions
+3. Ignoring trending sounds
+4. Over-produced content (authenticity wins)
+5. Not responding to comments

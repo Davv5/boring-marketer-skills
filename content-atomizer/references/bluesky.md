@@ -168,3 +168,11 @@ Curious what others have experienced.
 - "Repost for your followers"
 - "Follow for more [topic] posts"
 - "Add this to your [topic] feed"
+
+
+### Bluesky Mistakes
+1. Using Twitter tone (too aggressive for Bluesky culture)
+2. Ignoring custom feeds (the main discovery mechanism)
+3. Not setting up domain-as-handle (missed credibility signal)
+4. Treating it like a broadcast channel (it rewards conversation)
+5. Over-posting (quality audience prefers substance over volume)

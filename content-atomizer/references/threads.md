@@ -176,3 +176,11 @@ This is underrated. Here's why:
 - "Repost if this resonated"
 - "Follow for more [topic]"
 - "Quote this with your experience"
+
+
+### Threads Mistakes
+1. Cross-posting identical Twitter/X content (feels lazy)
+2. Using hashtag strategies (not how Threads works)
+3. Being overly promotional (community rejects it)
+4. Ignoring the reply culture (conversation is the point)
+5. Not leveraging Instagram cross-promotion

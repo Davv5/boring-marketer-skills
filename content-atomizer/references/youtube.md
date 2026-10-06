@@ -287,3 +287,11 @@ CTA: "What do you think?"
 - "Leave a comment with [question]"
 - "Like this video if it helped"
 - "Join the [membership/channel]"
+
+
+### YouTube Mistakes
+1. Clickbait that doesn't deliver
+2. No hook in first 30 seconds
+3. Thumbnail too cluttered
+4. Title doesn't match content
+5. No cards/end screens

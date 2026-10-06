@@ -211,3 +211,11 @@ Body:
 ---
 
 ## Common Mistakes by Platform
+
+
+### Reddit Mistakes
+1. Self-promoting without adding value (instant downvotes)
+2. Ignoring subreddit rules (leads to removal/ban)
+3. Short, low-effort posts (Reddit rewards depth)
+4. Not disclosing affiliations (community will find out)
+5. Arguing with critics instead of engaging constructively

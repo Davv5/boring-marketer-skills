@@ -313,3 +313,11 @@ Save this for later
 - "Drop a comment if this resonated"
 - "Comment [word] for [resource]"
 - "Follow for daily [topic]"
+
+
+### Instagram Mistakes
+1. Static images only (algorithm punishes)
+2. Hashtags in wrong places
+3. No captions on video
+4. Reposting TikToks with watermark
+5. Inconsistent visual style

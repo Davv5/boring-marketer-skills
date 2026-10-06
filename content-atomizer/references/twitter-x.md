@@ -275,3 +275,11 @@ If this was useful:
 3. Filler tweets with no value
 4. Not replying to comments
 5. Posting at wrong times
+
+
+### Twitter Mistakes
+1. Thread too long (20+ tweets)
+2. No hook in first tweet
+3. Filler tweets with no value
+4. Not replying to comments
+5. Posting at wrong times
