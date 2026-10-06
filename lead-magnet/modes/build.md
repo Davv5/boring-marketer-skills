@@ -2,7 +2,7 @@
 
 Load this file when producing the selected lead magnet. The main skill owns brand-memory, campaign-brief and shared output protocols.
 
-A returning run checks `./campaigns/*/` for existing `lead-magnet.md` assets and checks `./brand/assets.md`. When one exists and the user intent is ambiguous, summarize campaign name, Format, title, hook and available landing page, then ask whether to revise it, create a distinct magnet, or develop additional concepts. Read the existing asset before revision. Build saves use lowercase kebab case derived from the concept name.
+For an existing campaign, check `./campaigns/*/` for existing `lead-magnet.md` assets and checks `./brand/assets.md`. When one exists and the user intent is ambiguous, summarize campaign name, Format, title, hook and available landing page, then ask whether to revise it, create a distinct magnet, or develop additional concepts. Read the existing asset before revision. Build saves use lowercase kebab case derived from the concept name.
 
 
 ### Build Mode Activation
@@ -12,17 +12,7 @@ Build mode activates when the user says:
 - "Write the checklist" / "Create the template" / "Build the guide"
 - Any clear selection of a concept from the options presented
 
-### Build Process
-
-1. **Confirm the selection** -- restate the concept, hook, and format.
-2. **Gather any missing details** -- if the concept requires specific inputs the user has not provided (industry data, product details, pricing tiers), ask now.
-3. **Write the content** -- produce the full lead magnet content based on format type.
-4. **Save to disk** -- write to `./campaigns/{magnet-name}/lead-magnet.md`.
-5. **Create campaign brief** -- write `./campaigns/{magnet-name}/brief.md`.
-6. **Update assets registry** -- append to `./brand/assets.md`.
-7. **Offer funnel chain** -- suggest the next skills in the funnel.
-
-### Build Output by Format Type
+### Build Output by Format
 
 #### Checklists
 
@@ -76,6 +66,8 @@ Write the complete template with:
 - Bridge section connecting to the paid offer
 
 #### Guides (Mini-Guides / Frameworks)
+
+Aim for 1,500–3,000 words: enough to deliver the quick win without adding unnecessary consumption time.
 
 Write the complete guide with:
 - Title and hook subtitle
@@ -174,84 +166,98 @@ created_date: {YYYY-MM-DD}
 
 # {Lead Magnet Title}
 
-{Full lead magnet content here -- varies by format type}
+{Full lead magnet content here -- varies by Format}
 ```
 
-## Build Mode Output Template
+## Presentation
 
-After building the lead magnet content, display the full output:
+Use `../_system/output-format.md` for the four sections. In Content include:
 
-```
+### Resource summary
+- Title, Format, hook, audience, and consumption time.
+- Checklist: grouped items and the three quick-start actions.
+- Guide: core sections and actionable takeaways.
+- Quiz: questions, scoring, and tailored result profiles.
+- Other Formats: completed components and implementation notes.
 
+### Bridge logic
+- The micro-transformation delivered.
+- The paid offer and one-sentence connection.
 
+List confirmed paths in Files Saved and offer next skills under the shared What's Next rule. Use `../_system/brand-memory.md` §Feedback after delivery.
 
-  "{Lead Magnet Title}"
-  Format: {format}
-  Hook: "{hook headline}"
-  Audience: {target audience}
-  Consumption time: {estimated time}
+## Lead-magnet-specific feedback notes
 
+Apply shared response categories and prompt from `../_system/brand-memory.md` §Feedback. If the user shares performance or edits, record the Format, title, hook, angle, and what changed/performed in `./brand/learnings.md` using its canonical format. If the asset is reported shipped as-is, confirm it is represented in `./brand/assets.md`. For an unused asset, wait for performance data before recording a result. A voice mismatch can prompt a `/brand-voice` update.
 
-  CONTENT SUMMARY
+## Worked example: 27-point launch checklist
 
-  {Format-specific summary, e.g.:}
+If the user selects a checklist concept, here is what the build output looks like. This demonstrates the full content that gets written to `./campaigns/{name}/lead-magnet.md`.
 
-  For checklists:
+This is an abbreviated illustrative example, not evidence of revenue results; replace claims with the user’s verified facts.
 
-  For guides:
+### Context
+- Concept selected: "The Launch Day Checklist"
+- Hook: "The 27-Point Launch Checklist That Turned My Last 3 Launches Into $50k+ Days"
+- Bridge: Checklist covers launch basics -> course covers the full launch system
 
-  For quizzes:
+### Built Content (abbreviated)
 
+```markdown
+---
+title: "The Launch Day Checklist"
+subtitle: "27 Points That Turned My Last 3 Launches Into $50k+ Days"
+format: checklist
+hook: "The 27-Point Launch Checklist That Turned My Last 3 Launches Into $50k+ Days"
+bridge_to: "The Launch System ($997)"
+target_audience: "Course creators and coaches planning their first or next launch"
+estimated_consumption_time: "15 min to read, 2-4 hours to complete"
+status: draft
+created_by: /lead-magnet
+created_date: 2026-02-16
+---
 
-  BRIDGE LOGIC
+# The Launch Day Checklist
+## 27 Points That Turned My Last 3 Launches Into $50k+ Days
 
-  Lead magnet delivers: {micro-transformation}
-  This creates desire for: {paid offer}
-  Bridge: "{one-sentence connection}"
+You are about to launch something. That means you are about to feel the urge to "just one more thing" your way into paralysis. This checklist exists to prevent that. Every item here is something I verify before every launch. Miss any of them and you leave money on the table.
 
+## Quick Start
 
+If your launch is in 48 hours and you are reading this in a panic, do these three things first:
 
-  ./campaigns/{name}/lead-magnet.md    ✓ (new)
-  ./campaigns/{name}/brief.md          ✓ (new)
-  ./brand/assets.md                    ✓ (appended)
+1. Verify your checkout page works end-to-end (item 15)
+2. Confirm your email sequence is loaded and tested (item 8)
+3. Test your primary CTA link on mobile (item 16)
 
+Everything else matters, but those three prevent launch-day disasters.
 
+## Pre-Launch Foundation (7 days before)
 
-  Your lead magnet is written. Before distributing:
+- [ ] **Sales page is live and reviewed by someone who is NOT you**
+  Fresh eyes catch what you can't. Send it to one person and ask "what's confusing?" Not "what do you think?" -- that gets you compliments, not corrections.
 
-  → /creative              Build it — PDF layout, cover
-                           design, or template (~15 min)
-  → "Skip visuals"         Continue to funnel ↓
+- [ ] **Pricing finalized and tested in checkout**
+  Change your price after launch and you erode trust. Decide now. Test a real transaction (refund yourself after).
 
+- [ ] **Email sequence loaded into ESP with correct triggers**
+  Every email, every delay, every link. Send yourself through the entire sequence. Open every link. Reply to at least one email to make sure replies work.
 
-  → /direct-response-copy  Write the landing page
-                           to capture emails (~20 min)
-  → /email-sequences       Build the delivery +
-                           welcome sequence (~15 min)
-  → /content-atomizer      Create social content to
-                           promote the magnet (~15 min)
-  → "Revise"               Edit specific sections
+...
 
-  Or tell me what you're working on and
-  I'll route you.
+## What's Next
 
+You have launched. You have data. The checklist got you to launch day -- but the difference between a $10k launch and a $100k launch is the system behind it.
 
+The Launch System covers everything this checklist touches on, but deeper: audience building, pre-launch runway, cart-open sequences, objection handling, and post-launch follow-up.
 
-  Before I close out:
-
-  1. Does this lead magnet feel genuinely valuable?
-     (Would your audience actually want this?)
-
-  2. Does the bridge to your paid offer feel natural?
-     (If forced, I can adjust the angle.)
-
-  3. Is the scope right?
-     (Too long? Too short? Wrong depth?)
+If this checklist helped, the full system is here: [LINK]
 ```
 
 ---
 
 
-## Lead-magnet-specific feedback notes
 
-Apply shared response categories and prompt from brand-memory §Feedback. If the user shares performance or edits, record the Format, title, hook, angle, and what changed/performed in `./brand/learnings.md` using its canonical format. If the asset is reported shipped as-is, confirm it is represented in `./brand/assets.md`. For an unused asset, wait for performance data before recording a result. A voice mismatch can prompt a `/brand-voice` update.
+## Completion
+
+Done when the resource delivers its promised quick win, satisfies every selected Format requirement, has a natural paid-offer bridge, and the files, registry update, and feedback follow the main skill's steps.

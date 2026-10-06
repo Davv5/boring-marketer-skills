@@ -52,7 +52,7 @@ If web search is unavailable or returns insufficient results:
 
 ---
 
-## Iteration Detection
+## Existing campaign
 
 Before starting, check if a lead magnet already exists for this project.
 
@@ -345,3 +345,7 @@ Every lead magnet needs a hook -- the reason someone would want it badly enough 
 
 ---
 
+
+## Completion
+
+Done when 3–5 distinct, feasible concepts each have a Format, specific hook, quick win, paid-offer bridge, and implementation requirements; one is recommended with a reason and research carries the appropriate data-quality label.
