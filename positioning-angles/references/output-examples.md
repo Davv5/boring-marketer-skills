@@ -2,6 +2,8 @@
 
 Load this reference when showing a worked example, saving selected positioning, or generating the optional ad-matrix seed.
 
+## File output protocol
+
 ## Saved positioning format
 
 ```markdown
@@ -32,16 +34,32 @@ White space identified:
 
 Include every angle actually presented. Keep sourced observations distinct from hypotheses and include useful source URLs where available. Follow `_system/brand-memory.md` §Write for the shared file conventions.
 
-## Worked example
+## Angle Options
 
-Product: a pack of marketing skills for a coding assistant.
+Present 3–5 distinct options with one recommended, followed by a brief rationale and a request for the user's choice.
 
-- Transformation: stronger marketing output without becoming a marketer.
-- Alternatives: generic prompting, hiring a copywriter, or learning marketing.
-- Mechanism: reusable skills encode marketing principles rather than isolated prompts.
-- Candidate angle: expertise transfer. It is promising only if competitor research supports a gap and the product evidence supports the claim.
+## Worked example: marketing skills pack for a coding assistant
 
-This is an illustration of reasoning, not market research or proof. Verify current competitors before presenting it as a recommendation.
+This is an illustrative example only, not current competitor research or proof. Verify every competitor and claim before using it in a real recommendation.
+
+**Context:** The offer is ten marketing skills for a coding assistant. The transformation is stronger marketing output without becoming a marketer. Alternatives include generic prompting, hiring copywriters, or learning marketing. The proposed mechanism is skills that transfer marketing principles rather than supply isolated prompts.
+
+**Illustrative landscape hypothesis:**
+- Competitors to research might include prompt marketplaces, AI marketing platforms, and generic prompt packs. The original example named PromptBase, Jasper, Copy.ai, and generic Gumroad prompt packs; verify their current positioning and URLs before treating them as evidence.
+- Claims such as “save hours on content creation” and “AI-powered marketing” are hypotheses about saturated territory until live search confirms them.
+- Potential gaps to test: expertise transfer rather than prompt shortcuts; methodology packaged as principles; solo builders without a marketing team.
+
+**Illustrative assessment:** Stage 3 would call for a mechanism-led angle, if the market evidence supports that stage. The mechanism would be marketing principles encoded in skills; the primary alternative might be generic prompting or hiring a copywriter.
+
+**Candidate options (examples, not substantiated claims):**
+
+1. **Capability transfer** — Turn a coding assistant into a marketing partner without learning marketing. Appeals to builders seeking outcomes without a learning curve. Headline direction: “Turn your coding assistant into a marketing team that knows what sells.” Best if research verifies mechanism differentiation.
+2. **Anti-generic** — Replace generic AI output with a defined marketing method. Taps frustration among people who have tried AI and disliked the results. Headline direction: “Same assistant. A better marketing playbook.”
+3. **Methodology transfer** — Put proven marketing methodology into the assistant. Use only when specific proof supports “proven”; do not repeat the original unsupported revenue claim.
+4. **Time recapture** — Reduce time spent repeatedly prompting and correcting. Use only with measured time evidence; the earlier illustrative “10+ hours” must not be presented as fact without proof.
+5. **Specialist access** — Access specialist-quality guidance without hiring a specialist. Use only if the skill quality supports the comparison and clearly describe what the offer does and does not replace.
+
+A recommendation requires actual competitor research, audience evidence, and verified product proof. The example demonstrates structure and reasoning, not a preset recommendation.
 
 ## Optional 12-ad matrix seed
 

@@ -7,12 +7,20 @@ description: "Find differentiated positioning angles from an offer and current c
 
 Find several credible ways to frame the offer for this audience and market. The user chooses; recommend one with evidence.
 
+## Brand memory integration
+
+Load and apply `_system/brand-memory.md` §Read, §Write, and §Feedback as specified in the steps below. The shared protocol owns brand loading and feedback prompts.
+
 ## Reads
 
 - `./brand/audience.md` — audience segments, pains, and language; if present.
 - `./brand/competitors.md` — competitor names and URLs to seed research; if present.
 - `./brand/positioning.md` — current angle and alternatives on a returning run; if present.
 - `./brand/voice-profile.md` — voice guidance for wording; if present.
+
+## Feedback collection
+
+After delivering saved positioning, use `_system/brand-memory.md` §Feedback and record positioning-specific learning as described in Step 7.
 
 ## Steps
 
@@ -22,7 +30,7 @@ Find several credible ways to frame the offer for this audience and market. The 
 
 3. **Research the market.** Search live web messaging for the named competitors or, if none are known, the product category and target market. Sample homepages and relevant feature/pricing pages; capture exact claims and sources. Map saturated claims, partially claimed territory, and plausible gaps. Mark findings LIVE; if live search is unavailable, disclose the Fallback and label unsourced market observations ESTIMATED. Completion: the map separates sourced observations from hypotheses and makes the data-quality label clear.
 
-4. **Assess and generate.** Map alternatives (do nothing, DIY, hire, different category, direct competitor), identify the product's mechanism, and estimate market sophistication. Apply several angle generators to produce distinct options, then select the strongest 3–5. Each option needs a one-sentence statement, audience-specific rationale, headline direction, and best-fit conditions. Reject angles that are generic, unsupported, indistinguishable from competitor claims, or irrelevant to this audience. For the five-component positioning method, load `references/dunford-positioning.md`; for mechanism discovery, load `references/unique-mechanism.md`; for market sophistication, load `references/schwartz-sophistication.md`; for additional copy-angle lenses, load `references/angle-frameworks.md`; for offer value and risk-reversal thinking, load `references/hormozi-offer.md`. Completion: options are distinct, defensible, and tied to evidence, audience, and market conditions.
+4. **Assess and generate.** Map alternatives (do nothing, DIY, hire, different category, direct competitor), identify the product's mechanism, and estimate market sophistication. Follow `references/angle-selection.md` for the eight generators, quality test, and returning-run process. For the five-component positioning method, load `references/dunford-positioning.md`; for mechanism discovery, load `references/unique-mechanism.md`; for market sophistication, load `references/schwartz-sophistication.md`; for additional copy-angle lenses, load `references/angle-frameworks.md`; for offer value and risk-reversal thinking, load `references/hormozi-offer.md`. Completion: options are distinct, defensible, and tied to evidence, audience, and market conditions.
 
 5. **Present options.** Follow `_system/output-format.md` and its markdown four-section contract. In Content, present the competitive landscape, market assessment, and 3–5 numbered angles; mark one recommended with ★ and explain why. Ask which angle resonates or whether to combine elements. Skill-specific example and optional 12-ad matrix seed are in `references/output-examples.md`; load that file when illustrating the method or when the user requests the matrix. Completion: the user has a clear recommendation and an explicit choice to make.
 
