@@ -243,15 +243,19 @@ for target in "${TARGETS[@]}"; do
     fi
   done < <(awk -F'\t' -v t="$target" 'index($1, t "/") == 1' "$WORK_DIR/pointers")
 
-  # --- Orphaned files (skill folders only) ---
-  if [[ "$target" != "_system" ]]; then
+  # --- Orphaned skill files and shared markdown (scripts/schemas excluded) ---
+  if [[ "$target" == "_system" ]]; then
+    find "$target" -type f -name '*.md' -not -name '.*' \
+      -not -path "$target/schemas/*" -not -path "$target/scripts/*" | sort > "$WORK_DIR/orphans"
+  else
+    find "$target" -type f -not -name '.*' -not -path "$target/SKILL.md" | sort > "$WORK_DIR/orphans"
+  fi
     while IFS= read -r file; do
       if ! awk -F'\t' -v f="$file" '$4 == f && $1 != f { found = 1; exit } END { exit !found }' \
           "$WORK_DIR/pointers"; then
         fail "$file  nothing points to this file"
       fi
-    done < <(find "$target" -type f -not -name '.*' -not -path "$target/SKILL.md" | sort)
-  fi
+    done < "$WORK_DIR/orphans"
 
   # --- Model slugs and prices have one home ---
   if [[ "$target" == "creative" && ! -s "$WORK_DIR/models" ]]; then

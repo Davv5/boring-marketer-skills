@@ -48,7 +48,17 @@ expect_clean() {
 
 case "${1:-all}" in
   all)
-    for rule in models glossary headings; do bash "$0" "$rule"; done
+    for rule in models glossary headings system-orphans; do bash "$0" "$rule"; done
+    ;;
+  system-orphans)
+    printf '# Shared\nSee _system/shared.md.\n' > "$TEMP/_system/shared.md"
+    expect_failure '_system/shared.md  nothing points to this file'
+    printf '\nSee ../_system/shared.md.\n' >> "$TEMP/sample/SKILL.md"
+    expect_clean
+    mkdir -p "$TEMP/_system/schemas" "$TEMP/_system/scripts"
+    printf '# Schema notes\n' > "$TEMP/_system/schemas/notes.md"
+    printf '# Script notes\n' > "$TEMP/_system/scripts/notes.md"
+    expect_clean
     ;;
   headings)
     sed '/^## Reads$/d' "$TEMP/sample/SKILL.md" > "$TEMP/clean"
