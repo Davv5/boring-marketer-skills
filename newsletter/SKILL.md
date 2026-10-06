@@ -7,9 +7,13 @@ description: "Write a newsletter edition, choose a Format, or plan newsletter gr
 
 Create a useful, publication-ready newsletter edition or plan a newsletter strategy.
 
-**Reads:** `voice-profile.md` (full file), `audience.md` (pain points and language), and `learnings.md` (newsletter-related entries), when present. Check `./campaigns/newsletters/` for recent editions when choosing a topic or continuing a series.
+## Reads
 
-**Writes:** edition to `./campaigns/newsletters/{YYYY-MM-DD}-{topic}.md`; append the asset to `./brand/assets.md` following `../_system/brand-memory.md` §Write.
+`voice-profile.md` (full file), `audience.md` (pain points and language), and `learnings.md` (newsletter-related entries), when present. Check `./campaigns/newsletters/` for recent editions when choosing a topic or continuing a series.
+
+## Writes
+
+edition to `./campaigns/newsletters/{YYYY-MM-DD}-{topic}.md`; append the asset to `./brand/assets.md` following `../_system/brand-memory.md` §Write.
 
 ## Load
 

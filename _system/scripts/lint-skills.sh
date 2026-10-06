@@ -221,6 +221,15 @@ for target in "${TARGETS[@]}"; do
     [[ "$has_name" == 1 ]] || fail "$target/SKILL.md  frontmatter missing name"
     [[ "$has_desc" == 1 ]] || fail "$target/SKILL.md  frontmatter missing description"
 
+    read -r has_reads has_writes < <(awk '
+      /^[ \t]*(```|~~~)/ { fence = !fence; next }
+      !fence && /^## Reads[ \t]*(#+[ \t]*)?$/ { reads = 1 }
+      !fence && /^## Writes[ \t]*(#+[ \t]*)?$/ { writes = 1 }
+      END { print reads + 0, writes + 0 }
+    ' "$target/SKILL.md")
+    [[ "$has_reads" == 1 ]] || fail "$target/SKILL.md  missing ## Reads heading"
+    [[ "$has_writes" == 1 ]] || fail "$target/SKILL.md  missing ## Writes heading"
+
     lines=$(wc -l < "$target/SKILL.md" | tr -d ' ')
     if [[ "$lines" -gt "$MAX_SKILL_LINES" ]]; then
       warn "$target/SKILL.md  $lines lines (over $MAX_SKILL_LINES)"

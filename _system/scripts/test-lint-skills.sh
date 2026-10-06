@@ -48,7 +48,20 @@ expect_clean() {
 
 case "${1:-all}" in
   all)
-    for rule in models glossary; do bash "$0" "$rule"; done
+    for rule in models glossary headings; do bash "$0" "$rule"; done
+    ;;
+  headings)
+    sed '/^## Reads$/d' "$TEMP/sample/SKILL.md" > "$TEMP/clean"
+    mv "$TEMP/clean" "$TEMP/sample/SKILL.md"
+    printf '\n```markdown\n## Reads\n```\n' >> "$TEMP/sample/SKILL.md"
+    expect_failure 'missing ## Reads heading'
+    printf '\n## Reads\n' >> "$TEMP/sample/SKILL.md"
+    expect_clean
+    sed '/^## Writes$/d' "$TEMP/sample/SKILL.md" > "$TEMP/clean"
+    mv "$TEMP/clean" "$TEMP/sample/SKILL.md"
+    expect_failure 'missing ## Writes heading'
+    printf '\n## Writes\n' >> "$TEMP/sample/SKILL.md"
+    expect_clean
     ;;
   glossary)
     printf '\n_Avoid_: Fixture Term, using "mode" for something else\n' >> "$TEMP/GLOSSARY.md"

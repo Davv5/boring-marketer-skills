@@ -7,7 +7,7 @@ description: "Write or revise a multi-email sequence: welcome, nurture, conversi
 
 Turn a lead magnet subscriber into a customer with a strategic email sequence: deliver value immediately, build trust and relationship, create desire for the paid offer, and convert without being sleazy. The output is a complete sequence with three subject-line variants and preview text per email, full copy, specific send timing, and CTAs, each email saved as its own file.
 
-**Reads:**
+## Reads
 - `voice-profile.md` (full file): match tone, vocabulary, sentence rhythm, jargon level and formality register in every email.
 - `positioning.md` (chosen angle only): the narrative spine of the sequence; it sets how the bridge emails frame the gap.
 - `audience.md` (awareness level, sophistication, pain points, B2B/B2C and timezone habits): sets email complexity, jargon tolerance and send timing.
@@ -16,7 +16,9 @@ Turn a lead magnet subscriber into a customer with a strategic email sequence: d
 - `stack.md` (ESP rows of the Connected Tools table).
 - Lead magnet details: `./brand/assets.md` and `./campaigns/*/brief.md` (full file).
 
-**Writes:** `./campaigns/{name}/brief.md`, `./campaigns/{name}/emails/{nn}-{purpose}.md`, `./campaigns/{name}/sequence-summary.md`, and an entry appended to `./brand/assets.md` per `../_system/brand-memory.md` §Write.
+## Writes
+
+`./campaigns/{name}/brief.md`, `./campaigns/{name}/emails/{nn}-{purpose}.md`, `./campaigns/{name}/sequence-summary.md`, and an entry appended to `./brand/assets.md` per `../_system/brand-memory.md` §Write.
 
 ## 1. Load
 

@@ -7,8 +7,12 @@ description: "Create brand-aware product photos, product video, social graphics,
 
 Create images, video, social graphics, talking-head assets, and ad creative.
 
-**Reads:** `voice-profile.md` (full), `positioning.md` (chosen angle), `creative-kit.md` (full), `stack.md` (full).
-**Writes:** `creative-kit.md` when established or changed; append completed assets to `assets.md` and creative-specific feedback to `learnings.md` under `../_system/brand-memory.md` §Write and §Feedback.
+## Reads
+
+`voice-profile.md` (full), `positioning.md` (chosen angle), `creative-kit.md` (full), `stack.md` (full).
+## Writes
+
+`creative-kit.md` when established or changed; append completed assets to `assets.md` and creative-specific feedback to `learnings.md` under `../_system/brand-memory.md` §Write and §Feedback.
 
 ## Steps
 

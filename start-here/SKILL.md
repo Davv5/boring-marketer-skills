@@ -19,6 +19,10 @@ Load these per [`../_system/brand-memory.md`](../_system/brand-memory.md) §Read
 - `.env`: variable names only.
 - `./campaigns/*/brief.md`: Status, Timeline and asset counts; full briefs for Workflow 7.
 
+## Writes
+
+A run that sets up or refreshes a profile file hands that file's owner skill the work; this skill writes only the first-run scaffolding (`./brand/stack.md`, `assets.md`, `learnings.md`). Follow `../_system/brand-memory.md` §Write.
+
 ## Step 1: Load and scan
 
 Apply §Read to the Reads above (a missing `./brand/` is a first run and the scan reports it). Detect connected tools with [`references/stack-detection.md`](references/stack-detection.md). Build the project scan from the files, the stack and the campaigns, and present it in the format of [`references/output-templates.md`](references/output-templates.md) §Project scan.
@@ -29,8 +33,6 @@ Done when the scan names every Reads source as ✓ with its date or ✗ missing.
 
 - `./brand/` does not exist: **first run**. Follow [`references/first-run.md`](references/first-run.md): the two qualifying questions, the scaffolding, the foundation build, the report and the goal-based path.
 - `./brand/` exists: **returning run**. Follow [`references/returning-run.md`](references/returning-run.md): the populated scan, stale-file offers, intent, gap analysis and state-based routing.
-
-A run that sets up or refreshes a profile file hands that file's owner skill the work; this skill writes only the first-run scaffolding (`./brand/stack.md`, `assets.md`, `learnings.md`).
 
 Done when the first-run report or the returning-run recommendation is in front of the user, or the user's request has gone to Step 3.
 
