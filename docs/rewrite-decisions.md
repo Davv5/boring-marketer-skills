@@ -45,3 +45,6 @@ Running log of settled decisions for the skill rewrite, fed into `/to-spec`. Har
 
 ## Ticket order (for /to-tickets)
 Prefactor: scripts derive lists (R11), lint-skills.sh + standards.md (Q7, R5, R6), sharpened _system files (Q12, R9, R10). Then one ticket per skill, blocked by prefactor; /creative last. Contract: delete start-here matrix and brand-memory load table, blocked by every skill ticket.
+
+## Spec
+- Published as GitHub issue #1: https://github.com/Davv5/boring-marketer-skills/issues/1
