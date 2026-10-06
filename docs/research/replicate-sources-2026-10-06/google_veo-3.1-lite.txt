@@ -1,0 +1,13 @@
+SOURCE: https://replicate.com/google/veo-3.1-lite
+
+description: Generate high-fidelity videos with native audio using Google's Veo 3.1 Lite. Supports text-to-video and image-to-video at 720p or 1080p in landscape or portrait.
+replicate:run_count: 111129
+replicate:is_official: true
+replicate:latest_version_created_at: 2026-04-02T01:25:07.129831+00:00
+
+INPUT SCHEMA:
+{"type": "object", "title": "Input", "required": ["prompt"], "properties": {"seed": {"type": "integer", "title": "Seed", "x-order": 6, "nullable": true, "description": "Random seed for generation. Doesn't guarantee determinism but slightly improves it."}, "image": {"type": "string", "title": "Image", "format": "uri", "x-order": 1, "nullable": true, "description": "Input image to animate into a video. Ideal images are 16:9 or 9:16 and 1280x720 or 720x1280, depending on the aspect ratio."}, "prompt": {"type": "string", "title": "Prompt", "x-order": 0, "description": "Text prompt for video generation"}, "duration": {"enum": [4, 6, 8], "type": "integer", "title": "duration", "description": "Video duration in seconds. Must be 8 when using 1080p resolution.", "default": 8, "x-order": 4}, "last_frame": {"type": "string", "title": "Last Frame", "format": "uri", "x-order": 2, "nullable": true, "description": "Ending image for interpolation. When provided with an input image, creates a smooth transition between the two images."}, "resolution": {"enum": ["720p", "1080p"], "type": "string", "title": "resolution", "description": "Resolution of the generated video. 4k is not supported for Veo 3.1 Lite.", "default": "720p", "x-order": 5}, "aspect_ratio": {"enum": ["16:9", "9:16"], "type": "string", "title": "aspect_ratio", "description": "Video aspect ratio", "default": "16:9", "x-order": 3}}}
+
+PRICING:
+{"criteria": [{"description": "720p", "subtype": "string", "title": "target resolution", "type": "equals", "value": "720p"}], "description": null, "prices": [{"description": "or 20 seconds for $1", "metric": "video_output_duration_seconds", "metric_display": "second of output video", "price": "$0.05", "title": "per second of output video", "type": "per-unit"}], "title": null}
+{"criteria": [{"description": "1080p", "subtype": "string", "title": "target resolution", "type": "equals", "value": "1080p"}], "description": null, "prices": [{"description": "or around 12 seconds for $1", "metric": "video_output_duration_seconds", "metric_display": "second of output video", "price": "$0.08", "title": "per second of output video", "type": "per-unit"}], "title": null}

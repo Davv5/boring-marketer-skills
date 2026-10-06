@@ -7,3 +7,7 @@ GitHub Issues on `Davv5/boring-marketer-skills`, via the `gh` CLI. See `docs/age
 ### Domain docs
 
 Single-context: `GLOSSARY.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
+
+## Rewrite in progress
+
+Spec #1, tickets #2-#16. Decisions and their reasons: `docs/rewrite-decisions.md`. Vocabulary: `GLOSSARY.md`. Decisions not to reverse: `docs/adr/`. Evidence: `docs/research/`.

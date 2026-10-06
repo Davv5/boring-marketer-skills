@@ -1,0 +1,549 @@
+SOURCE: https://replicate.com/collections/image-editing
+
+description: Run popular AI Image Editing models to handle inpainting, background removal, object removal, color correction & more advanced photo enhancements.
+
+PAGE TEXT:
+
+Edit any image with an API - Replicate
+Alibaba logo
+Wan 3.0 is 30% off this week
+Replicate glyph
+Explore
+Pricing
+Enterprise
+Docs
+Blog
+Sign in
+Try for free
+Menu
+Explore
+Pricing
+Enterprise
+Docs
+Blog
+Sign in
+Try for free
+Compare models in the
+Playground
+Collections
+Edit any image
+What you can do
+Remove or replace objects in your images.
+Change the style of your images (e.g. "make this Studio Ghibli style")
+Add text that looks natural. Generate images with text that matches specific fonts and styles.
+Change specific parts of an image while keeping its structure. Use depth maps or edge detection to control what changes.
+Create variations of your images. Keep what works while exploring new possibilities.
+Need an in-depth exploration of all the latest image editing models? Check out this 
+blog post
+Models we recommend
+For photorealistic people
+GPT Image 1.5
+ is one of the strongest options for editing photos of people while keeping them looking like themselves. It preserves facial identity, body shape, and pose when you change clothing, backgrounds, or lighting. Great for virtual try-ons, headshot retouching, and placing people into new scenes. (Requires an OpenAI API key.)
+FLUX.2 Max
+ maintains character identity across large batches — use up to 8 reference images to keep the same face consistent across dozens of outputs. Useful for campaigns, storyboards, or fashion editorials where the same person needs to appear in different settings.
+Seedream 4.5
+ produces cinematic, film-like portraits with refined lighting and shading. Strong spatial understanding means realistic proportions and natural body positioning.
+For style transfer and creative transformations
+Nano Banana
+ and 
+Nano Banana Pro
+ handle style changes conversationally. Describe what you want ("turn this into a watercolor painting," "make me look like a Simpsons character") and they get it right. Nano Banana Pro supports up to 14 input images and 4K output.
+Grok Imagine Image
+ from xAI is especially strong at moody aesthetics — retro anime, cyberpunk, dramatic contrast, and emotionally resonant framing. It naturally creates subdued color palettes and cinematic lighting. Fast too, at around 4 seconds per image.
+Seedream 4
+ supports a wide range of visual styles (watercolor, cyberpunk, architectural) and can apply them to existing images or generate from scratch.
+For product photography and e-commerce
+FLUX.2 Max
+ is the top pick for product work. It handles hex color codes for exact brand colors, generates product variations from multiple angles, and transforms phone photos into polished product shots. Multi-reference support means consistent branding across an entire catalog.
+FLUX.2 Pro
+ offers similar capabilities at a lower price — structured JSON prompting gives you precise control over camera angle, lighting, and composition. A good choice for high-volume product imagery.
+Seedream 4
+ and 
+Seedream 4.5
+ support batch outputs and multi-reference input, so you can generate multiple product variations in a single request. Fast inference makes them practical for large catalogs.
+For precise, instruction-based edits
+Nano Banana
+ and 
+Nano Banana Pro
+ are among the best conversational image editors available. They follow natural-language instructions accurately and support multi-image input:
+"Add a plant next to the woman"
+"Change the text in the image from 'Hi' to 'Hello'"
+"Remove the person in the background"
+GPT Image 1.5
+ is great at targeted edits that preserve everything you didn't ask to change — swap an outfit, adjust lighting, or translate text in an image while keeping the layout intact.
+For object removal specifically, 
+Bria Eraser
+ and 
+Bria GenFill
+ are designed for clean removal and visual continuity.
+For text and typography
+Ideogram v3
+ excels at:
+Adding text that looks natural
+Matching specific fonts and styles
+High-quality general inpainting
+Need faster results? Try 
+Ideogram v3 Turbo
+. Or learn more about 
+running Ideogram models with an API
+.
+Nano Banana Pro
+ also handles multilingual text rendering well, with clear typography in multiple languages and varied textures.
+Grok Imagine Image
+ renders readable text within images better than most — useful for posters, social media graphics, and designs that need clear lettering.
+For combining multiple images
+Nano Banana Pro
+ accepts up to 14 input images and blends them into cohesive compositions. Combine product photos with lifestyle scenes, merge reference images, or layer elements from different sources.
+FLUX.2 Max
+ supports up to 8 reference images via API (10 in the Playground). Point to specific images by index to control which elements come from where — "use the face from image 1 and the background from image 3."
+GPT Image 1.5
+ handles multi-image input for scene compositing and style blending. (Requires an OpenAI API key.)
+Try it out
+Test different editing approaches in the playground. Compare models side by side to find what works best for your project.
+Open the playground →
+Want to learn more about inpainting? 
+Check out our guide →
+Questions? Join us on 
+Discord
+.
+Featured models
+google
+/
+nano-banana-pro
+Google's state of the art image generation and editing model 🍌🍌
+Updated 
+2 months, 2 weeks ago
+36.1M
+runs
+Official
+bytedance
+/
+seedream-4.5
+Seedream 4.5: Upgraded Bytedance image model with stronger spatial understanding and world knowledge
+Updated 
+4 months ago
+36.9M
+runs
+Official
+black-forest-labs
+/
+flux-2-pro
+High-quality image generation and editing with support for eight reference images
+Updated 
+6 months, 1 week ago
+11.7M
+runs
+Official
+black-forest-labs
+/
+flux-2-max
+The highest fidelity image model from Black Forest Labs
+Updated 
+6 months, 2 weeks ago
+4.2M
+runs
+Official
+xai
+/
+grok-imagine-image
+SOTA image model from xAI
+Updated 
+7 months, 3 weeks ago
+5.9M
+runs
+Official
+google
+/
+nano-banana
+Google's latest image editing model in Gemini 2.5
+Updated 
+7 months, 4 weeks ago
+120.7M
+runs
+Official
+openai
+/
+gpt-image-1.5
+OpenAI's latest image generation model with better instruction following and adherence to prompts
+Updated 
+8 months, 2 weeks ago
+16.1M
+runs
+Official
+bytedance
+/
+seedream-4
+Unified text-to-image generation and precise single-sentence editing at up to 4K resolution
+Updated 
+10 months, 2 weeks ago
+39.8M
+runs
+Official
+Recommended Models
+Frequently asked questions
+Which models are the fastest?
+If you want quick edits to an image, 
+google/nano-banana
+ is a strong choice—it handles editing using simple instructions in text, and it supports multi-image input.
+Another fast option is 
+bytedance/seedream-4
+, which supports editing at higher resolution without huge compute time.
+Which models offer the best balance of cost and quality?
+For reliable edits with good prompt following and identity preservation, 
+black-forest-labs/flux-kontext-pro
+ offers a solid middle ground.
+If you’re working on a more premium workflow (typography, precise edits, full stylization), 
+black-forest-labs/flux-kontext-max
+ scales up quality and control.
+What works best for removing or replacing objects in an image?
+If you need to remove or swap items (for example a sign, person, or piece of furniture), models like 
+bria/eraser
+ and 
+bria/genfill
+ are designed for clean object removal and visual continuity.
+For broader edits—such as changing a background or adding new elements while retaining structure—
+black-forest-labs/flux-kontext-pro
+ works well with directed prompts.
+What works best for changing style or adding text in images?
+If your edit centers on changing style (for instance “make this image look like a Studio Ghibli painting”) or adding text that looks like it belongs, 
+ideogram-ai/ideogram-v3
+ is excellent for natural typography and stylized inpainting.
+For depth-aware or edge-preserving edits (e.g., changing pose or structure while keeping main subjects intact), 
+black-forest-labs/flux-depth-pro
+ or 
+black-forest-labs/flux-canny-pro
+ provide more control.
+What’s the difference between key subtypes or approaches in this collection?
+There are two main approaches:
+Instruction-based image editors
+ (like 
+google/nano-banana
+, 
+black-forest-labs/flux-kontext-pro
+) where you supply a text prompt and the model edits the image accordingly. These are very flexible for arbitrary changes.
+Structure-aware or control-based editors
+ (like 
+black-forest-labs/flux-depth-pro
+, 
+black-forest-labs/flux-canny-pro
+, 
+bria/eraser
+) where you use additional input (edge maps, depth maps, masking) to steer how the edit happens. These are great when you need fidelity to original composition.
+What kinds of outputs can I expect from these models?
+You’ll typically get an edited image file (same resolution or slightly changed depending on settings) where the requested modifications have been applied.
+Some models also output additional metadata or allow multi-image input (for example combining two photos or layering edits) depending on the version.
+How can I self-host or push a model to Replicate?
+If the model is open source, you can clone the repo and run it locally using Cog or Docker.
+To publish your own model, prepare a 
+replicate.yaml
+ file that defines inputs (image, mask, prompt) and outputs, then push it to your Replicate account for use on managed hardware.
+Can I use these models for commercial work?
+Yes—many image-editing models support commercial use. Always check the 
+License
+ section on each model’s page to confirm.
+Also ensure you have rights to the image you are editing, especially if you plan to publish or monetize the output.
+How do I use or run these models?
+Open a model’s page on Replicate, upload your image (and optional mask or reference image), and enter a prompt describing your edit (e.g., “change the car colour to red and add a banner”).
+The model will return a modified image you can download. Some models support further options like preserving identity, controlling style strength, or combining multiple inputs.
+What should I know before running a job in this collection?
+Use a good quality input image (well lit, clear subject) for best results—editing messy inputs is harder.
+If you want to keep a person’s identity, mention that in the prompt (e.g., “keep the same face, just change the outfit”).
+For structural edits (pose, background, mask), models that support control maps (depth/edges) will yield better fidelity.
+Complex edits are often better performed in stages (first replace object, then refine style) rather than one large prompt.
+Any other collection-specific tips or considerations?
+For combining images (e.g., merge two photos into one scene), pick models that accept 
+multi-image input
+, like 
+black-forest-labs/flux-kontext-max
+ or 
+qwen/qwen-image-edit
+.
+For text overlays (signs, posters), prefer models optimized for typography (like 
+ideogram-ai/ideogram-v3
+).
+When doing style transfer (photo → painting, sketch, anime), be explicit in your prompt about the style and what to keep.
+Always check that your output respects original subjects (especially people), and if you’re using commercial content verify rights accordingly.
+Home
+About
+Changelog
+Join us
+Terms
+Privacy
+Status
+Support
+Recommended Models
+google
+/
+imagen-4-ultra
+Use this ultra version of Imagen 4 when quality matters more than speed and cost
+Updated 
+4 days, 13 hours ago
+1.8M
+runs
+Official
+bria
+/
+expand-image
+Bria Expand expands images beyond their borders in high quality. Resizing the image by generating new pixels to expand to the desired aspect ratio. Trained exclusively on licensed data for safe and risk-free commercial use
+Updated 
+1 week, 5 days ago
+454.8K
+runs
+Official
+prunaai
+/
+flux-kontext-fast
+Ultra fast flux kontext endpoint
+Updated 
+1 week, 5 days ago
+24.1M
+runs
+Official
+prunaai
+/
+p-image-edit
+A sub 1 second 0.01$ multi-image editing model built for production use cases. For image generation, check out p-image here: https://replicate.com/prunaai/p-image
+Updated 
+1 month ago
+43.1M
+runs
+Official
+black-forest-labs
+/
+flux-fill-pro
+Professional inpainting and outpainting model with state-of-the-art performance. Edit or extend images with natural, seamless results.
+Updated 
+5 months, 3 weeks ago
+4.2M
+runs
+Official
+wan-video
+/
+wan-2.7-image
+Generate and edit images with Alibaba's Wan 2.7
+Updated 
+6 months ago
+226.5K
+runs
+Official
+wan-video
+/
+wan-2.7-image-pro
+Generate and edit high-quality images with Alibaba's Wan 2.7 Pro with 4K output, thinking mode, text-to-image, multi-image editing, and image set generation
+Updated 
+6 months ago
+410.2K
+runs
+Official
+bytedance
+/
+seedream-5-lite
+Seedream 5.0 lite: image generation with built-in reasoning, example-based editing, and deep domain knowledge
+Updated 
+7 months, 1 week ago
+3.5M
+runs
+Official
+bria
+/
+fibo-edit
+FIBO-Edit brings the power of structured prompt generation to image editing
+Updated 
+7 months, 3 weeks ago
+13.1K
+runs
+Official
+bria
+/
+fibo
+SOTA Open source model trained on licensed data, transforming intent into structured control for precise, high-quality AI image generation in enterprise and agentic workflows.
+Updated 
+8 months ago
+15.7K
+runs
+Official
+bria
+/
+generate-background
+Bria Background Generation allows for efficient swapping of backgrounds in images via text prompts or reference image, delivering realistic and polished results. Trained exclusively on licensed data for safe and risk-free commercial use
+Updated 
+8 months ago
+85.4K
+runs
+Official
+bria
+/
+eraser
+SOTA Object removal, enables precise removal of unwanted objects from images while maintaining high-quality outputs. Trained exclusively on licensed data for safe and risk-free commercial use
+Updated 
+8 months ago
+617.6K
+runs
+Official
+bria
+/
+genfill
+Bria GenFill enables high-quality object addition or visual transformation. Trained exclusively on licensed data for safe and risk-free commercial use.
+Updated 
+8 months ago
+27.6K
+runs
+Official
+flux-kontext-apps
+/
+multi-image-kontext-max
+An experimental FLUX Kontext model that can combine two input images
+Updated 
+10 months, 3 weeks ago
+254.5K
+runs
+Official
+black-forest-labs
+/
+flux-kontext-max
+A premium text-based image editing model that delivers maximum performance and improved typography generation for transforming images through natural language prompts
+Updated 
+10 months, 3 weeks ago
+12.6M
+runs
+Official
+black-forest-labs
+/
+flux-kontext-pro
+A state-of-the-art text-based image editing model that delivers high-quality outputs with excellent prompt following and consistent results for transforming images through natural language
+Updated 
+10 months, 3 weeks ago
+54M
+runs
+Official
+flux-kontext-apps
+/
+restore-image
+Use FLUX Kontext to restore, fix scratches and damage, and colorize old photos
+Updated 
+10 months, 3 weeks ago
+1.3M
+runs
+Official
+flux-kontext-apps
+/
+multi-image-kontext-pro
+An experimental model with FLUX Kontext Pro that can combine two input images
+Updated 
+10 months, 3 weeks ago
+2.4M
+runs
+Official
+flux-kontext-apps
+/
+multi-image-list
+FLUX Kontext max with list input for multiple images
+Updated 
+10 months, 3 weeks ago
+186.8K
+runs
+Official
+ideogram-ai
+/
+ideogram-v2
+An excellent image model with state of the art inpainting, prompt comprehension and text rendering
+Updated 
+10 months, 4 weeks ago
+2.9M
+runs
+Official
+ideogram-ai
+/
+ideogram-v3-quality
+The highest quality Ideogram v3 model. v3 creates images with stunning realism, creative designs, and consistent styles
+Updated 
+10 months, 4 weeks ago
+2.4M
+runs
+Official
+ideogram-ai
+/
+ideogram-v2-turbo
+A fast image model with state of the art inpainting, prompt comprehension and text rendering.
+Updated 
+10 months, 4 weeks ago
+2.9M
+runs
+Official
+qwen
+/
+qwen-image-edit-plus
+The latest Qwen-Image’s iteration with improved multi-image editing, single-image consistency, and native support for ControlNet
+Updated 
+1 year ago
+11.8M
+runs
+Official
+openai
+/
+gpt-image-1
+A multimodal image generation model that creates high-quality images. You need to bring your own verified OpenAI key to use this model. Your OpenAI account will be charged for usage.
+Updated 
+1 year ago
+1.9M
+runs
+Official
+qwen
+/
+qwen-image-edit
+Edit images using a prompt. This model extends Qwen-Image’s unique text rendering capabilities to image editing tasks, enabling precise text editing
+Updated 
+1 year, 1 month ago
+2.1M
+runs
+Official
+fofr
+/
+color-matcher
+Color match and white balance fixes for images
+Updated 
+1 year, 1 month ago
+235.2K
+runs
+Official
+black-forest-labs
+/
+flux-kontext-dev
+Open-weight version of FLUX.1 Kontext
+Updated 
+1 year, 3 months ago
+8.1M
+runs
+Official
+lucataco
+/
+omnigen2
+OmniGen2: a powerful and efficient unified multimodal model
+Updated 
+1 year, 3 months ago
+3.5K
+runs
+bytedance
+/
+bagel
+🥯ByteDance Seed's Bagel Unified multimodal AI that generates images, edits images, and understands images in one 7B parameter model🥯
+Updated 
+1 year, 4 months ago
+278.7K
+runs
+zsxkib
+/
+step1x-edit
+✍️Step1X-Edit by stepfun-ai, Edit an image using text prompt📸
+Updated 
+1 year, 5 months ago
+16.2K
+runs
+orpatashnik
+/
+styleclip
+Text-Driven Manipulation of StyleGAN Imagery
+Updated 
+3 years, 11 months ago
+1.3M
+runs

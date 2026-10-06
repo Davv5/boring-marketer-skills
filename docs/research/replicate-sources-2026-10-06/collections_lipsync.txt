@@ -1,0 +1,373 @@
+SOURCE: https://replicate.com/collections/lipsync
+
+description: Lipsync AI models on Replicate enable you to synchronize lip movements in videos or images with new audio tracks, creating realistic talking faces. These tools are ideal for dubbing, animation, content localization, and creative projects.
+
+PAGE TEXT:
+
+Use AI to generate lipsync videos with an API - Replicate
+Alibaba logo
+Wan 3.0 is 30% off this week
+Replicate glyph
+Explore
+Pricing
+Enterprise
+Docs
+Blog
+Sign in
+Try for free
+Menu
+Explore
+Pricing
+Enterprise
+Docs
+Blog
+Sign in
+Try for free
+Compare models in the
+Playground
+Collections
+Lipsync videos
+What you can do
+Lipsync AI models on Replicate enable you to synchronize lip movements in videos or images with new audio tracks, creating realistic talking faces. These tools are ideal for dubbing, animation, content localization, and creative projects.
+Recommended Models
+Frequently asked questions
+What are lipsync models on Replicate?
+Lipsync models generate realistic 
+mouth movements that match new audio tracks
+.
+You can use them to make a still image or existing video appear as if it’s speaking naturally — perfect for dubbing, localization, animation, or creative storytelling.
+How do lipsync models work?
+These models analyze the 
+phonemes and rhythm of the audio
+, then map those to the 
+facial landmarks
+ or motion of the person in your input image or video.
+The result is a synchronized, natural-looking talking face that matches the speech timing and emotion of the audio.
+What can I use lipsync models for?
+Lipsync models are used across a range of applications:
+Dubbing and localization
+ – make speakers appear to talk in a new language
+Virtual avatars and Vtubers
+ – create expressive, talking digital personas
+Animated explainer videos or ads
+ – sync narration to faces
+Film and creative production
+ – quick dialogue retiming or AI character creation
+Accessibility tools
+ – assist speech-impaired communication via synthesized talking heads
+Which lipsync models are most popular?
+Some of the most widely used models include:
+sync/lipsync-2
+ and 
+sync/lipsync-2-pro
+ – fast, high-quality studio-grade lipsyncs
+pixverse-ai/lipsync
+ – smooth, expressive animation with realistic detail
+bytedance/omni-human
+ – full digital human generation with synced lips, facial expressions, and motion
+kwaivgi/kling-lip-sync
+ – lip synchronization with either audio or text inputs
+wan-ai/wan-2.2-s2v
+ – convert audio clips and reference images into synced videos
+latentlabs/latentsync
+ – high-quality, realistic lipsync for production use
+What’s the difference between Lipsync 2 and Lipsync 2 Pro?
+sync/lipsync-2
+: Great for creators and developers who want fast and consistent lipsyncs with minimal setup.
+sync/lipsync-2-pro
+: Offers 
+studio-grade quality
+ with advanced emotional nuance, facial alignment, and high fidelity — ideal for professional video production and cinematic projects.
+Which models are best for making videos from images?
+If you’re starting from a single image, try:
+bytedance/omni-human
+ or 
+latentlabs/latentsync
+ for realism
+cjwbw/sadtalker
+ for stylized animation
+cjwbw/aniportrait-audio2vid
+ for portrait-driven animation
+wan-ai/wan-2.2-s2v
+ if you want to generate full talking head videos with both voice and motion
+Can I use these models for dubbing and translation?
+Yes — many users combine lipsync models with 
+translation or speech generation models
+ to create localized videos.
+For example, you can:
+Translate the script with a language model like 
+openai/gpt-5
+ or 
+anthropic/claude-4.5-sonnet
+.
+Generate audio in the target language using 
+minimax/speech-02-turbo
+ or 
+playht/text-to-speech
+.
+Use 
+sync/lipsync-2-pro
+ or 
+kwaivgi/kling-lip-sync
+ to match the new voice to the video.
+What are some creative use cases?
+Turn a 
+photo into a speaking character
+Create 
+AI news anchors or podcast clips
+Power 
+interactive games
+ or NPCs that respond in real time
+Produce 
+personalized video messages or education content
+Generate 
+music videos or dubbing memes
+ synced to a beat
+How do I pick the right lipsync model for my workflow?
+It depends on your needs:
+For 
+fast and reliable
+ results → 
+sync/lipsync-2
+For 
+cinematic quality
+ → 
+sync/lipsync-2-pro
+For 
+full-body digital humans
+ → 
+bytedance/omni-human
+For 
+text-based or batch lip sync
+ → 
+kwaivgi/kling-lip-sync
+For 
+photo-based stylized faces
+ → 
+cjwbw/sadtalker
+ or 
+cjwbw/aniportrait-audio2vid
+Can I combine lipsync models with other AI models?
+Absolutely.
+You can chain lipsync models with:
+Text-to-speech
+ (to generate dialogue)
+Image generation or restoration
+ (to create or enhance faces)
+Video upscaling
+ (to improve quality)
+Audio mixing tools
+ (for synchronized soundscapes)
+A common workflow is:
+Prompt → TTS → Lipsync → Video Upscale
+ for full end-to-end video production.
+Are these models suitable for commercial use?
+Yes — most official lipsync models on Replicate are licensed for 
+commercial use
+.
+Always check the individual model’s page to confirm usage rights, especially for outputs used in advertising, film, or paid content.
+What’s the difference between “official” and community lipsync models?
+Official models
+ (like 
+sync/lipsync-2-pro
+, 
+bytedance/omni-human
+, 
+pixverse-ai/lipsync
+, 
+kwaivgi/kling-lip-sync
+) are hosted and maintained for consistent quality and availability.
+Community models
+ (like 
+cjwbw/sadtalker
+ or 
+zsxkib/multitalk
+) are experimental and can vary in speed or realism, but are great for creative exploration.
+Can I sync multiple people talking in one video?
+Yes. The 
+zsxkib/multitalk
+ model supports 
+multi-person conversational lipsync
+ — you can upload multiple audio clips and generate a realistic back-and-forth conversation between characters.
+How fast are lipsync models?
+Speed depends on model complexity:
+sync/lipsync-2
+ and 
+kwaivgi/kling-lip-sync
+: a few seconds per clip
+bytedance/omni-human
+ and 
+latentlabs/latentsync
+: slightly slower but higher quality
+Community models like 
+cjwbw/sadtalker
+: may take longer but run on standard GPUs
+Most official models are optimized for near real-time performance through Replicate’s infrastructure.
+What are the best starting points for beginners?
+Try these:
+sync/lipsync-2
+ → easy, fast, realistic
+bytedance/omni-human
+ → premium, all-in-one digital human generation
+pixverse-ai/lipsync
+ → simple interface, strong results
+cjwbw/sadtalker
+ → fun stylized results for portraits
+Once you’ve picked a model, you can 
+upload an image, audio file, or text
+ and instantly generate your first lipsynced video.
+Home
+About
+Changelog
+Join us
+Terms
+Privacy
+Status
+Support
+Recommended Models
+prunaai
+/
+p-video-avatar
+p-video-avatar is the fastest and cheapest avatar/lipsync video model on the market.
+Updated 
+1 month ago
+297.1K
+runs
+Official
+sync
+/
+lipsync-2-pro
+Studio-grade lipsync in minutes, not weeks
+Updated 
+2 months, 3 weeks ago
+80.4K
+runs
+Official
+sync
+/
+lipsync-2
+Generate realistic lipsyncs with Sync Labs' 2.0 model
+Updated 
+2 months, 3 weeks ago
+56.5K
+runs
+Official
+veed
+/
+fabric-1.0
+VEED Fabric 1.0 is an image-to-video API that turns any image into a talking video
+Updated 
+3 months, 1 week ago
+64.8K
+runs
+Official
+heygen
+/
+lipsync-speed
+Fast lip-sync: replace or dub audio on any video with quick audio-driven lip sync
+Updated 
+5 months, 2 weeks ago
+2.8K
+runs
+Official
+heygen
+/
+lipsync-precision
+High-accuracy lip-sync: replace or dub audio on any video with avatar-inference lip sync
+Updated 
+5 months, 2 weeks ago
+10K
+runs
+Official
+pixverse
+/
+lipsync
+Generate realistic lipsync animations from audio for high-quality synchronization
+Updated 
+10 months, 1 week ago
+556.2K
+runs
+Official
+bytedance
+/
+omni-human
+Turns your audio/video/images into professional-quality animated videos
+Updated 
+10 months, 3 weeks ago
+168K
+runs
+Official
+kwaivgi
+/
+kling-lip-sync
+Add lip-sync to any video with an audio file or text
+Updated 
+10 months, 4 weeks ago
+58.5K
+runs
+Official
+wan-video
+/
+wan-2.2-s2v
+Generate a video from an audio clip and a reference image
+Updated 
+1 year ago
+151.9K
+runs
+Official
+tmappdev
+/
+lipsync
+Lipsync model using MuseTalk
+Updated 
+1 year, 1 month ago
+8.2K
+runs
+zsxkib
+/
+multitalk
+Audio-driven multi-person conversational video generation - Upload audio files and a reference image to create realistic conversations between multiple people
+Updated 
+1 year, 3 months ago
+4.3K
+runs
+bytedance
+/
+latentsync
+LatentSync: generate high-quality lip sync animations
+Updated 
+1 year, 6 months ago
+174.9K
+runs
+cjwbw
+/
+sadtalker
+Stylized Audio-Driven Single Image Talking Face Animation
+Updated 
+2 years, 4 months ago
+185.2K
+runs
+cjwbw
+/
+aniportrait-audio2vid
+Audio-Driven Synthesis of Photorealistic Portrait Animations
+Updated 
+2 years, 6 months ago
+15.1K
+runs
+chenxwh
+/
+video-retalking
+Audio-based Lip Synchronization for Talking Head Video
+Updated 
+2 years, 8 months ago
+33.6K
+runs
+gauravk95
+/
+sadtalker-video
+Make your video talk anything
+Updated 
+2 years, 8 months ago
+1.7K
+runs

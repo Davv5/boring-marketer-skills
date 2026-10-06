@@ -49,3 +49,4 @@ Prefactor: scripts derive lists (R11), lint-skills.sh + standards.md (Q7, R5, R6
 ## Spec
 - Published as GitHub issue #1: https://github.com/Davv5/boring-marketer-skills/issues/1
 - Tickets T1-T15 published as #2-#16 (sub-issues of #1, native blocked-by links). Frontier: #2.
+- Replicate source pages (extracted, fetched 2026-10-06) saved in docs/research/replicate-sources-2026-10-06/.

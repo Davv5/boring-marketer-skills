@@ -1,0 +1,171 @@
+SOURCE: https://replicate.com/google
+
+
+PAGE TEXT:
+
+  google
+        | Replicate
+              google
+                Google
+google
+/
+gemini-omni-1.1
+          Google's fast multimodal video generation and editing model with native audio, using the Interactions API
+          9.4K runs
+Public
+google
+/
+nano-banana-2-lite
+          Google's fastest image generation model — the lightweight, low-cost version of Nano Banana 2, for rapid creation and editing
+          1.5M runs
+Public
+google
+/
+gemini-3.5-flash
+          Google's fast multimodal model with frontier reasoning across agents, coding, and long-context tasks
+          604K runs
+Public
+google
+/
+gemini-3.1-flash-tts
+          Google's fast, expressive text-to-speech model with 30 voices and 70+ language support
+          1.2M runs
+Public
+google
+/
+lyria-3-pro
+          Generate full-length songs up to 3 minutes from text prompts or images with Lyria 3 Pro, Google's most capable music generation model
+          47.9K runs
+Public
+google
+/
+lyria-3
+          Generate 30-second music clips from text prompts or images with Lyria 3, Google's music generation model
+          522.3K runs
+Public
+google
+/
+veo-3.1-lite
+          Google's cost-efficient video generation model with native audio, optimized for high-volume applications
+          111.1K runs
+Public
+google
+/
+gemini-3.1-pro
+          Google's most intelligent model, with improved reasoning and a new medium thinking level
+          2.5M runs
+Public
+google
+/
+gemini-3-flash
+          Google's most intelligent model built for speed with frontier intelligence, superior search, and grounding
+          7.8M runs
+Public
+google
+/
+nano-banana-2
+          Google's fast image generation model with conversational editing, multi-image fusion, and character consistency
+          20.3M runs
+Public
+google
+/
+gemini-3-pro
+          Google's most advanced reasoning Gemini model
+          1.4M runs
+Public
+google
+/
+nano-banana-pro
+          Google's state of the art image generation and editing model 🍌🍌
+          36.1M runs
+Public
+google
+/
+veo-3.1-fast
+          New and improved version of Veo 3 Fast, with higher-fidelity video, context-aware audio and last frame support
+          835.2K runs
+Public
+google
+/
+veo-3.1
+          New and improved version of Veo 3, with higher-fidelity video, context-aware audio, reference image and last frame support
+          637K runs
+Public
+google
+/
+gemini-2.5-flash
+          Google’s hybrid “thinking” AI model optimized for speed and cost-efficiency
+          11.3M runs
+Public
+google
+/
+nano-banana
+          Google's latest image editing model in Gemini 2.5
+          120.7M runs
+Public
+google
+/
+gemini-2.5-flash-image
+          Google's latest image generation model in Gemini 2.5
+          1.4M runs
+Public
+google
+/
+veo-3-fast
+          A faster and cheaper version of Google’s Veo 3 video model, with audio
+          218.8K runs
+Public
+google
+/
+imagen-4-fast
+          Use this fast version of Imagen 4 when speed and cost are more important than quality
+          6M runs
+Public
+google
+/
+lyria-2
+          Lyria 2 is a music generation model that produces 48kHz stereo audio through text-based prompts
+          170.3K runs
+Public
+google
+/
+imagen-4-ultra
+          Use this ultra version of Imagen 4 when quality matters more than speed and cost
+          1.8M runs
+Public
+google
+/
+veo-3
+          Sound on: Google’s flagship Veo 3 text to video model, with audio
+          239.7K runs
+Public
+google
+/
+imagen-4
+          Google's Imagen 4 flagship model
+          8.2M runs
+Public
+google
+/
+veo-2
+          State of the art video generation model. Veo 2 can faithfully follow simple and complex instructions, and convincingly simulates real-world physics as well as a wide range of visual styles.
+          108.8K runs
+Public
+google
+/
+upscaler
+          Upscale images 2x or 4x times
+          1.1M runs
+Public
+google
+/
+imagen-3-fast
+          A faster and cheaper Imagen 3 model, for when price or speed are more important than final image quality
+          638.2K runs
+Public
+google
+/
+imagen-3
+          Google's highest quality text-to-image model, capable of generating images with detail, rich lighting and beauty
+          2.2M runs
+Public

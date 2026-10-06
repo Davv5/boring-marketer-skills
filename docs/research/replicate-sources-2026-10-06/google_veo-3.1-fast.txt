@@ -1,0 +1,13 @@
+SOURCE: https://replicate.com/google/veo-3.1-fast
+
+description: Veo 3.1 Fast is a faster version of Google's Veo 3.1 video model with synchronized audio and high-fidelity output. Use Veo 3.1 Fast with an API.
+replicate:run_count: 835216
+replicate:is_official: true
+replicate:latest_version_created_at: 2026-03-25T21:29:12.550073+00:00
+
+INPUT SCHEMA:
+{"type": "object", "title": "Input", "required": ["prompt"], "properties": {"seed": {"type": "integer", "title": "Seed", "x-order": 8, "nullable": true, "description": "Random seed. Omit for random generations"}, "image": {"type": "string", "title": "Image", "format": "uri", "x-order": 3, "nullable": true, "description": "Input image to start generating from. Ideal images are 16:9 or 9:16 and 1280x720 or 720x1280, depending on the aspect ratio you choose."}, "prompt": {"type": "string", "title": "Prompt", "x-order": 0, "description": "Text prompt for video generation"}, "duration": {"enum": [4, 6, 8], "type": "integer", "title": "duration", "description": "Video duration in seconds", "default": 8, "x-order": 2}, "last_frame": {"type": "string", "title": "Last Frame", "format": "uri", "x-order": 4, "nullable": true, "description": "Ending image for interpolation. When provided with an input image, creates a transition between the two images."}, "resolution": {"enum": ["720p", "1080p"], "type": "string", "title": "resolution", "description": "Resolution of the generated video", "default": "1080p", "x-order": 6}, "aspect_ratio": {"enum": ["16:9", "9:16"], "type": "string", "title": "aspect_ratio", "description": "Video aspect ratio", "default": "16:9", "x-order": 1}, "generate_audio": {"type": "boolean", "title": "Generate Audio", "default": true, "x-order": 7, "description": "Generate audio with the video"}, "negative_prompt": {"type": "string", "title": "Negative Prompt", "x-order": 5, "nullable": true, "description": "Description of what to exclude from the generated video"}}}
+
+PRICING:
+{"criteria": [{"description": "with_audio", "subtype": "string", "title": "model variant", "type": "equals", "value": "with_audio"}], "description": null, "prices": [{"description": "or around 66 seconds for $10", "metric": "video_output_duration_seconds", "metric_display": "second of output video", "price": "$0.15", "title": "per second of output video", "type": "per-unit"}], "title": null}
+{"criteria": [{"description": "without_audio", "subtype": "string", "title": "model variant", "type": "equals", "value": "without_audio"}], "description": null, "prices": [{"description": "or 10 seconds for $1", "metric": "video_output_duration_seconds", "metric_display": "second of output video", "price": "$0.10", "title": "per second of output video", "type": "per-unit"}], "title": null}

@@ -1,0 +1,145 @@
+SOURCE: https://replicate.com/wan-video
+
+
+PAGE TEXT:
+
+  wan-video
+        | Replicate
+              wan-video
+                Wan
+        Members
+andreasjansson
+lucataco
+shridharathi
+wan-video
+/
+wan-2.7-image-pro
+          Generate and edit high-quality images with Alibaba's Wan 2.7 Pro with 4K output, thinking mode, text-to-image, multi-image editing, and image set generation
+          410.2K runs
+Public
+wan-video
+/
+wan-2.7-image
+          Generate and edit images with Alibaba's Wan 2.7
+          226.5K runs
+Public
+wan-video
+/
+wan-2.7-videoedit
+          Edit videos with natural language instructions using Alibaba's Wan 2.7 VideoEdit model
+          18.4K runs
+Public
+wan-video
+/
+wan-2.7-r2v
+          Generate videos from reference images or clips while preserving subject identity using Alibaba's Wan 2.7 reference-to-video model
+          7.7K runs
+Public
+wan-video
+/
+wan-2.7-i2v
+          Generate videos from images, with support for first-and-last-frame control, clip continuation, and audio synchronization using Alibaba's Wan 2.7 model
+          86.6K runs
+Public
+wan-video
+/
+wan-2.7-t2v
+          Generate videos with audio from text prompts using Alibaba's Wan 2.7 model. 1080p, up to 15 seconds, with audio synchronization.
+          20.4K runs
+Public
+wan-video
+/
+wan2.6-i2v-flash
+          Image-to-video generation with optional audio, multi-shot narrative support, and faster inference
+          96.4K runs
+Public
+wan-video
+/
+wan-2.6-i2v
+          Alibaba Wan 2.6 image to video generation model
+          49.1K runs
+Public
+wan-video
+/
+wan-2.6-t2v
+          Alibaba Wan 2.6 text to video generation model
+          34.8K runs
+Public
+wan-video
+/
+wan-2.2-animate-replace
+          Use Wan 2.2 Animate to replace a character in a video scene
+          73K runs
+Public
+wan-video
+/
+wan-2.2-animate-animation
+          Use Wan 2.2 Animate to copy the motion of a video to another scene
+          33.1K runs
+Public
+wan-video
+/
+wan-2.5-i2v-fast
+          Wan 2.5 image-to-video, optimized for speed
+          77.7K runs
+Public
+wan-video
+/
+wan-2.5-t2v-fast
+          Wan 2.5 text-to-video, optimized for speed
+          53K runs
+Public
+wan-video
+/
+wan-2.5-t2v
+          Alibaba Wan 2.5 text to video generation model
+          38.1K runs
+Public
+wan-video
+/
+wan-2.5-i2v
+          Alibaba Wan 2.5 Image to video generation with background audio
+          230.3K runs
+Public
+wan-video
+/
+wan-2.2-s2v
+          Generate a video from an audio clip and a reference image
+          151.9K runs
+Public
+wan-video
+/
+wan-2.2-5b-fast
+          The fastest Wan 2.2 text-to-image and image-to-video model
+          980.9K runs
+Public
+wan-video
+/
+wan-2.2-i2v-fast
+          A very fast and cheap PrunaAI optimized version of Wan 2.2 A14B image-to-video
+          14.6M runs
+Public
+wan-video
+/
+wan-2.2-t2v-fast
+          A very fast and cheap PrunaAI optimized version of Wan 2.2 A14B text-to-video
+          349K runs
+Public
+wan-video
+/
+wan-2.2-i2v-a14b
+          Image-to-video at 720p and 480p with Wan 2.2 A14B
+          63.1K runs
+Public
+wan-video
+/
+wan2.1-with-lora
+          Run Wan2.1 14b or 1.3b with a lora
+          50.8K runs
+Public
+wan-video
+/
+wan-2.1-1.3b
+          Generate 5s 480p videos. Wan is an advanced and powerful visual generation model developed by Tongyi Lab of Alibaba Group
+          51.2K runs
+Public

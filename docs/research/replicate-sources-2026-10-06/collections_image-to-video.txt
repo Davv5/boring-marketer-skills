@@ -1,0 +1,563 @@
+SOURCE: https://replicate.com/collections/image-to-video
+
+description: Run popular AI models to generate dynamic videos from a single image via API. Animate, apply style, set start &amp;amp;amp; end frames &amp;amp;amp; customize motion effects.
+
+PAGE TEXT:
+
+Generate videos from images via API - Replicate
+Alibaba logo
+Wan 3.0 is 30% off this week
+Replicate glyph
+Explore
+Pricing
+Enterprise
+Docs
+Blog
+Sign in
+Try for free
+Menu
+Explore
+Pricing
+Enterprise
+Docs
+Blog
+Sign in
+Try for free
+Compare models in the
+Playground
+Collections
+Generate videos from images
+Animate still images into video. Upload a photo and watch it come to life — with camera motion, character animation, synchronized audio, and more.
+Models we recommend
+For cinematic quality
+Runway Gen-4.5
+ is ranked #1 on the Artificial Analysis text-to-video benchmark. It produces videos with realistic physics, coherent fine details, and polished visual fidelity. Supports both text-to-video and image-to-video.
+Veo 3.1
+ and 
+Veo 3.1 Fast
+ from Google generate high-fidelity video with native audio — dialogue, sound effects, and ambient soundscapes. Supports reference images for character consistency and frame-to-frame interpolation.
+Kling Video 3.0
+ generates cinematic videos up to 15 seconds with native audio and multi-shot mode (up to 6 scenes). 
+Kling 3.0 Omni
+ adds reference-based generation, video editing, and style transfer on top.
+For multimodal reference inputs
+Seedance 2.0
+ from ByteDance accepts up to 9 reference images, 3 video clips, and 3 audio files — all combinable in your prompt. Supports I2V, video continuation, character consistency, motion transfer, and lip-synced dialogue. 
+Seedance 2.0 Fast
+ trades some quality for speed.
+Seedance 1.5 Pro
+ is a strong alternative with cinema-quality output, multi-language lip-sync, and cinematic camera movements.
+For speed
+Grok Imagine Video
+ from xAI generates short clips with audio in about 30 seconds. Multiple aspect ratios make it a natural fit for social content.
+Hailuo 2.3 Fast
+ is optimized for fast iteration with good motion quality. 
+Seedance 1 Pro Fast
+ is 30-60% faster than standard Seedance at ~60% lower cost.
+For start/end frame control
+Vidu Q3 Pro
+ supports a unique start-end-to-video mode — provide first and last frames and it generates smooth transitions between them. Up to 16 seconds at 1080p with audio. 
+Vidu Q3 Turbo
+ is a faster, cheaper variant.
+Wan 2.7 I2V
+ also supports first-and-last-frame control, plus clip continuation and audio synchronization.
+For open source
+The 
+Wan video models
+ are excellent open-source options. 
+Wan 2.5 I2V
+ and 
+Wan 2.5 I2V Fast
+ generate video with synchronized audio from images. 
+Wan 2.2 I2V Fast
+ is the cheapest and fastest option with 10M+ runs.
+For fast iteration with draft mode
+PrunaAI p-video
+ offers text-to-video, image-to-video, and audio-to-video in a single endpoint. Its draft mode generates previews 4× faster for quick iteration before final rendering.
+Other rankings
+Generative video is advancing fast. Check out the 
+Artificial Analysis leaderboard
+ to see what's popular today.
+Featured models
+prunaai
+/
+p-video
+Fast video generation with built-in draft mode for rapid creative iteration. Text-to-video, image-to-video, and audio-to-video in a single endpoint.
+Updated 
+3 weeks ago
+4.2M
+runs
+Official
+bytedance
+/
+seedance-2.0
+ByteDance's multimodal video generation model with native audio, multimodal reference inputs, and intelligent duration control.
+Updated 
+3 months, 1 week ago
+1.5M
+runs
+Official
+xai
+/
+grok-imagine-video
+Generate videos using xAI's Grok Imagine Video model
+Updated 
+3 months, 2 weeks ago
+1.9M
+runs
+Official
+alibaba
+/
+happyhorse-1.0
+Alibaba's Happy Horse 1.0 generates videos from text prompts or animates a single image into video. Supports 720p and 1080p, 3-15 second durations, and five aspect ratios.
+Updated 
+5 months, 1 week ago
+34.9K
+runs
+Official
+kwaivgi
+/
+kling-v3-video
+Kling Video 3.0: Generate cinematic videos up to 15 seconds with multi-shot control, native audio, and improved consistency
+Updated 
+5 months, 1 week ago
+570.4K
+runs
+Official
+google
+/
+veo-3.1-fast
+New and improved version of Veo 3 Fast, with higher-fidelity video, context-aware audio and last frame support
+Updated 
+6 months, 1 week ago
+835.2K
+runs
+Official
+runwayml
+/
+gen-4.5
+State-of-the-art video motion quality, prompt adherence and visual fidelity
+Updated 
+7 months, 2 weeks ago
+428.6K
+runs
+Official
+Recommended Models
+Home
+About
+Changelog
+Join us
+Terms
+Privacy
+Status
+Support
+Recommended Models
+prunaai
+/
+p-video-animate
+p-video-animate animates a reference image with the motion and audio of a source video. Optimized for speed and cost — 5.24s per 1s of video.
+Updated 
+3 weeks, 3 days ago
+29.8K
+runs
+Official
+prunaai
+/
+p-video-avatar
+p-video-avatar is the fastest and cheapest avatar/lipsync video model on the market.
+Updated 
+1 month ago
+297.1K
+runs
+Official
+veed
+/
+fabric-1.0
+VEED Fabric 1.0 is an image-to-video API that turns any image into a talking video
+Updated 
+3 months, 1 week ago
+64.8K
+runs
+Official
+alibaba
+/
+happyhorse-1.1
+Alibaba's Happy Horse 1.1 generates videos from text, animates a single image, or builds a video from multiple reference images. Supports 720p and 1080p, 3-15 second durations, and five aspect ratios.
+Updated 
+3 months, 1 week ago
+24.5K
+runs
+Official
+luma
+/
+ray-3.2
+Luma's reasoning video model. Generates cinematic 5s or 10s video from text or images, with native HDR and EXR export for professional production pipelines.
+Updated 
+3 months, 3 weeks ago
+3.7K
+runs
+Official
+bytedance
+/
+seedance-1-lite
+A video generation model that offers text-to-video and image-to-video support for 5s or 10s videos, at 480p and 720p resolution
+Updated 
+4 months, 1 week ago
+3.8M
+runs
+Official
+kwaivgi
+/
+kling-v3-omni-video
+Kling Video 3.0 Omni: Unified multimodal video generation with reference images, video editing, native audio, and multi-shot control
+Updated 
+5 months, 1 week ago
+853.2K
+runs
+Official
+bytedance
+/
+seedance-2.0-fast
+A faster variant of Seedance 2.0 for quicker video generation with multimodal inputs and native audio.
+Updated 
+5 months, 1 week ago
+713.7K
+runs
+Official
+wan-video
+/
+wan-2.7-r2v
+Generate videos from reference images or clips while preserving subject identity using Alibaba's Wan 2.7 reference-to-video model
+Updated 
+5 months, 2 weeks ago
+7.7K
+runs
+Official
+wan-video
+/
+wan-2.7-i2v
+Generate videos from images, with support for first-and-last-frame control, clip continuation, and audio synchronization using Alibaba's Wan 2.7 model
+Updated 
+5 months, 2 weeks ago
+86.6K
+runs
+Official
+vidu
+/
+q3-pro
+High-fidelity video generation with text-to-video, image-to-video, and start-end-to-video modes. Up to 16 seconds at 1080p with synchronized audio.
+Updated 
+5 months, 3 weeks ago
+5.9K
+runs
+Official
+kwaivgi
+/
+kling-v2.5-turbo-pro
+Kling 2.5 Turbo Pro: Unlock pro-level text-to-video and image-to-video creation with smooth motion, cinematic depth, and remarkable prompt adherence.
+Updated 
+5 months, 3 weeks ago
+3.1M
+runs
+Official
+google
+/
+veo-3.1
+New and improved version of Veo 3, with higher-fidelity video, context-aware audio, reference image and last frame support
+Updated 
+6 months, 1 week ago
+637K
+runs
+Official
+wan-video
+/
+wan-2.2-i2v-fast
+A very fast and cheap PrunaAI optimized version of Wan 2.2 A14B image-to-video
+Updated 
+8 months, 2 weeks ago
+14.6M
+runs
+Official
+bytedance
+/
+seedance-1.5-pro
+A joint audio-video model that accurately follows complex instructions.
+Updated 
+9 months, 1 week ago
+4.4M
+runs
+Official
+wan-video
+/
+wan-2.5-i2v
+Alibaba Wan 2.5 Image to video generation with background audio
+Updated 
+10 months ago
+230.3K
+runs
+Official
+google
+/
+veo-3
+Sound on: Google’s flagship Veo 3 text to video model, with audio
+Updated 
+10 months, 1 week ago
+239.7K
+runs
+Official
+google
+/
+veo-3-fast
+A faster and cheaper version of Google’s Veo 3 video model, with audio
+Updated 
+10 months, 1 week ago
+218.8K
+runs
+Official
+google
+/
+veo-2
+State of the art video generation model. Veo 2 can faithfully follow simple and complex instructions, and convincingly simulates real-world physics as well as a wide range of visual styles.
+Updated 
+10 months, 1 week ago
+108.8K
+runs
+Official
+pixverse
+/
+pixverse-v4
+Quickly generate smooth 5s or 8s videos at 540p, 720p or 1080p
+Updated 
+10 months, 1 week ago
+47.3K
+runs
+Official
+wavespeedai
+/
+wan-2.1-i2v-720p
+Accelerated inference for Wan 2.1 14B image to video with high resolution, a comprehensive and open suite of video foundation models that pushes the boundaries of video generation.
+Updated 
+10 months, 1 week ago
+90.3K
+runs
+Official
+wavespeedai
+/
+wan-2.1-i2v-480p
+Accelerated inference for Wan 2.1 14B image to video, a comprehensive and open suite of video foundation models that pushes the boundaries of video generation.
+Updated 
+10 months, 1 week ago
+458.4K
+runs
+Official
+bytedance
+/
+seedance-1-pro
+A pro version of Seedance that offers text-to-video and image-to-video support for 5s or 10s videos, at 480p and 1080p resolution
+Updated 
+10 months, 3 weeks ago
+2.5M
+runs
+Official
+bytedance
+/
+seedance-1-pro-fast
+A faster and cheaper version of Seedance 1 Pro
+Updated 
+10 months, 3 weeks ago
+2M
+runs
+Official
+leonardoai
+/
+motion-2.0
+Create 5s 480p videos from a text prompt
+Updated 
+10 months, 4 weeks ago
+12.4K
+runs
+Official
+kwaivgi
+/
+kling-v2.0
+Generate 5s and 10s videos in 720p resolution
+Updated 
+10 months, 4 weeks ago
+108.2K
+runs
+Official
+kwaivgi
+/
+kling-v2.1-master
+A premium version of Kling v2.1 with superb dynamics and prompt adherence. Generate 1080p 5s and 10s videos from text or an image
+Updated 
+10 months, 4 weeks ago
+110.5K
+runs
+Official
+kwaivgi
+/
+kling-v2.1
+Use Kling v2.1 to generate 5s and 10s videos in 720p and 1080p resolution from a starting image (image-to-video)
+Updated 
+10 months, 4 weeks ago
+4.2M
+runs
+Official
+luma
+/
+modify-video
+Modify a video with style transfer and prompt-based editing
+Updated 
+10 months, 4 weeks ago
+13.7K
+runs
+Official
+luma
+/
+ray-2-540p
+Generate 5s and 9s 540p videos
+Updated 
+10 months, 4 weeks ago
+12.2K
+runs
+Official
+luma
+/
+ray-2-720p
+Generate 5s and 9s 720p videos
+Updated 
+10 months, 4 weeks ago
+48.1K
+runs
+Official
+wan-video
+/
+wan-2.5-i2v-fast
+Wan 2.5 image-to-video, optimized for speed
+Updated 
+10 months, 4 weeks ago
+77.7K
+runs
+Official
+luma
+/
+ray-flash-2-720p
+Generate 5s and 9s 720p videos, faster and cheaper than Ray 2
+Updated 
+10 months, 4 weeks ago
+138.3K
+runs
+Official
+minimax
+/
+video-01
+Generate 6s videos with prompts or images. (Also known as Hailuo). Use a subject reference to make a video with a character and the S2V-01 model.
+Updated 
+10 months, 4 weeks ago
+760.5K
+runs
+Official
+minimax
+/
+video-01-director
+Generate videos with specific camera movements
+Updated 
+10 months, 4 weeks ago
+78.3K
+runs
+Official
+minimax
+/
+hailuo-2.3
+A high-fidelity video generation model optimized for realistic human motion, cinematic VFX, expressive characters, and strong prompt and style adherence across both text-to-video and image-to-video workflows
+Updated 
+10 months, 4 weeks ago
+133.8K
+runs
+Official
+minimax
+/
+hailuo-2.3-fast
+A lower-latency image-to-video version of Hailuo 2.3 that preserves core motion quality, visual consistency, and stylization performance while enabling faster iteration cycles.
+Updated 
+10 months, 4 weeks ago
+300.3K
+runs
+Official
+minimax
+/
+video-01-live
+An image-to-video (I2V) model specifically trained for Live2D and general animation use cases
+Updated 
+10 months, 4 weeks ago
+191K
+runs
+Official
+luma
+/
+ray-flash-2-540p
+Generate 5s and 9s 540p videos, faster and cheaper than Ray 2
+Updated 
+10 months, 4 weeks ago
+90K
+runs
+Official
+minimax
+/
+hailuo-02
+Hailuo 2 is a text-to-video and image-to-video model that can make 6s or 10s videos at 768p (standard) or 1080p (pro). It excels at real world physics.
+Updated 
+10 months, 4 weeks ago
+460.3K
+runs
+Official
+wan-video
+/
+wan-2.2-i2v-a14b
+Image-to-video at 720p and 480p with Wan 2.2 A14B
+Updated 
+1 year, 1 month ago
+63.1K
+runs
+Official
+lightricks
+/
+ltx-video-0.9.7-distilled
+Faster slight quality reduction compared to LTX-Video 13b
+Updated 
+1 year, 2 months ago
+50.1K
+runs
+lightricks
+/
+ltx-video-0.9.7
+DiT-based 13b video generation model, creating 30fps video
+Updated 
+1 year, 4 months ago
+3.6K
+runs
+lightricks
+/
+ltx-video
+LTX-Video is the first DiT-based video generation model capable of generating high-quality videos in real-time. It produces 24 FPS videos at a 768x512 resolution faster than they can be watched.
+Updated 
+1 year, 8 months ago
+178.4K
+runs
+fofr
+/
+tooncrafter
+Create videos from illustrated input images
+Updated 
+2 years, 3 months ago
+71.4K
+runs
+open-mmlab
+/
+pia
+Personalized Image Animator
+Updated 
+2 years, 9 months ago
+103.6K
+runs

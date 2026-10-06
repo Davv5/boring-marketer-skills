@@ -1,0 +1,220 @@
+SOURCE: https://replicate.com/bytedance
+
+
+PAGE TEXT:
+
+  bytedance
+        | Replicate
+              bytedance
+GitHub
+https://github.com/bytedance
+        Members
+andreasjansson
+jiaxiangc
+lucataco
+qiuqiangkong
+shridharathi
+bytedance
+/
+seedance-2.5
+          ByteDance's flagship multimodal video model with native audio, native 30-second generation, and large multimodal reference sets.
+          208.4K runs
+Public
+bytedance
+/
+seedream-5-pro
+          ByteDance's flagship text-to-image and image editing model, generating sharp 1K and 2K images from text or up to 10 reference images
+          454.8K runs
+Public
+bytedance
+/
+seedance-2.0-mini
+          A lower-cost variant of Seedance 2.0 for high-volume video generation with multimodal inputs and native audio.
+          104.9K runs
+Public
+bytedance
+/
+video-upscaler
+          Upscale and enhance video up to 4K at 60fps, with scene-aware presets for AI-generated content, short dramas, UGC, and film restoration.
+          35K runs
+Public
+bytedance
+/
+seedance-2.0-fast
+          A faster variant of Seedance 2.0 for quicker video generation with multimodal inputs and native audio.
+          713.7K runs
+Public
+bytedance
+/
+seedance-2.0
+          ByteDance's multimodal video generation model with native audio, multimodal reference inputs, and intelligent duration control.
+          1.5M runs
+Public
+bytedance
+/
+seedream-5-lite
+          Seedream 5.0 lite: image generation with built-in reasoning, example-based editing, and deep domain knowledge
+          3.5M runs
+Public
+bytedance
+/
+dreamactor-m2.0
+          Animate any character, humans, cartoons, animals, even non-humans, from a single image + driving video
+          48.1K runs
+Public
+bytedance
+/
+seedance-1.5-pro
+          A joint audio-video model that accurately follows complex instructions.
+          4.4M runs
+Public
+bytedance
+/
+seedream-4.5
+          Seedream 4.5: Upgraded Bytedance image model with stronger spatial understanding and world knowledge
+          36.9M runs
+Public
+bytedance
+/
+omni-human-1.5
+          A film-grade digital human model that generates realistic video from a single image, audio clip, and optional text prompt.
+          62.1K runs
+Public
+bytedance
+/
+seedance-1-pro-fast
+          A faster and cheaper version of Seedance 1 Pro
+          2M runs
+Public
+bytedance
+/
+seedream-4
+          Unified text-to-image generation and precise single-sentence editing at up to 4K resolution
+          39.8M runs
+Public
+bytedance
+/
+dreamina-3.1
+          4MP text-to-image generation with enhanced cinematic-quality image generation with precise style control, improved text rendering, and commercial design optimization.
+          124.1K runs
+Public
+bytedance
+/
+omni-human
+          Turns your audio/video/images into professional-quality animated videos
+          168K runs
+Public
+bytedance
+/
+seedream-3
+          A text-to-image model with support for native high-resolution (2K) image generation
+          3.4M runs
+Public
+bytedance
+/
+dolphin
+          Document Image Parsing via Heterogeneous Anchor Prompting
+          1.5K runs
+Public
+bytedance
+/
+seedance-1-pro
+          A pro version of Seedance that offers text-to-video and image-to-video support for 5s or 10s videos, at 480p and 1080p resolution
+          2.5M runs
+Public
+bytedance
+/
+seedance-1-lite
+          A video generation model that offers text-to-video and image-to-video support for 5s or 10s videos, at 480p and 720p resolution
+          3.8M runs
+Public
+bytedance
+/
+bagel
+          🥯ByteDance Seed's Bagel Unified multimodal AI that generates images, edits images, and understands images in one 7B parameter model🥯
+          278.7K runs
+Public
+bytedance
+/
+sa2va-26b-video
+          Sa2VA: Marrying SAM2 with LLaVA for Dense Grounded Understanding of Images and Videos
+          771 runs
+Public
+bytedance
+/
+sa2va-4b-video
+          Sa2VA: Marrying SAM2 with LLaVA for Dense Grounded Understanding of Images and Videos
+          109 runs
+Public
+bytedance
+/
+sa2va-8b-video
+          Sa2VA: Marrying SAM2 with LLaVA for Dense Grounded Understanding of Images and Videos
+          334 runs
+Public
+bytedance
+/
+sa2va-26b-image
+          Sa2VA: Marrying SAM2 with LLaVA for Dense Grounded Understanding of Images and Videos
+          11.7K runs
+Public
+bytedance
+/
+sa2va-4b-image
+          Sa2VA: Marrying SAM2 with LLaVA for Dense Grounded Understanding of Images and Videos
+          1.4K runs
+Public
+bytedance
+/
+sa2va-8b-image
+          Sa2VA: Marrying SAM2 with LLaVA for Dense Grounded Understanding of Images and Videos
+          48.9K runs
+Public
+bytedance
+/
+latentsync
+          LatentSync: generate high-quality lip sync animations
+          174.9K runs
+Public
+bytedance
+/
+flux-pulid
+          ⚡️FLUX PuLID: FLUX-dev based Pure and Lightning ID Customization via Contrastive Alignment🎭
+          2.6M runs
+Public
+bytedance
+/
+hyper-flux-16step
+          Hyper FLUX 16-step by ByteDance
+          9.4M runs
+Public
+bytedance
+/
+hyper-flux-8step
+          Hyper FLUX 8-step by ByteDance
+          25M runs
+Public
+bytedance
+/
+pulid
+          📖 PuLID: Pure and Lightning ID Customization via Contrastive Alignment
+          4.3M runs
+Public
+bytedance
+/
+res-adapter
+          Domain Consistent Resolution Adapter for Diffusion Models:  generating consistent images with resolutions outside of their trained domain
+          1.4K runs
+Public
+bytedance
+/
+sdxl-lightning-4step
+          SDXL-Lightning by ByteDance: a fast text-to-image model that makes high-quality images in 4 steps
+          1B runs
+Public
+bytedance
+/
+piano-transcription
+          high-resolution piano transcription system: detects piano notes from audio
+          4.8K runs
+Public

@@ -1,0 +1,13 @@
+SOURCE: https://replicate.com/kwaivgi/kling-avatar-v2
+
+description: Kling Avatar V2 turns any portrait into a talking avatar with lip-synced audio, supporting humans, cartoons, and animals. Use Kling Avatar V2 with an API.
+replicate:run_count: 35664
+replicate:is_official: true
+replicate:latest_version_created_at: 2026-04-17T12:10:44.666714+00:00
+
+INPUT SCHEMA:
+{"type": "object", "title": "Input", "required": ["image", "audio"], "properties": {"mode": {"enum": ["std", "pro"], "type": "string", "title": "mode", "description": "Video generation mode.", "default": "std", "x-order": 3}, "audio": {"type": "string", "title": "Audio", "format": "uri", "x-order": 1, "description": "Audio file for avatar. Supports .mp3/.wav/.m4a/.aac, max 5MB."}, "image": {"type": "string", "title": "Image", "format": "uri", "x-order": 0, "description": "Avatar reference image. Supports .jpg/.jpeg/.png, max 10MB, dimensions \u003E= 300px, aspect ratio 1:2.5 to 2.5:1."}, "prompt": {"type": "string", "title": "Prompt", "x-order": 2, "nullable": true, "description": "Positive text prompt to define avatar actions, emotions, and camera movements."}}}
+
+PRICING:
+{"criteria": [{"description": "std", "subtype": "string", "title": "model variant", "type": "equals", "value": "std"}], "description": null, "prices": [{"description": "or around 17 seconds for $1", "metric": "video_output_duration_seconds", "metric_display": "second of output video", "price": "$0.056", "title": "per second of output video", "type": "per-unit"}], "title": null}
+{"criteria": [{"description": "pro", "subtype": "string", "title": "model variant", "type": "equals", "value": "pro"}], "description": null, "prices": [{"description": "or around 90 seconds for $10", "metric": "video_output_duration_seconds", "metric_display": "second of output video", "price": "$0.11", "title": "per second of output video", "type": "per-unit"}], "title": null}

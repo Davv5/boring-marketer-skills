@@ -1,0 +1,1209 @@
+SOURCE: https://replicate.com/changelog
+
+description: Read about the latest fixes and improvements to Replicate.
+
+DEPRECATION MENTIONS:
+g interface</a> is not supported yet.</li>
+<li>This new runtime will become the default in a future Cog release, after which the existing one will be deprecated.</li>
+</ul>
+<h2 id="why-build-this"><a class="mdx-heading-anchor" aria-label="Anchor for why-build-this" href="#why-build-this"><span class
+3 changes that might require updating the model.</p>
+<ul>
+<li>Improved semantics of optional inputs</li>
+<li>Cleaner dependencies</li>
+<li>Removal of deprecated <a href="https://github.com/replicate/cog/blob/main/docs/python.md#file">File</a> API.</li>
+</ul>
+<p>First, ambiguous optional inputs are n
+ydantic</li>
+<li>PyYAML</li>
+<li>requests</li>
+<li>structlog</li>
+<li>typing_extensions</li>
+<li>uvicorn</li>
+</ul>
+<p>Third change is the removal of deprecated <code>cog.File</code> API. Use <code>cog.Path</code> instead.</p> </div> </li><li> <div class="flex flex-col justify-between h-full min-h-0
+-07-01-set-a-monthly-spend-limit" class="text-r8-2xl text-balance font-heading font-semibold mb-0.5 group-hover:underline"> Set a monthly spend limit deprecated </h2> <div class="mt-2 text-r8-gray-10"> July 1, 2025 </div> </a> </div> <div class="mdx-prose mdx-prose-preview break-words"> <p>The abili
+1, 2025 </div> </a> </div> <div class="mdx-prose mdx-prose-preview break-words"> <p>The ability to set a monthly spend limit on your account has been deprecated. If you require this feature, <a href="https://replicate.com/support">reach out to support</a>.</p> </div> </li><li> <div class="flex flex-
+
+PAGE TEXT:
+
+Changelog – Replicate
+ Changelog 
+RSS
+Atom
+li]:pb-8"> 
+ Agent skills for Replicate 
+ April 21, 2026 
+Replicate now publishes 
+agent skills
+, a collection of markdown instruction files that give coding assistants expert knowledge about working with AI models on Replicate.
+Skills cover model discovery, comparison, and execution via the API, along with detailed prompting techniques for image generation and video generation models. They follow the open 
+Agent Skills
+ spec and work with Claude Code, OpenCode, OpenAI Codex, and other compatible tools.
+Install
+Copy
+npx skills add replicate/skills
+This installs all of Replicate’s skills into your project and configures them for your coding assistant automatically.
+Skills and MCP
+Skills are complementary to Replicate’s 
+MCP server
+. MCP gives your coding assistant API tools. Skills give it knowledge about how to use those tools well: which models to choose, how to write prompts, and what tradeoffs to consider.
+For more details, see the 
+agent skills reference
+ or the 
+GitHub repository
+.
+ Fallback model for Nano Banana Pro 
+ March 2, 2026 
+Nano Banana Pro
+ can now fall back to a backup model (currently 
+ByteDance Seedream 5.0 lite
+) when Google’s API is at capacity, instead of failing with a rate limit error.
+How it works
+Set 
+allow_fallback_model
+ to 
+true
+ when calling the API. If Nano Banana Pro hits a rate limit, it tries to generate the image with Seedream 5.0 lite instead. For certain inputs, for example if the aspect ratio isn’t supported, the original rate limit error is returned.
+The fallback is off by default. If you don’t set 
+allow_fallback_model
+, nothing changes — you’ll get a rate limit error when Google’s API is at capacity.
+When the fallback is triggered, your logs still show a prediction to Nano Banana Pro. You can tell the fallback was used by checking the 
+resolution
+ field in your output — it says 
+"fallback"
+ instead of the actual resolution. You’re charged the cost of the fallback model, not Nano Banana Pro.
+Limitations
+Our current fallback model, Seedream 5.0 lite, doesn’t support all the same options as Nano Banana Pro:
+Seedream 5.0 lite doesn’t support 1K resolution. If you request 1K, the fallback generates at 2K and downscales the result.
+Seedream 5.0 lite doesn’t support 4K resolution. If you request 4K, the fallback won’t be used and the original rate limit error is returned.
+Seedream 5.0 lite doesn’t support the 
+4:5
+ and 
+5:4
+ aspect ratios. Requests with these ratios won’t fall back and will return the original rate limit error.
+ MCP server auto-discovery 
+ February 10, 2026 
+Replicate’s 
+MCP server
+ can now be discovered automatically through the official 
+MCP Registry
+.
+We added a 
+/.well-known/mcp/server.json
+ endpoint that publishes metadata about the MCP server. This follows the 
+server.json specification
+ from the Model Context Protocol.
+How discovery works
+The MCP Registry is the official metadata repository for MCP servers, backed by Anthropic, GitHub, and Microsoft. It doesn’t host code—just metadata that describes where to find servers and how to install them.
+When you publish a 
+server.json
+ file at 
+/.well-known/mcp/server.json
+, the Registry can discover your server automatically. MCP clients then use the Registry to find and install servers.
+Clients with built-in discovery
+A few MCP clients have built-in marketplaces or directories:
+VS Code
+ has the best Registry integration. Enable 
+chat.mcp.gallery.enabled
+ in your settings, then search 
+@mcp
+ in the Extensions view to browse and install MCP servers.
+Claude Desktop
+ has a curated extensions directory at 
+Settings > Extensions > Browse extensions
+.
+Other clients like ChatGPT, Cursor, and LM Studio require manual configuration—you add the server URL or edit a config file yourself.
+Code mode option
+The metadata also exposes the 
+--tools
+ flag, which lets you choose between standard tools (
+all
+) or 
+code mode
+ (
+code
+) when installing.
+ Filter predictions by source 
+ January 14, 2026 
+You can now filter the 
+list predictions API endpoint
+ to show only predictions created through the web interface.
+Use the 
+source
+ query parameter with a value of 
+web
+:
+Copy
+curl -s \
+  -H "Authorization: Bearer $REPLICATE_API_TOKEN" \
+  "https://api.replicate.com/v1/predictions?source=web"
+This is useful if you want to see predictions you created using the 
+playground
+ or other parts of the Replicate website, separate from predictions created programmatically via the API.
+Note: When filtering by 
+source=web
+, results are limited to predictions from the last 14 days.
+ The little things, week ending December 19, 2025 
+ December 19, 2025 
+Web
+Improved the reliability of 
+google/nano-banana
+ and 
+google/nano-banana-pro
+Improved accessibility when using the search bar across 
+Replicate
+Docs
+Added automatic 
+llms.txt
+ generation for documentation, making it easier for language models to discover and understand Replicate’s docs
+Published blog post on 
+how to run Retro Diffusion’s pixel art models on Replicate
+, including rd-fast, rd-plus, rd-tile, and rd-animation for generating game assets and sprites
+ The little things, week ending December 5, 2025 
+ December 5, 2025 
+Web
+Added created and last updated dates on 
+model pages
+Improved pricing display on model pages with clearer messaging for bring-your-own-token models and better visual consistency for single and multiple pricing tiers
+Made 
+FLUX.2 [pro]
+ the default model in the 
+playground
+Added FLUX.2 models (
+pro
+, 
+flex
+, and 
+dev
+) to the playground
+Improved homepage hero section with clickable hero images that link to model pages, better mobile responsiveness, and reduced bundle size
+Improved mobile homepage hero legibility by adjusting gradient overlays
+Fixed model card text truncation and spacing on the 
+explore
+ page at smaller viewport sizes
+Updated playground to better adhere to platform rate limits
+Improved data retention banner messaging to clarify that failed predictions are not retained indefinitely
+Fixed support form reliability issues
+Fixed an issue where the navigation may have rendered incorrectly on mobile devices
+Docs
+Published blog post on 
+how to run FLUX.2 on Replicate
+, Black Forest Lab’s most advanced image generation model
+Published blog post on 
+how to run Isaac 0.1 on Replicate
+, an open-weight vision-language model
+ The little things, week ending November 21, 2025 
+ November 21, 2025 
+Web
+Added approximate cost display to predictions and trainings on 
+dashboard
+ and 
+predictions
+ pages, showing how much each run costs
+Launched an 
+updated homepage
+ hero section and navigation
+Improved display of code snippets on the 
+Replicate homepage
+Made 
+Nano Banana Pro
+ the default model in the 
+playground
+Improved site search sorting, and improved keyboard shortcut handling
+Cog
+Released 
+Cog v0.16.9
+ with a fix for x-order bug
+Docs
+Published blog post on 
+how to prompt Nano Banana Pro
+ with guidance on using its logic, text rendering, character consistency, and world knowledge capabilities
+ Code mode for Replicate's MCP server 
+ November 15, 2025 
+Your browser does not support the video tag.
+Replicate’s local 
+MCP server
+ now supports an experimental “code mode” that allows language models to write and execute TypeScript code directly in a sandboxed environment.
+Instead of exposing individual API operations as separate tools, Code mode provides two tools: one for searching SDK documentation, and another for executing TypeScript code using the Replicate SDK within a Deno sandbox. The model uses a built-in 
+docs search tool
+ to learn how to write code against the SDK. This approach is more efficient for complex workflows that involve multiple API calls, as it reduces context window usage and allows the model to write custom logic that calls multiple methods and returns only the final results.
+To use code mode, start the local MCP server with the 
+--code-mode
+ flag:
+Copy
+npx -y replicate-mcp@alpha --tools=code
+Here’s how to add the local Replicate MCP server in code mode as a tool in Claude Code:
+Copy
+claude mcp add "replicate-code-mode" --scope user --transport stdio -- npx -y replicate-mcp@alpha --tools=code
+Code mode is currently experimental and subject to change. It requires Node.js and 
+Deno
+ to be installed locally. Remote cloud sandboxing support is planned but not yet available.
+To get started with Code mode, see the 
+Code mode documentation
+ or visit the 
+demo GitHub repo
+.
+ The little things, week ending November 7, 2025 
+ November 7, 2025 
+Web
+Added 
+video support to the before/after slider
+, allowing side-by-side comparison of video outputs from models like video upscaling and style transfer
+Added pixelated image rendering with size controls (1x, 2x, fit) in the 
+playground
+ for pixel art models
+Improved support for aspect ratios in prediction outputs
+Overhauled focus states across the Replicate UI library
+Add search to 
+Deployments
+Fixed a bug that caused model input fields to display in a different order
+Added FAQs to every 
+collection
+ page
+Platform
+Launched 
+deployment setup monitoring
+ for enterprise customers with automatic email notifications when deployments fail setup and customizable setup timeouts
+Docs
+Published blog post about 
+extracting text from documents with Datalab Marker and OCR
+ with examples of structured extraction and performance benchmarks
+ Deployment setup monitoring 
+ November 3, 2025 
+Customers on an enterprise plan now have more control over their deployments with two new features: automatic notifications when deployments fail setup, and customizable setup timeouts.
+Setup failure notifications
+If a deployment fails during the model’s 
+setup function
+, we’ll notify you via email. This helps you catch issues with your model earlier, before your users reach out.
+If you use Slack, you can configure these emails to be sent to a Slack channel using their 
+send emails to Slack
+ feature.
+Custom setup timeouts
+You can customize the timeout for your deployment’s model setup function. The default timeout is 10 minutes, which works for most models. But if your model needs to download large files, load trained weights, or perform other expensive initialization operations, you can give it more time before we mark it as failed.
+You can configure both of these in your deployment settings.
+Read more in our 
+deployment monitoring docs
+ or reach out to 
+sales@replicate.com
+ to learn about our enterprise plans.
+ The little things, week ending October 24, 2025 
+ October 24, 2025 
+SDK
+Our 
+Python SDK public beta
+ is out now, making it even easier to run AI models from your Python code with full support for every operation in our HTTP API
+Web
+Improved 
+playground
+ handling of different output and streaming types
+Fixed search keyboard shortcut in 
+docs
+ to use 
+Cmd+/
+ on Mac and 
+Ctrl+/
+ on Windows for consistency across platforms
+API
+Launched 
+prediction deadlines
+ so you can automatically cancel predictions that don’t complete within a specified duration
+Added 
+source
+ field to 
+prediction API responses
+ to indicate whether predictions were created via 
+web
+ or 
+api
+Docs
+Split deployment monitoring into 
+its own docs section
+ with detailed information about metrics, GPU memory monitoring, and performance tracking
+Published blog post about 
+how to prompt Veo 3.1
+ with guidance on reference images, frame control, and image-to-video features
+ Set deadlines for predictions 
+ October 16, 2025 
+You can now set a deadline to automatically cancel a prediction if it doesn’t complete within a specified duration. This is useful when you’re building real-time or interactive experiences, like a virtual try-on experience for an online clothing store. In this case, shoppers have usually moved on if an image takes more than 15 seconds to generate.
+How it works
+Set a deadline by including a 
+Cancel-After
+ header when creating a prediction. See our 
+docs
+ for details on the header format.
+Here’s an example that sets a 1 minute deadline:
+Copy
+curl
+ -X
+ POST
+ \
+  -H
+ "Authorization: Bearer 
+$REPLICATE_API_TOKEN
+"
+ \
+  -H
+ "Cancel-After: 1m"
+ \
+  -H
+ "Prefer: wait"
+ \
+  -H
+ "Content-Type: application/json"
+ \
+  -d
+ $'{
+    "input": {
+      "prompt": "The sun rises slowly between tall buildings. [Ground-level follow shot] Bicycle tires roll over a dew-covered street at dawn. The cyclist passes through dappled light under a bridge as the entire city gradually wakes up."
+    }
+  }'
+ \
+  https://api.replicate.com/v1/models/bytedance/seedance-1-pro/predictions
+What happens when a deadline is reached
+Replicate sets the prediction’s status to 
+aborted
+ if the deadline is reached before it starts running, and 
+canceled
+ if the deadline is reached while it’s running.
+For public models, you’re only charged for predictions with a 
+canceled
+ status, not for 
+aborted
+ ones.
+Deadline vs sync mode wait duration
+Prediction deadlines and sync mode serve different purposes. Use prediction deadline (
+Cancel-After
+ header) to control when the prediction itself should be canceled. Use sync mode (
+Prefer: wait
+ header) to control how long the HTTP request stays open waiting for results.
+You can also use both together. In the previous cURL example, 
+Prefer: wait
+ defaults to 1 min and we’ve explicitly set 
+Cancel-After
+ to 1 min. This means that the HTTP request will stay open for 1 minute to wait for results, after which the prediction will be canceled, even if it has not completed.
+Alternatively, setting 
+Cancel-After: 1m
+ and 
+Prefer: wait=10
+ means that the request returns after 10 seconds. If the prediction is still running, you’ll get an incomplete prediction object, and the prediction will continue to run until it completes or is canceled at the 1-minute deadline.
+Read more in the docs:
+Create a prediction: Prediction deadlines
+Prediction lifecycle: Timeouts
+ The little things, week ending October 10, 2025 
+ October 10, 2025 
+Web
+Improved speed and performance across Replicate
+Updated dashboard UI with new navigation components for improved consistency
+Improved collection API filtering for better performance
+Made the 
+Official
+ label on model pages clickable, linking to the 
+official models documentation
+API
+Launched the ability to 
+update model metadata via API
+ with 
+PATCH
+ requests to update descriptions, README content, and links
+Added 
+sorting options to the models.list API
+ to sort by model creation date or latest version date
+Docs
+Expanded docs sidebar by default to make navigation easier
+Added comprehensive documentation about 
+rate limiting when you have no payment method
+Published a blog post about 
+IBM Granite 4.0 models
+ now available on Replicate
+Updated 
+getting started guides
+Platform
+Added ability to 
+download invoices from billing settings
+ for both monthly billing and credit purchases
+Cog
+Released 
+Cog v0.16.8
+ with registry migration support and credential fallback
+Updated FastAPI requirement to support versions up to 0.119.0
+Fixed Go build issues with version control information injection
+Upgraded test dependencies including TensorFlow updates
+ Download invoices from billing settings 
+ October 8, 2025 
+You can download PDFs of your invoices from 
+billing settings
+.
+If you’re billed through prepaid credit, click on any transaction date under 
+Credit purchases
+ to view that invoice.
+If you pay monthly, click a specific month under 
+Monthly usage
+ to see a 
+View invoice
+ button next to 
+Download JSON
+. This opens your invoice in Stripe.
+ Sort models by creation date via API 
+ October 8, 2025 
+The 
+GET /v1/models
+ endpoint now supports sorting with the 
+sort_by
+ and 
+sort_direction
+ query parameters. This makes it easier to fetch the newest models via the API.
+Copy
+# Sort by when models were first created, newest first
+curl
+ -s
+ \
+  -H
+ "Authorization: Bearer 
+$REPLICATE_API_TOKEN
+"
+ \
+  "https://api.replicate.com/v1/models?sort_by=model_created_at&sort_direction=desc"
+Sorting options
+model_created_at
+: Sort by when the model was first created
+latest_version_created_at
+: Sort by when the model’s latest version was created (default)
+Sort direction can be 
+asc
+ (ascending, oldest first) or 
+desc
+ (descending, newest first).
+The default behavior remains unchanged: models are sorted by 
+latest_version_created_at
+ in descending order (newest versions first).
+ Update model metadata via API 
+ October 6, 2025 
+You can now update model properties using the API with a 
+PATCH
+ request to 
+/v1/models/{owner}/{name}
+.
+You can update the following properties:
+description
+ - Model description
+readme
+ - Model README content
+github_url
+ - GitHub repository URL
+paper_url
+ - Research paper URL
+weights_url
+ - Model weights URL
+license_url
+ - License URL
+Example cURL request:
+Copy
+curl
+ -X
+ PATCH
+ \
+  https://api.replicate.com/v1/models/your-username/your-model-name
+ \
+  -H
+ "Authorization: Bearer 
+$REPLICATE_API_TOKEN
+"
+ \
+  -H
+ "Content-Type: application/json"
+ \
+  -d
+ '{
+    "description": "Detect hot dogs in images",
+    "readme": "# Hot Dog Detector\n\n🌭 Ketchup, mustard, and onions...",
+    "github_url": "https://github.com/alice/hot-dog-detector",
+    "paper_url": "https://arxiv.org/abs/2504.17639",
+    "weights_url": "https://huggingface.co/alice/hot-dog-detector",
+    "license_url": "https://choosealicense.com/licenses/mit/"
+  }'
+See the 
+API reference
+ for full details.
+ The little things, week ending September 26, 2025 
+ September 26, 2025 
+Web
+Updated 
+playground
+ to make it easier to use output images as inputs
+Improved load time and rendering of the 
+homepage
+Added a link to the 
+model detail page
+ to view all predictions you’ve made with that model
+API
+Launched a new 
+search API
+ (in beta) that makes it easier to find models, collections, and docs in a single call
+Docs
+Published a comprehensive 
+comparison of image editing models
+ to help you choose the right tool for your project
+Moved 
+“Deploy a custom model”
+ to the get-started section for better discoverability
+Added new guide for 
+optimizing models with Pruna
+ to help you make models faster and cheaper
+Added documentation for 
+throttling when you have low credit balance
+Updated rate limits error message format and clarified burst behavior in the 
+API reference
+Enhanced the 
+404 page
+Fixed some visual inconsistencies, especially when using dark mode
+Cog
+Updated Cog to support PyTorch 2.8.0 compatibility in 
+v0.16.7
+Improved 
+cog init
+ to download the latest agent instructions from docs
+Added better support for Python 3.13 base images
+ New search API, now in beta 
+ September 16, 2025 
+We’ve added a new 
+search API
+ that makes it easier to find models, collections, and docs.
+Copy
+curl
+ -s
+ \
+  -H
+ "Authorization: Bearer 
+$REPLICATE_API_TOKEN
+"
+ \
+  "https://api.replicate.com/v1/search?query=lip+sync"
+SDK support
+The search API is available in our SDKs:
+TypeScript: 
+npm install replicate@alpha
+ and use 
+replicate.search()
+Python: 
+pip install --pre replicate
+ and use 
+replicate.search()
+MCP: Available in both our 
+remote
+ and 
+local
+ MCP servers
+Backwards compatibility
+The existing 
+QUERY /v1/models
+ endpoint still works, but we recommend migrating to the new search endpoint for improved results.
+Read our 
+announcement blog post
+ for more details and example code.
+ The little things, week ending September 12, 2025 
+ September 12, 2025 
+Platform
+Added invoices for purchases of prepaid credit
+Launched 
+torch compile caching
+ with models using 
+torch.compile
+ starting 2-3x faster thanks to cached compilation artifacts
+Added 
+web URLs to prediction objects
+, so you can view predictions in your browser directly from API responses
+Web
+Added related models to 
+non-official model pages
+, to help you find similar models
+Fixed rendering issues with the display of remaining credits
+Added better support for models with video cover images
+Docs
+Added a comprehensive 
+Security topic
+ with documentation on API token management, including automated token scanning and compromise detection
+Added a 
+torch.compile guide
+ with practical examples for improving model performance
+Added a new guide for 
+optimizing models with Pruna
+Cog
+Added torch 2.8.0 compatibility
+ Torch compile caching 
+ September 8, 2025 
+torch.compile
+ can speed up your inference time significantly, but at the cost of slower startup times.
+We’ve implemented caching of 
+torch.compile
+ artifacts across model instances to help your models boot faster.
+Models using 
+torch.compile
+ like 
+black-forest-labs/flux-kontext-dev
+, 
+prunaai/flux-schnell
+, and 
+prunaai/flux.1-dev-lora
+ now start 2-3x faster.
+In our tests of inference speed with 
+black-forest-labs/flux-kontext-dev
+, the compiled version runs over 30% faster than the uncompiled one,
+making 
+torch.compile
+ an important feature to explore.
+For more details, check out the 
+blog post
+. If you’re building your own custom models, check out our 
+guide to improving model performance with 
+torch.compile
+.
+To learn more about how to use 
+torch.compile
+, check out the 
+official PyTorch torch.compile tutorial
+.
+ The little things, week ending August 29, 2025 
+ August 29, 2025 
+Added Artificial Analysis image and video arena rankings to 
+search results
+Added email verification when 
+signing up for an organization
+Improved rendering of the billing summary on the 
+dashboard
+Continued improving the site navigation across Replicate
+Cleaned up filtering options on the 
+prediction list
+ to make it easier to navigate
+Fixed a bug that may have caused filenames to overflow on the 
+playground
+Fixed a bug when 
+fetching a model’s readme
+ while using an Accept header
+Fixed a bug that may have caused dropdowns to appear incorrectly on Microsoft Edge when using dark mode
+Enhanced radio button visibility on 
+model create
+ with better contrast
+Standardized number formatting across the platform to use consistent en-US locale
+Fixed avatar menu username visibility across different screen sizes
+Improved link underlines in 
+blog posts
+ for better readability and visibility
+ The little things, week ending August 14, 2025 
+ August 14, 2025 
+Web
+Overhauled the 
+model page header
+ to make it easier to find what you’re looking for
+Updated the 
+Replicate homepage
+ with the freshest model data
+Tweaked the 
+predictions
+ interface to make filtering clearer
+Continued improving search results, including a bug that led to 404’s on collections, and where video models were not displaying correctly
+Improved 
+docs
+ search results interface
+Cog
+Updated 
+Node.js starter guide
+ to user newer models.
+Added docs about secret inputs for 
+model authors
+ and 
+model users
+.
+Added 
+docs about community models
+.
+Added 
+docs
+ for using Replicate MCP in Google Gemini CLI
+Added 
+docs
+ for using Replicate MCP in OpenAI Codex CLI
+Guides are now organized into categories: Run models, Build models, Go deeper.
+API
+Fixed the 
+deployments.update API
+ to return updated deployment config.
+Released 
+mcp.replicate.com
+, a remote MCP server for Replicate’s HTTP API
+ Run all models with the same API endpoint 
+ August 5, 2025 
+You can now use the 
+POST /v1/predictions
+ HTTP API endpoint to run any model on Replicate, whether it’s an 
+official model
+ or a 
+community model
+. This removes the confusion about which endpoint to use for different types of models.
+What changed?
+The 
+POST /v1/predictions
+ endpoint now accepts official model identifiers in the 
+owner/name
+ format, in addition to the existing 
+{owner}/{name}:{version_id}
+ and 
+{version_id}
+ formats.
+The existing 
+POST /v1/models/{model_owner}/{model_name}/predictions
+ endpoint will still be supported for running official models. If you’re already using that endpoint, you don’t need to change anything.
+This change is backward compatible. Existing code will continue to work without any modifications.
+Supported version identifiers
+When using the 
+POST /v1/predictions
+ endpoint, you can specify models in these formats:
+{owner}/{name}
+ - For official models (e.g., 
+black-forest-labs/flux-schnell
+)
+{owner}/{name}:{version_id}
+ - For community models with full version ID (e.g., 
+replicate/hello-world:9dcd6d78e7c6560c340d916fe32e9f24aabfa331e5cce95fe31f77fb03121426
+)
+{version_id}
+ - Just the 64-character version ID (e.g., 
+9dcd6d78e7c6560c340d916fe32e9f24aabfa331e5cce95fe31f77fb03121426
+)
+Example
+Here’s an example of how to run an official model (in this case, 
+black-forest-labs/flux-schnell
+) using the 
+POST /v1/predictions
+ operation:
+Copy
+curl
+ -X
+ POST
+ https://api.replicate.com/v1/predictions
+ \
+  -H
+ "Authorization: Token 
+$REPLICATE_API_TOKEN
+"
+ \
+  -H
+ "Content-Type: application/json"
+ \
+  -d
+ '{
+    "version": "black-forest-labs/flux-schnell",
+    "input": {
+      "prompt": "A photo of a cat"
+    }
+  }'
+ The little things, week ending August 1, 2025 
+ August 1, 2025 
+Web
+Rolled out a new search experience across Replicate
+Added a new 
+enterprise page
+Added support for filtering models in the 
+playground
+Fixed a bug where dark mode may not have been sticky in certain circumstances
+Fixed a bug where 
+creating a model
+ might silently fail
+Fixed a bug with using keyboard shortcuts in 
+playground
+ causing unexpected results
+Improved 404 pages
+Improved pricing display for models
+Cog
+Added support for python 3.13 base images
+Models
+Veo-3 now supports 1080p
+Kontext LoRA trainer now supports up to 20k steps
+ Purchase prepaid credit 
+ July 29, 2025 
+You can now purchase prepaid credit for your Replicate account. This is a helpful option if you want to manage your spending more proactively. It can also make paying for Replicate easier if your bank requires additional authentication for recurring charges.
+Since July 16, 2025, all new accounts are being billed through prepaid credit instead of being billed monthly. For existing users who signed up before July 16, nothing changes if you don’t want it to. You can continue to get billed monthly - no action required.
+At some point in the future, we will be migrating most accounts from monthly billing to prepaid credit. We’ll work with you to make the transition as smooth as possible and will share more details as our plans develop. If you want to move from monthly billing to prepaid credit sooner, email 
+support@replicate.com
+.
+To purchase credit:
+Visit 
+replicate.com/account/billing
+ (or click your avatar → 
+Account settings
+ → 
+Billing
+).
+Choose 
+Add credit
+ and follow the prompts.
+Optionally, set up auto reload to add to your credit balance when it dips below a preset threshold.
+Once you purchase credit, any usage will be deducted from that credit balance. If you run out of credit, we’ll charge you for any overages at the beginning of the following month.
+For more details, see our 
+prepaid credit docs
+.
+ Introducing a new Cog runtime 
+ July 21, 2025 
+We are introducing a new implementation of Cog’s 
+production runtime
+ component. This is the part of Cog responsible for predictor schema validation, prediction execution and HTTP serving.
+tl;dr:
+If you’re a model author and want to try out the new runtime, make sure you’re on Cog >= 0.16.0 and add 
+build.cog_runtime: true
+ to 
+cog.yaml
+:
+Copy
+build:
+    # Enable new Cog runtime implementation
+    cog_runtime: true
+Most existing models should work as is, apart from a few exceptions. If you hit one of the exceptions, please follow the messages printed by 
+cog
+ to update your code. Read below for why these are necessary.
+Note that:
+The experimental 
+training interface
+ is not supported yet.
+This new runtime will become the default in a future Cog release, after which the existing one will be deprecated.
+Why build this?
+The existing Cog runtime was written in Python and relies heavily on Pydantic and several other libraries when performing predictions. This leads to several problems:
+Dependency issues: many Python libraries pull in conflicting versions of common dependencies, e.g. Pydantic. This causes runtime errors, sometimes even by just rebuilding the image which pulls a newer version of the dependency. By removing all Python dependencies from Cog runtime, you have total control of your model’s dependency graph.
+Ambiguous predictor interface: we relied on Pydantic for checking predictor input and output types, which can be ambiguous and error prone, e.g. allowing types that may be handled incorrectly by other parts of our ecosystem or user code. It’s also hard to support custom data types due to potentially incompatible Pydantic versions, i.e. 
+v1 vs v2
+.
+Error handling: since Cog HTTP server and predictor are both Python code running via 
+multiprocessing
+, it’s hard to differentiate platform errors, i.e. Cog, vs application errors, i.e. predictor. A model crash may cause the server to end up in a bad state with no useful logging.
+Performance: certain things are hard to implement correctly and efficiently in Python, i.e. async HTTP handling, file upload & download, concurrency, serialization.
+To tackle these problems, we re-implemented the runtime part of Cog with the following components:
+Schema validation in pure vanilla Python via 
+inspect
+ and no Pydantic or any other dependency
+Decoupled HTTP server rewritten in Go
+Custom, pluggable data serialization
+This allows us to minimize the runtime logic in Python and reduce the risk of it interfering with application code. The Go server is now responsible for most of the heavy lifting:
+HTTP server and webhooks
+Input file download and output file upload
+Logging
+The Go server communicates with the bare minimum Python runner via JSON files for input/output and HTTP/signals for IPC. The Python runner is solely responsible for invoking the predictor’s 
+setup()
+ and 
+predict()
+ methods.
+What do I need to change?
+Most of the Cog API, 
+Predictor
+, 
+Input
+, 
+BaseModel
+, etc. are source compatible. There are 3 changes that might require updating the model.
+Improved semantics of optional inputs
+Cleaner dependencies
+Removal of deprecated 
+File
+ API.
+First, ambiguous optional inputs are no longer allowed. For example, in existing Cog, declaring 
+prompt: str
+ suggests that it cannot be 
+None
+, while it still allows 
+default=None
+, which can confuse type checkers and lead to buggy code, e.g. if it doesn’t check for none-ness. For example, instead of:
+Copy
+def predict(prompt: str=Input(description="prompt", default=None))
+We should use:
+Copy
+def predict(prompt: Optional[str]=Input(description="prompt")
+Note that 
+default=None
+ is now redundant and removed, as 
+Optional[str]
+ implies that the input may be 
+None
+, and type checker can warn us about checking it.
+Second notable change is that the new Cog runtime no longer depends on any of the Python dependencies of the existing runtime. You’ll have to add them to 
+requirements.txt
+ if the model relies on them and they’re not pulled in via any other third party libraries.
+attrs
+fastapi
+pydantic
+PyYAML
+requests
+structlog
+typing_extensions
+uvicorn
+Third change is the removal of deprecated 
+cog.File
+ API. Use 
+cog.Path
+ instead.
+ The little things, week ending July 18, 2025 
+ July 18, 2025 
+Web
+Simplified 
+creating a model on Replicate
+, to be more focused on the task you’re trying to complete
+Added better support for models with videos for cover images, like 
+zsxkib/thinksound
+API tokens page
+ now displays enabled tokens first, and disabled tokens last
+Updated 
+invoices
+ to more clearly show charges under $0.01
+Improved hardware display on model pages
+Improved visibility of focus states for keyboard accessibility across Replicate
+Fixed a bug where the platform status might be hard to read
+Fixed an issue where the total time a prediction ran was not displayed on the 
+prediction page
+Added clipping support for 
+models with outputs that compare images
+Cog
+Added 
+Optional
+documentation
+Added torch 2.7.1 and cuda 12.8 base images
+ The little things, week ending July 4, 2025 
+ July 4, 2025 
+Web
+Updated 
+llms.txt
+ files for models to indicate required vs optional inputs. 
+(Here’s an example.)
+Launched 
+environment variables in running containers
+All API operations in our OpenAPI schema now have defined response schemas
+Fixed an issue where uploading an image on the API playground could cause the page to jump
+Improved the display of pricing information on model pages
+Added support for multi-string inputs on Replicate 
+playground
+Improved the display of billing information on the 
+dashboard
+Cog
+Fixed binary data URLs not outputting anything on 
+cog predict
+cog predict
+ now has support for JSON inputs and outputs with 
+-json
+Errors are explicit when the user tries to push an image without a token
+python 3.13 is now the default in 
+cog init
+Docs
+Added documentation on 
+official models
+Added documentation on 
+error codes
+ Set a monthly spend limit deprecated 
+ July 1, 2025 
+The ability to set a monthly spend limit on your account has been deprecated. If you require this feature, 
+reach out to support
+.
+ See up to 24 hours of data on deployment metric graphs 
+ July 1, 2025 
+You can now view a full 24 hours of metrics on a deployment’s page — up from the previous 2-hour limit. We’ve widened the aggregation window to 15 minutes (from 1 minute) so the longer view loads quickly and avoids timeouts.
+ The little things, week ending June 20, 2025 
+ June 20, 2025 
+Platform
+Improved navigation consistency across Replicate
+Added 
+.md
+ extensions to docs, 
+like this one
+Added a link to view a prediction upon creation in the API playground, in order to make it easier to run multiple long running predictions
+Added support for more video formats in the API playground, like WEBM
+Fixed an issue that caused sharing links on social platforms to render incorrectly
+Fixed a rendering issue where the footer was displaying incorrectly on some pages
+Fixed some minor rendering issues with the playground UI
+Cog
+Fixed binary data URLs not outputting anything on 
+cog predict
+cog predict
+ now has support for JSON inputs and outputs with 
+-json
+Errors are explicit when the user tries to push an image without a token
+python 3.13 is now the default in 
+cog init
+ Environment variables in running containers 
+ June 18, 2025 
+We now expose the following metadata as environment variables in a running container.
+They can be used to identify the image, version, deployment, when debugging or instrumenting your model.
+REPLICATE_USERNAME
+ - username, e.g. 
+my-unicorn-ai-startup
+REPLICATE_MODEL_NAME
+ - model name, e.g. 
+pony-generator
+REPLICATE_DOCKER_IMAGE_URI
+ - Docker image URI, e.g. 
+r8.im/<username>/<model_name>@<image_hash>
+REPLICATE_VERSION_ID
+ - model version, usually the same as image hash
+REPLICATE_DEPLOYMENT_NAME
+ - deployment name, if running as a deployment
+These environment variables are accessible to your code in public models, private models, and deployments.
+For more details, see the 
+model documentation
+.
+ Slimmer API responses for model metadata 
+ June 16, 2025 
+To improve performance when using tools like 
+Replicate’s MCP server
+, we’ve updated our 
+public API
+ to return smaller response objects for model metadata.
+This change removes about ⚡️ 5KB ⚡️ from every serialized model object.
+For API operations that return multiple models like 
+models.search
+ and 
+collections.get
+, this change shaves over 1MB off the response size, dramatically improving the performance and response times for LLMs that are consuming these data.
+What’s changed?
+Every Replicate model has its own 
+OpenAPI schema
+ that defines all of its inputs and outputs. This metadata is incredibly useful, as it tells you exactly what you can do with the model, and it’s documented in a machine-readable and industry-standard JSON Schema format.
+Model input and outputs schemas are great, but these OpenAPI schemas also include some metadata that is not useful or relevant. Specifically, the 
+openapi_schema.paths
+ key contained 
+unnecessary metadata
+ that is only useful inside 
+Cog
+’s internal generated FastAPI client. To reduce the size of the generated responses, we’ve removed this key from the 
+version object
+ and replaced it with an empty object. This results in an OpenAPI schema that is still valid, but much smaller.
+Which API operations are affected?
+This change affects all API operations that return model version metadata, including:
+models.get
+ - Get a model
+models.list
+ - List public models
+models.search
+ - Search public models
+models.versions.get
+ - Get a model version
+models.versions.list
+ - List model versions
+collections.get
+ - Get a collection of models
+collections.list
+ - List collections of models
+ The little things, week ending June 6, 2025 
+ June 6, 2025 
+Platform
+Tweaks and updates to the site navigation across Replicate
+Added a last pushed date to the model card to make it easier to check recency in a 
+collection
+Launched improved pricing display for 
+official models
+Launched new 
+FLUX.1 Kontext models from Black Forest Labs
+, and 
+Veo 3 from Google
+Speed and caching improvements for the most popular model weights and FLUX LoRAs
+Docs, talks, and blog posts
+Design like Karpathy is watching
+ (from our very own 
+Zeke
+)
+Get the most from Google Veo 3
+FLUX.1 Kontext from the community
+Use FLUX.1 Kontext to edit images with words
+ Faster, cheaper Flux training 
+ May 23, 2025 
+You can now fine-tune models with the 
+fast FLUX trainer
+ on Replicate.
+It’s fast (under 2 minutes), cheap (under $2), and gives you a warm, runnable model plus LoRA weights to download.
+We’ll be open-sourcing our work soon — stay tuned.
+ The little things, week ending May 23, 2025 
+ May 23, 2025 
+Platform
+Added audio and streaming text support in 
+playground
+Added “Iterate in the playground” links to more supported models
+Added a “More by this user” dropdown to model pages
+Added the ability to copy model content directly to LLMs
+Added support for viewing PDF files in the API playground
+Updated the model header and tweaked layout
+Updated blog and changelog layouts to improve readability
+Fixed a broken image preview when uploading PDF’s in the API playground
+Docs
+Added 
+Replicate MCP server
+ and 
+guide
+Web
+The API tokens view under 
+account settings
+ now takes an optional 
+?new-token-name
+ query param, so you can send someone to that page with a suggested name for their new token. For example, using 
+my-cool-app
+: 
+https://replicate.com/account/api-tokens?new-token-name=my-cool-app
+.
+Partnerships
+We’ve partnered with 
+Hugging Face to bring Replicate inference
+ to their platform.
+Cog
+Proper support for nullable fields in OpenAPI schemas
+Cog train can now use classes like 
+cog predict
+ instead of just functions. This change enables you to use a 
+setup
+ call to prepare your model and a 
+train
+ call to train it. 
+By using this pattern
+ you can cut down on boot times if you are running multiple model trainings.
+ Streaming text support in the playground 
+ May 20, 2025 
+The playground now supports models that output and stream text, so you can quickly compare different 
+language models
+ and play with models like 
+salesforce/blip
+ and 
+yorickvp/llava-13b
+.
+ Web URLs now in prediction objects 
+ May 19, 2025 
+We’ve added a new 
+web
+ property to the 
+urls
+ object for predictions.
+This property contains the web URL of the prediction, so you can view it in your browser:
+Copy
+{
+  "web": "https://replicate.com/p/cky59275mdrm80cpw83rcn3ej0",
+  "get": "https://api.replicate.com/v1/predictions/cky59275mdrm80cpw83rcn3ej0",
+  "stream": "https://stream.replicate.com/v1/files/bcwr-3afcgaxf5opqtgeq5ababozl3erroi6ody73lpkwklvnu7bwtmrq",
+  "cancel": "https://api.replicate.com/v1/predictions/cky59275mdrm80cpw83rcn3ej0/cancel"
+}
+Here’s an example of how to get the web URL of your account’s most recent prediction using cURL and 
+jq
+, then open it in your browser:
+Copy
+curl
+ -s
+ \
+  -H
+ "Authorization: Bearer 
+$REPLICATE_API_TOKEN
+"
+ \
+  "https://api.replicate.com/v1/predictions"
+ \
+  |
+ jq
+ ".results[0].urls.web"
+ \
+  |
+ xargs
+ open
+ Iterate in playground with audio support 
+ May 16, 2025 
+You can now quickly get from a model to iterating on it in the playground. Use the “Iterate in the playground” button on any supported model page.
+The playground also now supports previewing audio, so you can generate and listen to audio in the same place.
+ NVIDIA H100 GPUs now available 
+ May 16, 

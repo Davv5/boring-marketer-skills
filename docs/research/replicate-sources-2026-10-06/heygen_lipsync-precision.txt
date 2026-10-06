@@ -1,0 +1,12 @@
+SOURCE: https://replicate.com/heygen/lipsync-precision
+
+description: Replace or dub audio on any video with high-accuracy avatar-inference lip sync using HeyGen's Lipsync Precision API.
+replicate:run_count: 9995
+replicate:is_official: true
+replicate:latest_version_created_at: 2026-04-16T20:10:02.356586+00:00
+
+INPUT SCHEMA:
+{"type": "object", "title": "Input", "required": ["video", "audio"], "properties": {"audio": {"type": "string", "title": "Audio", "format": "uri", "x-order": 1, "description": "Replacement audio file. The video's lip movements will be re-animated to match this audio using high-accuracy avatar inference."}, "video": {"type": "string", "title": "Video", "format": "uri", "x-order": 0, "description": "Source video file to lip-sync."}, "disable_music_track": {"type": "boolean", "title": "Disable Music Track", "default": false, "x-order": 3, "description": "Strip background music from the source video."}, "enable_dynamic_duration": {"type": "boolean", "title": "Enable Dynamic Duration", "default": true, "x-order": 2, "description": "Allow the output duration to adjust to match the new audio length."}, "enable_speech_enhancement": {"type": "boolean", "title": "Enable Speech Enhancement", "default": false, "x-order": 4, "description": "Enhance speech quality in the output."}}}
+
+PRICING:
+{"criteria": [], "description": null, "prices": [{"description": "or around 14 seconds for $1", "metric": "video_output_duration_seconds", "metric_display": "second of output video", "price": "$0.0667", "title": "per second of output video", "type": "per-unit"}], "title": null}

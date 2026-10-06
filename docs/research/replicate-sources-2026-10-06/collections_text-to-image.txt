@@ -1,0 +1,910 @@
+SOURCE: https://replicate.com/collections/text-to-image
+
+description: Run popular models like Stable Diffusion & FLUX to turn text prompts into stunning AI images & art. Just describe your idea to generate realistic visuals.
+
+PAGE TEXT:
+
+Run image generation models via API - Replicate
+Alibaba logo
+Wan 3.0 is 30% off this week
+Replicate glyph
+Explore
+Pricing
+Enterprise
+Docs
+Blog
+Sign in
+Try for free
+Menu
+Explore
+Pricing
+Enterprise
+Docs
+Blog
+Sign in
+Try for free
+Compare models in the
+Playground
+Collections
+Generate images
+These models generate images from text prompts. Here, you can find the latest state-of-the-art image models that fit your use case.
+Models we recommend
+Best overall
+Nano Banana 2
+ from Google is the strongest all-around image generation model right now. It's fast, handles multi-image fusion (up to 14 images), renders text accurately in multiple languages, and does conversational editing. Great for everything from quick prototypes to production workflows. 
+Nano Banana Pro
+ adds Gemini 3 Pro reasoning, Google Search grounding, and 4K output for more complex tasks.
+GPT Image 1.5
+ from OpenAI is close behind — it follows complex prompts accurately, renders readable text, and handles everything from photorealistic scenes to infographics and UI mockups. It also works as an image editor — make targeted changes while preserving everything else. Requires an OpenAI API key.
+For photorealism and cinematic quality
+FLUX.2 Max
+ from Black Forest Labs delivers the highest fidelity in the FLUX family. It excels at product photography, character consistency across batches (up to 8 reference images), and precise color control via hex codes. Great for e-commerce, fashion, and any workflow where consistency matters.
+FLUX.2 Pro
+ offers similar capabilities at a lower price. It supports structured JSON prompting for precise control over camera angle, lighting, and composition, and handles up to 8 reference images. A good choice for high-volume production work.
+Seedream 5
+ from ByteDance produces film-like visuals with cinematic aesthetics, refined lighting, and strong spatial understanding. Particularly good at realistic proportions and structured environments. Supports up to 4K resolution with batch and multi-reference generation.
+Imagen 4 Ultra
+ from Google renders the finest details — skin texture, individual strands of hair, fabric weave, water droplets. Use it when quality matters more than speed. Supports up to 2K resolution.
+For reasoning and domain knowledge
+Seedream 5 Lite
+ from ByteDance is the newest generation with built-in multi-step reasoning. It understands spatial relationships, physics, and professional conventions across architecture, science, health, and design. Supports example-based editing, multi-image blending (up to 14 references), and up to 3K resolution. Good for complex prompts that require the model to think through what it's generating.
+For cinematic character rendering and moody aesthetics
+Grok Imagine Image
+ from xAI has a distinctive visual style — strong at cinematic character rendering with facial consistency, moody aesthetics with dramatic contrast, and retro anime looks. Renders readable text well. Also supports image editing.
+For typography and design work
+Recraft V4.1
+ takes a design-first approach — every output feels art-directed rather than generic. Strong integrated text rendering, intentional composition, and refined color relationships. Good for brand assets, editorial photography, and print-ready work.
+Also, try out the SVG models with Recraft V4 Styles which allow you to create vector assets that can be dropped into Illustrator or Photoshop 
+Recraft V4 Styles SVG
+FLUX.2 Flex
+ is the typography specialist in the FLUX family. It reliably renders clean text, captions, and complex layouts — perfect for memes, posters, infographics, and UI mockups. You can adjust the quality-speed trade-off by changing the number of steps, making it great for rapid iteration. Supports up to 10 reference images.
+Ideogram v3
+ is built for graphic design and branding. It generates precise text, supports style references (upload up to 3 images or use 4.3 billion style presets), and produces clean layouts for logos, posters, and marketing materials. Available in 
+Turbo
+, 
+Balanced
+, and 
+Quality
+ tiers.
+For vector graphics (SVG)
+Recraft V4 SVG
+ generates native, editable SVG vector files — not traced rasters. Output opens directly in Illustrator, Figma, or Sketch with clean paths and structured layers. The only image generation model that produces true vector output. Use it for logos, icons, illustrations, and any asset that needs to scale.
+For speed and cost
+Imagen 4 Fast
+ and 
+FLUX Schnell
+ are built for quick iteration — use them when you need fast results at lower cost.
+Ideogram v3 Turbo
+ gives you solid image quality with good text rendering at $0.03 per image.
+Try it out
+Compare models side by side in the playground to find what works best for your project.
+Open the playground →
+Questions? Join us on 
+Discord
+.
+Featured models
+google
+/
+imagen-4-ultra
+Use this ultra version of Imagen 4 when quality matters more than speed and cost
+Updated 
+4 days, 13 hours ago
+1.8M
+runs
+Official
+recraft-ai
+/
+recraft-v4-styles-pro-svg
+Recraft V4 Styles Pro SVG generates high-quality editable vector images that match a reusable style or attached reference images.
+Updated 
+1 month, 1 week ago
+133
+runs
+Official
+google
+/
+nano-banana-2
+Google's fast image generation model with conversational editing, multi-image fusion, and character consistency
+Updated 
+2 months, 2 weeks ago
+20.3M
+runs
+Official
+openai
+/
+gpt-image-2
+OpenAI's state-of-the-art image generation model. Create and edit images from text with strong instruction following, sharp text rendering, and detailed editing.
+Updated 
+2 months, 3 weeks ago
+30.2M
+runs
+Official
+black-forest-labs
+/
+flux-2-flex
+Max-quality image generation and editing with support for ten reference images
+Updated 
+5 months ago
+489.6K
+runs
+Official
+black-forest-labs
+/
+flux-2-pro
+High-quality image generation and editing with support for eight reference images
+Updated 
+6 months, 1 week ago
+11.7M
+runs
+Official
+black-forest-labs
+/
+flux-2-max
+The highest fidelity image model from Black Forest Labs
+Updated 
+6 months, 2 weeks ago
+4.2M
+runs
+Official
+bytedance
+/
+seedream-5-lite
+Seedream 5.0 lite: image generation with built-in reasoning, example-based editing, and deep domain knowledge
+Updated 
+7 months, 1 week ago
+3.5M
+runs
+Official
+recraft-ai
+/
+recraft-v4-pro
+Recraft's latest image generation model at ~2048px resolution. Same design taste and prompt accuracy as V4, with higher resolution for print-ready and large-scale work.
+Updated 
+7 months, 2 weeks ago
+24.2K
+runs
+Official
+xai
+/
+grok-imagine-image
+SOTA image model from xAI
+Updated 
+7 months, 3 weeks ago
+5.9M
+runs
+Official
+sourceful
+/
+riverflow-2.0-pro
+Agentic image model optimized for robust, high-precision generations supporting font control
+Updated 
+8 months ago
+25.8K
+runs
+Official
+openai
+/
+gpt-image-1.5
+OpenAI's latest image generation model with better instruction following and adherence to prompts
+Updated 
+8 months, 2 weeks ago
+16.1M
+runs
+Official
+Recommended Models
+Frequently asked questions
+What’s the fastest model for generating images?
+Speed depends on the model’s architecture and how it’s optimized for the hardware it runs on. If you want quick results, models like 
+google/imagen-4-fast
+ and 
+black-forest-labs/flux-schnell
+ are built to return outputs fast, which is great for rapid iteration.
+Which model gives the best balance of cost and quality?
+Smaller or “fast” variants usually cost less to run. 
+bytedance/seedream-4.5
+ and 
+ideogram-ai/ideogram-v3-turbo
+ are good picks if you want solid image quality without spending a lot.
+What’s the difference between text-to-image and image-to-image?
+Text-to-image models create a new image from scratch based on your text prompt. Image-to-image models take an existing image and use your prompt to change or build on it. Think of it as “paint something new” vs. “edit what’s already there.”
+Which model makes the most realistic images?
+bytedance/seedream-4.5
+ and 
+ideogram-ai/ideogram-v3-turbo
+ are great for realistic lighting, textures, and faces. They’re popular for lifelike portraits, product shots, and scenery.
+Which model is best for artistic or stylistic work?
+If you’re aiming for a specific look, 
+black-forest-labs/flux-1.1-pro
+ and 
+black-forest-labs/flux-schnell
+ give you more control over style, lighting, and composition. They’re good for illustrations, concept art, or anything with a creative twist.
+Can I edit images with a text prompt?
+Yes. Use text-guided editing models like 
+black-forest-labs/flux-kontext-pro
+ or 
+bytedance/seedream-4.5
+ to add or change details in an existing image. For example, you can tell it to “add sunglasses” or “turn it into a painting.”
+What resolution do these models support?
+Most models output images between 512×512 and 4K. Check the model card for the exact dimensions supported. Higher resolutions can cost more and take a bit longer to run.
+How do I make consistent characters or scenes?
+Use a reference image or a fixed seed. Models like 
+black-forest-labs/flux-kontext-pro
+ and 
+ideogram-ai/ideogram-v3-turbo
+ support both, so you can keep the same look across multiple runs.
+Can I fine-tune a model with my own data?
+Some models support fine-tuning. Look for the 
+fine-tune
+ tag on the model page or check the README for training details.
+Can I host my own model on Replicate?
+Yes. Push a model from GitHub with a 
+replicate.yaml
+ file. Once it’s built, it runs on the same infrastructure as other models.
+Can I use these models for commercial work?
+Check the “License” section on the model page. Some licenses allow commercial use, others don’t. Always make sure before using outputs in anything public or commercial.
+Home
+About
+Changelog
+Join us
+Terms
+Privacy
+Status
+Support
+Recommended Models
+prunaai
+/
+p-image
+A sub 1 second text-to-image model built for production use cases.
+Updated 
+4 days, 3 hours ago
+21M
+runs
+Official
+google
+/
+imagen-4-fast
+Use this fast version of Imagen 4 when speed and cost are more important than quality
+Updated 
+4 days, 12 hours ago
+6M
+runs
+Official
+google
+/
+imagen-4
+Google's Imagen 4 flagship model
+Updated 
+4 days, 13 hours ago
+8.2M
+runs
+Official
+google
+/
+imagen-3-fast
+A faster and cheaper Imagen 3 model, for when price or speed are more important than final image quality
+Updated 
+4 days, 13 hours ago
+638.2K
+runs
+Official
+google
+/
+imagen-3
+Google's highest quality text-to-image model, capable of generating images with detail, rich lighting and beauty
+Updated 
+4 days, 13 hours ago
+2.2M
+runs
+Official
+prunaai
+/
+flux-fast
+This is the fastest Flux endpoint in the world.
+Updated 
+1 week, 5 days ago
+45.1M
+runs
+Official
+prunaai
+/
+p-image-lora
+Use trained LoRAs from the https://replicate.com/prunaai/p-image-trainer. Find or contribute LoRAs here https://huggingface.co/collections/PrunaAI/p-image-loras
+Updated 
+4 weeks, 1 day ago
+324.3K
+runs
+Official
+prunaai
+/
+z-image-turbo
+Z-Image Turbo is a super fast text-to-image model of 6B parameters developed by Tongyi-MAI.
+Updated 
+1 month ago
+56.5M
+runs
+Official
+google
+/
+nano-banana-pro
+Google's state of the art image generation and editing model 🍌🍌
+Updated 
+2 months, 2 weeks ago
+36.1M
+runs
+Official
+leonardoai
+/
+lucid-origin
+Artistic and high-quality visuals with improved prompt adherence, diversity, and definition
+Updated 
+2 months, 2 weeks ago
+295.9K
+runs
+Official
+bytedance
+/
+seedream-4.5
+Seedream 4.5: Upgraded Bytedance image model with stronger spatial understanding and world knowledge
+Updated 
+4 months ago
+36.9M
+runs
+Official
+black-forest-labs
+/
+flux-1.1-pro-ultra
+FLUX1.1 [pro] in ultra and raw modes. Images are up to 4 megapixels. Use raw mode for realism.
+Updated 
+5 months ago
+21.4M
+runs
+Official
+quiverai
+/
+arrow-1.1-max
+Generate high-fidelity SVG graphics from text prompts with Quiver's Arrow 1.1 Max model. Tuned for dense illustrations, detailed logos, and technical diagrams.
+Updated 
+5 months, 2 weeks ago
+194
+runs
+Official
+quiverai
+/
+arrow-1.1
+Generate editable SVG graphics from text prompts with Quiver's Arrow 1.1 model. Great for icons, logos, and illustrations.
+Updated 
+5 months, 2 weeks ago
+158
+runs
+Official
+prunaai
+/
+hidream-l1-fast
+This is an optimised version of the hidream-l1 model using the pruna ai optimisation toolkit!
+Updated 
+5 months, 3 weeks ago
+8.5M
+runs
+Official
+wan-video
+/
+wan-2.7-image
+Generate and edit images with Alibaba's Wan 2.7
+Updated 
+6 months ago
+226.5K
+runs
+Official
+wan-video
+/
+wan-2.7-image-pro
+Generate and edit high-quality images with Alibaba's Wan 2.7 Pro with 4K output, thinking mode, text-to-image, multi-image editing, and image set generation
+Updated 
+6 months ago
+410.2K
+runs
+Official
+recraft-ai
+/
+recraft-v4-pro-svg
+Generate detailed SVG vector graphics from text prompts. Recraft V4 Pro's design taste with more geometric detail and finer paths — clean layers, editable output, and scalable to any size.
+Updated 
+7 months, 2 weeks ago
+11.2K
+runs
+Official
+recraft-ai
+/
+recraft-v4-svg
+Generate production-ready SVG vector images from text prompts. Recraft V4's design taste applied to vector output — clean geometry, structured layers, and editable paths.
+Updated 
+7 months, 2 weeks ago
+57K
+runs
+Official
+google
+/
+nano-banana
+Google's latest image editing model in Gemini 2.5
+Updated 
+7 months, 4 weeks ago
+120.7M
+runs
+Official
+bria
+/
+fibo
+SOTA Open source model trained on licensed data, transforming intent into structured control for precise, high-quality AI image generation in enterprise and agentic workflows.
+Updated 
+8 months ago
+15.7K
+runs
+Official
+bria
+/
+image-3.2
+Commercial-ready, trained entirely on licensed data, text-to-image model. With only 4B parameters provides exceptional aesthetics and text rendering. Evaluated to be on par to other leading models in the market
+Updated 
+8 months ago
+172.8K
+runs
+Official
+qwen
+/
+qwen-image
+An image generation foundation model in the Qwen series that achieves significant advances in complex text rendering.
+Updated 
+8 months, 2 weeks ago
+2M
+runs
+Official
+black-forest-labs
+/
+flux-2-klein-4b
+Very fast image generation and editing model. 4 steps distilled, sub-second inference for production and near real-time applications.
+Updated 
+8 months, 2 weeks ago
+33.7M
+runs
+Official
+bytedance
+/
+seedream-4
+Unified text-to-image generation and precise single-sentence editing at up to 4K resolution
+Updated 
+10 months, 2 weeks ago
+39.8M
+runs
+Official
+black-forest-labs
+/
+flux-kontext-max
+A premium text-based image editing model that delivers maximum performance and improved typography generation for transforming images through natural language prompts
+Updated 
+10 months, 3 weeks ago
+12.6M
+runs
+Official
+black-forest-labs
+/
+flux-kontext-pro
+A state-of-the-art text-based image editing model that delivers high-quality outputs with excellent prompt following and consistent results for transforming images through natural language
+Updated 
+10 months, 3 weeks ago
+54M
+runs
+Official
+black-forest-labs
+/
+flux-pro
+State-of-the-art image generation with top of the line prompt following, visual quality, image detail and output diversity.
+Updated 
+10 months, 3 weeks ago
+14.2M
+runs
+Official
+bytedance
+/
+seedream-3
+A text-to-image model with support for native high-resolution (2K) image generation
+Updated 
+10 months, 3 weeks ago
+3.4M
+runs
+Official
+recraft-ai
+/
+recraft-v3
+Recraft V3 (code-named red_panda) is a text-to-image model with the ability to generate long texts, and images in a wide list of styles. As of today, it is SOTA in image generation, proven by the Text-to-Image Benchmark by Artificial Analysis
+Updated 
+10 months, 4 weeks ago
+8.7M
+runs
+Official
+recraft-ai
+/
+recraft-v3-svg
+Recraft V3 SVG (code-named red_panda) is a text-to-image model with the ability to generate high quality SVG images including logotypes, and icons. The model supports a wide list of styles.
+Updated 
+10 months, 4 weeks ago
+467K
+runs
+Official
+ideogram-ai
+/
+ideogram-v3-turbo
+Turbo is the fastest and cheapest Ideogram v3. v3 creates images with stunning realism, creative designs, and consistent styles
+Updated 
+10 months, 4 weeks ago
+9.6M
+runs
+Official
+ideogram-ai
+/
+ideogram-v2a-turbo
+Like Ideogram v2 turbo, but now faster and cheaper
+Updated 
+10 months, 4 weeks ago
+392.6K
+runs
+Official
+ideogram-ai
+/
+ideogram-v2
+An excellent image model with state of the art inpainting, prompt comprehension and text rendering
+Updated 
+10 months, 4 weeks ago
+2.9M
+runs
+Official
+ideogram-ai
+/
+ideogram-v3-quality
+The highest quality Ideogram v3 model. v3 creates images with stunning realism, creative designs, and consistent styles
+Updated 
+10 months, 4 weeks ago
+2.4M
+runs
+Official
+ideogram-ai
+/
+ideogram-v2a
+Like Ideogram v2, but faster and cheaper
+Updated 
+10 months, 4 weeks ago
+2.2M
+runs
+Official
+ideogram-ai
+/
+ideogram-v3-balanced
+Balance speed, quality and cost. Ideogram v3 creates images with stunning realism, creative designs, and consistent styles
+Updated 
+10 months, 4 weeks ago
+500.5K
+runs
+Official
+ideogram-ai
+/
+ideogram-v2-turbo
+A fast image model with state of the art inpainting, prompt comprehension and text rendering.
+Updated 
+10 months, 4 weeks ago
+2.9M
+runs
+Official
+stability-ai
+/
+stable-diffusion-3.5-medium
+2.5 billion parameter image model with improved MMDiT-X architecture
+Updated 
+10 months, 4 weeks ago
+124.4K
+runs
+Official
+stability-ai
+/
+stable-diffusion-3.5-large
+A text-to-image model that generates high-resolution images with fine details. It supports various artistic styles and produces diverse outputs from the same prompt, thanks to Query-Key Normalization.
+Updated 
+10 months, 4 weeks ago
+2.1M
+runs
+Official
+stability-ai
+/
+stable-diffusion-3.5-large-turbo
+A text-to-image model that generates high-resolution images with fine details. It supports various artistic styles and produces diverse outputs from the same prompt, with a focus on fewer inference steps
+Updated 
+10 months, 4 weeks ago
+1.1M
+runs
+Official
+minimax
+/
+image-01
+Minimax's first image model, with character reference support
+Updated 
+10 months, 4 weeks ago
+3.2M
+runs
+Official
+luma
+/
+photon-flash
+Accelerated variant of Photon prioritizing speed while maintaining quality
+Updated 
+10 months, 4 weeks ago
+1.6M
+runs
+Official
+comfyui
+/
+any-comfyui-workflow
+Run any ComfyUI workflow. Guide: https://github.com/replicate/cog-comfyui
+Updated 
+11 months ago
+8.9M
+runs
+tencent
+/
+hunyuan-image-3
+A powerful native multimodal model for image generation (PrunaAI squeezed)
+Updated 
+11 months, 4 weeks ago
+100.9K
+runs
+Official
+nvidia
+/
+sana-sprint-1.6b
+SANA-Sprint: One-Step Diffusion with Continuous-Time Consistency Distillation
+Updated 
+1 year, 2 months ago
+1.1M
+runs
+prunaai
+/
+wan-2.2-image
+This model generates beautiful cinematic 2 megapixel images in 3-4 seconds and is derived from the Wan 2.2 model through optimisation techniques from the pruna package
+Updated 
+1 year, 2 months ago
+1.3M
+runs
+Official
+prunaai
+/
+hidream-l1-full
+This is an optimised version of the hidream-full model using the pruna ai optimisation toolkit!
+Updated 
+1 year, 2 months ago
+38.2K
+runs
+prunaai
+/
+hidream-l1-dev
+This is an optimised version of the hidream-l1-dev model using the pruna ai optimisation toolkit!
+Updated 
+1 year, 2 months ago
+54.2K
+runs
+black-forest-labs
+/
+flux-dev-lora
+A version of flux-dev, a text to image model, that supports fast fine-tuned lora inference
+Updated 
+1 year, 3 months ago
+6.2M
+runs
+Official
+black-forest-labs
+/
+flux-dev
+A 12 billion parameter rectified flow transformer capable of generating images from text descriptions
+Updated 
+1 year, 3 months ago
+52.8M
+runs
+Official
+black-forest-labs
+/
+flux-schnell
+The fastest image generation model tailored for local development and personal use
+Updated 
+1 year, 3 months ago
+696.6M
+runs
+Official
+prunaai
+/
+sdxl-lightning
+This is the fastest sdxl-lightning endpoint in the world on A100, contact us for more at pruna.ai
+Updated 
+1 year, 3 months ago
+7.4K
+runs
+bytedance
+/
+sdxl-lightning-4step
+SDXL-Lightning by ByteDance: a fast text-to-image model that makes high-quality images in 4 steps
+Updated 
+1 year, 6 months ago
+1B
+runs
+nvidia
+/
+sana
+A fast image model with wide artistic range and resolutions up to 4096x4096
+Updated 
+1 year, 9 months ago
+264.8K
+runs
+luma
+/
+photon
+High-quality image generation model optimized for creative professional workflows and ultra-high fidelity outputs
+Updated 
+1 year, 10 months ago
+3.3M
+runs
+Official
+stability-ai
+/
+sdxl
+A text-to-image generative AI model that creates beautiful images
+Updated 
+2 years, 4 months ago
+86.4M
+runs
+fofr
+/
+sticker-maker
+Make stickers with AI. Generates graphics with transparent backgrounds.
+Updated 
+2 years, 5 months ago
+2.6M
+runs
+ai-forever
+/
+kandinsky-2
+text2img model trained on LAION HighRes and fine-tuned on internal datasets
+Updated 
+2 years, 5 months ago
+6.2M
+runs
+ai-forever
+/
+kandinsky-2.2
+multilingual text2image latent diffusion model
+Updated 
+2 years, 5 months ago
+10.1M
+runs
+playgroundai
+/
+playground-v2.5-1024px-aesthetic
+Playground v2.5 is the state-of-the-art open-source model in aesthetic quality
+Updated 
+2 years, 6 months ago
+3.3M
+runs
+datacte
+/
+proteus-v0.3
+ProteusV0.3: The Anime Update
+Updated 
+2 years, 7 months ago
+6.4M
+runs
+fermatresearch
+/
+sdxl-controlnet-lora
+'''Last update: Now supports img2img.''' SDXL Canny controlnet with LoRA support.
+Updated 
+2 years, 8 months ago
+1M
+runs
+datacte
+/
+proteus-v0.2
+Proteus v0.2 shows subtle yet significant improvements over Version 0.1. It demonstrates enhanced prompt understanding that surpasses MJ6, while also approaching its stylistic capabilities.
+Updated 
+2 years, 8 months ago
+12.8M
+runs
+adirik
+/
+realvisxl-v3.0-turbo
+Photorealism with RealVisXL V3.0 Turbo based on SDXL
+Updated 
+2 years, 8 months ago
+617.7K
+runs
+fofr
+/
+latent-consistency-model
+Super-fast, 0.6s per image. LCM with img2img, large batching and canny controlnet
+Updated 
+2 years, 8 months ago
+1.6M
+runs
+sdxl-based
+/
+realvisxl-v3-multi-controlnet-lora
+RealVisXl V3 with multi-controlnet, lora loading, img2img, inpainting
+Updated 
+2 years, 9 months ago
+2.6M
+runs
+lucataco
+/
+open-dalle-v1.1
+A unique fusion that showcases exceptional prompt adherence and semantic understanding, it seems to be a step above base SDXL and a step closer to DALLE-3 in terms of prompt comprehension
+Updated 
+2 years, 9 months ago
+134.2K
+runs
+fofr
+/
+sdxl-multi-controlnet-lora
+Multi-controlnet, lora loading, img2img, inpainting
+Updated 
+2 years, 9 months ago
+232.9K
+runs
+lucataco
+/
+dreamshaper-xl-turbo
+DreamShaper is a general purpose SD model that aims at doing everything well, photos, art, anime, manga. It's designed to match Midjourney and DALL-E.
+Updated 
+2 years, 9 months ago
+233.2K
+runs
+lucataco
+/
+ssd-1b
+Segmind Stable Diffusion Model (SSD-1B) is a distilled 50% smaller version of SDXL, offering a 60% speedup while maintaining high-quality text-to-image generation capabilities
+Updated 
+2 years, 10 months ago
+1.1M
+runs
+fofr
+/
+sdxl-emoji
+An SDXL fine-tune based on Apple Emojis
+Updated 
+3 years ago
+12.5M
+runs
+lucataco
+/
+realistic-vision-v5.1
+Implementation of Realistic Vision v5.1 with VAE
+Updated 
+3 years, 1 month ago
+4.3M
+runs
+stability-ai
+/
+stable-diffusion
+A latent text-to-image diffusion model capable of generating photo-realistic images given any text input
+Updated 
+3 years, 2 months ago
+111.1M
+runs
+jagilley
+/
+controlnet-scribble
+Generate detailed images from scribbled drawings
+Updated 
+3 years, 7 months ago
+38.4M
+runs
+tstramer
+/
+material-diffusion
+Stable diffusion fork for generating tileable outputs using v1.5 model
+Updated 
+3 years, 10 months ago
+2.4M
+runs

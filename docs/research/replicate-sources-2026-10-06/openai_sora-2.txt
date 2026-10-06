@@ -1,0 +1,12 @@
+SOURCE: https://replicate.com/openai/sora-2
+
+description: API for Sora 2. Generate videos using Sora 2. Realistic AI video using Sora 2 from OpenAI.
+replicate:run_count: 354612
+replicate:is_official: true
+replicate:latest_version_created_at: 2026-01-21T20:05:32.999506+00:00
+
+INPUT SCHEMA:
+{"type": "object", "title": "Input", "required": ["prompt"], "properties": {"prompt": {"type": "string", "title": "Prompt", "x-order": 1, "description": "A text description of the video to generate"}, "seconds": {"enum": [4, 8, 12], "type": "integer", "title": "seconds", "description": "Duration of the video in seconds", "default": 4, "x-order": 3}, "aspect_ratio": {"enum": ["portrait", "landscape"], "type": "string", "title": "aspect_ratio", "description": "Aspect ratio of the video. Portrait is 720x1280, landscape is 1280x720", "default": "portrait", "x-order": 4}, "openai_api_key": {"type": "string", "title": "Openai Api Key", "format": "password", "x-order": 0, "nullable": true, "writeOnly": true, "description": "Optional: Your OpenAI API key. If you use your own OpenAI API key, you will be charged directly by OpenAI.", "x-cog-secret": true}, "input_reference": {"type": "string", "title": "Input Reference", "format": "uri", "x-order": 2, "nullable": true, "description": "An optional image to use as the first frame of the video. The image must be the same aspect ratio as the video."}}}
+
+PRICING:
+{"criteria": [{"description": "sora-2", "subtype": "string", "title": "model variant", "type": "equals", "value": "sora-2"}], "description": "Charged per second of generated video.", "prices": [{"description": "or 10 seconds for $1", "metric": "video_output_duration_seconds", "metric_display": "second of output video", "price": "$0.10", "title": "per second of output video", "type": "per-unit"}], "title": "Standard quality"}
