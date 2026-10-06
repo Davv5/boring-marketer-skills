@@ -295,3 +295,13 @@ CTA: "What do you think?"
 3. Thumbnail too cluttered
 4. Title doesn't match content
 5. No cards/end screens
+
+## Voice adjustment
+
+Complement the loaded brand voice rather than replacing it.
+- Formality: Conversational, thorough.
+- Energy: Medium.
+- Length: Script-length.
+- Reader expectation: Depth, personality.
+
+Example adaptation of the simplicity insight (use only supportable claims): “If you've been in marketing for any length of time, you've probably noticed something...”

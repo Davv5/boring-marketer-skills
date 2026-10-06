@@ -227,3 +227,13 @@ TikTok's 2025 algorithm prioritizes **enhanced personalization**, focusing on wa
 3. Ignoring trending sounds
 4. Over-produced content (authenticity wins)
 5. Not responding to comments
+
+## Voice adjustment
+
+Complement the loaded brand voice rather than replacing it.
+- Formality: Casual, energetic.
+- Energy: Very high.
+- Length: Spoken-word short.
+- Reader expectation: Authenticity, entertainment.
+
+Example adaptation of the simplicity insight (use only supportable claims): “Y'all I need to talk about why everyone's overcomplicating their marketing...”

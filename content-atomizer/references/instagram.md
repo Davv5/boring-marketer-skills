@@ -321,3 +321,13 @@ Save this for later
 3. No captions on video
 4. Reposting TikToks with watermark
 5. Inconsistent visual style
+
+## Voice adjustment
+
+Complement the loaded brand voice rather than replacing it.
+- Formality: Visual, inspirational.
+- Energy: Medium.
+- Length: Caption-length.
+- Reader expectation: Visual-first, story.
+
+Example adaptation of the simplicity insight (use only supportable claims): Image text “Simple > Sophisticated” with the story in the caption.

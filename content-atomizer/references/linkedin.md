@@ -240,3 +240,13 @@ LinkedIn uses a **three-step process**: quality filtering (spam/low/high classif
 3. No line breaks (wall of text)
 4. Hashtags in carousel slides
 5. Copying Twitter energy (too casual)
+
+## Voice adjustment
+
+Complement the loaded brand voice rather than replacing it.
+- Formality: Professional, thoughtful.
+- Energy: Medium-high.
+- Length: Longer, detailed.
+- Reader expectation: Expertise, credibility.
+
+Example adaptation of the simplicity insight (use only supportable claims): “After 10 years in marketing, I've learned that simplicity beats complexity. Here's why:”

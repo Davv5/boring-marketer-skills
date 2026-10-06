@@ -219,3 +219,13 @@ Body:
 3. Short, low-effort posts (Reddit rewards depth)
 4. Not disclosing affiliations (community will find out)
 5. Arguing with critics instead of engaging constructively
+
+## Voice adjustment
+
+Complement the loaded brand voice rather than replacing it.
+- Formality: Detailed, transparent.
+- Energy: Low-key.
+- Length: Long-form text.
+- Reader expectation: Value, specificity, proof.
+
+Example adaptation of the simplicity insight (use only supportable claims): “I've been in marketing for 10 years and tracked my campaigns. The simple strategies consistently outperform the complex ones. Here's the data and my methodology:”

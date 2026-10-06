@@ -125,4 +125,4 @@ When no scheduler is available, include suggested times in each asset's `recomme
 
 The master `schedule.md` contains the full week view and references each asset path. Include source, calendar start/end, selected platforms, and post count in frontmatter when useful. For each post list date, time, platform, filename/path, hook or short description, and Format. Include a summary of total posts, platforms, unique pieces, and schedule path. Mark a rest day when appropriate. State timezone; when unknown, ask or label the time zone assumption. Treat general recommended times as suggestions unless brand learnings provide evidence.
 
-Use `_system/output-format.md` for the response surrounding saved files; this example is the skill-specific schedule file, not a replacement response contract.
+Use `../_system/output-format.md` for the response surrounding saved files; this example is the skill-specific schedule file, not a replacement response contract.

@@ -176,3 +176,13 @@ Curious what others have experienced.
 3. Not setting up domain-as-handle (missed credibility signal)
 4. Treating it like a broadcast channel (it rewards conversation)
 5. Over-posting (quality audience prefers substance over volume)
+
+## Voice adjustment
+
+Complement the loaded brand voice rather than replacing it.
+- Formality: Substantive, measured.
+- Energy: Medium-low.
+- Length: Concise text.
+- Reader expectation: Nuance, substance.
+
+Example adaptation of the simplicity insight (use only supportable claims): “The complexity fetish in marketing is real. Simple strategies outperform sophisticated ones. A few observations from a decade of data:”

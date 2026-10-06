@@ -184,3 +184,13 @@ This is underrated. Here's why:
 3. Being overly promotional (community rejects it)
 4. Ignoring the reply culture (conversation is the point)
 5. Not leveraging Instagram cross-promotion
+
+## Voice adjustment
+
+Complement the loaded brand voice rather than replacing it.
+- Formality: Conversational, warm.
+- Energy: Medium.
+- Length: Medium text.
+- Reader expectation: Thoughtful discussion.
+
+Example adaptation of the simplicity insight (use only supportable claims): “Something I keep coming back to: the best marketing strategies are embarrassingly simple. Here's what I mean...”

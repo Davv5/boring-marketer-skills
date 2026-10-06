@@ -283,3 +283,13 @@ If this was useful:
 3. Filler tweets with no value
 4. Not replying to comments
 5. Posting at wrong times
+
+## Voice adjustment
+
+Complement the loaded brand voice rather than replacing it.
+- Formality: Punchy, direct.
+- Energy: High.
+- Length: Short, dense.
+- Reader expectation: Speed, wit, conviction.
+
+Example adaptation of the simplicity insight (use only supportable claims): “Hot take: Simple marketing > 'sophisticated' marketing. Every time.”
