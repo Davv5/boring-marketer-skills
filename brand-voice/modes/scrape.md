@@ -1,12 +1,37 @@
 # Scrape Mode
 
-Use when the user supplies a URL or asks for fresh public-source research and web search is available. This is a best-effort evidence-gathering Mode, not a guarantee of access or coverage.
+Use when the user provides a URL. Scraping is best-effort research that gathers public material for Extract analysis; it does not guarantee access or coverage.
 
-1. Search for the homepage, About page, recent blog content, public social bios/posts, and relevant interviews. Gather accessible source text and report what was and was not found.
-   **Done:** Sources and limits are identified, with no inaccessible content represented as observed.
-2. If accessible material is too sparse to establish patterns (roughly fewer than 500 words), explain the evidence gap and offer Extract or Build. Otherwise analyze the gathered material using Extract Mode's dimensions.
-   **Done:** There is adequate attributed material for analysis, or the user has selected another Mode.
-3. Ask 2–3 focused questions about desired evolution, signature/avoided language, or admired voices; use answers as intent separate from scraped evidence.
-   **Done:** The profile has both clearly separated public-source observations and user-confirmed intent, or records which is absent.
+## Prerequisites and Fallback
 
-If web search is unavailable, explain the Fallback and offer pasted samples (Extract) or strategic questions (Build).
+Scrape requires web search capability. If web search is unavailable, explain that limitation and offer the user pasted website copy for Extract or strategic questions for Build. Continue only with the Mode they choose.
+
+## Scrape Process
+
+### 1. Gather content
+
+From the provided URL, search for and retrieve accessible content:
+- `{url}` — homepage
+- `{url}/about` or `{url}/about-us` — About page
+- `{url}/blog` — recent blog posts (2–3)
+- `site:{domain} linkedin.com` — LinkedIn profile or company page
+- `site:{domain} twitter.com` or `site:{domain} x.com` — Twitter/X presence
+- `{brand name} {founder name}` — podcast appearances, interviews, guest posts
+- Other relevant public content discovered during research
+
+Record the sources and coverage as you go. Report what was found and what was inaccessible or not found, including word or item counts when available; do not imply that a search result was inspected if its content could not be retrieved.
+
+### 2. Assess the corpus
+
+Feed gathered content through all six Extract dimensions: tone, vocabulary, rhythm, structure, personality, and POV. Inadequate source material should not be used to infer voice.
+
+### 3. Supplement with questions
+
+After extraction, ask 2–3 targeted questions to fill gaps the public sources cannot answer:
+1. Is there anything about your current voice you want to change or evolve?
+2. Any words or phrases you love or hate that might not show up in your public content?
+3. Who do you admire voice-wise (a brand, creator, or writer)?
+
+Merge answers as user-stated intent, distinct from scraped observations, and proceed to the main skill's Voice Test Loop.
+
+**Done:** Accessible sources and search limits are reported, evidence is sufficient or the user chose Extract/Build instead, and follow-up intent is distinguished from observed patterns.
