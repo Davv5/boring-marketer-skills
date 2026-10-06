@@ -51,3 +51,7 @@ Read only the selected Format file; each combines the former format template and
 - Personal essay: `references/formats/personal-essay.md`
 - Builder update: `references/formats/builder-update.md`
 - Irreverent news: `references/formats/irreverent-news.md`
+
+For voice, subject lines, scannability, research, and pre-send review, read `references/editorial-guidance.md` while drafting. The six format references retain their full detailed templates; the former examples reference remains available at `references/newsletter-examples.md` for additional examples.
+
+After saving, read `references/distribution.md` for chain context, the `/content-atomizer` handoff, and the newsletter-type repurposing suggestions. Read `references/editorial-guidance.md` for the final pre-send tests.
