@@ -795,19 +795,19 @@ Step 1: Gather Product Brief
 ├─ Key features to highlight
 ├─ Target platform(s)
 ├─ Brand kit loaded? (if not, prompt for it)
-└─ Style preference (or run style exploration first)
++─ Style preference (or run style exploration first)
 
 Step 2: Establish Consistency Lock
 ├─ Lock lighting, color temp, background, styling
 ├─ Document in consistency lock format
-└─ All 5 agents will read this lock
++─ All 5 agents will read this lock
 
 Step 3: Dispatch 5 Parallel Agents
 ├─ Agent 1: Hero shot (16:9)
 ├─ Agent 2: Detail shot (1:1)
 ├─ Agent 3: Lifestyle shot (4:5)
 ├─ Agent 4: Flat lay (1:1)
-└─ Agent 5: Scale reference (1:1)
++─ Agent 5: Scale reference (1:1)
 
 Each agent:
   1. Reads brand kit (creative-kit.md)
@@ -821,12 +821,12 @@ Step 4: Present All 5 Results
 ├─ Display all shots in a grid review
 ├─ Note any consistency issues
 ├─ Offer per-shot iteration or full reshoot
-└─ Run e-commerce compliance check if needed
++─ Run e-commerce compliance check if needed
 
 Step 5: Iterate or Approve
 ├─ Replace individual shots that need work
 ├─ Approve complete set
-└─ Export to campaigns directory
++─ Export to campaigns directory
 ```
 
 ### Complete Shoot Output Template
@@ -983,23 +983,23 @@ All product photo outputs are saved to organized directories under the project r
 ```
 ./campaigns/{product-name}/photos/
 ├── hero/
-│   └── hero-{product}-16x9-v1.png
+|   +── hero-{product}-16x9-v1.png
 ├── detail/
-│   └── detail-{feature}-1x1-v1.png
+|   +── detail-{feature}-1x1-v1.png
 ├── lifestyle/
-│   └── lifestyle-{setting}-4x5-v1.png
+|   +── lifestyle-{setting}-4x5-v1.png
 ├── ecommerce/
-│   └── ecommerce-{product}-1x1-v1.png
+|   +── ecommerce-{product}-1x1-v1.png
 ├── flat-lay/
-│   └── flatlay-{product}-1x1-v1.png
+|   +── flatlay-{product}-1x1-v1.png
 ├── scale/
-│   └── scale-{product}-1x1-v1.png
-└── explorations/
+|   +── scale-{product}-1x1-v1.png
++── explorations/
     ├── direction-1.png
     ├── direction-2.png
     ├── direction-3.png
     ├── direction-4.png
-    └── direction-5.png
+    +── direction-5.png
 ```
 
 ### Naming Convention
@@ -1204,59 +1204,59 @@ Not premium enough → add "luxury, premium, high-end"
 ```
 PRODUCT PHOTO PIPELINE (v2)
 
-┌─────────────────────────────────────────┐
-│  Request arrives                        │
-│  → From creative SKILL.md (mode 1)     │
-│  → Or direct invocation                 │
-│  → Clarify product and requirements     │
-└─────────────────────────────────────────┘
-                    │
++─────────────────────────────────────────+
+|  Request arrives                        |
+|  → From creative SKILL.md (mode 1)     |
+|  → Or direct invocation                 |
+|  → Clarify product and requirements     |
++─────────────────────────────────────────+
+                    |
                     ▼
-┌─────────────────────────────────────────┐
-│  Brand Kit Check                        │
-│  → Load ./brand/creative-kit.md        │
-│  → If missing, prompt user to create    │
-│  → Apply brand colors/style to prompts  │
-└─────────────────────────────────────────┘
-                    │
++─────────────────────────────────────────+
+|  Brand Kit Check                        |
+|  → Load ./brand/creative-kit.md        |
+|  → If missing, prompt user to create    |
+|  → Apply brand colors/style to prompts  |
++─────────────────────────────────────────+
+                    |
                     ▼
-┌─────────────────────────────────────────┐
-│  Style Exploration (if needed)          │
-│  → Generate 5 different approaches      │
-│  → User selects winner                  │
-│  → Extract principles for consistency   │
-│  → Save explorations to campaigns dir   │
-└─────────────────────────────────────────┘
-                    │
-          ┌─────────┴──────────┐
++─────────────────────────────────────────+
+|  Style Exploration (if needed)          |
+|  → Generate 5 different approaches      |
+|  → User selects winner                  |
+|  → Extract principles for consistency   |
+|  → Save explorations to campaigns dir   |
++─────────────────────────────────────────+
+                    |
+          +─────────┴──────────+
           ▼                    ▼
-┌──────────────────┐  ┌──────────────────────┐
-│  Single Shot     │  │  Complete Shoot       │
-│  → One prompt    │  │  → 5 parallel agents  │
-│  → One image     │  │  → Consistency lock   │
-│  → Quick iterate │  │  → Full product set   │
-└──────────────────┘  └──────────────────────┘
-          │                    │
-          └─────────┬──────────┘
++──────────────────+  +──────────────────────+
+|  Single Shot     |  |  Complete Shoot       |
+|  → One prompt    |  |  → 5 parallel agents  |
+|  → One image     |  |  → Consistency lock   |
+|  → Quick iterate |  |  → Full product set   |
++──────────────────+  +──────────────────────+
+          |                    |
+          +─────────┬──────────+
                     ▼
-┌─────────────────────────────────────────┐
-│  Product Photo Mode (THIS FILE)         │
-│  → Construct platform-optimized prompt  │
-│  → Reference MODEL_REGISTRY.md for API  │
-│  → Generate image(s)                    │
-│  → Review against quality checklist     │
-│  → Run compliance check (if e-commerce) │
-│  → Iterate as needed                    │
-└─────────────────────────────────────────┘
-                    │
-          ┌─────────┴──────────┐
++─────────────────────────────────────────+
+|  Product Photo Mode (THIS FILE)         |
+|  → Construct platform-optimized prompt  |
+|  → Reference MODEL_REGISTRY.md for API  |
+|  → Generate image(s)                    |
+|  → Review against quality checklist     |
+|  → Run compliance check (if e-commerce) |
+|  → Iterate as needed                    |
++─────────────────────────────────────────+
+                    |
+          +─────────┴──────────+
           ▼                    ▼
-┌──────────────────┐  ┌──────────────────┐
-│  Save & Deliver  │  │  Route to Video  │
-│  → Save to       │  │  → Product video │
-│    campaigns dir │  │    mode for      │
-│  → Export ready  │  │    animation     │
-└──────────────────┘  └──────────────────┘
++──────────────────+  +──────────────────+
+|  Save & Deliver  |  |  Route to Video  |
+|  → Save to       |  |  → Product video |
+|    campaigns dir |  |    mode for      |
+|  → Export ready  |  |    animation     |
++──────────────────+  +──────────────────+
 ```
 
 ---

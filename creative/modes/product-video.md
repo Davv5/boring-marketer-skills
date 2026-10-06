@@ -1082,13 +1082,13 @@ All generated video assets are saved to the campaign directory for the product.
 ├── hero-reveal-kling-v2.mp4        (iteration)
 ├── orbit-showcase-kling-v1.mp4
 ├── sequence/
-│   ├── clip-01-establish.mp4
-│   ├── clip-02-detail.mp4
-│   ├── clip-03-feature.mp4
-│   └── clip-04-hero.mp4
-└── approved/
+|   ├── clip-01-establish.mp4
+|   ├── clip-02-detail.mp4
+|   ├── clip-03-feature.mp4
+|   +── clip-04-hero.mp4
++── approved/
     ├── hero-reveal-final.mp4        (selected winner)
-    └── orbit-showcase-final.mp4
+    +── orbit-showcase-final.mp4
 ```
 
 ### File Naming Convention
@@ -1337,60 +1337,60 @@ Don't iterate on broken foundation:
 ```
 PRODUCT VIDEO PIPELINE
 
-┌─────────────────────────────────────────┐
-│  Request arrives                        │
-│  → Direct or from creative workflow     │
-│  → Source image required?               │
-└─────────────────────────────────────────┘
-                    │
-        ┌───────────┴───────────┐
++─────────────────────────────────────────+
+|  Request arrives                        |
+|  → Direct or from creative workflow     |
+|  → Source image required?               |
++─────────────────────────────────────────+
+                    |
+        +───────────┴───────────+
         ▼                       ▼
-┌──────────────────┐   ┌──────────────────┐
-│  Has source      │   │  Needs source    │
-│  image           │   │  image           │
-└───────┬──────────┘   └────────┬─────────┘
-        │                       │
-        │                       ▼
-        │              ┌──────────────────┐
-        │              │  product-photo   │
-        │              │  mode            │
-        │              │  → Generate      │
-        │              │  → Approve       │
-        │              └────────┬─────────┘
-        │                       │
-        └───────────┬───────────┘
++──────────────────+   +──────────────────+
+|  Has source      |   |  Needs source    |
+|  image           |   |  image           |
++───────┬──────────+   +────────┬─────────+
+        |                       |
+        |                       ▼
+        |              +──────────────────+
+        |              |  product-photo   |
+        |              |  mode            |
+        |              |  → Generate      |
+        |              |  → Approve       |
+        |              +────────┬─────────+
+        |                       |
+        +───────────┬───────────+
                     ▼
-┌─────────────────────────────────────────┐
-│  Motion Style Selection                 │
-│  → Single style or multiple exploration │
-└─────────────────────────────────────────┘
-                    │
++─────────────────────────────────────────+
+|  Motion Style Selection                 |
+|  → Single style or multiple exploration |
++─────────────────────────────────────────+
+                    |
                     ▼
-┌─────────────────────────────────────────┐
-│  Cost Estimation                        │
-│  → Calculate based on models + clips    │
-│  → Present to user for confirmation     │
-└─────────────────────────────────────────┘
-                    │
++─────────────────────────────────────────+
+|  Cost Estimation                        |
+|  → Calculate based on models + clips    |
+|  → Present to user for confirmation     |
++─────────────────────────────────────────+
+                    |
                     ▼
-┌─────────────────────────────────────────┐
-│  product-video mode (THIS MODE)         │
-│  → Construct motion prompt              │
-│  → Multi-model parallel generation      │
-│  → Present options                      │
-│  → User selects winner                  │
-│  → Save to campaigns/{product}/video/   │
-└─────────────────────────────────────────┘
-                    │
-        ┌───────────┼───────────┐
++─────────────────────────────────────────+
+|  product-video mode (THIS MODE)         |
+|  → Construct motion prompt              |
+|  → Multi-model parallel generation      |
+|  → Present options                      |
+|  → User selects winner                  |
+|  → Save to campaigns/{product}/video/   |
++─────────────────────────────────────────+
+                    |
+        +───────────┼───────────+
         ▼           ▼           ▼
-┌──────────┐ ┌──────────┐ ┌──────────────┐
-│ Delivery │ │ Clip     │ │ Route to     │
-│ → Final  │ │ Stitch   │ │ talking-head │
-│   video  │ │ → Plan   │ │ mode         │
-│          │ │   more   │ │ → Voiceover  │
-│          │ │   clips  │ │ → Lip-sync   │
-└──────────┘ └──────────┘ └──────────────┘
++──────────+ +──────────+ +──────────────+
+| Delivery | | Clip     | | Route to     |
+| → Final  | | Stitch   | | talking-head |
+|   video  | | → Plan   | | mode         |
+|          | |   more   | | → Voiceover  |
+|          | |   clips  | | → Lip-sync   |
++──────────+ +──────────+ +──────────────+
 ```
 
 ---

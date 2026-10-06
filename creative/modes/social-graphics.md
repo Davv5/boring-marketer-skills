@@ -827,20 +827,20 @@ When generating for multiple platforms simultaneously:
 ```
 ./campaigns/{campaign}/social/
 ├── instagram/
-│   ├── day-1-educate.png      (4:5)
-│   ├── day-2-inspire.png      (4:5)
-│   ├── ...
-│   └── day-7-inspire.png      (4:5)
+|   ├── day-1-educate.png      (4:5)
+|   ├── day-2-inspire.png      (4:5)
+|   ├── ...
+|   +── day-7-inspire.png      (4:5)
 ├── linkedin/
-│   ├── day-1-educate.png      (1.91:1)
-│   ├── day-2-inspire.png      (1.91:1)
-│   ├── ...
-│   └── day-7-inspire.png      (1.91:1)
+|   ├── day-1-educate.png      (1.91:1)
+|   ├── day-2-inspire.png      (1.91:1)
+|   ├── ...
+|   +── day-7-inspire.png      (1.91:1)
 ├── twitter/
-│   ├── day-1-educate.png      (16:9)
-│   ├── ...
-│   └── day-7-inspire.png      (16:9)
-└── calendar-summary.md
+|   ├── day-1-educate.png      (16:9)
+|   ├── ...
+|   +── day-7-inspire.png      (16:9)
++── calendar-summary.md
 ```
 
 Each platform variant uses the same concept but adapts composition and aspect ratio. The template's platform adaptation notes guide the differences.
@@ -1041,14 +1041,14 @@ When one concept needs multiple platforms:
 ```
 For campaign "Product Launch":
 ├── instagram/
-│   ├── feed-4x5.png               (4:5) - primary
-│   └── stories-9x16.png           (9:16) - adapted
+|   ├── feed-4x5.png               (4:5) - primary
+|   +── stories-9x16.png           (9:16) - adapted
 ├── linkedin/
-│   └── feed-1.91x1.png            (1.91:1) - professional version
+|   +── feed-1.91x1.png            (1.91:1) - professional version
 ├── twitter/
-│   └── feed-16x9.png              (16:9) - punchy version
-└── facebook/
-    └── feed-1.91x1.png            (1.91:1) - broader appeal version
+|   +── feed-16x9.png              (16:9) - punchy version
++── facebook/
+    +── feed-1.91x1.png            (1.91:1) - broader appeal version
 ```
 
 ---
@@ -1062,36 +1062,36 @@ All social graphics are saved to an organized directory structure for easy hando
 ```
 ./campaigns/{campaign-name}/social/
 ├── instagram/
-│   ├── feed/
-│   │   ├── {concept}-4x5.png
-│   │   └── ...
-│   ├── stories/
-│   │   ├── {concept}-9x16.png
-│   │   └── ...
-│   └── reels/
-│       └── {concept}-cover-9x16.png
+|   ├── feed/
+|   |   ├── {concept}-4x5.png
+|   |   +── ...
+|   ├── stories/
+|   |   ├── {concept}-9x16.png
+|   |   +── ...
+|   +── reels/
+|       +── {concept}-cover-9x16.png
 ├── youtube/
-│   ├── thumbnails/
-│   │   ├── {concept}-16x9.png
-│   │   └── ...
-│   └── community/
-│       └── {concept}-1x1.png
+|   ├── thumbnails/
+|   |   ├── {concept}-16x9.png
+|   |   +── ...
+|   +── community/
+|       +── {concept}-1x1.png
 ├── linkedin/
-│   ├── {concept}-1.91x1.png
-│   └── ...
+|   ├── {concept}-1.91x1.png
+|   +── ...
 ├── twitter/
-│   ├── {concept}-16x9.png
-│   └── ...
+|   ├── {concept}-16x9.png
+|   +── ...
 ├── pinterest/
-│   ├── {concept}-2x3.png
-│   └── ...
+|   ├── {concept}-2x3.png
+|   +── ...
 ├── facebook/
-│   ├── {concept}-1.91x1.png
-│   └── ...
+|   ├── {concept}-1.91x1.png
+|   +── ...
 ├── tiktok/
-│   ├── {concept}-cover-9x16.png
-│   └── ...
-└── calendar-summary.md (if using content calendar mode)
+|   ├── {concept}-cover-9x16.png
+|   +── ...
++── calendar-summary.md (if using content calendar mode)
 ```
 
 ### File Naming Convention
@@ -1330,49 +1330,49 @@ After each successful generation:
 ```
 SOCIAL GRAPHICS PIPELINE
 
-┌─────────────────────────────────────────┐
-│  Request with platform specified        │
-│  -> Or route from creative/SKILL.md    │
-└─────────────────────────────────────────┘
-                    │
++─────────────────────────────────────────+
+|  Request with platform specified        |
+|  -> Or route from creative/SKILL.md    |
++─────────────────────────────────────────+
+                    |
                     v
-┌─────────────────────────────────────────┐
-│  LOAD BRAND CONTEXT                     │
-│  -> Read ./brand/creative-kit.md       │
-│  -> Load template if exists            │
-│  -> Extract brand colors, style, tone  │
-└─────────────────────────────────────────┘
-                    │
++─────────────────────────────────────────+
+|  LOAD BRAND CONTEXT                     |
+|  -> Read ./brand/creative-kit.md       |
+|  -> Load template if exists            |
+|  -> Extract brand colors, style, tone  |
++─────────────────────────────────────────+
+                    |
                     v
-┌─────────────────────────────────────────┐
-│  social-graphics mode (THIS FILE)       │
-│  -> Identify platform requirements     │
-│  -> Apply platform-specific template   │
-│  -> Apply brand template if available  │
-│  -> Generate with MODEL_REGISTRY.md    │
-│  -> Review against platform checklist  │
-└─────────────────────────────────────────┘
-                    │
-        ┌───────────┴───────────┐
++─────────────────────────────────────────+
+|  social-graphics mode (THIS FILE)       |
+|  -> Identify platform requirements     |
+|  -> Apply platform-specific template   |
+|  -> Apply brand template if available  |
+|  -> Generate with MODEL_REGISTRY.md    |
+|  -> Review against platform checklist  |
++─────────────────────────────────────────+
+                    |
+        +───────────┴───────────+
         v                       v
-┌──────────────────┐   ┌──────────────────┐
-│  Single Platform │   │  Multi-Platform  │
-│  -> Generate     │   │  -> Generate     │
-│  -> Save to      │   │    primary       │
-│    campaigns/    │   │  -> Auto-adapt   │
-│                  │   │    variants      │
-│                  │   │  -> Save all to  │
-│                  │   │    campaigns/    │
-└──────────────────┘   └──────────────────┘
-        │                       │
++──────────────────+   +──────────────────+
+|  Single Platform |   |  Multi-Platform  |
+|  -> Generate     |   |  -> Generate     |
+|  -> Save to      |   |    primary       |
+|    campaigns/    |   |  -> Auto-adapt   |
+|                  |   |    variants      |
+|                  |   |  -> Save all to  |
+|                  |   |    campaigns/    |
++──────────────────+   +──────────────────+
+        |                       |
         v                       v
-┌──────────────────┐   ┌──────────────────┐
-│  Content Calendar│   │  Template Save   │
-│  -> Batch gen    │   │  -> If new style │
-│  -> All pillars  │   │    approved,     │
-│  -> Calendar     │   │    save to       │
-│    summary       │   │    creative-kit  │
-└──────────────────┘   └──────────────────┘
++──────────────────+   +──────────────────+
+|  Content Calendar|   |  Template Save   |
+|  -> Batch gen    |   |  -> If new style |
+|  -> All pillars  |   |    approved,     |
+|  -> Calendar     |   |    save to       |
+|    summary       |   |    creative-kit  |
++──────────────────+   +──────────────────+
 ```
 
 ---

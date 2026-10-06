@@ -429,14 +429,14 @@ Formats are visual structures for delivering the hook. Each must look different 
 For each cell in the matrix, define:
 
 ```
-┌─────────────────┬──────────────────┬──────────────────┬──────────────────┐
-│                 │ Product Hero     │ UGC/Testimonial  │ Bold Typography  │
++─────────────────┬──────────────────┬──────────────────┬──────────────────+
+|                 | Product Hero     | UGC/Testimonial  | Bold Typography  |
 ├─────────────────┼──────────────────┼──────────────────┼──────────────────┤
-│ Pain Point      │ Ad 1             │ Ad 2             │ Ad 3             │
-│ Transformation  │ Ad 4             │ Ad 5             │ Ad 6             │
-│ Social Proof    │ Ad 7             │ Ad 8             │ Ad 9             │
-│ Curiosity Gap   │ Ad 10            │ Ad 11            │ Ad 12            │
-└─────────────────┴──────────────────┴──────────────────┴──────────────────┘
+| Pain Point      | Ad 1             | Ad 2             | Ad 3             |
+| Transformation  | Ad 4             | Ad 5             | Ad 6             |
+| Social Proof    | Ad 7             | Ad 8             | Ad 9             |
+| Curiosity Gap   | Ad 10            | Ad 11            | Ad 12            |
++─────────────────┴──────────────────┴──────────────────┴──────────────────+
 ```
 
 ### Step 4: Per-Ad Specification
@@ -939,34 +939,34 @@ Instead of generating one "perfect" ad, generate a library of components:
 ```
 IMAGE ASSETS (generate all of these):
 ├── Product shots (3-5 variants)
-│   ├── Clean white background — 1:1
-│   ├── Lifestyle context — 4:5
-│   ├── Close-up detail — 1:1
-│   ├── In-use / action — 4:5
-│   └── Flat lay / group — 1:1
-│
+|   ├── Clean white background — 1:1
+|   ├── Lifestyle context — 4:5
+|   ├── Close-up detail — 1:1
+|   ├── In-use / action — 4:5
+|   +── Flat lay / group — 1:1
+|
 ├── Lifestyle / contextual (3-5 variants)
-│   ├── Target audience using product — 4:5
-│   ├── Environmental / setting shot — 16:9
-│   └── Aspirational outcome — 4:5
-│
+|   ├── Target audience using product — 4:5
+|   ├── Environmental / setting shot — 16:9
+|   +── Aspirational outcome — 4:5
+|
 ├── Bold graphic variants (2-3 variants)
-│   ├── Stat/number highlighted — 1:1
-│   ├── Testimonial quote — 1:1
-│   └── Offer/promotion — 1:1
-│
-└── All images at MULTIPLE ratios:
+|   ├── Stat/number highlighted — 1:1
+|   ├── Testimonial quote — 1:1
+|   +── Offer/promotion — 1:1
+|
++── All images at MULTIPLE ratios:
     ├── 1:1 (Meta feed, Google display, LinkedIn)
     ├── 4:5 (Meta feed optimal, maximum real estate)
     ├── 9:16 (Stories, Reels, TikTok)
-    └── 16:9 (Google display, YouTube)
+    +── 16:9 (Google display, YouTube)
 
 TEXT ASSETS (write all of these):
 ├── Short headlines (5): 30 chars max each, varied hooks
 ├── Long headlines (5): 90 chars max each, expanded value props
 ├── Descriptions (5): 90 chars max each, different benefits
 ├── Primary text (5): 125 chars max each, varied angles
-└── CTA options: ["Shop Now", "Learn More", "Get Started", "Sign Up", "Book Now"]
++── CTA options: ["Shop Now", "Learn More", "Get Started", "Sign Up", "Book Now"]
 ```
 
 ### Key Rules for Algorithm-Optimized Creative
@@ -1023,51 +1023,51 @@ Step 1: BRAND CONTEXT
 ├── Read ./brand/creative-kit.md
 ├── Load brand colors, typography, style direction
 ├── Identify product/service being advertised
-└── Confirm campaign objective (awareness/consideration/conversion)
++── Confirm campaign objective (awareness/consideration/conversion)
 
 Step 2: DEFINE TARGET PLATFORMS
 ├── Which platforms? (Meta, Google, LinkedIn, TikTok)
 ├── Which placements per platform?
 ├── Budget allocation across platforms
-└── Confirm aspect ratios needed per placement
++── Confirm aspect ratios needed per placement
 
 Step 3: STYLE EXPLORATION (if new campaign)
 ├── Generate 5 visual directions
 ├── User selects direction or combines elements
 ├── Lock style principles for the campaign
-└── Document in campaign brief
++── Document in campaign brief
 
 Step 4: DEFINE HOOKS
 ├── Write 4 hook angles specific to the product/audience
 ├── Pain Point: [specific]
 ├── Transformation: [specific]
 ├── Social Proof: [specific]
-└── Curiosity Gap: [specific]
++── Curiosity Gap: [specific]
 
 Step 5: GENERATE 12-AD MATRIX
 ├── 4 hooks x 3 formats = 12 unique ads
 ├── Each ad: prompt, on-image text, headline, primary text, CTA, tracking name
 ├── Generate at primary ratio first (usually 4:5 for Meta)
 ├── Generate platform-specific ratio variants for each winning ad
-└── Batch generate using parallel task agents
++── Batch generate using parallel task agents
 
 Step 6: POLICY COMPLIANCE CHECK
 ├── Run applicable platform policy checklist
 ├── Flag any potential violations
 ├── Adjust creative before submission
-└── Document compliance review
++── Document compliance review
 
 Step 7: ORGANIZE DELIVERABLES
 ├── Save to ./campaigns/{campaign}/ads/{platform}/
 ├── Generate ad matrix document
 ├── Include tracking names for analytics setup
-└── Package for upload to each platform
++── Package for upload to each platform
 
 Step 8: A/B VARIANT GENERATION (after initial results)
 ├── Identify top 3 performers from matrix
 ├── Select variable to test for each
 ├── Generate 3-5 variants per winner
-└── Name systematically for tracking
++── Name systematically for tracking
 ```
 
 ### Quick Workflow: Single Platform Ad
@@ -1104,64 +1104,64 @@ Step 8: A/B VARIANT GENERATION (after initial results)
 ```
 ./campaigns/{campaign-name}/ads/
 ├── matrix/
-│   └── ad-testing-matrix.md          # The 12-ad matrix document
-│
+|   +── ad-testing-matrix.md          # The 12-ad matrix document
+|
 ├── meta/
-│   ├── feed/
-│   │   ├── {hook}-{format}-1x1-v1.png
-│   │   ├── {hook}-{format}-4x5-v1.png
-│   │   └── ...
-│   ├── stories/
-│   │   ├── {hook}-{format}-9x16-v1.png
-│   │   └── ...
-│   ├── carousel/
-│   │   ├── card-1-hook-1x1.png
-│   │   ├── card-2-problem-1x1.png
-│   │   └── ...
-│   └── video/
-│       ├── {hook}-{format}-4x5-v1.mp4
-│       └── ...
-│
+|   ├── feed/
+|   |   ├── {hook}-{format}-1x1-v1.png
+|   |   ├── {hook}-{format}-4x5-v1.png
+|   |   +── ...
+|   ├── stories/
+|   |   ├── {hook}-{format}-9x16-v1.png
+|   |   +── ...
+|   ├── carousel/
+|   |   ├── card-1-hook-1x1.png
+|   |   ├── card-2-problem-1x1.png
+|   |   +── ...
+|   +── video/
+|       ├── {hook}-{format}-4x5-v1.mp4
+|       +── ...
+|
 ├── google/
-│   ├── display/
-│   │   ├── {concept}-300x250.png
-│   │   ├── {concept}-728x90.png
-│   │   ├── {concept}-160x600.png
-│   │   └── ...
-│   ├── responsive/
-│   │   ├── {concept}-landscape-16x9.png
-│   │   ├── {concept}-square-1x1.png
-│   │   └── ...
-│   └── youtube/
-│       ├── thumbnail-{concept}-16x9.png
-│       └── ...
-│
+|   ├── display/
+|   |   ├── {concept}-300x250.png
+|   |   ├── {concept}-728x90.png
+|   |   ├── {concept}-160x600.png
+|   |   +── ...
+|   ├── responsive/
+|   |   ├── {concept}-landscape-16x9.png
+|   |   ├── {concept}-square-1x1.png
+|   |   +── ...
+|   +── youtube/
+|       ├── thumbnail-{concept}-16x9.png
+|       +── ...
+|
 ├── linkedin/
-│   ├── sponsored/
-│   │   ├── {concept}-landscape-16x9.png
-│   │   ├── {concept}-square-1x1.png
-│   │   └── ...
-│   ├── inmail/
-│   │   └── banner-{concept}-300x250.png
-│   └── carousel/
-│       ├── card-1-{concept}-1x1.png
-│       └── ...
-│
+|   ├── sponsored/
+|   |   ├── {concept}-landscape-16x9.png
+|   |   ├── {concept}-square-1x1.png
+|   |   +── ...
+|   ├── inmail/
+|   |   +── banner-{concept}-300x250.png
+|   +── carousel/
+|       ├── card-1-{concept}-1x1.png
+|       +── ...
+|
 ├── tiktok/
-│   ├── in-feed/
-│   │   ├── {hook}-{format}-9x16-v1.png
-│   │   └── ...
-│   └── video/
-│       ├── {hook}-{format}-9x16-v1.mp4
-│       └── ...
-│
+|   ├── in-feed/
+|   |   ├── {hook}-{format}-9x16-v1.png
+|   |   +── ...
+|   +── video/
+|       ├── {hook}-{format}-9x16-v1.mp4
+|       +── ...
+|
 ├── variants/
-│   ├── {base-ad}-var-a-{change}.png
-│   ├── {base-ad}-var-b-{change}.png
-│   └── ...
-│
-└── exports/
-    └── {platform}-upload-ready/      # Final packaged per platform
+|   ├── {base-ad}-var-a-{change}.png
+|   ├── {base-ad}-var-b-{change}.png
+|   +── ...
+|
++── exports/
+    +── {platform}-upload-ready/      # Final packaged per platform
 ```
 
 ### File Naming Convention
@@ -1354,7 +1354,7 @@ Wave 4 (Ratio Variants): Top performers at additional ratios
 ├── Generate top 6 ads at 1:1 (if primary was 4:5)
 ├── Generate top 6 ads at 9:16 (Stories/TikTok)
 ├── Generate top 6 ads at 16:9 (YouTube/Google)
-└── Generate Google Display sizes for top 3
++── Generate Google Display sizes for top 3
 ```
 
 ### Batch Cost Estimate
@@ -1373,54 +1373,54 @@ Wave 4 (Ratio Variants): Top performers at additional ratios
 ```
 AD CREATIVE PIPELINE
 
-┌─────────────────────────────────────────┐
-│  Request: "ad creative" / "paid ads"    │
-│  -> Route from creative/SKILL.md       │
-└─────────────────────────────────────────┘
-                    │
++─────────────────────────────────────────+
+|  Request: "ad creative" / "paid ads"    |
+|  -> Route from creative/SKILL.md       |
++─────────────────────────────────────────+
+                    |
                     v
-┌─────────────────────────────────────────┐
-│  LOAD BRAND CONTEXT                     │
-│  -> Read ./brand/creative-kit.md       │
-│  -> Extract brand colors, style, tone  │
-│  -> Identify product/service           │
-│  -> Confirm campaign objective         │
-└─────────────────────────────────────────┘
-                    │
++─────────────────────────────────────────+
+|  LOAD BRAND CONTEXT                     |
+|  -> Read ./brand/creative-kit.md       |
+|  -> Extract brand colors, style, tone  |
+|  -> Identify product/service           |
+|  -> Confirm campaign objective         |
++─────────────────────────────────────────+
+                    |
                     v
-┌─────────────────────────────────────────┐
-│  ad-creative mode (THIS FILE)           │
-│  -> Define target platforms            │
-│  -> Run style exploration (if new)     │
-│  -> Build 4 hooks for this product     │
-│  -> Generate 12-ad testing matrix      │
-│  -> Generate platform ratio variants   │
-│  -> Run policy compliance checks       │
-│  -> Save all to campaign directory     │
-└─────────────────────────────────────────┘
-                    │
-        ┌───────────┼───────────┐
++─────────────────────────────────────────+
+|  ad-creative mode (THIS FILE)           |
+|  -> Define target platforms            |
+|  -> Run style exploration (if new)     |
+|  -> Build 4 hooks for this product     |
+|  -> Generate 12-ad testing matrix      |
+|  -> Generate platform ratio variants   |
+|  -> Run policy compliance checks       |
+|  -> Save all to campaign directory     |
++─────────────────────────────────────────+
+                    |
+        +───────────┼───────────+
         v           v           v
-┌──────────────┐ ┌──────────┐ ┌──────────────┐
-│ Static Ads   │ │ Video Ads│ │ Copy Package │
-│ -> Nano      │ │ -> Kling │ │ -> Headlines │
-│    Banana    │ │    2.5   │ │ -> Primary   │
-│    Pro for   │ │    for   │ │    text      │
-│    all       │ │  default │ │ -> CTAs      │
-│    stills    │ │ -> Hero: │ │ -> Per       │
-│              │ │  parallel│ │   platform   │
-│              │ │  3-model │ │              │
-└──────────────┘ └──────────┘ └──────────────┘
-        │           │           │
++──────────────+ +──────────+ +──────────────+
+| Static Ads   | | Video Ads| | Copy Package |
+| -> Nano      | | -> Kling | | -> Headlines |
+|    Banana    | |    2.5   | | -> Primary   |
+|    Pro for   | |    for   | |    text      |
+|    all       | |  default | | -> CTAs      |
+|    stills    | | -> Hero: | | -> Per       |
+|              | |  parallel| |   platform   |
+|              | |  3-model | |              |
++──────────────+ +──────────+ +──────────────+
+        |           |           |
         v           v           v
-┌─────────────────────────────────────────┐
-│  DELIVERABLES                           │
-│  -> ./campaigns/{campaign}/ads/        │
-│  -> Ad testing matrix document         │
-│  -> Platform-organized assets          │
-│  -> Tracking names for analytics       │
-│  -> A/B variant sets (post-results)    │
-└─────────────────────────────────────────┘
++─────────────────────────────────────────+
+|  DELIVERABLES                           |
+|  -> ./campaigns/{campaign}/ads/        |
+|  -> Ad testing matrix document         |
+|  -> Platform-organized assets          |
+|  -> Tracking names for analytics       |
+|  -> A/B variant sets (post-results)    |
++─────────────────────────────────────────+
 ```
 
 ---

@@ -692,25 +692,25 @@ The complete pipeline from key message to finished talking head video.
 
 ```
 KEY MESSAGE
-    │
+    |
     ▼
 SCRIPT WRITING (exact duration targeting)
-    │
+    |
     ▼
 TTS AUDIO GENERATION (brand voice)
-    │
+    |
     ▼
 PRESENTER VIDEO GENERATION (multi-model)
-    │
+    |
     ▼
 LIP-SYNC APPLICATION
-    │
+    |
     ▼
 FTC COMPLIANCE CHECK
-    │
+    |
     ▼
 PLATFORM OPTIMIZATION
-    │
+    |
     ▼
 FILE OUTPUT to ./campaigns/{campaign}/video/talking-head/
 ```
@@ -1645,27 +1645,27 @@ All generated talking head assets are saved to the campaign directory.
 ```
 ./campaigns/{campaign}/video/talking-head/
 ├── presenter-exploration/
-│   ├── corporate-authority-kling-v1.mp4
-│   ├── relatable-friend-kling-v1.mp4
-│   ├── energetic-creator-kling-v1.mp4
-│   ├── expert-educator-kling-v1.mp4
-│   └── lifestyle-aspirational-kling-v1.mp4
+|   ├── corporate-authority-kling-v1.mp4
+|   ├── relatable-friend-kling-v1.mp4
+|   ├── energetic-creator-kling-v1.mp4
+|   ├── expert-educator-kling-v1.mp4
+|   +── lifestyle-aspirational-kling-v1.mp4
 ├── generation/
-│   ├── presenter-kling-v1.mp4
-│   ├── presenter-veo-v1.mp4
-│   ├── presenter-sora-v1.mp4
-│   └── presenter-kling-v2.mp4       (iteration)
+|   ├── presenter-kling-v1.mp4
+|   ├── presenter-veo-v1.mp4
+|   ├── presenter-sora-v1.mp4
+|   +── presenter-kling-v2.mp4       (iteration)
 ├── audio/
-│   ├── script-v1-elevenlabs.mp3
-│   ├── script-v2-elevenlabs.mp3
-│   └── script-v1-spanish.mp3        (localization)
+|   ├── script-v1-elevenlabs.mp3
+|   ├── script-v2-elevenlabs.mp3
+|   +── script-v1-spanish.mp3        (localization)
 ├── lip-sync/
-│   ├── presenter-synced-v1.mp4
-│   ├── presenter-synced-v2.mp4
-│   └── presenter-synced-spanish.mp4  (localization)
-└── approved/
+|   ├── presenter-synced-v1.mp4
+|   ├── presenter-synced-v2.mp4
+|   +── presenter-synced-spanish.mp4  (localization)
++── approved/
     ├── final-talking-head.mp4        (selected winner)
-    └── final-talking-head-spanish.mp4
+    +── final-talking-head-spanish.mp4
 ```
 
 ### File Naming Convention
@@ -1956,62 +1956,62 @@ Don't iterate on broken foundation:
 ```
 TALKING HEAD PIPELINE
 
-┌─────────────────────────────────────────┐
-│  Request arrives (direct or routed)     │
-│  → Clarify: platform, duration, style   │
-│  → Determine: generation vs lip-sync    │
-│  → Check creative-kit.md for presenter  │
-└─────────────────────────────────────────┘
-                    │
-        ┌───────────┴───────────┐
++─────────────────────────────────────────+
+|  Request arrives (direct or routed)     |
+|  → Clarify: platform, duration, style   |
+|  → Determine: generation vs lip-sync    |
+|  → Check creative-kit.md for presenter  |
++─────────────────────────────────────────+
+                    |
+        +───────────┴───────────+
         ▼                       ▼
-┌──────────────────┐   ┌──────────────────┐
-│  Style Undefined │   │  Style Defined   │
-│  (no approved    │   │  (approved       │
-│   presenter in   │   │   presenter in   │
-│   creative-kit)  │   │   creative-kit)  │
-│  → Run style     │   │  → Load spec     │
-│    exploration   │   │  → Skip to       │
-│  → Save winner   │   │    generation    │
-└──────────────────┘   └──────────────────┘
-                    │
++──────────────────+   +──────────────────+
+|  Style Undefined |   |  Style Defined   |
+|  (no approved    |   |  (approved       |
+|   presenter in   |   |   presenter in   |
+|   creative-kit)  |   |   creative-kit)  |
+|  → Run style     |   |  → Load spec     |
+|    exploration   |   |  → Skip to       |
+|  → Save winner   |   |    generation    |
++──────────────────+   +──────────────────+
+                    |
                     ▼
-┌─────────────────────────────────────────┐
-│  Script Writing                         │
-│  → Key message extraction               │
-│  → Duration-targeted word count         │
-│  → Tone matching archetype              │
-└─────────────────────────────────────────┘
-                    │
++─────────────────────────────────────────+
+|  Script Writing                         |
+|  → Key message extraction               |
+|  → Duration-targeted word count         |
+|  → Tone matching archetype              |
++─────────────────────────────────────────+
+                    |
                     ▼
-┌─────────────────────────────────────────┐
-│  Cost Estimation                        │
-│  → Calculate based on models + clips    │
-│  → Include TTS + lip-sync costs         │
-│  → Present to user for confirmation     │
-└─────────────────────────────────────────┘
-                    │
++─────────────────────────────────────────+
+|  Cost Estimation                        |
+|  → Calculate based on models + clips    |
+|  → Include TTS + lip-sync costs         |
+|  → Present to user for confirmation     |
++─────────────────────────────────────────+
+                    |
                     ▼
-┌─────────────────────────────────────────┐
-│  talking-head mode (THIS MODE)          │
-│  → Multi-model generation               │
-│  → Present options                      │
-│  → TTS audio generation                 │
-│  → Add lip-sync                         │
-│  → FTC compliance check                 │
-│  → Quality check                        │
-│  → Save to campaigns/{campaign}/        │
-│    video/talking-head/                  │
-└─────────────────────────────────────────┘
-                    │
++─────────────────────────────────────────+
+|  talking-head mode (THIS MODE)          |
+|  → Multi-model generation               |
+|  → Present options                      |
+|  → TTS audio generation                 |
+|  → Add lip-sync                         |
+|  → FTC compliance check                 |
+|  → Quality check                        |
+|  → Save to campaigns/{campaign}/        |
+|    video/talking-head/                  |
++─────────────────────────────────────────+
+                    |
                     ▼
-┌─────────────────────────────────────────┐
-│  Delivery                               │
-│  → Platform-optimized output            │
-│  → AI disclosure included               │
-│  → Ready for ads/social/content         │
-│  → Presenter saved to creative-kit.md   │
-└─────────────────────────────────────────┘
++─────────────────────────────────────────+
+|  Delivery                               |
+|  → Platform-optimized output            |
+|  → AI disclosure included               |
+|  → Ready for ads/social/content         |
+|  → Presenter saved to creative-kit.md   |
++─────────────────────────────────────────+
 ```
 
 ---
